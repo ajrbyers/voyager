@@ -237,11 +237,28 @@
 {% endcall %}{% endraw %}</code></pre>
     </div>
 
+    <h2>Nested rows with status rails</h2>
+    <p>
+      A summary-block can wrap a stack of child summary-blocks to present a
+      grouped list under a single header — for example, the reviewers on a
+      peer-review screen. Children sit edge-to-edge inside a
+      <code>summary-block-body-flush</code> body; their outer borders are
+      stripped automatically and a single hairline separates each row.
+    </p>
+    <p>
+      Add one of <code>summary-block-rail-green</code>,
+      <code>summary-block-rail-amber</code>, or <code>summary-block-rail-red</code>
+      to each child to surface its state as a 4px coloured rail on the left
+      edge of the parent. This matches the rail idiom on <code>article-card</code>
+      so editors learn the colours once.
+    </p>
+
     <h2>Notes</h2>
     <ul>
       <li>The title is always an <code>&lt;h2&gt;</code> — summary blocks live under the page H1.</li>
       <li>Set <code>aria-labelledby</code> on the section to the title's id so screen readers announce the block by name.</li>
       <li>Use <code>summary-block-body-flush</code> when the body is a summary list — it removes the body padding so the list rows go edge-to-edge.</li>
+      <li>Rails are state, not decoration. Don't use them for visual variety; reserve them for telling the reader something they need to know at a glance.</li>
     </ul>
 
   </main>
