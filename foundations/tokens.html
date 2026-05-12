@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tokens — Voyager</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="tokens.css">
+<script src="../assets/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../index.html">
+    <span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+    Voyager
+    <span class="site-version">v0.1</span>
+  </a>
+  <div class="site-meta">
+    <a href="#">Janeway repo</a>
+    <a href="#">Memory Alpha</a>
+  <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+
+  <nav class="site-sidebar" aria-label="Documentation">
+    <span class="site-sidebar-section">Get started</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
+      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li>
+    </ul>
+    <span class="site-sidebar-section">Foundations</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="tokens.html" aria-current="page">Tokens</a></li>
+      <li><a class="site-sidebar-link" href="typography.html">Typography</a></li>
+      <li><a class="site-sidebar-link" href="layout.html">Layout</a></li>
+    </ul>
+    <span class="site-sidebar-section">Components</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../components/page-header.html">Page header</a></li>
+      <li><a class="site-sidebar-link" href="../components/button.html">Button</a></li>
+      <li><a class="site-sidebar-link" href="../components/icon.html">Icon</a></li>
+      <li><a class="site-sidebar-link" href="../components/summary-block.html">Summary block</a></li>
+      <li><a class="site-sidebar-link" href="../components/information.html">Information</a></li>
+      <li><a class="site-sidebar-link" href="../components/nav.html">Navigation</a></li>
+      <li><a class="site-sidebar-link" href="../components/back-link.html">Back link</a></li>
+      <li><a class="site-sidebar-link" href="../components/pagination.html">Pagination</a></li>
+      <li><a class="site-sidebar-link" href="../components/tag.html">Tag &amp; chip</a></li>
+      <li><a class="site-sidebar-link" href="../components/table.html">Table</a></li>
+      <li><a class="site-sidebar-link" href="../components/form.html">Form</a></li>
+      <li><a class="site-sidebar-link" href="../components/modal.html">Modal</a></li>
+      <li><a class="site-sidebar-link" href="../components/details.html">Details</a></li>
+      <li><a class="site-sidebar-link" href="../components/panel.html">Panel</a></li>
+      <li><a class="site-sidebar-link" href="../components/stat.html">Stat &amp; queue</a></li>
+      <li><a class="site-sidebar-link" href="../components/steps.html">Steps</a></li>
+      <li><a class="site-sidebar-link" href="../components/avatar.html">Avatar</a></li>
+      <li><a class="site-sidebar-link" href="../components/section-divider.html">Section divider</a></li>
+    </ul>
+    <span class="site-sidebar-section">Inbox pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../components/folder-list.html">Folder list</a></li>
+      <li><a class="site-sidebar-link" href="../components/article-card.html">Article card</a></li>
+      <li><a class="site-sidebar-link" href="../components/filter-bar.html">Filter bar</a></li>
+      <li><a class="site-sidebar-link" href="../components/progress-bar.html">Progress bar</a></li>
+    </ul>
+    <span class="site-sidebar-section">Manager pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../components/function-card.html">Function card</a></li>
+      <li><a class="site-sidebar-link" href="../components/function-filter.html">Function filter</a></li>
+    </ul>
+    <span class="site-sidebar-section">Examples</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
+      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
+      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
+    </ul>
+  </nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Tokens</h1>
+    <p class="site-page-lede">
+      Voyager uses a two-tier token system. Raw tokens hold the underlying value;
+      semantic aliases reference the raw tokens by role. Components reference the
+      <em>semantic</em> tokens, never raw values.
+    </p>
+
+    <h2>Surfaces</h2>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-chip swatch-canvas"></div><div class="swatch-meta"><strong>--colour-canvas</strong><code>#ffffff</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-canvas-muted"></div><div class="swatch-meta"><strong>--colour-canvas-muted</strong><code>#f6f8fa</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-canvas-inset"></div><div class="swatch-meta"><strong>--colour-canvas-inset</strong><code>#eaeef2</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-surface-grey"></div><div class="swatch-meta"><strong>--colour-surface-grey</strong><code>#f3f2f1</code></div></div>
+    </div>
+
+    <h2>Borders</h2>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-chip swatch-border-muted"></div><div class="swatch-meta"><strong>--colour-border-muted</strong><code>#d8dee4</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-border"></div><div class="swatch-meta"><strong>--colour-border</strong><code>#d0d7de</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-border-strong"></div><div class="swatch-meta"><strong>--colour-border-strong</strong><code>#a4abb3</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-border-component"></div><div class="swatch-meta"><strong>--colour-border-component</strong><code>#b1b4b6</code></div></div>
+    </div>
+    <p class="muted">Border tokens are tuned for WCAG 1.4.11 — borders that distinguish a UI component from its background must have ≥3:1 contrast against canvas.</p>
+
+    <h2>Foreground</h2>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-chip swatch-fg"></div><div class="swatch-meta"><strong>--colour-fg</strong><code>#1f2328</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-fg-muted"></div><div class="swatch-meta"><strong>--colour-fg-muted</strong><code>#59636e</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-fg-subtle"></div><div class="swatch-meta"><strong>--colour-fg-subtle</strong><code>#6e7781</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-fg-strong"></div><div class="swatch-meta"><strong>--colour-fg-strong</strong><code>#0b0c0c</code></div></div>
+    </div>
+
+    <h2>Status</h2>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-chip swatch-success"></div><div class="swatch-meta"><strong>--colour-success</strong><code>#00703c</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-warning"></div><div class="swatch-meta"><strong>--colour-warning</strong><code>#f47738</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-error"></div><div class="swatch-meta"><strong>--colour-error</strong><code>#d4351c</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-info"></div><div class="swatch-meta"><strong>--colour-info</strong><code>#1d70b8</code></div></div>
+    </div>
+
+    <h2>Interactive</h2>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-chip swatch-link"></div><div class="swatch-meta"><strong>--colour-link</strong><code>#1d70b8</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-accent"></div><div class="swatch-meta"><strong>--colour-accent</strong><code>#0969da</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-accent-subtle"></div><div class="swatch-meta"><strong>--colour-accent-subtle</strong><code>#ddf4ff</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-focus"></div><div class="swatch-meta"><strong>--colour-focus</strong><code>#ffdd00</code></div></div>
+    </div>
+
+    <h2>Spacing</h2>
+    <ul class="space-list">
+      <li><span class="space-bar space-bar-1"></span><code>--s-1</code> 4px</li>
+      <li><span class="space-bar space-bar-2"></span><code>--s-2</code> 8px</li>
+      <li><span class="space-bar space-bar-3"></span><code>--s-3</code> 12px</li>
+      <li><span class="space-bar space-bar-4"></span><code>--s-4</code> 16px</li>
+      <li><span class="space-bar space-bar-5"></span><code>--s-5</code> 20px</li>
+      <li><span class="space-bar space-bar-6"></span><code>--s-6</code> 24px</li>
+      <li><span class="space-bar space-bar-8"></span><code>--s-8</code> 32px</li>
+      <li><span class="space-bar space-bar-10"></span><code>--s-10</code> 40px</li>
+      <li><span class="space-bar space-bar-12"></span><code>--s-12</code> 48px</li>
+    </ul>
+
+    <h2>Radii &amp; shadow</h2>
+    <ul>
+      <li><code>--radius-sm</code> 4px — used by code chips and small chips</li>
+      <li><code>--radius-md</code> 6px — used by buttons and sidebar links</li>
+      <li><code>--shadow-sm</code> <code>0 1px 0 rgba(31,35,40,0.04)</code> — Primer button shadow</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

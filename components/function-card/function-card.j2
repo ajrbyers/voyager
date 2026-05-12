@@ -1,0 +1,49 @@
+{# function-card — clickable card for a single manager function.
+
+   Args:
+     - title:        card heading
+     - description:  short prose under the title
+     - url:          link target
+     - icon:         single character or short string rendered in the icon
+     - icon_colour:  '' (default grey) | 'blue' | 'green' | 'orange' |
+                     'purple' | 'pink' | 'teal' | 'red' | 'yellow' | 'grey'
+     - count:        integer or None
+     - tags:         list of strings shown as small chips at the foot
+     - coming_soon:  boolean — dims the card and replaces the count with
+                     a "Coming soon" badge.
+
+   For filtering, the consumer should add a data attribute (e.g. data-tag)
+   and let the function-filter component drive the visibility. #}
+{% macro function_card(title, description="", url="#", icon="",
+                        icon_colour="grey", count=None, tags=[],
+                        coming_soon=False) %}
+<a href="{{ '#' if coming_soon else url }}"
+   class="function-card{% if coming_soon %} is-coming-soon{% endif %}"
+   data-title="{{ title|lower }}"
+   data-desc="{{ description|lower }}"
+   {% if tags %}data-tags="{{ tags|join(' ') }}"{% endif %}>
+  <div class="function-card-top">
+    <div class="function-card-icon function-card-icon-{{ icon_colour }}" aria-hidden="true">{{ icon }}</div>
+    {% if coming_soon %}
+      <span class="function-card-soon-badge">Coming soon</span>
+    {% elif count is not none %}
+      <div class="function-card-counter">
+        <div class="function-card-count">{{ count }}</div>
+        <div class="function-card-count-label">items</div>
+      </div>
+    {% endif %}
+  </div>
+  <div class="function-card-body">
+    <div class="function-card-title">{{ title }}</div>
+    {% if description %}<div class="function-card-desc">{{ description }}</div>{% endif %}
+  </div>
+  {% if tags or not coming_soon %}
+  <div class="function-card-foot">
+    <div class="function-card-tags">
+      {% for t in tags %}<span class="tag tag-grey">{{ t }}</span>{% endfor %}
+    </div>
+    {% if not coming_soon %}<span class="function-card-arrow" aria-hidden="true">→</span>{% endif %}
+  </div>
+  {% endif %}
+</a>
+{% endmacro %}

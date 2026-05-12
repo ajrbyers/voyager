@@ -1,0 +1,57 @@
+{# filter-bar — control row with selects and active-chip summary.
+
+   Compose with three macros:
+     - filter_bar()        wrapper
+     - filter_select(id, label, options, value=None)
+     - filter_chip(label, remove_url)
+     - filter_clear(url)
+
+   filter_bar takes two slots via {% call %}:
+     1. Controls (selects, label)
+     2. Chips section is rendered automatically below if chips macros
+        are nested in a wrapper element with class filter-bar-chips.
+
+   The simplest pattern is two separate {% call %} blocks at the consumer
+   side. See the example below.
+#}
+
+{% macro filter_bar(label="Filter articles") %}
+<div class="filter-bar" role="search" aria-label="{{ label }}">
+  {{ caller() }}
+</div>
+{% endmacro %}
+
+{% macro filter_bar_controls(prefix_label="Filter:") %}
+<div class="filter-bar-controls">
+  <span class="filter-bar-label">{{ prefix_label }}</span>
+  {{ caller() }}
+</div>
+{% endmacro %}
+
+{# filter_select — compact select; options is a list of {value, label, selected?} #}
+{% macro filter_select(id, label, options=[], value=None) %}
+<label class="visually-hidden" for="{{ id }}">{{ label }}</label>
+<select id="{{ id }}" name="{{ id }}" class="filter-select" aria-label="{{ label }}">
+  {% for opt in options %}
+    <option value="{{ opt.value }}"
+      {% if (value is not none and opt.value|string == value|string) or opt.selected %}selected{% endif %}>
+      {{ opt.label }}
+    </option>
+  {% endfor %}
+</select>
+{% endmacro %}
+
+{% macro filter_bar_chips() %}
+<div class="filter-bar-chips">{{ caller() }}</div>
+{% endmacro %}
+
+{% macro filter_chip(label, remove_url="#") %}
+<span class="filter-chip">
+  {{ label }}
+  <a href="{{ remove_url }}" class="filter-chip-remove" aria-label="Remove {{ label }} filter">×</a>
+</span>
+{% endmacro %}
+
+{% macro filter_clear(url="#") %}
+<a href="{{ url }}" class="filter-bar-clear">Clear filters</a>
+{% endmacro %}

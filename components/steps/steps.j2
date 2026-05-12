@@ -1,0 +1,25 @@
+{# steps — numbered process list with state.
+
+   Compose with two macros:
+     - steps()                            wrapper
+     - step(label, hint="", state=None)
+       state is None | 'done' | 'current'
+
+   Usage:
+     {% call steps() %}
+       {{ step("Assign editor", state="done") }}
+       {{ step("Plagiarism check", hint="Similarity 7%", state="done") }}
+       {{ step("Collect reviews", hint="1 of 2 received", state="current") }}
+       {{ step("Editorial decision") }}
+     {% endcall %}
+#}
+{% macro steps() %}
+<ol class="steps">{{ caller() }}</ol>
+{% endmacro %}
+
+{% macro step(label, hint="", state=None) %}
+<li{% if state == 'done' %} class="is-done"
+  {% elif state == 'current' %} class="is-current" aria-current="step"{% endif %}>
+  {{ label }}{% if hint %}<small>{{ hint }}</small>{% endif %}
+</li>
+{% endmacro %}

@@ -1,0 +1,6 @@
+{# progress-bar — thin top loading bar.
+   Render once at the top of the page; JS drives the width and the
+   .is-running class. See assets/js/progress-bar.js for the driver. #}
+{% macro progress_bar(id="progress-bar") %}
+<div id="{{ id }}" class="progress-bar" aria-hidden="true"></div>
+{% endmacro %}

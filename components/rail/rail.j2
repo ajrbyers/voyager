@@ -1,0 +1,13 @@
+{# rail — right-hand sidebar wrapper. Use {% call %} to populate. #}
+{% macro rail(label="Status and actions") %}
+<aside class="rail" aria-label="{{ label }}">
+  {{ caller() }}
+</aside>
+{% endmacro %}
+
+{% macro rail_section(title) %}
+<section class="rail-section">
+  <h2>{{ title }}</h2>
+  {{ caller() }}
+</section>
+{% endmacro %}

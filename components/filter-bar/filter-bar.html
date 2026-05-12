@@ -1,0 +1,40 @@
+<div class="filter-bar" role="search" aria-label="Filter articles">
+  <div class="filter-bar-controls">
+    <span class="filter-bar-label">Filter:</span>
+
+    <label class="visually-hidden" for="filter-editor">Editor</label>
+    <select class="filter-select" id="filter-editor">
+      <option value="">All editors</option>
+      <option value="1">Dr Amira Hassan</option>
+      <option value="2" selected>Prof Marcus Whitfield</option>
+      <option value="3">Dr Sanjay Patel</option>
+    </select>
+
+    <label class="visually-hidden" for="filter-section">Section</label>
+    <select class="filter-select" id="filter-section">
+      <option value="">All sections</option>
+      <option value="article">Article</option>
+      <option value="review">Review</option>
+    </select>
+
+    <label class="visually-hidden" for="filter-age">Age</label>
+    <select class="filter-select" id="filter-age">
+      <option value="">Any age</option>
+      <option value="14">Under 2 weeks</option>
+      <option value="30" selected>Under 30 days</option>
+      <option value="60">Over 30 days</option>
+    </select>
+  </div>
+
+  <div class="filter-bar-chips">
+    <span class="filter-chip">
+      Whitfield
+      <a href="#" class="filter-chip-remove" aria-label="Remove editor filter">×</a>
+    </span>
+    <span class="filter-chip">
+      Under 30 days
+      <a href="#" class="filter-chip-remove" aria-label="Remove age filter">×</a>
+    </span>
+    <a href="#" class="filter-bar-clear">Clear filters</a>
+  </div>
+</div>

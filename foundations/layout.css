@@ -1,0 +1,52 @@
+/* Page-specific styles for the Layout page — visual diagrams that
+   represent the layout primitives without being them. */
+
+.layout-diagram{
+  border:1px solid var(--colour-border-component);
+  background:var(--colour-canvas-muted);
+  margin:0 0 var(--s-6);
+  font-family:var(--font-system);
+  font-size:13px;color:var(--colour-fg-muted);
+}
+.layout-diagram-row{display:flex;flex-direction:column}
+.layout-diagram-header{
+  background:var(--colour-fg-strong);color:var(--colour-canvas);
+  padding:8px 14px;font-weight:600;
+}
+.layout-diagram-grid{
+  display:grid;grid-template-columns:220px 1fr;min-height:160px;
+}
+.layout-diagram-cell{
+  padding:14px;display:flex;align-items:center;justify-content:center;
+}
+.layout-diagram-aside{
+  background:var(--colour-canvas);
+  border-right:1px solid var(--colour-border-component);
+}
+.layout-diagram-main{background:var(--colour-canvas);font-weight:600}
+
+.layout-diagram-rail{
+  display:grid;grid-template-columns:1fr 280px;min-height:160px;gap:24px;
+  padding:14px;background:var(--colour-canvas);
+}
+.layout-diagram-content{
+  background:var(--colour-canvas-muted);
+  border:1px dashed var(--colour-border-strong);
+  padding:14px;font-weight:600;
+}
+.layout-diagram-rail-cell{
+  background:var(--colour-canvas-muted);
+  border:1px dashed var(--colour-border-strong);
+  padding:14px;font-weight:600;
+}
+
+.layout-diagram-full{padding:14px;background:var(--colour-canvas)}
+.layout-diagram-full .layout-diagram-content{margin:0}
+
+.layout-grid-demo{margin-bottom:var(--s-6)}
+.layout-grid-cell{
+  background:var(--colour-canvas-muted);
+  border:1px dashed var(--colour-border-strong);
+  padding:14px;text-align:center;font-weight:600;
+  color:var(--colour-fg-muted);font-family:var(--font-system);font-size:13px;
+}

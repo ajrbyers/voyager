@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filter bar — Voyager</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="#">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation">
+    <span class="site-sidebar-section">Get started</span>
+    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
+      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
+    <span class="site-sidebar-section">Foundations</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../foundations/tokens.html">Tokens</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/typography.html">Typography</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/layout.html">Layout</a></li>
+    </ul>
+    <span class="site-sidebar-section">Components</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="page-header.html">Page header</a></li>
+      <li><a class="site-sidebar-link" href="button.html">Button</a></li>
+      <li><a class="site-sidebar-link" href="icon.html">Icon</a></li>
+      <li><a class="site-sidebar-link" href="summary-block.html">Summary block</a></li>
+      <li><a class="site-sidebar-link" href="information.html">Information</a></li>
+      <li><a class="site-sidebar-link" href="nav.html">Navigation</a></li>
+      <li><a class="site-sidebar-link" href="back-link.html">Back link</a></li>
+      <li><a class="site-sidebar-link" href="pagination.html">Pagination</a></li>
+      <li><a class="site-sidebar-link" href="tag.html">Tag &amp; chip</a></li>
+      <li><a class="site-sidebar-link" href="table.html">Table</a></li>
+      <li><a class="site-sidebar-link" href="form.html">Form</a></li>
+      <li><a class="site-sidebar-link" href="modal.html">Modal</a></li>
+      <li><a class="site-sidebar-link" href="details.html">Details</a></li>
+      <li><a class="site-sidebar-link" href="panel.html">Panel</a></li>
+      <li><a class="site-sidebar-link" href="stat.html">Stat &amp; queue</a></li>
+      <li><a class="site-sidebar-link" href="steps.html">Steps</a></li>
+      <li><a class="site-sidebar-link" href="avatar.html">Avatar</a></li>
+      <li><a class="site-sidebar-link" href="section-divider.html">Section divider</a></li>
+    </ul>
+    <span class="site-sidebar-section">Inbox pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="folder-list.html">Folder list</a></li>
+      <li><a class="site-sidebar-link" href="article-card.html">Article card</a></li>
+      <li><a class="site-sidebar-link" href="filter-bar.html" aria-current="page">Filter bar</a></li>
+      <li><a class="site-sidebar-link" href="progress-bar.html">Progress bar</a></li>
+    </ul>
+    <span class="site-sidebar-section">Manager pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="function-card.html">Function card</a></li>
+      <li><a class="site-sidebar-link" href="function-filter.html">Function filter</a></li>
+    </ul>
+    <span class="site-sidebar-section">Examples</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
+      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
+      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
+    </ul>
+  </nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Filter bar</h1>
+    <p class="site-page-lede">
+      Control row that sits above a list of results. Select dropdowns on the top,
+      active filter chips below them showing the current selection — each chip
+      has its own remove (×) and there's a "Clear filters" link when any
+      filters are active.
+    </p>
+
+    <h2>Default</h2>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="filter-bar" role="search" aria-label="Filter articles">
+          <div class="filter-bar-controls">
+            <span class="filter-bar-label">Filter:</span>
+            <label class="visually-hidden" for="ex-fb-editor">Editor</label>
+            <select class="filter-select" id="ex-fb-editor">
+              <option value="">All editors</option>
+              <option value="1" selected>Dr Amira Hassan</option>
+              <option value="2">Prof Marcus Whitfield</option>
+            </select>
+            <label class="visually-hidden" for="ex-fb-section">Section</label>
+            <select class="filter-select" id="ex-fb-section">
+              <option value="">All sections</option>
+              <option value="article">Article</option>
+              <option value="review" selected>Review</option>
+            </select>
+            <label class="visually-hidden" for="ex-fb-age">Age</label>
+            <select class="filter-select" id="ex-fb-age">
+              <option value="">Any age</option>
+              <option value="30">Over 30 days</option>
+            </select>
+          </div>
+          <div class="filter-bar-chips">
+            <span class="filter-chip">Hassan <a href="#" class="filter-chip-remove" aria-label="Remove editor filter">×</a></span>
+            <span class="filter-chip">Review <a href="#" class="filter-chip-remove" aria-label="Remove section filter">×</a></span>
+            <a href="#" class="filter-bar-clear">Clear filters</a>
+          </div>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="filter-bar" role="search" aria-label="Filter articles"&gt;
+  &lt;div class="filter-bar-controls"&gt;
+    &lt;span class="filter-bar-label"&gt;Filter:&lt;/span&gt;
+    &lt;label class="visually-hidden" for="f-editor"&gt;Editor&lt;/label&gt;
+    &lt;select class="filter-select" id="f-editor"&gt;
+      &lt;option value=""&gt;All editors&lt;/option&gt;
+      &lt;option value="1" selected&gt;Dr Amira Hassan&lt;/option&gt;
+    &lt;/select&gt;
+    …
+  &lt;/div&gt;
+  &lt;div class="filter-bar-chips"&gt;
+    &lt;span class="filter-chip"&gt;
+      Hassan
+      &lt;a href="?…" class="filter-chip-remove" aria-label="Remove editor filter"&gt;×&lt;/a&gt;
+    &lt;/span&gt;
+    &lt;a href="?" class="filter-bar-clear"&gt;Clear filters&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/filter-bar/filter-bar.j2"
+   import filter_bar, filter_bar_controls, filter_select,
+          filter_bar_chips, filter_chip, filter_clear %}
+
+{% call filter_bar() %}
+  {% call filter_bar_controls() %}
+    {{ filter_select("f-editor", "Editor",
+                     options=[{"value":"","label":"All editors"},
+                              {"value":"1","label":"Dr Amira Hassan"}],
+                     value=active.editor) }}
+    {{ filter_select("f-section", "Section",
+                     options=[{"value":"","label":"All sections"},
+                              {"value":"article","label":"Article"}],
+                     value=active.section) }}
+  {% endcall %}
+
+  {% call filter_bar_chips() %}
+    {% if active.editor %}
+      {{ filter_chip("Hassan", remove_url="?section=" ~ active.section) }}
+    {% endif %}
+    {% if active.section %}
+      {{ filter_chip("Review", remove_url="?editor=" ~ active.editor) }}
+    {% endif %}
+    {% if active %}{{ filter_clear(url=folder_url) }}{% endif %}
+  {% endcall %}
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>The select dropdowns submit on change (HTMX or vanilla form submit) — the bar itself does no JavaScript.</li>
+      <li>Chips reflect active selections. Each chip's remove link should remove only that filter while preserving the others.</li>
+      <li>Hide the chips row entirely when no filters are active — the empty <code>filter-bar-chips</code> collapses to zero height automatically.</li>
+      <li>Pair with the <a href="folder-list.html">folder list</a> and <a href="article-card.html">article card</a> for the inbox-style dashboard.</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

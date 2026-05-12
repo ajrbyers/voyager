@@ -1,0 +1,45 @@
+{# modal — dialog with backdrop, header, body, and footer.
+   Show by adding .is-open to the backdrop. JS owns ESC, focus
+   trapping, and restoring focus on close.
+
+   Compose with three macros:
+     - modal(title, id, is_open=False)   wrapper (body + foot via call)
+     - modal_body()                      explicit body section (optional)
+     - modal_foot()                      footer with action buttons
+
+   Usage (simple):
+     {% call modal("Withdraw reviewer assignment", id="m-1") %}
+       <p>Withdrawing this reviewer will close their assignment …</p>
+     {% endcall %}
+
+   Usage (with explicit foot):
+     {% call modal("Withdraw reviewer assignment", id="m-1") %}
+       {% call modal_body() %}
+         <p>Withdrawing this reviewer will close their assignment …</p>
+       {% endcall %}
+       {% call modal_foot() %}
+         {{ button("Cancel") }}
+         {{ button("Withdraw reviewer", kind="warning") }}
+       {% endcall %}
+     {% endcall %}
+#}
+{% macro modal(title, id="modal", is_open=False) %}
+<div class="modal-backdrop{% if is_open %} is-open{% endif %}"
+     role="dialog" aria-modal="true" aria-labelledby="{{ id }}-title">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 class="modal-title" id="{{ id }}-title">{{ title }}</h2>
+      <button type="button" class="modal-close" aria-label="Close dialog">×</button>
+    </div>
+    {{ caller() }}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro modal_body() %}
+<div class="modal-body">{{ caller() }}</div>
+{% endmacro %}
+
+{% macro modal_foot() %}
+<div class="modal-foot">{{ caller() }}</div>
+{% endmacro %}

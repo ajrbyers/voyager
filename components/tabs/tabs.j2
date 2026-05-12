@@ -1,0 +1,27 @@
+{# tabs — filter / round selector. Real navigation links, not an
+   ARIA tabs widget. Use aria-current="true" on the active tab.
+
+   Compose with two macros:
+     - tabs(label)            wrapper, aria-label for the nav
+     - tab(label, url, count=None, current=False)
+
+   Usage:
+     {% call tabs("Review rounds") %}
+       {{ tab("Round 1", url="?round=1", count="closed") }}
+       {{ tab("Round 2", url="?round=2", count="active", current=True) }}
+     {% endcall %}
+#}
+{% macro tabs(label="Sections") %}
+<nav class="tabs" aria-label="{{ label }}">
+  <ul>{{ caller() }}</ul>
+</nav>
+{% endmacro %}
+
+{% macro tab(label, url="#", count=None, current=False) %}
+<li>
+  <a href="{{ url }}"{% if current %} aria-current="true"{% endif %}>
+    {{ label }}
+    {% if count %}<span class="tabs-count">{{ count }}</span>{% endif %}
+  </a>
+</li>
+{% endmacro %}

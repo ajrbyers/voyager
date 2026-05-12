@@ -1,0 +1,107 @@
+/* dashboard.css — page-specific layout for the inbox example.
+   Defines the inbox-shell grid and the per-folder dot colours.
+   Inbox shell, toolbar, and card-list utilities live here because
+   they're page-level layout; the component CSS handles the parts. */
+
+/* ---------- Inbox shell — two-column under app-header ---------- */
+.inbox-shell{
+  display:grid;
+  grid-template-columns:280px minmax(0,1fr);
+  min-height:calc(100vh - 48px - 36px); /* minus header + ref banner */
+}
+@media (max-width:900px){
+  .inbox-shell{grid-template-columns:1fr}
+}
+
+.inbox-content{
+  padding:0;
+  min-width:0;background:var(--colour-canvas);
+  /* WCAG 2.2 SC 2.4.11 — when a card receives focus, scroll it past the
+     sticky toolbar so the focused element isn't obscured. The padding
+     value matches the toolbar's collapsed height. */
+  scroll-padding-top:140px;
+}
+.inbox-card-list .article-card{scroll-margin-top:140px}
+
+/* The toolbar + filter bar form a sticky cluster pinned to the top of
+   the content pane. The card list scrolls beneath it. */
+.inbox-sticky{
+  position:sticky;top:0;z-index:5;
+  background:var(--colour-canvas);
+  padding:var(--s-5) var(--s-6) 0;
+  margin-bottom:var(--s-4);
+}
+.inbox-sticky .filter-bar{margin-bottom:0}
+.inbox-cards-wrap{padding:0 var(--s-6) var(--s-8)}
+
+/* ---------- Toolbar (folder title + sort + updated) ---------- */
+.inbox-toolbar{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:var(--s-3);
+  padding-bottom:var(--s-3);
+  margin-bottom:var(--s-3);
+  border-bottom:1px solid var(--colour-border);
+  flex-wrap:wrap;
+}
+.inbox-toolbar-updated{
+  font-size:var(--fs-xs);color:var(--colour-fg-muted);
+  display:inline-flex;align-items:center;gap:4px;
+}
+.inbox-toolbar-refresh{
+  background:transparent;border:0;cursor:pointer;
+  color:var(--colour-link);font-size:var(--fs-xs);
+  padding:2px 4px;font-family:inherit;
+  text-decoration:underline;
+}
+.inbox-toolbar-left{
+  display:flex;align-items:baseline;gap:var(--s-3);
+}
+.inbox-toolbar-title{
+  margin:0;font-size:var(--fs-h1);font-weight:700;
+  color:var(--colour-fg-strong);line-height:var(--lh-tight);
+}
+.inbox-toolbar-count{
+  font-size:var(--fs-sm);color:var(--colour-fg-muted);
+}
+.inbox-toolbar-right{
+  display:flex;align-items:center;gap:6px;
+  font-size:var(--fs-sm);
+  font-family:var(--font-system);
+}
+.inbox-sort-label{color:var(--colour-fg-muted);margin-right:4px}
+.inbox-sort-btn{
+  /* WCAG 2.2 SC 2.5.8 — minimum 24x24. */
+  display:inline-flex;align-items:center;
+  min-height:24px;
+  padding:4px 10px;border-radius:0;
+  color:var(--colour-fg);text-decoration:none;
+  border:1px solid transparent;
+}
+.inbox-sort-btn:hover{
+  background:var(--colour-canvas-muted);text-decoration:none;
+}
+.inbox-sort-btn.is-active,
+.inbox-sort-btn[aria-current="true"]{
+  background:var(--colour-accent-subtle);
+  color:var(--colour-accent);
+  font-weight:600;
+}
+
+/* ---------- Card list spacing ---------- */
+.inbox-card-list{
+  display:flex;flex-direction:column;gap:0;
+}
+.inbox-card-list .article-card{margin-bottom:var(--s-2)}
+
+/* Severity bucket headers use the section-divider component. */
+
+/* ---------- Avatars in byline ---------- */
+.inbox-byline-person{
+  display:inline-flex;align-items:center;gap:6px;
+}
+.inbox-byline-person .avatar{
+  width:16px;height:16px;font-size:8px;
+}
+
+/* Custom dot colours ship with the folder-list component
+   (folder-item-dot-pink / -teal / -purple / -orange / -green / -blue). */

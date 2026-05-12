@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page header — Voyager</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="#">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation">
+    <span class="site-sidebar-section">Get started</span>
+    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
+      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
+    <span class="site-sidebar-section">Foundations</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../foundations/tokens.html">Tokens</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/typography.html">Typography</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/layout.html">Layout</a></li>
+    </ul>
+    <span class="site-sidebar-section">Components</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="page-header.html" aria-current="page">Page header</a></li>
+      <li><a class="site-sidebar-link" href="button.html">Button</a></li>
+      <li><a class="site-sidebar-link" href="icon.html">Icon</a></li>
+      <li><a class="site-sidebar-link" href="summary-block.html">Summary block</a></li>
+      <li><a class="site-sidebar-link" href="information.html">Information</a></li>
+      <li><a class="site-sidebar-link" href="nav.html">Navigation</a></li>
+      <li><a class="site-sidebar-link" href="back-link.html">Back link</a></li>
+      <li><a class="site-sidebar-link" href="pagination.html">Pagination</a></li>
+      <li><a class="site-sidebar-link" href="tag.html">Tag &amp; chip</a></li>
+      <li><a class="site-sidebar-link" href="table.html">Table</a></li>
+      <li><a class="site-sidebar-link" href="form.html">Form</a></li>
+      <li><a class="site-sidebar-link" href="modal.html">Modal</a></li>
+      <li><a class="site-sidebar-link" href="details.html">Details</a></li>
+      <li><a class="site-sidebar-link" href="panel.html">Panel</a></li>
+      <li><a class="site-sidebar-link" href="stat.html">Stat &amp; queue</a></li>
+      <li><a class="site-sidebar-link" href="steps.html">Steps</a></li>
+      <li><a class="site-sidebar-link" href="avatar.html">Avatar</a></li>
+      <li><a class="site-sidebar-link" href="section-divider.html">Section divider</a></li>
+    </ul>
+    <span class="site-sidebar-section">Inbox pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="folder-list.html">Folder list</a></li>
+      <li><a class="site-sidebar-link" href="article-card.html">Article card</a></li>
+      <li><a class="site-sidebar-link" href="filter-bar.html">Filter bar</a></li>
+      <li><a class="site-sidebar-link" href="progress-bar.html">Progress bar</a></li>
+    </ul>
+    <span class="site-sidebar-section">Manager pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="function-card.html">Function card</a></li>
+      <li><a class="site-sidebar-link" href="function-filter.html">Function filter</a></li>
+    </ul>
+    <span class="site-sidebar-section">Examples</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
+      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
+      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
+    </ul>
+  </nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Page header</h1>
+    <p class="site-page-lede">
+      The first thing the user reads on a page. Caption above, H1 in the middle, byline
+      and status tags below. Sits inside the page content area, not the global header.
+    </p>
+
+    <h2>Default</h2>
+    <p>Caption gives context (the section, type, ID). Title is the H1. Byline names the relevant person and adds dates. Tags surface status at a glance.</p>
+
+    <div class="example">
+      <div class="example-render">
+        <div class="example-render-inner">
+          <div class="page-header">
+            <span class="page-header-caption">Article <span class="code-chip">#1247</span> · Peer review</span>
+            <h1 class="page-header-title">Reproducibility of LSTM forecasts for short-term electricity demand</h1>
+            <p class="page-header-byline"><strong>Dr Adaeze Okafor</strong> · University of Lagos · submitted 4 March 2026</p>
+            <div class="page-header-tags">
+              <span class="tag tag-green">Under review</span>
+              <span class="tag tag-grey">Round 2 of 2</span>
+              <span class="tag tag-grey">Article</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="example-tabs">
+        <button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button>
+        <button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button>
+      </div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="page-header"&gt;
+  &lt;span class="page-header-caption"&gt;
+    Article &lt;span class="code-chip"&gt;#1247&lt;/span&gt; · Peer review
+  &lt;/span&gt;
+  &lt;h1 class="page-header-title"&gt;
+    Reproducibility of LSTM forecasts…
+  &lt;/h1&gt;
+  &lt;p class="page-header-byline"&gt;
+    &lt;strong&gt;Dr Adaeze Okafor&lt;/strong&gt; · University of Lagos · submitted 4 March 2026
+  &lt;/p&gt;
+  &lt;div class="page-header-tags"&gt;
+    &lt;span class="tag tag-green"&gt;Under review&lt;/span&gt;
+    &lt;span class="tag tag-grey"&gt;Round 2 of 2&lt;/span&gt;
+    &lt;span class="tag tag-grey"&gt;Article&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/page-header/page-header.j2" import page_header %}
+{% from "voyager/components/code-chip/code-chip.j2" import code_chip %}
+{% from "voyager/components/tag/tag.j2" import tag %}
+
+{% call page_header(
+    caption='Article ' ~ code_chip('#1247') ~ ' · Peer review',
+    title='Reproducibility of LSTM forecasts for short-term electricity demand',
+    byline='<strong>Dr Adaeze Okafor</strong> · University of Lagos · submitted 4 March 2026'
+) %}
+  {{ tag("Under review", kind="green") }}
+  {{ tag("Round 2 of 2", kind="grey") }}
+  {{ tag("Article",      kind="grey") }}
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Without tags</h2>
+    <p>Tags are optional. Caption and byline are too — but the title is required.</p>
+
+    <div class="example">
+      <div class="example-render">
+        <div class="example-render-inner">
+          <div class="page-header">
+            <h1 class="page-header-title">Manager</h1>
+            <p class="page-header-byline">Settings, content, and workflow configuration for the journal.</p>
+          </div>
+        </div>
+      </div>
+      <div class="example-tabs">
+        <button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button>
+        <button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button>
+      </div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="page-header"&gt;
+  &lt;h1 class="page-header-title"&gt;Manager&lt;/h1&gt;
+  &lt;p class="page-header-byline"&gt;
+    Settings, content, and workflow configuration for the journal.
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{# Without tags — wrap with an empty {% call %} #}
+{% call page_header(
+    title='Manager',
+    byline='Settings, content, and workflow configuration for the journal.'
+) %}{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Placement</h2>
+    <p>Place the page header inside the main content column. When using <code>.layout-with-rail</code>, the title sits next to the rail's first section so the right column starts at the same vertical position as the H1.</p>
+
+    <h2>Accessibility</h2>
+    <ul>
+      <li>The title is the only H1 on the page.</li>
+      <li>Caption is a span, not a heading — it provides context, not hierarchy.</li>
+      <li>Tags are decorative status labels; the same information must be available in the byline or status section so colour isn't the only carrier.</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Icon — Voyager</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="#">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation">
+    <span class="site-sidebar-section">Get started</span>
+    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
+      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
+    <span class="site-sidebar-section">Foundations</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../foundations/tokens.html">Tokens</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/typography.html">Typography</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/layout.html">Layout</a></li>
+    </ul>
+    <span class="site-sidebar-section">Components</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="page-header.html">Page header</a></li>
+      <li><a class="site-sidebar-link" href="button.html">Button</a></li>
+      <li><a class="site-sidebar-link" href="icon.html" aria-current="page">Icon</a></li>
+      <li><a class="site-sidebar-link" href="summary-block.html">Summary block</a></li>
+      <li><a class="site-sidebar-link" href="information.html">Information</a></li>
+      <li><a class="site-sidebar-link" href="nav.html">Navigation</a></li>
+      <li><a class="site-sidebar-link" href="back-link.html">Back link</a></li>
+      <li><a class="site-sidebar-link" href="pagination.html">Pagination</a></li>
+      <li><a class="site-sidebar-link" href="tag.html">Tag &amp; chip</a></li>
+      <li><a class="site-sidebar-link" href="table.html">Table</a></li>
+      <li><a class="site-sidebar-link" href="form.html">Form</a></li>
+      <li><a class="site-sidebar-link" href="modal.html">Modal</a></li>
+      <li><a class="site-sidebar-link" href="details.html">Details</a></li>
+      <li><a class="site-sidebar-link" href="panel.html">Panel</a></li>
+      <li><a class="site-sidebar-link" href="stat.html">Stat &amp; queue</a></li>
+      <li><a class="site-sidebar-link" href="steps.html">Steps</a></li>
+      <li><a class="site-sidebar-link" href="avatar.html">Avatar</a></li>
+      <li><a class="site-sidebar-link" href="section-divider.html">Section divider</a></li>
+    </ul>
+    <span class="site-sidebar-section">Inbox pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="folder-list.html">Folder list</a></li>
+      <li><a class="site-sidebar-link" href="article-card.html">Article card</a></li>
+      <li><a class="site-sidebar-link" href="filter-bar.html">Filter bar</a></li>
+      <li><a class="site-sidebar-link" href="progress-bar.html">Progress bar</a></li>
+    </ul>
+    <span class="site-sidebar-section">Manager pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="function-card.html">Function card</a></li>
+      <li><a class="site-sidebar-link" href="function-filter.html">Function filter</a></li>
+    </ul>
+    <span class="site-sidebar-section">Examples</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
+      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
+      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
+    </ul>
+  </nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Icon</h1>
+    <p class="site-page-lede">
+      Inline SVG icons hand-rolled in the Lucide style. Every icon shares
+      a 24&times;24 viewBox, 2&nbsp;px stroke width, round caps and joins,
+      and uses <code>currentColor</code> so the icon picks up the text colour
+      of the surrounding element.
+    </p>
+
+    <h2>Library</h2>
+    <p>50 icons. Click an icon to copy its name.</p>
+    <div class="icon-grid">
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg>
+          <code>mail</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <code>search</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+          <code>plus</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+          <code>minus</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          <code>x</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <code>check</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          <code>pencil</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          <code>edit</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          <code>trash</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
+          <code>refresh</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          <code>filter</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+          <code>chevron-up</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          <code>chevron-down</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          <code>chevron-left</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          <code>chevron-right</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <code>arrow-right</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          <code>arrow-left</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+          <code>arrow-up</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+          <code>arrow-down</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="m21 3-9 9"/><path d="M15 3h6v6"/></svg>
+          <code>external</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          <code>info</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          <code>alert</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <code>bell</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <code>clock</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+          <code>calendar</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+          <code>inbox</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          <code>folder</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <code>file</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
+          <code>file-text</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <code>users</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <code>user</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3 3-3-3-3"/></svg>
+          <code>key</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <code>home</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          <code>settings</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          <code>send</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+          <code>image</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+          <code>book</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></svg>
+          <code>hash</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+          <code>list</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg>
+          <code>grid</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
+          <code>log-in</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          <code>log-out</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+          <code>menu</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+          <code>more-horizontal</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          <code>download</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+          <code>upload</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <code>check-circle</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+          <code>x-circle</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+          <code>eye</code>
+        </div>
+        <div>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+          <code>eye-off</code>
+        </div>
+    </div>
+
+    <h2>Sizing</h2>
+    <p>The base <code>.icon</code> class sizes to <code>1em</code> &mdash; the icon scales with the surrounding font size. Use size modifiers to override.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="cluster-lg">
+          <span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> <code>icon-sm</code> 14px</span>
+          <span><svg class="icon icon-md" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> <code>icon-md</code> 18px</span>
+          <span><svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> <code>icon-lg</code> 24px</span>
+          <span><svg class="icon icon-xl" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> <code>icon-xl</code> 32px</span>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;svg class="icon icon-sm" …&gt;…&lt;/svg&gt;
+&lt;svg class="icon icon-md" …&gt;…&lt;/svg&gt;
+&lt;svg class="icon icon-lg" …&gt;…&lt;/svg&gt;
+&lt;svg class="icon icon-xl" …&gt;…&lt;/svg&gt;</code></pre>
+    </div>
+
+    <h2>Inside other components</h2>
+    <p>The component CSS auto-sizes icons inside their containers &mdash; an icon inside a button is 14&nbsp;px, inside an action-menu icon tile is 13&nbsp;px, inside a sidebar nav link is 13&nbsp;px, and so on. Just drop the SVG in and it takes the right size.</p>
+
+    <h2>Decorative vs labelled</h2>
+    <p>Icons that sit next to text are decorative &mdash; use <code>aria-hidden="true"</code> so screen readers don't double-announce. Icons used as the sole content of an interactive element need an accessible name &mdash; use <code>role="img"</code> with <code>aria-label</code>, or wrap the icon in a button with an <code>aria-label</code> and keep the icon hidden.</p>
+    <div class="example">
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;!-- Decorative (text describes it) --&gt;
+&lt;a href="/files"&gt;
+  &lt;svg class="icon" aria-hidden="true" …&gt;…&lt;/svg&gt; Manage files
+&lt;/a&gt;
+
+&lt;!-- Icon-only button (icon hidden, button labelled) --&gt;
+&lt;button type="button" aria-label="Open menu"&gt;
+  &lt;svg class="icon" aria-hidden="true" …&gt;…&lt;/svg&gt;
+&lt;/button&gt;
+
+&lt;!-- Standalone informative icon --&gt;
+&lt;svg class="icon" role="img" aria-label="Critical" …&gt;…&lt;/svg&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/icon/icon.j2" import icon %}
+
+&lt;a href="/files"&gt;{{ icon("file") }} Manage files&lt;/a&gt;
+
+&lt;button type="button" aria-label="Open menu"&gt;{{ icon("menu") }}&lt;/button&gt;
+
+{{ icon("alert", title="Critical") }}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>Don't use unicode glyphs (&#9742; &#9881; &check;) &mdash; they render inconsistently across systems. Reach for an SVG icon.</li>
+      <li>Don't fill icons with a colour. They use <code>fill: none</code> and stroke <code>currentColor</code>; colour them via <code>color</code> on the parent.</li>
+      <li>Don't mix stroke widths within a page. 2&nbsp;px is the system default; small variants use 2.2 or 2.4 for visual weight at 12&ndash;14&nbsp;px.</li>
+      <li>To add an icon: drop its SVG paths into the <code>_ICONS</code> dict in <code>components/icon/icon.j2</code> and the macro picks it up.</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

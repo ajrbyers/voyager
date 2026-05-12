@@ -1,0 +1,62 @@
+{# article-card — inbox row representing one article.
+
+   Compose with three macros plus alert_pill / button:
+     - article_card(severity=None)             wrapper
+     - article_card_body(...)                  meta+title+byline+actions
+     - article_card_alerts()                   bottom alert pills row
+
+   Or use the all-in-one shortcut when alerts aren't needed.
+
+   article_card(severity) accepts: 'critical' | 'warning' | 'info' | None
+
+   Usage:
+     {% call article_card(severity="critical") %}
+       {% call article_card_body(
+           id="#1247",
+           url="/article/1247",
+           title="Reproducibility of LSTM forecasts…",
+           byline="Okafor +2 · Editor: Hassan",
+           days="62d",
+           days_severity="critical",
+           tags=[{"label": "Peer Review", "kind": "grey"}, {"label": "Article", "kind": "grey"}]
+       ) %}
+         {{ button("⌚", size="small") }}
+         {{ button("Open →", size="small", kind="primary", href="/article/1247") }}
+       {% endcall %}
+       {% call article_card_alerts() %}
+         {{ alert_pill("Reviewer overdue 12 days", kind="critical", url="#") }}
+         {{ alert_pill("No editor assigned",       kind="warning",  url="#") }}
+       {% endcall %}
+     {% endcall %}
+#}
+
+{% macro article_card(severity=None) %}
+<article class="article-card{% if severity %} article-card-{{ severity }}{% endif %}">
+  {{ caller() }}
+</article>
+{% endmacro %}
+
+{% macro article_card_body(id="", url="#", title="", byline="", days=None,
+                            days_severity=None, tags=[]) %}
+<div class="article-card-inner">
+  <div class="article-card-body">
+    <div class="article-card-meta-top">
+      {% if id %}<span class="article-card-id">{{ id }}</span>{% endif %}
+      {% for t in tags %}<span class="tag tag-{{ t.kind|default('grey') }}">{{ t.label }}</span>{% endfor %}
+      <span class="article-card-spacer"></span>
+      {% if days %}<span class="article-card-days{% if days_severity %} article-card-days-{{ days_severity }}{% endif %}">{{ days }}</span>{% endif %}
+    </div>
+    <h3 class="article-card-title">
+      <a class="article-card-title-link" href="{{ url }}">{{ title }}</a>
+    </h3>
+    {% if byline %}<div class="article-card-meta-bottom">{{ byline|safe }}</div>{% endif %}
+  </div>
+  <div class="article-card-actions">
+    {{ caller() }}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro article_card_alerts() %}
+<div class="article-card-alerts">{{ caller() }}</div>
+{% endmacro %}

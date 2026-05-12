@@ -1,0 +1,16 @@
+/* Rail — right-hand sidebar inside a page using .layout-with-rail.
+   Houses status, steps, actions etc. Each section gets a heavy h2
+   underline header. */
+
+.rail{
+  display:flex;flex-direction:column;
+  gap:var(--s-6);
+
+  & .rail-section h2{
+    margin:0 0 var(--s-3);
+    font-size:var(--fs-h2);font-weight:700;
+    color:var(--colour-fg-strong);
+    padding-bottom:6px;
+    border-bottom:2px solid var(--colour-fg-strong);
+  }
+}

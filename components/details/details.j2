@@ -1,0 +1,13 @@
+{# details — GDS-inspired disclosure. Wraps native <details>/<summary>.
+   Args:
+     - summary: the visible link/trigger text
+     - open:    boolean, default False — render expanded by default
+   Body content via {% call %}. #}
+{% macro details(summary, open=False) %}
+<details class="details"{% if open %} open{% endif %}>
+  <summary>{{ summary }}</summary>
+  <div class="details-body">
+    {{ caller() }}
+  </div>
+</details>
+{% endmacro %}

@@ -1,0 +1,70 @@
+/* ===========================================================
+   elements.css — base styling on element selectors only.
+   No classes here. Components and utilities use classes.
+   =========================================================== */
+
+html,body{
+  background:var(--colour-canvas);
+  color:var(--colour-fg);
+  font-family:var(--font-sans);
+  font-size:var(--fs-base);
+  line-height:var(--lh-base);
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-weight:700;
+  color:var(--colour-fg);
+  line-height:var(--lh-tight);
+}
+
+p{margin:0 0 var(--s-3)}
+
+a{
+  color:var(--colour-link);
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:2px;
+}
+a:visited{color:var(--colour-link-visited)}
+a:hover{
+  color:var(--colour-link-hover);
+  text-decoration-thickness:2px;
+}
+
+/* Universal yellow focus — inspired by the GOV.UK focus pattern.
+   Scoped to interactive elements; works for keyboard users only.
+   The bottom 4px underline provides 3:1 separation from canvas. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible{
+  outline:3px solid var(--colour-focus);
+  outline-offset:0;
+  background:var(--colour-focus);
+  color:var(--colour-focus-fg);
+  box-shadow:0 -2px var(--colour-focus),0 4px var(--colour-focus-fg);
+  text-decoration:none;
+}
+
+/* Dark mode — flip the bottom underline from black to light so it
+   stays visible on a dark canvas. The yellow background + black text
+   inside the focus ring still works (text-on-yellow is always black). */
+:root[data-theme="dark"] a:focus-visible,
+:root[data-theme="dark"] button:focus-visible,
+:root[data-theme="dark"] input:focus-visible,
+:root[data-theme="dark"] textarea:focus-visible,
+:root[data-theme="dark"] select:focus-visible,
+:root[data-theme="dark"] summary:focus-visible,
+:root[data-theme="dark"] [tabindex]:focus-visible{
+  box-shadow:0 -2px var(--colour-focus),0 4px var(--colour-fg-strong);
+}
+
+code,pre,kbd,samp{font-family:var(--font-mono)}
+
+table{border-collapse:collapse}
+
+dl,ul,ol{margin:0;padding:0}

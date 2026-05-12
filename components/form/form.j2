@@ -1,0 +1,274 @@
+{# Form macros — inspired by the UK Government Design System.
+
+   Field types share a structure: form-group wrapper, label, hint,
+   error message, control. aria-describedby links hint and error
+   to the control in that order (hint first, then error).
+
+   GDS conventions that inspired Voyager:
+     · Mark optional fields ("Full name (optional)") — never required
+     · Error message is <p> with visually-hidden "Error:" prefix
+     · Form-group--error adds left border + padding
+     · Inputs that are 40px touch-target (radios/checkboxes) by default
+
+   Width:
+     - width=2|3|4|5|10|20  fixed character widths (passport number,
+                            postcode, etc.)
+     - fluid="full"|"three-quarters"|...|"one-quarter"
+#}
+
+{# ---------- Single-control field macros ---------- #}
+
+{# form_text — text input.
+   Optional fields take optional=True and the label gets " (optional)" appended. #}
+{% macro form_text(name, id, label, hint="", value="", error="", optional=False,
+                    type="text", autocomplete=None, width=None, fluid=None,
+                    label_size="m", inputmode=None) %}
+{%- set hint_id = id ~ '-hint' if hint else '' -%}
+{%- set err_id  = id ~ '-error' if error else '' -%}
+{%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
+{%- set width_class = ('form-input-width-' ~ width) if width else '' -%}
+{%- set fluid_class = ('form-width-' ~ fluid) if fluid else '' -%}
+<div class="form-group{% if error %} form-group-error{% endif %}">
+  <label class="form-label{% if label_size != 'm' %} form-label-{{ label_size }}{% endif %}" for="{{ id }}">{{ label }}{% if optional %} (optional){% endif %}</label>
+  {% if hint %}<span class="form-hint" id="{{ hint_id }}">{{ hint }}</span>{% endif %}
+  {% if error %}<p class="form-error-message" id="{{ err_id }}"><span class="visually-hidden">Error:</span> {{ error }}</p>{% endif %}
+  <input type="{{ type }}" name="{{ name }}" id="{{ id }}"
+         class="form-input{% if error %} form-input-error{% endif %}{% if width_class %} {{ width_class }}{% endif %}{% if fluid_class %} {{ fluid_class }}{% endif %}"
+         value="{{ value }}"
+         {% if autocomplete %}autocomplete="{{ autocomplete }}"{% endif %}
+         {% if inputmode %}inputmode="{{ inputmode }}"{% endif %}
+         {% if described %}aria-describedby="{{ described }}"{% endif %}>
+</div>
+{% endmacro %}
+
+{# form_textarea — textarea. Pair with form_textarea_with_count
+   for character-counted variants. #}
+{% macro form_textarea(name, id, label, hint="", value="", error="",
+                        optional=False, rows=5, label_size="m") %}
+{%- set hint_id = id ~ '-hint' if hint else '' -%}
+{%- set err_id  = id ~ '-error' if error else '' -%}
+{%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
+<div class="form-group{% if error %} form-group-error{% endif %}">
+  <label class="form-label{% if label_size != 'm' %} form-label-{{ label_size }}{% endif %}" for="{{ id }}">{{ label }}{% if optional %} (optional){% endif %}</label>
+  {% if hint %}<span class="form-hint" id="{{ hint_id }}">{{ hint }}</span>{% endif %}
+  {% if error %}<p class="form-error-message" id="{{ err_id }}"><span class="visually-hidden">Error:</span> {{ error }}</p>{% endif %}
+  <textarea class="form-textarea{% if error %} form-textarea-error{% endif %}"
+            name="{{ name }}" id="{{ id }}" rows="{{ rows }}"
+            {% if described %}aria-describedby="{{ described }}"{% endif %}>{{ value }}</textarea>
+</div>
+{% endmacro %}
+
+{# form_textarea_with_count — textarea wrapped in a character-count container.
+   The count message is a sibling div, not inside the form-group. #}
+{% macro form_textarea_with_count(name, id, label, maxlength, hint="", value="",
+                                    error="", optional=False, rows=5,
+                                    label_size="m") %}
+{%- set hint_id  = id ~ '-hint' if hint else '' -%}
+{%- set err_id   = id ~ '-error' if error else '' -%}
+{%- set info_id  = id ~ '-info' -%}
+{%- set described = (info_id ~ ' ' ~ hint_id ~ ' ' ~ err_id)|trim -%}
+<div class="form-character-count" data-maxlength="{{ maxlength }}">
+  <div class="form-group{% if error %} form-group-error{% endif %}">
+    <label class="form-label{% if label_size != 'm' %} form-label-{{ label_size }}{% endif %}" for="{{ id }}">{{ label }}{% if optional %} (optional){% endif %}</label>
+    {% if hint %}<span class="form-hint" id="{{ hint_id }}">{{ hint }}</span>{% endif %}
+    {% if error %}<p class="form-error-message" id="{{ err_id }}"><span class="visually-hidden">Error:</span> {{ error }}</p>{% endif %}
+    <textarea class="form-textarea{% if error %} form-textarea-error{% endif %}"
+              name="{{ name }}" id="{{ id }}" rows="{{ rows }}"
+              maxlength="{{ maxlength }}"
+              aria-describedby="{{ described }}">{{ value }}</textarea>
+  </div>
+  <div id="{{ info_id }}" class="form-character-count-message">
+    You can enter up to {{ maxlength }} characters
+  </div>
+</div>
+{% endmacro %}
+
+{# form_select — composes a wrapper + form_select_option calls.
+   Usage:
+     {% call form_select("section", "section", "Section") %}
+       {{ form_select_option("article", "Article", selected=True) }}
+       {{ form_select_option("review",  "Review") }}
+     {% endcall %}
+#}
+{% macro form_select(name, id, label, hint="", error="", optional=False,
+                      label_size="m") %}
+{%- set hint_id = id ~ '-hint' if hint else '' -%}
+{%- set err_id  = id ~ '-error' if error else '' -%}
+{%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
+<div class="form-group{% if error %} form-group-error{% endif %}">
+  <label class="form-label{% if label_size != 'm' %} form-label-{{ label_size }}{% endif %}" for="{{ id }}">{{ label }}{% if optional %} (optional){% endif %}</label>
+  {% if hint %}<span class="form-hint" id="{{ hint_id }}">{{ hint }}</span>{% endif %}
+  {% if error %}<p class="form-error-message" id="{{ err_id }}"><span class="visually-hidden">Error:</span> {{ error }}</p>{% endif %}
+  <select class="form-select{% if error %} form-select-error{% endif %}"
+          name="{{ name }}" id="{{ id }}"
+          {% if described %}aria-describedby="{{ described }}"{% endif %}>
+    {{ caller() }}
+  </select>
+</div>
+{% endmacro %}
+
+{% macro form_select_option(value, label, selected=False) %}
+<option value="{{ value }}"{% if selected %} selected{% endif %}>{{ label }}</option>
+{% endmacro %}
+
+{# ---------- Radio group ---------- #}
+
+{# form_radios — wrapper. Use heading_legend=True when the legend is
+   the page heading (the legend will wrap an h1 with form-fieldset-heading). #}
+{% macro form_radios(name, legend, hint="", error="", legend_size="m",
+                      heading_legend=False) %}
+{%- set hint_id  = name ~ '-hint' if hint else '' -%}
+{%- set err_id   = name ~ '-error' if error else '' -%}
+{%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
+<div class="form-group{% if error %} form-group-error{% endif %}">
+  <fieldset class="form-fieldset" {% if described %}aria-describedby="{{ described }}"{% endif %}>
+    <legend class="form-legend{% if legend_size != 'm' %} form-legend-{{ legend_size }}{% endif %}">
+      {% if heading_legend %}<h1 class="form-fieldset-heading">{{ legend }}</h1>
+      {% else %}{{ legend }}{% endif %}
+    </legend>
+    {% if hint %}<span class="form-hint" id="{{ hint_id }}">{{ hint }}</span>{% endif %}
+    {% if error %}<p class="form-error-message" id="{{ err_id }}"><span class="visually-hidden">Error:</span> {{ error }}</p>{% endif %}
+    <div class="form-radios">{{ caller() }}</div>
+  </fieldset>
+</div>
+{% endmacro %}
+
+{# form_radio — one option. name should match the parent fieldset. #}
+{% macro form_radio(name, value, label, hint="", checked=False, small=False) %}
+<label class="form-radio{% if small %} form-radio-small{% endif %}">
+  <input type="radio" name="{{ name }}" value="{{ value }}" {% if checked %}checked{% endif %}>
+  <span class="form-radio-text">
+    <strong>{{ label }}</strong>
+    {% if hint %}<span class="form-radio-hint">{{ hint }}</span>{% endif %}
+  </span>
+</label>
+{% endmacro %}
+
+{% macro form_radios_divider(label="or") %}
+<div class="form-radios-divider">{{ label }}</div>
+{% endmacro %}
+
+{# ---------- Checkbox group ---------- #}
+
+{% macro form_checkboxes(name, legend, hint="", error="", legend_size="m",
+                          heading_legend=False) %}
+{%- set hint_id  = name ~ '-hint' if hint else '' -%}
+{%- set err_id   = name ~ '-error' if error else '' -%}
+{%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
+<div class="form-group{% if error %} form-group-error{% endif %}">
+  <fieldset class="form-fieldset" {% if described %}aria-describedby="{{ described }}"{% endif %}>
+    <legend class="form-legend{% if legend_size != 'm' %} form-legend-{{ legend_size }}{% endif %}">
+      {% if heading_legend %}<h1 class="form-fieldset-heading">{{ legend }}</h1>
+      {% else %}{{ legend }}{% endif %}
+    </legend>
+    {% if hint %}<span class="form-hint" id="{{ hint_id }}">{{ hint }}</span>{% endif %}
+    {% if error %}<p class="form-error-message" id="{{ err_id }}"><span class="visually-hidden">Error:</span> {{ error }}</p>{% endif %}
+    <div class="form-checkboxes">{{ caller() }}</div>
+  </fieldset>
+</div>
+{% endmacro %}
+
+{% macro form_checkbox(name, value, label, hint="", checked=False, small=False) %}
+<label class="form-checkbox{% if small %} form-checkbox-small{% endif %}">
+  <input type="checkbox" name="{{ name }}" value="{{ value }}" {% if checked %}checked{% endif %}>
+  <span class="form-checkbox-text">
+    <strong>{{ label }}</strong>
+    {% if hint %}<span class="form-checkbox-hint">{{ hint }}</span>{% endif %}
+  </span>
+</label>
+{% endmacro %}
+
+{# ---------- Date input ---------- #}
+
+{# form_date — three text inputs (day, month, year) inside a fieldset.
+   Args:
+     - name:    base name; the three inputs use {name}-day, {name}-month, {name}-year
+     - id:      base id; the three inputs use {id}-day, {id}-month, {id}-year
+     - legend:  fieldset legend
+     - hint:    instruction (e.g. "For example, 27 3 2026")
+     - error:   error message
+     - day, month, year: pre-filled values
+#}
+{% macro form_date(name, id, legend, hint="", error="", day="", month="", year="",
+                    legend_size="m") %}
+{%- set hint_id = id ~ '-hint' if hint else '' -%}
+{%- set err_id  = id ~ '-error' if error else '' -%}
+{%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
+<div class="form-group{% if error %} form-group-error{% endif %}">
+  <fieldset class="form-fieldset" role="group"
+            {% if described %}aria-describedby="{{ described }}"{% endif %}>
+    <legend class="form-legend{% if legend_size != 'm' %} form-legend-{{ legend_size }}{% endif %}">{{ legend }}</legend>
+    {% if hint %}<span class="form-hint" id="{{ hint_id }}">{{ hint }}</span>{% endif %}
+    {% if error %}<p class="form-error-message" id="{{ err_id }}"><span class="visually-hidden">Error:</span> {{ error }}</p>{% endif %}
+    <div class="form-date-input">
+      <div class="form-date-input-item">
+        <label class="form-date-input-label" for="{{ id }}-day">Day</label>
+        <input type="text" inputmode="numeric"
+               class="form-input form-input-width-2" name="{{ name }}-day"
+               id="{{ id }}-day" value="{{ day }}">
+      </div>
+      <div class="form-date-input-item">
+        <label class="form-date-input-label" for="{{ id }}-month">Month</label>
+        <input type="text" inputmode="numeric"
+               class="form-input form-input-width-2" name="{{ name }}-month"
+               id="{{ id }}-month" value="{{ month }}">
+      </div>
+      <div class="form-date-input-item">
+        <label class="form-date-input-label" for="{{ id }}-year">Year</label>
+        <input type="text" inputmode="numeric"
+               class="form-input form-input-width-4" name="{{ name }}-year"
+               id="{{ id }}-year" value="{{ year }}">
+      </div>
+    </div>
+  </fieldset>
+</div>
+{% endmacro %}
+
+{# ---------- Password input ---------- #}
+{# form_password — password input with show/hide toggle.
+   The toggle is a sibling button; a small JS handler swaps the input's
+   type between 'password' and 'text'. See form docs page for the JS. #}
+{% macro form_password(name, id, label, hint="", value="", error="",
+                        optional=False, autocomplete="current-password",
+                        label_size="m") %}
+{%- set hint_id = id ~ '-hint' if hint else '' -%}
+{%- set err_id  = id ~ '-error' if error else '' -%}
+{%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
+<div class="form-group{% if error %} form-group-error{% endif %}">
+  <label class="form-label{% if label_size != 'm' %} form-label-{{ label_size }}{% endif %}" for="{{ id }}">{{ label }}{% if optional %} (optional){% endif %}</label>
+  {% if hint %}<span class="form-hint" id="{{ hint_id }}">{{ hint }}</span>{% endif %}
+  {% if error %}<p class="form-error-message" id="{{ err_id }}"><span class="visually-hidden">Error:</span> {{ error }}</p>{% endif %}
+  <div class="form-password">
+    <input type="password" name="{{ name }}" id="{{ id }}"
+           class="form-input{% if error %} form-input-error{% endif %}"
+           value="{{ value }}"
+           autocomplete="{{ autocomplete }}"
+           {% if described %}aria-describedby="{{ described }}"{% endif %}>
+    <button type="button" class="form-password-toggle"
+            aria-controls="{{ id }}"
+            data-form-password-toggle>Show</button>
+  </div>
+</div>
+{% endmacro %}
+
+{# ---------- File upload ---------- #}
+{# form_file — native file input styled as a GDS file upload.
+   Args:
+     - multiple: boolean — allow multiple file selection
+     - accept:   accept attribute (e.g. ".pdf,.docx") #}
+{% macro form_file(name, id, label, hint="", error="", optional=False,
+                    multiple=False, accept="", label_size="m") %}
+{%- set hint_id = id ~ '-hint' if hint else '' -%}
+{%- set err_id  = id ~ '-error' if error else '' -%}
+{%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
+<div class="form-group{% if error %} form-group-error{% endif %}">
+  <label class="form-label{% if label_size != 'm' %} form-label-{{ label_size }}{% endif %}" for="{{ id }}">{{ label }}{% if optional %} (optional){% endif %}</label>
+  {% if hint %}<span class="form-hint" id="{{ hint_id }}">{{ hint }}</span>{% endif %}
+  {% if error %}<p class="form-error-message" id="{{ err_id }}"><span class="visually-hidden">Error:</span> {{ error }}</p>{% endif %}
+  <input type="file" name="{{ name }}" id="{{ id }}"
+         class="form-file{% if error %} form-file-error{% endif %}"
+         {% if multiple %}multiple{% endif %}
+         {% if accept %}accept="{{ accept }}"{% endif %}
+         {% if described %}aria-describedby="{{ described }}"{% endif %}>
+</div>
+{% endmacro %}

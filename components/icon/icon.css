@@ -1,0 +1,58 @@
+/* Icon — inline SVG icons in the Lucide style (24×24 viewBox,
+   currentColor stroke, 2px stroke-width, round caps and joins).
+
+   The .icon base class sets default sizing and inheritance. The SVG
+   itself uses fill="none" and stroke="currentColor" so the icon picks
+   up the text colour of the surrounding element. Size with em-relative
+   variants or override with .icon[width][height]. */
+
+.icon{
+  display:inline-block;
+  width:1em;height:1em;
+  flex-shrink:0;
+  vertical-align:-0.15em;
+  color:inherit;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.icon.icon-sm{width:14px;height:14px}
+.icon.icon-md{width:18px;height:18px}
+.icon.icon-lg{width:24px;height:24px}
+.icon.icon-xl{width:32px;height:32px}
+
+/* Inline with text — slight baseline adjustment for line-height 1.5 */
+.icon.icon-inline{vertical-align:-0.18em}
+
+/* Inside a coloured tile (e.g. function-card-icon) — match the tile size */
+.function-card-icon .icon{width:18px;height:18px}
+.action-menu-icon .icon{width:13px;height:13px;stroke-width:2.2}
+.folder-item-icon .icon{width:14px;height:14px}
+.sidebar-nav-link .icon{width:13px;height:13px}
+.app-header-brand .icon{width:20px;height:20px}
+.app-header-nav .icon{width:14px;height:14px;vertical-align:-0.25em}
+.btn .icon{width:14px;height:14px}
+.alert-pill .icon{width:11px;height:11px;stroke-width:2.4}
+
+/* Used on the example page that shows every icon. */
+.icon-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(120px,1fr));
+  gap:var(--s-2);
+}
+.icon-grid > div{
+  border:1px solid var(--colour-border-component);
+  background:var(--colour-canvas);
+  padding:var(--s-4) var(--s-3);
+  display:flex;flex-direction:column;align-items:center;
+  gap:var(--s-2);
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--colour-fg-muted);
+}
+.icon-grid > div .icon{
+  width:24px;height:24px;color:var(--colour-fg-strong);
+}

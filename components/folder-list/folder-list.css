@@ -1,0 +1,181 @@
+/* Folder list — sidebar variant used by inbox-style dashboards.
+   Groups folders into labelled sections (Workflow / Personal / Custom),
+   each item carries an icon, name, and optional count. Counts can be
+   coloured to flag critical/warning severity. */
+
+.folder-list{
+  border-right:1px solid var(--colour-border);
+  background:var(--colour-canvas-muted);
+  padding:0;
+  font-family:var(--font-system);
+  font-size:var(--fs-sm);
+  display:flex;flex-direction:column;
+  min-height:0;
+}
+
+/* ---------------- Search ---------------- */
+.folder-list-search{
+  padding:var(--s-3) var(--s-3) var(--s-2);
+  border-bottom:1px solid var(--colour-border-muted);
+}
+
+/* ---------------- Section labels ---------------- */
+.folder-list-section{
+  margin:var(--s-3) 0 4px;
+  padding:0 var(--s-3);
+  font-size:11px;font-weight:700;
+  color:var(--colour-fg-muted);
+  text-transform:uppercase;letter-spacing:0.04em;
+  line-height:1.4;
+}
+.folder-list-section.folder-list-section-first{
+  margin-top:var(--s-3);
+}
+
+/* ---------------- List ---------------- */
+.folder-list ul{
+  list-style:none;margin:0;padding:0;
+}
+.folder-list-scroll{
+  flex:1;overflow-y:auto;min-height:0;
+}
+
+/* ---------------- Folder item ---------------- */
+.folder-item{
+  display:flex;align-items:center;gap:10px;
+  padding:6px var(--s-3) 6px var(--s-3);
+  color:var(--colour-fg);
+  text-decoration:none;
+  font-size:var(--fs-sm);
+  line-height:1.4;
+  position:relative;
+}
+.folder-item:hover{
+  background:rgba(208,215,222,0.4);
+  text-decoration:none;
+  color:var(--colour-fg);
+}
+.folder-item.is-active{
+  background:var(--colour-accent-subtle);
+  color:var(--colour-accent);
+  font-weight:600;
+  box-shadow:inset 3px 0 0 var(--colour-accent);
+}
+
+.folder-item-icon{
+  width:18px;height:18px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--colour-fg-muted);font-size:13px;
+}
+.folder-item.is-active .folder-item-icon{color:var(--colour-accent)}
+
+.folder-item-name{
+  flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+
+.folder-item-count{
+  margin-left:auto;
+  background:var(--colour-canvas-inset);
+  color:var(--colour-fg-muted);
+  font-size:11px;padding:1px 7px;
+  border-radius:0;
+  font-weight:600;
+  flex-shrink:0;
+}
+.folder-item.is-active .folder-item-count{
+  background:var(--colour-canvas);
+  color:var(--colour-accent);
+}
+
+/* Severity-coloured counts */
+.folder-item-count.folder-item-count-critical{
+  background:#fbe6e2;color:#a4291b;
+}
+.folder-item-count.folder-item-count-warning{
+  background:#fdeed1;color:#74510b;
+}
+
+/* ---------------- Custom folder (with dot + actions) ---------------- */
+.folder-item-custom{
+  padding-right:var(--s-2);
+}
+.folder-item-custom .folder-item-link{
+  display:flex;align-items:center;gap:10px;
+  flex:1;min-width:0;
+  color:inherit;text-decoration:none;
+  padding:6px 0;
+}
+.folder-item-custom .folder-item-link:hover{text-decoration:none}
+
+.folder-item-dot{
+  width:10px;height:10px;border-radius:50%;
+  flex-shrink:0;
+  background:var(--colour-fg-muted);
+}
+.folder-item-dot.folder-item-dot-pink   {background:#9d174d}
+.folder-item-dot.folder-item-dot-teal   {background:#115e59}
+.folder-item-dot.folder-item-dot-purple {background:#5b21b6}
+.folder-item-dot.folder-item-dot-orange {background:#9a3412}
+.folder-item-dot.folder-item-dot-green  {background:#166534}
+.folder-item-dot.folder-item-dot-blue   {background:#1e40af}
+
+/* Dark-mode overrides. */
+:root[data-theme="dark"] .folder-item-dot.folder-item-dot-pink   {background:#f178b6}
+:root[data-theme="dark"] .folder-item-dot.folder-item-dot-teal   {background:#39c5bb}
+:root[data-theme="dark"] .folder-item-dot.folder-item-dot-purple {background:#b08bff}
+:root[data-theme="dark"] .folder-item-dot.folder-item-dot-orange {background:#e8a35a}
+:root[data-theme="dark"] .folder-item-dot.folder-item-dot-green  {background:#3fb950}
+:root[data-theme="dark"] .folder-item-dot.folder-item-dot-blue   {background:#79c0ff}
+:root[data-theme="dark"] .folder-item-count.folder-item-count-critical{
+  background:#3a1717;color:#ff7b72;
+}
+:root[data-theme="dark"] .folder-item-count.folder-item-count-warning{
+  background:#332710;color:#e8a35a;
+}
+:root[data-theme="dark"] .folder-item:hover{
+  background:rgba(255,255,255,0.06);
+}
+
+.folder-item-actions{
+  display:none;align-items:center;gap:2px;
+}
+.folder-item-custom:hover .folder-item-actions,
+.folder-item-custom:focus-within .folder-item-actions{
+  display:flex;
+}
+.folder-item-action-btn{
+  background:transparent;border:0;cursor:pointer;
+  color:var(--colour-fg-muted);
+  display:flex;align-items:center;justify-content:center;
+  border-radius:0;
+  font-size:12px;
+  /* WCAG 2.2 SC 2.5.8 — minimum 24x24 target. */
+  min-width:24px;min-height:24px;
+  padding:4px;
+}
+.folder-item-action-btn:hover{
+  background:rgba(127,127,127,0.18);
+  color:var(--colour-fg);
+}
+.folder-item-action-btn.folder-item-action-btn-danger:hover{
+  background:var(--colour-error);color:var(--colour-white);
+}
+
+/* ---------------- Add button ---------------- */
+.folder-list-add{
+  margin:var(--s-3);padding:6px 10px;
+  background:transparent;
+  border:1px dashed var(--colour-border-strong);
+  color:var(--colour-fg-muted);
+  font-size:var(--fs-sm);
+  cursor:pointer;
+  display:flex;align-items:center;gap:6px;justify-content:center;
+  width:calc(100% - var(--s-6));
+  font-family:inherit;
+  border-radius:0;
+}
+.folder-list-add:hover{
+  background:var(--colour-canvas);
+  color:var(--colour-fg);
+  border-color:var(--colour-fg-muted);
+}

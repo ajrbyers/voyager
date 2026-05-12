@@ -1,0 +1,21 @@
+/* Breadcrumbs — full-width strip with bottom border, slash separators
+   from CSS so the markup stays as a clean ordered list. */
+
+.breadcrumbs{
+  border-bottom:1px solid var(--colour-border);
+  padding:10px var(--s-6);
+  background:var(--colour-canvas);
+  font-size:var(--fs-sm);
+  color:var(--colour-fg-muted);
+  font-family:var(--font-system);
+
+  & ol{
+    list-style:none;margin:0;padding:0;
+    display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-2);
+  }
+  & li{display:flex;align-items:center;gap:var(--s-2)}
+  & li + li::before{content:"/";color:var(--colour-fg-subtle)}
+  & a{color:var(--colour-accent);text-decoration:none}
+  & a:hover{text-decoration:underline}
+  & [aria-current="page"]{color:var(--colour-fg)}
+}

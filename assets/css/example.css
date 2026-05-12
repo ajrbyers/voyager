@@ -1,0 +1,19 @@
+/* example.css — chrome for example pages only.
+   Adds a single "Reference implementation" banner above the app header. */
+
+.example-banner{
+  background:var(--colour-yellow);
+  color:var(--colour-focus-fg);
+  padding:6px var(--s-6);
+  font-family:var(--font-system);
+  font-size:13px;
+  display:flex;align-items:center;gap:var(--s-4);
+  border-bottom:2px solid var(--colour-focus-fg);
+}
+.example-banner-tag{
+  font-weight:700;text-transform:uppercase;letter-spacing:0.04em;
+  background:var(--colour-focus-fg);color:var(--colour-yellow);
+  padding:2px 8px;
+}
+.example-banner a{color:var(--colour-focus-fg);font-weight:600}
+.example-banner-spacer{margin-left:auto}

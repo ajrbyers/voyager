@@ -1,0 +1,39 @@
+/* Page header — caption, h1, byline, status tags. Lives inside
+   the page content area, not the global header. */
+
+.page-header{
+  padding:0 0 var(--s-5);
+  margin-bottom:var(--s-5);
+  border-bottom:1px solid var(--colour-border);
+
+  & .page-header-caption{
+    display:block;
+    font-size:var(--fs-sm);font-weight:500;
+    color:var(--colour-fg-muted);
+    margin-bottom:6px;
+  }
+  & .page-header-caption .code-chip{margin:0 4px}
+
+  & .page-header-title{
+    margin:0 0 10px;
+    font-weight:700;
+    font-size:var(--fs-h1);
+    line-height:var(--lh-tight);
+    color:var(--colour-fg-strong);
+    max-width:38em;
+    letter-spacing:-0.005em;
+  }
+
+  & .page-header-byline{
+    margin:0 0 var(--s-3);
+    font-size:var(--fs-base);
+    color:var(--colour-fg-muted);
+  }
+  & .page-header-byline strong{
+    color:var(--colour-fg);font-weight:600;
+  }
+
+  & .page-header-tags{
+    display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  }
+}

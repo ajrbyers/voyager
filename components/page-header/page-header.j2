@@ -1,0 +1,33 @@
+{# page-header — title block at the top of a page.
+
+   Args:
+     - caption:  text above the H1 (HTML allowed; pass code-chip etc.)
+     - title:    the H1 text
+     - byline:   byline below the title (HTML allowed)
+
+   Tags go inside the {% call %} block. Use the `tag` macro for each.
+
+   Usage with tags:
+     {% call page_header(
+         caption='Article ' ~ code_chip('#1247') ~ ' · Peer review',
+         title='Reproducibility of LSTM forecasts…',
+         byline='<strong>Dr Adaeze Okafor</strong> · University of Lagos'
+     ) %}
+       {{ tag("Under review", kind="green") }}
+       {{ tag("Round 2 of 2", kind="grey") }}
+     {% endcall %}
+
+   Usage without tags — wrap with an empty {% call %} block:
+     {% call page_header(title="Manager", byline="Settings and content.") %}{% endcall %}
+#}
+{% macro page_header(caption="", title="", byline="") %}
+<div class="page-header">
+  {% if caption %}<span class="page-header-caption">{{ caption|safe }}</span>{% endif %}
+  <h1 class="page-header-title">{{ title }}</h1>
+  {% if byline %}<p class="page-header-byline">{{ byline|safe }}</p>{% endif %}
+  {%- set tags_content = caller()|trim -%}
+  {% if tags_content %}
+    <div class="page-header-tags">{{ tags_content|safe }}</div>
+  {% endif %}
+</div>
+{% endmacro %}

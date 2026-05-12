@@ -1,0 +1,55 @@
+/* App-wide top header. Janeway brand on the left, primary nav,
+   account menu on the right. Always 48px tall, dark bar. */
+
+.app-header{
+  background:var(--colour-header-bg);
+  color:var(--colour-header-fg);
+  padding:0 var(--s-6);
+  height:48px;
+  display:flex;
+  align-items:center;
+  gap:var(--s-4);
+  font-family:var(--font-system);
+  font-size:var(--fs-sm);
+
+  & a{color:var(--colour-header-fg);text-decoration:none}
+  & a:hover{text-decoration:underline}
+
+  & .app-header-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+    font-size:var(--fs-md);
+    color:var(--colour-header-fg);
+    text-decoration:none;
+  }
+  & .app-header-brand:hover{text-decoration:none}
+
+  & .app-header-chip{
+    font-size:11px;
+    font-weight:500;
+    padding:1px 6px;
+    border-radius:0;
+    background:rgba(255,255,255,0.12);
+    color:rgba(255,255,255,0.9);
+    letter-spacing:0.02em;
+  }
+
+  & .app-header-nav{
+    display:flex;
+    gap:var(--s-4);
+    font-weight:500;
+    margin-left:auto;
+  }
+
+  & .app-header-avatar{
+    width:28px;height:28px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#59c2ff,#1763a3);
+    border:0;padding:0;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;
+    color:transparent;font:inherit;
+  }
+  & .app-header-avatar:hover{filter:brightness(1.1)}
+}

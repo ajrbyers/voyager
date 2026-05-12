@@ -1,0 +1,57 @@
+{# Three patterns for status messages: notice, inset_text, error_summary.
+   notice and inset_text wrap arbitrary body content via {% call %}.
+   error_summary is a wrapper + child item pattern. #}
+
+{# notice — banner with header strip and body.
+   Args:
+     - title: string for the notice header (h2)
+     - kind:  'info' (default) | 'warning' | 'error' | 'success'
+     - id:    anchor id for aria-labelledby
+
+   Usage:
+     {% call notice("Important") %}
+       <p>Reviewer #419 has not acknowledged the invitation.</p>
+     {% endcall %}
+#}
+{% macro notice(title, kind="info", id="") %}
+{%- set _id = id or ('notice-' ~ title|lower|replace(' ','-')) -%}
+<section class="notice{% if kind != 'info' %} notice-{{ kind }}{% endif %}"
+         aria-labelledby="{{ _id }}">
+  <h2 class="notice-head" id="{{ _id }}">{{ title }}</h2>
+  <div class="notice-body">{{ caller() }}</div>
+</section>
+{% endmacro %}
+
+{# inset_text — quiet left-bordered block of body text.
+   Usage:
+     {% call inset_text() %}
+       <p>Currently in <strong>Under Review</strong>.</p>
+     {% endcall %}
+#}
+{% macro inset_text() %}
+<div class="inset-text">{{ caller() }}</div>
+{% endmacro %}
+
+{# error_summary — GOV.UK-style error list at the top of a form.
+   Compose with two macros:
+     - error_summary(title="There is a problem")  wrapper
+     - error_summary_item(message, anchor)        one error link
+       anchor is the id of the field with the error.
+
+   Usage:
+     {% call error_summary() %}
+       {{ error_summary_item("Enter a decision letter", anchor="decision-letter") }}
+       {{ error_summary_item("Choose a decision",        anchor="decision-kind") }}
+     {% endcall %}
+#}
+{% macro error_summary(title="There is a problem", id="") %}
+{%- set _id = id or 'es-' ~ title|lower|replace(' ','-') -%}
+<div class="error-summary" role="alert" aria-labelledby="{{ _id }}">
+  <h2 class="error-summary-title" id="{{ _id }}">{{ title }}</h2>
+  <ul>{{ caller() }}</ul>
+</div>
+{% endmacro %}
+
+{% macro error_summary_item(message, anchor) %}
+<li><a href="#{{ anchor }}">{{ message }}</a></li>
+{% endmacro %}

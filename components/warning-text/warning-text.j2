@@ -1,0 +1,15 @@
+{# warning-text — strong advisory for irreversible / consequential actions.
+   Use sparingly. For lower-prominence ambient info use inset_text instead.
+
+   Args:
+     - message: the warning text (HTML allowed)
+#}
+{% macro warning_text(message) %}
+<div class="warning-text">
+  <span class="warning-text-icon" aria-hidden="true">!</span>
+  <strong class="warning-text-text">
+    <span class="visually-hidden">Warning</span>
+    {{ message|safe }}
+  </strong>
+</div>
+{% endmacro %}

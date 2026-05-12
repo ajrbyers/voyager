@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Information — Voyager</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="#">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation">
+    <span class="site-sidebar-section">Get started</span>
+    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
+      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
+    <span class="site-sidebar-section">Foundations</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../foundations/tokens.html">Tokens</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/typography.html">Typography</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/layout.html">Layout</a></li>
+    </ul>
+    <span class="site-sidebar-section">Components</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="page-header.html">Page header</a></li>
+      <li><a class="site-sidebar-link" href="button.html">Button</a></li>
+      <li><a class="site-sidebar-link" href="icon.html">Icon</a></li>
+      <li><a class="site-sidebar-link" href="summary-block.html">Summary block</a></li>
+      <li><a class="site-sidebar-link" href="information.html" aria-current="page">Information</a></li>
+      <li><a class="site-sidebar-link" href="nav.html">Navigation</a></li>
+      <li><a class="site-sidebar-link" href="back-link.html">Back link</a></li>
+      <li><a class="site-sidebar-link" href="pagination.html">Pagination</a></li>
+      <li><a class="site-sidebar-link" href="tag.html">Tag &amp; chip</a></li>
+      <li><a class="site-sidebar-link" href="table.html">Table</a></li>
+      <li><a class="site-sidebar-link" href="form.html">Form</a></li>
+      <li><a class="site-sidebar-link" href="modal.html">Modal</a></li>
+      <li><a class="site-sidebar-link" href="details.html">Details</a></li>
+      <li><a class="site-sidebar-link" href="panel.html">Panel</a></li>
+      <li><a class="site-sidebar-link" href="stat.html">Stat &amp; queue</a></li>
+      <li><a class="site-sidebar-link" href="steps.html">Steps</a></li>
+      <li><a class="site-sidebar-link" href="avatar.html">Avatar</a></li>
+      <li><a class="site-sidebar-link" href="section-divider.html">Section divider</a></li>
+    </ul>
+    <span class="site-sidebar-section">Inbox pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="folder-list.html">Folder list</a></li>
+      <li><a class="site-sidebar-link" href="article-card.html">Article card</a></li>
+      <li><a class="site-sidebar-link" href="filter-bar.html">Filter bar</a></li>
+      <li><a class="site-sidebar-link" href="progress-bar.html">Progress bar</a></li>
+    </ul>
+    <span class="site-sidebar-section">Manager pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="function-card.html">Function card</a></li>
+      <li><a class="site-sidebar-link" href="function-filter.html">Function filter</a></li>
+    </ul>
+    <span class="site-sidebar-section">Examples</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
+      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
+      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
+    </ul>
+  </nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Information</h1>
+    <p class="site-page-lede">
+      Four patterns for surfacing status messages, in roughly increasing prominence:
+      <strong>inset text</strong> for ambient context, <strong>notice</strong> for
+      noteworthy events, <strong>warning text</strong> for serious or irreversible
+      actions, and <strong>error summary</strong> for failed form submissions.
+    </p>
+
+    <h2>Notice — info (default)</h2>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <section class="notice" aria-labelledby="info-1">
+          <h2 class="notice-head" id="info-1">Important</h2>
+          <div class="notice-body">
+            <p>Reviewer #419 has not acknowledged the invitation sent on 12 April 2026 — 28 days ago.</p>
+          </div>
+        </section>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;section class="notice" aria-labelledby="info-1"&gt;
+  &lt;h2 class="notice-head" id="info-1"&gt;Important&lt;/h2&gt;
+  &lt;div class="notice-body"&gt;
+    &lt;p&gt;Reviewer #419 has not acknowledged the invitation sent on 12 April 2026 — 28 days ago.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/information/information.j2" import notice %}
+
+{% call notice("Important") %}
+  &lt;p&gt;Reviewer #419 has not acknowledged the invitation sent on 12 April 2026.&lt;/p&gt;
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Notice — variants</h2>
+    <p>Compose <code>.notice-warning</code>, <code>.notice-error</code>, or <code>.notice-success</code> alongside <code>.notice</code>.</p>
+
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <section class="notice notice-warning" aria-labelledby="info-2">
+          <h2 class="notice-head" id="info-2">Action needed</h2>
+          <div class="notice-body"><p>Revision request R-2026-091 is overdue by 4 days.</p></div>
+        </section>
+        <section class="notice notice-error" aria-labelledby="info-3">
+          <h2 class="notice-head" id="info-3">Something went wrong</h2>
+          <div class="notice-body"><p>The decision could not be saved. Try again or contact support.</p></div>
+        </section>
+        <section class="notice notice-success" aria-labelledby="info-4">
+          <h2 class="notice-head" id="info-4">Decision sent</h2>
+          <div class="notice-body"><p>Your decision letter was emailed to the corresponding author.</p></div>
+        </section>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;section class="notice notice-warning"&gt; … &lt;/section&gt;
+&lt;section class="notice notice-error"&gt;   … &lt;/section&gt;
+&lt;section class="notice notice-success"&gt; … &lt;/section&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% call notice("Action needed", kind="warning") %} … {% endcall %}
+{% call notice("Something went wrong", kind="error") %} … {% endcall %}
+{% call notice("Decision sent", kind="success") %} … {% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Inset text</h2>
+    <p>Quiet ambient context. No header. Use in the right rail under "Status".</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="inset-text">
+          <p>Currently in <strong>Under Review</strong>. An active minor revision is in flight.</p>
+          <p>Editorial decision is blocked until at least one further review is received.</p>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="inset-text"&gt;
+  &lt;p&gt;Currently in &lt;strong&gt;Under Review&lt;/strong&gt;. An active minor revision is in flight.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% call inset_text() %}
+  &lt;p&gt;Currently in &lt;strong&gt;Under Review&lt;/strong&gt;. An active minor revision is in flight.&lt;/p&gt;
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Warning text</h2>
+    <p>For serious advisories — irreversible actions, legal consequences, data loss. Heavier than inset text. The black filled circle is decorative; the visually-hidden &ldquo;Warning&rdquo; prefix carries semantics for assistive technology.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="warning-text">
+          <span class="warning-text-icon" aria-hidden="true">!</span>
+          <strong class="warning-text-text">
+            <span class="visually-hidden">Warning</span>
+            Withdrawing this submission will email the corresponding author and cannot be reversed.
+          </strong>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="warning-text"&gt;
+  &lt;span class="warning-text-icon" aria-hidden="true"&gt;!&lt;/span&gt;
+  &lt;strong class="warning-text-text"&gt;
+    &lt;span class="visually-hidden"&gt;Warning&lt;/span&gt;
+    Withdrawing this submission will email the corresponding author and cannot be reversed.
+  &lt;/strong&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/warning-text/warning-text.j2" import warning_text %}
+
+{{ warning_text("Withdrawing this submission will email the corresponding author and cannot be reversed.") }}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Error summary</h2>
+    <p>Used at the top of a form when validation fails. Each error is a link that focuses the corresponding field. <code>role="alert"</code> announces the summary to screen readers immediately.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="error-summary" role="alert" aria-labelledby="es-1">
+          <h2 class="error-summary-title" id="es-1">There is a problem</h2>
+          <ul>
+            <li><a href="#decision-letter">Enter a decision letter to send to the author</a></li>
+            <li><a href="#decision-kind">Choose a decision</a></li>
+          </ul>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="error-summary" role="alert" aria-labelledby="es-1"&gt;
+  &lt;h2 class="error-summary-title" id="es-1"&gt;There is a problem&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#decision-letter"&gt;Enter a decision letter…&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#decision-kind"&gt;Choose a decision&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/information/information.j2"
+   import error_summary, error_summary_item %}
+
+{% call error_summary() %}
+  {{ error_summary_item("Enter a decision letter to send to the author",
+                         anchor="decision-letter") }}
+  {{ error_summary_item("Choose a decision", anchor="decision-kind") }}
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Form — Voyager</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="#">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation">
+    <span class="site-sidebar-section">Get started</span>
+    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
+      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
+    <span class="site-sidebar-section">Foundations</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../foundations/tokens.html">Tokens</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/typography.html">Typography</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/layout.html">Layout</a></li>
+    </ul>
+    <span class="site-sidebar-section">Components</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="page-header.html">Page header</a></li>
+      <li><a class="site-sidebar-link" href="button.html">Button</a></li>
+      <li><a class="site-sidebar-link" href="icon.html">Icon</a></li>
+      <li><a class="site-sidebar-link" href="summary-block.html">Summary block</a></li>
+      <li><a class="site-sidebar-link" href="information.html">Information</a></li>
+      <li><a class="site-sidebar-link" href="nav.html">Navigation</a></li>
+      <li><a class="site-sidebar-link" href="back-link.html">Back link</a></li>
+      <li><a class="site-sidebar-link" href="pagination.html">Pagination</a></li>
+      <li><a class="site-sidebar-link" href="tag.html">Tag &amp; chip</a></li>
+      <li><a class="site-sidebar-link" href="table.html">Table</a></li>
+      <li><a class="site-sidebar-link" href="form.html" aria-current="page">Form</a></li>
+      <li><a class="site-sidebar-link" href="modal.html">Modal</a></li>
+      <li><a class="site-sidebar-link" href="details.html">Details</a></li>
+      <li><a class="site-sidebar-link" href="panel.html">Panel</a></li>
+      <li><a class="site-sidebar-link" href="stat.html">Stat &amp; queue</a></li>
+      <li><a class="site-sidebar-link" href="steps.html">Steps</a></li>
+      <li><a class="site-sidebar-link" href="avatar.html">Avatar</a></li>
+      <li><a class="site-sidebar-link" href="section-divider.html">Section divider</a></li>
+    </ul>
+    <span class="site-sidebar-section">Inbox pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="folder-list.html">Folder list</a></li>
+      <li><a class="site-sidebar-link" href="article-card.html">Article card</a></li>
+      <li><a class="site-sidebar-link" href="filter-bar.html">Filter bar</a></li>
+      <li><a class="site-sidebar-link" href="progress-bar.html">Progress bar</a></li>
+    </ul>
+    <span class="site-sidebar-section">Manager pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="function-card.html">Function card</a></li>
+      <li><a class="site-sidebar-link" href="function-filter.html">Function filter</a></li>
+    </ul>
+    <span class="site-sidebar-section">Examples</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
+      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
+      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
+    </ul>
+  </nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Form</h1>
+    <p class="site-page-lede">
+      Inspired by the UK Government Design System form patterns. Conventions
+      Voyager picks up from GDS: mark optional fields (never required), error
+      messages use <code>&lt;p&gt;</code> with a visually-hidden &ldquo;Error:&rdquo;
+      prefix, error groups get a red left border, <code>aria-describedby</code>
+      lists the hint first then the error, and radio/checkbox controls are
+      40&nbsp;×&nbsp;40&nbsp;px.
+    </p>
+
+    <h2>Text input</h2>
+    <p>Optional fields append &ldquo;(optional)&rdquo; to the label. Don't mark required fields — assume required by default.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="form-group">
+          <label class="form-label" for="ex-fullname">Full name (optional)</label>
+          <span class="form-hint" id="ex-fullname-hint">As it should appear on the published article</span>
+          <input class="form-input" id="ex-fullname" type="text" aria-describedby="ex-fullname-hint">
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="form-group"&gt;
+  &lt;label class="form-label" for="full-name"&gt;Full name (optional)&lt;/label&gt;
+  &lt;span class="form-hint" id="full-name-hint"&gt;As it should appear on the published article&lt;/span&gt;
+  &lt;input class="form-input" id="full-name" type="text" aria-describedby="full-name-hint"&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/form/form.j2" import form_text %}
+
+{{ form_text(
+    name="full_name", id="full-name",
+    label="Full name", optional=True,
+    hint="As it should appear on the published article"
+) }}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Width modifiers</h2>
+    <p>Fixed character widths on inputs that should be sized to their content (postcodes, reference numbers, dates).</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="form-group">
+          <label class="form-label" for="ex-postcode">Postcode</label>
+          <input class="form-input form-input-width-10" id="ex-postcode" type="text" autocomplete="postal-code">
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;input class="form-input form-input-width-10" type="text" autocomplete="postal-code"&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{{ form_text(
+    name="postcode", id="postcode",
+    label="Postcode", width=10, autocomplete="postal-code"
+) }}{% endraw %}</code></pre>
+    </div>
+    <p>Available: <code>form-input-width-2</code>, <code>-3</code>, <code>-4</code>, <code>-5</code>, <code>-10</code>, <code>-20</code>. For fluid widths use <code>form-width-full</code>, <code>form-width-three-quarters</code>, <code>form-width-two-thirds</code>, <code>form-width-one-half</code>, <code>form-width-one-third</code>, <code>form-width-one-quarter</code>.</p>
+
+    <h2>Textarea with character count</h2>
+    <p>The character-count wrapper sits <em>outside</em> the form-group; the count message is a sibling div with an id referenced by the textarea's <code>aria-describedby</code>. Order in <code>aria-describedby</code>: count message id, then hint, then error.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="form-character-count" data-maxlength="4000">
+          <div class="form-group">
+            <label class="form-label" for="ex-letter">Decision letter</label>
+            <textarea class="form-textarea" id="ex-letter" rows="5" maxlength="4000" aria-describedby="ex-letter-info"></textarea>
+          </div>
+          <div id="ex-letter-info" class="form-character-count-message">You can enter up to 4,000 characters</div>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="form-character-count" data-maxlength="4000"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="form-label" for="letter"&gt;Decision letter&lt;/label&gt;
+    &lt;textarea class="form-textarea" id="letter" rows="5"
+              maxlength="4000"
+              aria-describedby="letter-info"&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+  &lt;div id="letter-info" class="form-character-count-message"&gt;
+    You can enter up to 4,000 characters
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/form/form.j2" import form_textarea_with_count %}
+
+{{ form_textarea_with_count(
+    name="letter", id="letter",
+    label="Decision letter", maxlength=4000
+) }}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Radios</h2>
+    <p>40&nbsp;×&nbsp;40&nbsp;px controls (GDS minimum touch target). Group inside a fieldset; the legend is the question. For small dense radio rows compose <code>form-radio-small</code>.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="form-group">
+          <fieldset class="form-fieldset">
+            <legend class="form-legend">What is your decision?</legend>
+            <div class="form-radios">
+              <label class="form-radio">
+                <input type="radio" name="decision-ex">
+                <span class="form-radio-text"><strong>Accept submission</strong>
+                  <span class="form-radio-hint">Move to the next workflow stage.</span>
+                </span>
+              </label>
+              <label class="form-radio">
+                <input type="radio" name="decision-ex" checked>
+                <span class="form-radio-text"><strong>Request minor revisions</strong>
+                  <span class="form-radio-hint">Author addresses small changes.</span>
+                </span>
+              </label>
+              <label class="form-radio">
+                <input type="radio" name="decision-ex">
+                <span class="form-radio-text"><strong>Reject submission</strong></span>
+              </label>
+            </div>
+          </fieldset>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="form-group"&gt;
+  &lt;fieldset class="form-fieldset"&gt;
+    &lt;legend class="form-legend"&gt;What is your decision?&lt;/legend&gt;
+    &lt;div class="form-radios"&gt;
+      &lt;label class="form-radio"&gt;
+        &lt;input type="radio" name="decision"&gt;
+        &lt;span class="form-radio-text"&gt;
+          &lt;strong&gt;Accept submission&lt;/strong&gt;
+          &lt;span class="form-radio-hint"&gt;Move to the next workflow stage.&lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/label&gt;
+      …
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/form/form.j2" import form_radios, form_radio %}
+
+{% call form_radios("decision", "What is your decision?") %}
+  {{ form_radio("decision", "accept", "Accept submission",
+                hint="Move to the next workflow stage.") }}
+  {{ form_radio("decision", "minor",  "Request minor revisions",
+                hint="Author addresses small changes.", checked=True) }}
+  {{ form_radio("decision", "reject", "Reject submission") }}
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Date input</h2>
+    <p>Three numeric text inputs (day, month, year) inside a fieldset with <code>role="group"</code>. Day and month use <code>form-input-width-2</code>; year uses <code>form-input-width-4</code>. <code>inputmode="numeric"</code> brings up the numeric keypad on mobile.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="form-group">
+          <fieldset class="form-fieldset" role="group" aria-describedby="ex-due-hint">
+            <legend class="form-legend">Due date</legend>
+            <span class="form-hint" id="ex-due-hint">For example, 27 5 2026</span>
+            <div class="form-date-input">
+              <div class="form-date-input-item">
+                <label class="form-date-input-label" for="ex-due-day">Day</label>
+                <input type="text" inputmode="numeric" class="form-input form-input-width-2" id="ex-due-day">
+              </div>
+              <div class="form-date-input-item">
+                <label class="form-date-input-label" for="ex-due-month">Month</label>
+                <input type="text" inputmode="numeric" class="form-input form-input-width-2" id="ex-due-month">
+              </div>
+              <div class="form-date-input-item">
+                <label class="form-date-input-label" for="ex-due-year">Year</label>
+                <input type="text" inputmode="numeric" class="form-input form-input-width-4" id="ex-due-year">
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="form-group"&gt;
+  &lt;fieldset class="form-fieldset" role="group" aria-describedby="due-hint"&gt;
+    &lt;legend class="form-legend"&gt;Due date&lt;/legend&gt;
+    &lt;span class="form-hint" id="due-hint"&gt;For example, 27 5 2026&lt;/span&gt;
+    &lt;div class="form-date-input"&gt;
+      &lt;div class="form-date-input-item"&gt;
+        &lt;label class="form-date-input-label" for="due-day"&gt;Day&lt;/label&gt;
+        &lt;input type="text" inputmode="numeric" class="form-input form-input-width-2" id="due-day"&gt;
+      &lt;/div&gt;
+      …
+      &lt;div class="form-date-input-item"&gt;
+        &lt;label class="form-date-input-label" for="due-year"&gt;Year&lt;/label&gt;
+        &lt;input type="text" inputmode="numeric" class="form-input form-input-width-4" id="due-year"&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/form/form.j2" import form_date %}
+
+{{ form_date(
+    name="due", id="due",
+    legend="Due date",
+    hint="For example, 27 5 2026"
+) }}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Error state</h2>
+    <p>Three things change in an error state:</p>
+    <ol>
+      <li>Add <code>form-group-error</code> to the wrapping form-group — gives the red left border + padding.</li>
+      <li>Add the error message as a <code>&lt;p class="form-error-message"&gt;</code> with a visually-hidden &ldquo;Error:&rdquo; prefix span.</li>
+      <li>Add <code>form-input-error</code> (or <code>form-textarea-error</code> / <code>form-select-error</code>) to the control. Set <code>aria-describedby</code> to include the error id. If a hint is also present, hint id comes first, then error id.</li>
+    </ol>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="form-group form-group-error">
+          <label class="form-label" for="ex-due2">Due date</label>
+          <p class="form-error-message" id="ex-due2-error"><span class="visually-hidden">Error:</span> Enter a date in the future</p>
+          <input class="form-input form-input-error form-input-width-10" id="ex-due2" type="date" value="2026-01-01" aria-describedby="ex-due2-error">
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="form-group form-group-error"&gt;
+  &lt;label class="form-label" for="due"&gt;Due date&lt;/label&gt;
+  &lt;p class="form-error-message" id="due-error"&gt;
+    &lt;span class="visually-hidden"&gt;Error:&lt;/span&gt; Enter a date in the future
+  &lt;/p&gt;
+  &lt;input class="form-input form-input-error" id="due" type="date"
+         aria-describedby="due-error"&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{{ form_text(
+    name="due", id="due", label="Due date", type="date",
+    error="Enter a date in the future"
+) }}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Password input</h2>
+    <p>Password field with a Show / Hide toggle. The toggle is a sibling button; a small JS handler swaps the input's <code>type</code> attribute between <code>password</code> and <code>text</code>. <code>aria-controls</code> ties the button to the input it controls.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="form-group">
+          <label class="form-label" for="ex-password">Password</label>
+          <span class="form-hint" id="ex-password-hint">Use at least 12 characters, mixing letters, numbers and symbols</span>
+          <div class="form-password">
+            <input type="password" id="ex-password" class="form-input" aria-describedby="ex-password-hint" autocomplete="new-password">
+            <button type="button" class="form-password-toggle" aria-controls="ex-password" data-form-password-toggle>Show</button>
+          </div>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="form-group"&gt;
+  &lt;label class="form-label" for="password"&gt;Password&lt;/label&gt;
+  &lt;span class="form-hint" id="password-hint"&gt;Use at least 12 characters…&lt;/span&gt;
+  &lt;div class="form-password"&gt;
+    &lt;input type="password" id="password" class="form-input"
+           aria-describedby="password-hint" autocomplete="new-password"&gt;
+    &lt;button type="button" class="form-password-toggle"
+            aria-controls="password" data-form-password-toggle&gt;Show&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/form/form.j2" import form_password %}
+
+{{ form_password(
+    name="password", id="password",
+    label="Password",
+    hint="Use at least 12 characters, mixing letters, numbers and symbols",
+    autocomplete="new-password"
+) }}{% endraw %}</code></pre>
+    </div>
+
+    <p>Tiny driver — wire once at page level:</p>
+    <div class="example">
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">JS</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>document.addEventListener('click', function (event) {
+  var btn = event.target.closest('[data-form-password-toggle]');
+  if (!btn) return;
+  var id = btn.getAttribute('aria-controls');
+  var input = document.getElementById(id);
+  if (!input) return;
+  var showing = input.type === 'text';
+  input.type = showing ? 'password' : 'text';
+  btn.textContent = showing ? 'Show' : 'Hide';
+});</code></pre>
+    </div>
+
+    <h2>File upload</h2>
+    <p>Native file input styled as a GDS file upload. Use <code>accept</code> to restrict file types and <code>multiple</code> when more than one file may be selected.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="form-group">
+          <label class="form-label" for="ex-manuscript">Manuscript</label>
+          <span class="form-hint" id="ex-manuscript-hint">Accepted formats: .docx, .pdf, .tex. Max 25 MB.</span>
+          <input type="file" id="ex-manuscript" class="form-file" accept=".docx,.pdf,.tex" aria-describedby="ex-manuscript-hint">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="ex-figures">Figures (optional)</label>
+          <span class="form-hint" id="ex-figures-hint">Upload one or more figure files.</span>
+          <input type="file" id="ex-figures" class="form-file" multiple aria-describedby="ex-figures-hint">
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="form-group"&gt;
+  &lt;label class="form-label" for="manuscript"&gt;Manuscript&lt;/label&gt;
+  &lt;span class="form-hint" id="manuscript-hint"&gt;Accepted formats: .docx, .pdf, .tex. Max 25 MB.&lt;/span&gt;
+  &lt;input type="file" id="manuscript" class="form-file"
+         accept=".docx,.pdf,.tex" aria-describedby="manuscript-hint"&gt;
+&lt;/div&gt;
+
+&lt;div class="form-group"&gt;
+  &lt;label class="form-label" for="figures"&gt;Figures (optional)&lt;/label&gt;
+  &lt;input type="file" id="figures" class="form-file" multiple&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/form/form.j2" import form_file %}
+
+{{ form_file(
+    name="manuscript", id="manuscript",
+    label="Manuscript",
+    hint="Accepted formats: .docx, .pdf, .tex. Max 25 MB.",
+    accept=".docx,.pdf,.tex"
+) }}
+
+{{ form_file(
+    name="figures", id="figures",
+    label="Figures", optional=True, multiple=True
+) }}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Heading-as-label / heading-as-legend</h2>
+    <p>When a form has a single question, that question is the page heading. GDS recommends wrapping the label in an <code>&lt;h1&gt;</code> (single-input forms) or wrapping an <code>&lt;h1&gt;</code> inside the legend (multi-input). The visual heading and the form label are the same element — announced once.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="form-group">
+          <h1 class="form-label-wrapper">
+            <label class="form-label form-label-l" for="ex-question">What is your National Insurance number?</label>
+          </h1>
+          <span class="form-hint" id="ex-question-hint">It's on your National Insurance card, benefit letter, payslip or P60.</span>
+          <input class="form-input form-input-width-10" id="ex-question" type="text" aria-describedby="ex-question-hint">
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="form-group"&gt;
+  &lt;h1 class="form-label-wrapper"&gt;
+    &lt;label class="form-label form-label-l" for="nino"&gt;What is your National Insurance number?&lt;/label&gt;
+  &lt;/h1&gt;
+  &lt;span class="form-hint" id="nino-hint"&gt;It's on your National Insurance card …&lt;/span&gt;
+  &lt;input class="form-input form-input-width-10" id="nino" type="text" aria-describedby="nino-hint"&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}&lt;div class="form-group"&gt;
+  &lt;h1 class="form-label-wrapper"&gt;
+    &lt;label class="form-label form-label-l" for="nino"&gt;What is your National Insurance number?&lt;/label&gt;
+  &lt;/h1&gt;
+  …
+&lt;/div&gt;{% endraw %}</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>Pair errors with an <a href="information.html#error-summary">error summary</a> at the top of the form. Each summary entry is a link that focuses the field.</li>
+      <li>Don't use placeholder text as a substitute for a label or hint.</li>
+      <li>Don't disable submit buttons while errors exist — let the user submit and see the error summary.</li>
+      <li>Group questions logically; one question per page where possible (GDS &ldquo;one thing per page&rdquo; pattern).</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

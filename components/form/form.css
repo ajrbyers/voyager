@@ -1,0 +1,325 @@
+/* Form — inspired by the UK Government Design System.
+
+   Building blocks:
+     .form-group            wrapper around a label + control + hint + error
+     .form-label            input label (with size variants)
+     .form-label-wrapper    wraps label inside an h1 (heading-as-label)
+     .form-fieldset         multi-control group wrapper
+     .form-legend           fieldset legend (with size variants)
+     .form-fieldset-heading wraps h1 inside legend (heading-as-legend)
+     .form-hint             help text under the label
+     .form-error-message    red error text with visually hidden "Error:" prefix
+     .form-input            text input
+     .form-textarea         textarea
+     .form-select           native select
+     .form-radios           radio group container
+     .form-radio            single radio item (40×40 control)
+     .form-checkboxes       checkbox group container
+     .form-checkbox         single checkbox item (40×40 control)
+     .form-character-count  wrapper around form-group + count message
+     .form-character-count-message  the live count text
+
+   Width modifiers (compose with .form-input):
+     .form-input-width-2  ≈2 chars   .form-input-width-3  ≈3 chars
+     .form-input-width-4  ≈4 chars   .form-input-width-5  ≈5 chars
+     .form-input-width-10 ≈10 chars  .form-input-width-20 ≈20 chars
+
+   Fluid widths (compose with anything):
+     .form-width-full         100%
+     .form-width-three-quarters  75%
+     .form-width-two-thirds   ~66%
+     .form-width-one-half     50%
+     .form-width-one-third    ~33%
+     .form-width-one-quarter  25%
+*/
+
+/* ---------- Group ---------- */
+
+.form-group{
+  margin-bottom:var(--s-5);
+}
+.form-group.form-group-error{
+  border-left:4px solid var(--colour-error);
+  padding-left:var(--s-4);
+}
+
+/* ---------- Label & legend ---------- */
+
+.form-label{
+  display:block;
+  font-weight:700;
+  font-size:var(--fs-md);
+  margin-bottom:6px;
+  color:var(--colour-fg-strong);
+}
+.form-label-s{font-size:var(--fs-base)}
+.form-label-m{font-size:var(--fs-md);font-weight:700}
+.form-label-l{font-size:1.5rem;font-weight:700;line-height:1.2}
+.form-label-xl{font-size:2rem;font-weight:700;line-height:1.1}
+
+/* Heading-as-label pattern: wrap label inside h1. */
+.form-label-wrapper{margin:0 0 var(--s-2)}
+.form-label-wrapper .form-label{margin:0}
+
+.form-fieldset{
+  border:0;padding:0;margin:0 0 var(--s-5);
+}
+.form-legend{
+  font-weight:700;font-size:var(--fs-h3);
+  margin-bottom:var(--s-3);padding:0;
+}
+.form-legend-s{font-size:var(--fs-base)}
+.form-legend-m{font-size:var(--fs-md);font-weight:700}
+.form-legend-l{font-size:1.5rem;font-weight:700;line-height:1.2}
+.form-legend-xl{font-size:2rem;font-weight:700;line-height:1.1}
+
+/* Heading-as-legend pattern */
+.form-fieldset-heading{margin:0;font:inherit;color:inherit}
+
+/* ---------- Hint and error ---------- */
+
+.form-hint{
+  display:block;
+  font-size:var(--fs-base);
+  color:var(--colour-fg-muted);
+  margin-bottom:6px;
+}
+
+.form-error-message{
+  display:block;
+  font-size:var(--fs-base);
+  color:var(--colour-error);
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+/* ---------- Inputs ---------- */
+
+.form-input,
+.form-textarea,
+.form-select{
+  width:100%;font:inherit;
+  font-size:var(--fs-md);line-height:var(--lh-base);
+  padding:6px var(--s-2);
+  border:2px solid var(--colour-fg-strong);
+  background:var(--colour-canvas);
+  color:var(--colour-fg-strong);
+  border-radius:0;
+}
+.form-textarea{min-height:128px;resize:vertical}
+
+.form-input.form-input-error,
+.form-textarea.form-textarea-error,
+.form-select.form-select-error{
+  border-color:var(--colour-error);
+}
+
+.form-input:focus-visible,
+.form-textarea:focus-visible,
+.form-select:focus-visible{
+  outline:3px solid var(--colour-focus);
+  outline-offset:0;
+  box-shadow:inset 0 0 0 2px var(--colour-fg-strong);
+  background:var(--colour-canvas);
+  color:var(--colour-fg-strong);
+}
+
+/* Width modifiers — character-based fixed widths */
+.form-input-width-2  {max-width:5.4ex}
+.form-input-width-3  {max-width:7.2ex}
+.form-input-width-4  {max-width:9ex}
+.form-input-width-5  {max-width:10.8ex}
+.form-input-width-10 {max-width:18ex}
+.form-input-width-20 {max-width:35ex}
+
+/* ---------- Password input (show/hide) ---------- */
+.form-password{
+  position:relative;
+  display:flex;align-items:stretch;
+  max-width:30em;
+}
+.form-password .form-input{
+  flex:1;min-width:0;
+  border-right:0;
+}
+.form-password .form-password-toggle{
+  flex-shrink:0;
+  padding:6px var(--s-3);
+  background:var(--colour-canvas);
+  color:var(--colour-fg-strong);
+  border:2px solid var(--colour-fg-strong);
+  border-left:0;
+  cursor:pointer;
+  font-family:var(--font-sans);
+  font-size:var(--fs-base);
+  font-weight:600;
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:0.1em;
+}
+.form-password .form-password-toggle:hover{
+  text-decoration-thickness:3px;
+}
+
+/* ---------- File upload ---------- */
+.form-file{
+  font:inherit;
+  font-size:var(--fs-md);
+  padding:5px 0;
+  color:var(--colour-fg-strong);
+  max-width:30em;
+}
+/* Style the native file input. The actual file chooser button is
+   browser-styled but inherits the input's font and colour. */
+.form-file:focus-visible{
+  outline:3px solid var(--colour-focus);
+  outline-offset:0;
+}
+.form-file::file-selector-button{
+  font:inherit;
+  font-size:var(--fs-md);
+  font-weight:400;
+  padding:5px 10px;
+  margin-right:var(--s-3);
+  background:var(--colour-surface-grey);
+  color:var(--colour-fg-strong);
+  border:2px solid transparent;
+  box-shadow:0 2px 0 var(--colour-focus-fg);
+  cursor:pointer;
+}
+.form-file::file-selector-button:hover{
+  background:var(--colour-govuk-grey-1);
+}
+
+/* Fluid widths */
+.form-width-full           {width:100%;max-width:none}
+.form-width-three-quarters {max-width:75%}
+.form-width-two-thirds     {max-width:66.66%}
+.form-width-one-half       {max-width:50%}
+.form-width-one-third      {max-width:33.33%}
+.form-width-one-quarter    {max-width:25%}
+
+/* ---------- Radios and checkboxes ---------- */
+
+.form-radios,
+.form-checkboxes{
+  display:flex;flex-direction:column;gap:0;
+}
+
+/* GDS standard 40×40 control. */
+.form-radio,
+.form-checkbox{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:8px 12px 8px 0;
+  cursor:pointer;
+}
+
+.form-radio input[type="radio"]{
+  appearance:none;-webkit-appearance:none;
+  width:40px;height:40px;
+  border:2px solid var(--colour-fg-strong);
+  border-radius:50%;
+  background:var(--colour-canvas);
+  flex-shrink:0;cursor:pointer;margin:0;position:relative;
+}
+.form-radio input[type="radio"]:checked::after{
+  content:"";position:absolute;inset:8px;
+  border-radius:50%;
+  background:var(--colour-fg-strong);
+}
+
+.form-checkbox input[type="checkbox"]{
+  appearance:none;-webkit-appearance:none;
+  width:40px;height:40px;
+  border:2px solid var(--colour-fg-strong);
+  border-radius:0;
+  background:var(--colour-canvas);
+  flex-shrink:0;cursor:pointer;margin:0;position:relative;
+}
+.form-checkbox input[type="checkbox"]:checked::after{
+  content:"";position:absolute;
+  left:8px;top:2px;
+  width:12px;height:22px;
+  border:solid var(--colour-fg-strong);
+  border-width:0 5px 5px 0;
+  transform:rotate(45deg);
+}
+
+.form-radio input:focus-visible,
+.form-checkbox input:focus-visible{
+  outline:3px solid var(--colour-focus);
+  outline-offset:0;
+  box-shadow:0 0 0 4px var(--colour-focus);
+}
+
+.form-radio-text,
+.form-checkbox-text{
+  padding-top:9px;
+  font-size:var(--fs-md);
+}
+.form-radio-text strong,
+.form-checkbox-text strong{
+  font-weight:700;display:block;
+}
+.form-radio-hint,
+.form-checkbox-hint{
+  display:block;
+  font-size:var(--fs-sm);
+  color:var(--colour-fg-muted);
+  margin-top:2px;
+}
+
+/* "or" divider between radio options */
+.form-radios-divider{
+  font-weight:700;font-size:var(--fs-md);
+  margin:var(--s-2) 0;width:40px;text-align:center;
+  color:var(--colour-fg);
+}
+
+/* Small variant — 24×24 visible control with 40px touch area preserved
+   via padding so AAA target size is still met. */
+.form-radio.form-radio-small input[type="radio"]{width:24px;height:24px}
+.form-radio.form-radio-small input[type="radio"]:checked::after{inset:5px}
+.form-checkbox.form-checkbox-small input[type="checkbox"]{width:24px;height:24px}
+.form-checkbox.form-checkbox-small input[type="checkbox"]:checked::after{
+  left:4px;top:1px;width:8px;height:14px;border-width:0 3px 3px 0;
+}
+.form-radio.form-radio-small,
+.form-checkbox.form-checkbox-small{padding:16px 12px 16px 0}
+.form-radio.form-radio-small .form-radio-text,
+.form-checkbox.form-checkbox-small .form-checkbox-text{padding-top:1px}
+
+/* ---------- Character count ---------- */
+
+.form-character-count{
+  /* This class wraps the form-group. The count message lives outside
+     the form-group as a sibling div. */
+}
+
+.form-character-count-message{
+  display:block;
+  font-size:var(--fs-base);
+  color:var(--colour-fg-muted);
+  margin-top:var(--s-2);
+}
+.form-character-count-message.form-character-count-error{
+  color:var(--colour-error);font-weight:700;
+}
+
+/* ---------- Date input ---------- */
+
+.form-date-input{
+  display:flex;gap:var(--s-4);
+  margin-top:var(--s-2);
+}
+.form-date-input-item{
+  display:flex;flex-direction:column;
+}
+.form-date-input-label{
+  font-weight:400;
+  font-size:var(--fs-base);
+  color:var(--colour-fg-strong);
+  margin-bottom:4px;
+}

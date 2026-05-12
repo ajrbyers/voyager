@@ -1,0 +1,115 @@
+/* Article card — inbox-style row representing a single article.
+   Severity stripe runs down the left edge in critical/warning/info
+   colour. Composes alert-pills, tags, and small buttons. */
+
+.article-card{
+  background:var(--colour-canvas);
+  border:1px solid var(--colour-border-component);
+  border-left:4px solid var(--colour-border-component);
+  margin-bottom:var(--s-2);
+  position:relative;
+  transition:background 0.08s ease, border-color 0.08s ease;
+}
+.article-card:hover{
+  background:var(--colour-canvas-muted);
+  border-color:var(--colour-border-strong);
+  cursor:pointer;
+}
+.article-card:focus-within{
+  outline:3px solid var(--colour-focus);
+  outline-offset:0;
+}
+.article-card.article-card-critical{border-left-color:var(--colour-error)}
+.article-card.article-card-warning {border-left-color:var(--colour-warning)}
+.article-card.article-card-info    {border-left-color:var(--colour-info)}
+
+/* Whole-row click target — the title link's pseudo-element covers the
+   entire card. Action buttons and alert pills layer above it via z-index. */
+.article-card .article-card-title-link::after{
+  content:"";position:absolute;inset:0;z-index:1;
+}
+.article-card .article-card-actions,
+.article-card .article-card-alerts{
+  position:relative;z-index:2;
+}
+/* The card already gets a focus-within ring; suppress the inner link's
+   yellow background flash so the visual treatment stays clean. */
+.article-card .article-card-title-link:focus-visible{
+  background:transparent;color:var(--colour-link);
+  box-shadow:none;outline:none;
+}
+
+.article-card-inner{
+  display:flex;
+  gap:var(--s-3);
+  padding:10px var(--s-4);
+}
+
+.article-card-body{
+  flex:1;min-width:0;
+  display:flex;flex-direction:column;gap:4px;
+}
+
+/* ---------- Top meta row ---------- */
+.article-card-meta-top{
+  display:flex;align-items:center;gap:var(--s-2);
+  flex-wrap:wrap;
+  font-size:var(--fs-xs);
+}
+.article-card-id{
+  font-family:var(--font-mono);
+  color:var(--colour-fg-muted);
+  font-size:var(--fs-xs);
+  font-weight:600;
+}
+.article-card-spacer{flex:1}
+.article-card-days{
+  font-size:var(--fs-xs);
+  font-weight:600;
+  color:var(--colour-fg-muted);
+  font-variant-numeric:tabular-nums;
+}
+.article-card-days.article-card-days-critical{color:var(--colour-error)}
+.article-card-days.article-card-days-warning{color:var(--colour-warning-fg)}
+
+/* ---------- Title ---------- */
+.article-card-title{
+  margin:0;font-size:var(--fs-md);font-weight:600;
+  line-height:1.35;
+}
+.article-card-title-link{
+  color:var(--colour-fg-strong);text-decoration:none;
+}
+.article-card-title-link:hover{
+  color:var(--colour-link);text-decoration:underline;
+}
+
+/* ---------- Bottom meta row ---------- */
+.article-card-meta-bottom{
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  font-size:var(--fs-sm);
+  color:var(--colour-fg-muted);
+}
+.article-card-meta-bottom .article-card-sep{color:var(--colour-fg-subtle)}
+
+/* ---------- Actions ---------- */
+.article-card-actions{
+  display:flex;align-items:center;gap:var(--s-2);
+  flex-shrink:0;
+}
+
+/* ---------- Alerts row ---------- */
+.article-card-alerts{
+  display:flex;flex-wrap:wrap;gap:6px;
+  padding:0 var(--s-4) 10px;
+}
+
+/* ---------- Snooze row (optional) ---------- */
+.article-card-snooze{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:var(--s-3);
+  padding:8px var(--s-4);
+  background:var(--colour-canvas-muted);
+  border-top:1px solid var(--colour-border-muted);
+  font-size:var(--fs-sm);color:var(--colour-fg-muted);
+}

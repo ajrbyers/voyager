@@ -1,0 +1,226 @@
+/* ===========================================================
+   site.css — Voyager documentation site chrome only.
+   This stylesheet is for the docs site itself (sidebar nav,
+   page header, code preview tabs, examples). It is NOT part
+   of the Voyager design system surfaced to consumers.
+   It depends on Voyager tokens (--colour-*, --s-*, --fs-*).
+   =========================================================== */
+
+/* Site shell — header on top, sidebar + content below.
+   Always-dark chrome: uses raw tokens so it doesn't flip in dark mode. */
+.site-header{
+  background:#1f2328;
+  color:#ffffff;
+  padding:0 var(--s-6);
+  height:56px;
+  display:flex;
+  align-items:center;
+  gap:var(--s-4);
+  font-family:var(--font-sans);
+
+  & a{color:var(--colour-white);text-decoration:none}
+  & a:hover{text-decoration:underline}
+
+  & .site-brand{
+    display:flex;align-items:center;gap:10px;
+    font-weight:700;font-size:18px;
+  }
+  & .site-brand-mark{
+    width:28px;height:28px;
+    background:var(--colour-yellow);color:var(--colour-fg-strong);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  & .site-brand-logo{
+    width:18px;height:18px;display:block;
+  }
+  & .site-version{
+    font-size:11px;font-weight:500;
+    padding:2px 6px;background:rgba(255,255,255,0.12);
+    border-radius:0;color:rgba(255,255,255,0.9);
+  }
+  & .site-meta{
+    margin-left:auto;font-size:13px;display:flex;gap:var(--s-4);align-items:center;
+  }
+}
+
+.site-shell{
+  display:grid;
+  grid-template-columns:240px minmax(0,1fr);
+  min-height:calc(100vh - 56px);
+}
+@media (max-width:900px){
+  .site-shell{grid-template-columns:1fr}
+}
+
+/* Site sidebar (docs navigation) */
+.site-sidebar{
+  border-right:1px solid var(--colour-border);
+  background:var(--colour-canvas-muted);
+  padding:var(--s-4) var(--s-3);
+  font-size:13px;
+
+  & ul{list-style:none;margin:0 0 2px;padding:0}
+
+  & .site-sidebar-section{
+    margin:var(--s-4) 0 4px;padding:0 8px;
+    font-size:11px;font-weight:700;color:var(--colour-fg-muted);
+    text-transform:uppercase;letter-spacing:0.04em;
+  }
+  & .site-sidebar-section:first-child{margin-top:0}
+
+  & .site-sidebar-link{
+    display:block;
+    padding:5px 8px;border-radius:0;
+    color:var(--colour-fg);text-decoration:none;
+    line-height:1.4;
+  }
+  & .site-sidebar-link:hover{background:rgba(127,127,127,0.12);text-decoration:none}
+  & .site-sidebar-link[aria-current="page"]{
+    background:var(--colour-accent-subtle);
+    color:var(--colour-accent);
+    font-weight:600;
+  }
+}
+
+/* Doc page main area */
+.site-main{
+  padding:var(--s-8) var(--s-8);
+  max-width:980px;
+  background:var(--colour-canvas);
+  min-width:0;
+}
+.site-main h1{
+  font-size:32px;font-weight:700;line-height:1.15;
+  margin:0 0 var(--s-3);letter-spacing:-0.005em;
+  color:var(--colour-fg-strong);
+}
+.site-main .site-page-lede{
+  font-size:18px;line-height:1.5;color:var(--colour-fg-muted);
+  margin:0 0 var(--s-8);max-width:36em;
+}
+.site-main h2{
+  font-size:20px;font-weight:700;
+  margin:var(--s-10) 0 var(--s-3);
+  padding-bottom:6px;
+  border-bottom:1px solid var(--colour-border);
+  color:var(--colour-fg-strong);
+}
+.site-main h2:first-of-type{margin-top:0}
+.site-main h3{
+  font-size:16px;font-weight:700;
+  margin:var(--s-6) 0 var(--s-2);color:var(--colour-fg-strong);
+}
+.site-main p{margin:0 0 var(--s-3);max-width:40em}
+.site-main ul,
+.site-main ol{margin:0 0 var(--s-4) var(--s-5);max-width:40em}
+.site-main li{margin-bottom:4px}
+.site-main pre,
+.site-main code{font-family:var(--font-mono);font-size:13px}
+.site-main p code{
+  background:var(--colour-canvas-muted);
+  padding:1px 5px;border-radius:0;
+  border:1px solid var(--colour-border-muted);
+  font-size:0.92em;
+}
+
+/* ---------- Example block — render + tabbed code preview ---------- */
+.example{
+  border:1px solid var(--colour-border-component);
+  background:var(--colour-canvas);
+  margin:0 0 var(--s-6);
+}
+
+.example-render{
+  padding:var(--s-6);
+  background:repeating-linear-gradient(
+    45deg,
+    var(--colour-canvas-muted),
+    var(--colour-canvas-muted) 6px,
+    var(--colour-canvas) 6px,
+    var(--colour-canvas) 12px
+  );
+}
+.example-render-inner{
+  background:var(--colour-canvas);
+  padding:var(--s-5);
+  border:1px solid var(--colour-border-muted);
+}
+
+/* Tabs above the code panes */
+.example-tabs{
+  display:flex;
+  background:var(--colour-canvas-muted);
+  border-top:1px solid var(--colour-border-component);
+}
+.example-tab{
+  background:transparent;
+  border:0;border-right:1px solid var(--colour-border-component);
+  padding:8px 14px;
+  font-size:13px;font-weight:500;
+  color:var(--colour-fg-muted);
+  cursor:pointer;
+  font-family:var(--font-system);
+}
+.example-tab:hover{color:var(--colour-fg)}
+.example-tab[aria-pressed="true"]{
+  background:var(--colour-canvas);
+  color:var(--colour-fg);
+  font-weight:600;
+  border-bottom:2px solid var(--colour-accent);
+  margin-bottom:-1px;
+}
+
+/* Code panes stay dark in both light and dark modes — code editors
+   are dark by convention. */
+.example-pane{
+  display:none;
+  margin:0;padding:var(--s-4) var(--s-5);
+  background:#0d1117;
+  color:#e6edf3;
+  font-family:var(--font-mono);
+  font-size:12.5px;line-height:1.6;
+  overflow-x:auto;
+  white-space:pre;
+  border-top:1px solid var(--colour-border-component);
+}
+.example-pane[aria-hidden="false"]{display:block}
+
+/* ---------- Token swatch grid (used on tokens page) ---------- */
+.swatch-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:var(--s-3);
+  margin:0 0 var(--s-6);
+}
+.swatch{
+  border:1px solid var(--colour-border-component);
+  background:var(--colour-canvas);
+}
+.swatch-chip{
+  height:64px;border-bottom:1px solid var(--colour-border-component);
+}
+.swatch-meta{
+  padding:8px 10px;font-size:12px;color:var(--colour-fg-muted);
+}
+.swatch-meta strong{
+  display:block;color:var(--colour-fg-strong);font-weight:600;
+  font-size:13px;font-family:var(--font-mono);
+}
+.swatch-meta code{
+  background:transparent;border:0;padding:0;
+}
+
+/* ---------- Type-scale demo ---------- */
+.type-row{
+  display:grid;
+  grid-template-columns:80px 100px 1fr;
+  gap:var(--s-4);
+  align-items:baseline;
+  padding:var(--s-3) 0;
+  border-bottom:1px solid var(--colour-border-muted);
+}
+.type-row:last-child{border-bottom:0}
+.type-row code{
+  font-family:var(--font-mono);font-size:12px;color:var(--colour-fg-muted);
+}

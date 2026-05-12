@@ -1,0 +1,15 @@
+/* App footer — sits at the bottom of every admin page.
+   Modest meta strip with version + back-link. */
+
+.app-footer{
+  border-top:1px solid var(--colour-border);
+  padding:var(--s-5) var(--s-6);
+  color:var(--colour-fg-muted);
+  font-size:var(--fs-sm);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:var(--s-3);
+  font-family:var(--font-system);
+
+  & a{color:var(--colour-accent);text-decoration:none}
+  & a:hover{text-decoration:underline}
+}

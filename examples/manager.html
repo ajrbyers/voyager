@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manager — Journal of Energy Modelling</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/example.css">
+<link rel="stylesheet" href="manager.css">
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<aside class="example-banner" aria-label="Voyager reference page">
+  <span class="example-banner-tag">Reference</span>
+  Voyager example — built only from documented components
+  <span class="example-banner-spacer"></span>
+  <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button>
+  <a href="../index.html">Back to Voyager</a>
+</aside>
+
+<header class="app-header">
+  <a class="app-header-brand" href="dashboard.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5zm0 2.18L19.5 8 12 11.82 4.5 8 12 4.18zM4 9.5l7 3.5v8l-7-3.5v-8zm9 11.5v-8l7-3.5v8l-7 3.5z"/></svg>
+    Janeway
+    <span class="app-header-chip">Editorial</span>
+  </a>
+  <nav class="app-header-nav" aria-label="Primary">
+    <a href="dashboard.html">Inbox</a>
+    <a href="manager.html">Manager</a>
+    <a href="#">Reports</a>
+  </nav>
+  <button type="button" class="app-header-avatar" aria-label="Account menu — signed in as t.kowalski">t.kowalski</button>
+</header>
+
+<div class="app-shell">
+
+  <nav class="sidebar-nav" aria-label="Editorial navigation">
+    <div class="sidebar-nav-journal">
+      <span class="sidebar-nav-mark" aria-hidden="true">JE</span>
+      <div>
+        <div class="sidebar-nav-name">Journal of Energy Modelling</div>
+        <div class="sidebar-nav-sub">Editor in Chief view</div>
+      </div>
+    </div>
+    <h2 class="sidebar-nav-section">Dashboards</h2>
+    <ul>
+      <li><a href="dashboard.html" class="sidebar-nav-link">Inbox</a></li>
+      <li><a href="#" class="sidebar-nav-link">Search submissions</a></li>
+    </ul>
+    <h2 class="sidebar-nav-section">Workflow</h2>
+    <ul>
+      <li><a href="#" class="sidebar-nav-link">Unassigned <span class="sidebar-nav-count" aria-label="7 articles">7</span></a></li>
+      <li><a href="peer-review.html" class="sidebar-nav-link">Peer Review <span class="sidebar-nav-count" aria-label="14 articles">14</span></a></li>
+      <li><a href="#" class="sidebar-nav-link">Copyediting <span class="sidebar-nav-count" aria-label="5 articles">5</span></a></li>
+    </ul>
+    <h2 class="sidebar-nav-section">Admin</h2>
+    <ul>
+      <li><a href="manager.html" class="sidebar-nav-link" aria-current="page">Manager</a></li>
+      <li><a href="#" class="sidebar-nav-link">Plugins</a></li>
+      <li><a href="#" class="sidebar-nav-link">Workflow settings</a></li>
+    </ul>
+  </nav>
+
+  <main class="app-shell-main" id="main">
+
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li aria-current="page">Manager</li>
+      </ol>
+    </nav>
+
+    <div class="layout-full">
+
+      <div class="page-header">
+        <h1 class="page-header-title">Manager</h1>
+        <p class="page-header-byline">All journal configuration, content, and admin tools in one place. Search or filter to find what you need.</p>
+      </div>
+
+      <form class="function-filter" role="search" aria-label="Filter manager functions" id="manager-filter">
+        <div class="function-filter-search">
+          <span class="function-filter-search-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+          <label class="visually-hidden" for="mgr-search">Search functions</label>
+          <input type="search" name="q" id="mgr-search"
+                 class="function-filter-input"
+                 placeholder="Search functions…" autocomplete="off">
+        </div>
+        <div class="function-filter-tags" role="radiogroup" aria-label="Filter by category">
+          <label class="function-filter-tag"><input type="radio" name="tag" value="all" checked> All</label>
+          <label class="function-filter-tag"><input type="radio" name="tag" value="settings"> Settings</label>
+          <label class="function-filter-tag"><input type="radio" name="tag" value="workflow"> Workflow</label>
+          <label class="function-filter-tag"><input type="radio" name="tag" value="content"> Content</label>
+          <label class="function-filter-tag"><input type="radio" name="tag" value="people"> People</label>
+          <label class="function-filter-tag"><input type="radio" name="tag" value="identifiers"> Identifiers</label>
+          <label class="function-filter-tag"><input type="radio" name="tag" value="system"> System</label>
+        </div>
+      </form>
+
+      <!-- ======================= Journal Settings ======================= -->
+      <section class="manager-section">
+        <div class="section-divider section-divider-flush">
+          <h2 class="section-divider-label">Journal settings</h2>
+          <span class="section-divider-line"></span>
+        </div>
+        <div class="manager-grid">
+
+          <a href="#" class="function-card" data-title="general settings" data-desc="general journal-wide configuration title issn contact" data-tags="settings">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-blue" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">General</div>
+              <div class="function-card-desc">Journal-wide configuration — title, ISSN, contact details.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">settings</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="home page" data-desc="configure landing page elements blocks featured" data-tags="settings">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-blue" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">8</div>
+                <div class="function-card-count-label">elements</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Home page</div>
+              <div class="function-card-desc">Featured articles, news blocks, hero panels on the landing page.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">settings</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="images" data-desc="upload journal cover and logo images" data-tags="settings">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-blue" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">12</div>
+                <div class="function-card-count-label">images</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Images</div>
+              <div class="function-card-desc">Journal cover, logos, and homepage hero images.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">settings</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="styling theme branding" data-desc="theme colours typography branding" data-tags="settings">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-blue" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Styling</div>
+              <div class="function-card-desc">Theme, colours, typography, branding for the public site.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">settings</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="all settings index" data-desc="all settings full index alphabetical" data-tags="settings">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-blue" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">214</div>
+                <div class="function-card-count-label">settings</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">All settings</div>
+              <div class="function-card-desc">Every journal setting in one flat alphabetical index.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">settings</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ======================= Review ======================= -->
+      <section class="manager-section">
+        <div class="section-divider">
+          <h2 class="section-divider-label">Review</h2>
+          <span class="section-divider-line"></span>
+        </div>
+        <div class="manager-grid">
+
+          <a href="#" class="function-card" data-title="review settings" data-desc="reviewer defaults due dates rounds anonymity" data-tags="workflow">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-purple" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Review settings</div>
+              <div class="function-card-desc">Reviewer defaults, due dates, rounds, anonymity, open peer review.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">workflow</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="review forms" data-desc="custom review form builder fields" data-tags="workflow">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-purple" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">4</div>
+                <div class="function-card-count-label">forms</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Review forms</div>
+              <div class="function-card-desc">Build custom review forms — fields, question types, required.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">workflow</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ======================= Submission ======================= -->
+      <section class="manager-section">
+        <div class="section-divider">
+          <h2 class="section-divider-label">Submission</h2>
+          <span class="section-divider-line"></span>
+        </div>
+        <div class="manager-grid">
+
+          <a href="#" class="function-card" data-title="submission settings" data-desc="submission requirements file types instructions" data-tags="workflow">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-green" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Submission settings</div>
+              <div class="function-card-desc">Submission requirements, file types, author instructions.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">workflow</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="submission fields configurator" data-desc="submission form fields configurator" data-tags="workflow">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-green" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Fields configurator</div>
+              <div class="function-card-desc">Reorder and enable default submission form fields.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">workflow</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="additional submission fields" data-desc="add custom submission form fields funding ethics" data-tags="workflow">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-green" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">9</div>
+                <div class="function-card-count-label">fields</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Additional fields</div>
+              <div class="function-card-desc">Add custom fields — funding, ethics, data availability.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">workflow</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ======================= Workflow Setup ======================= -->
+      <section class="manager-section">
+        <div class="section-divider">
+          <h2 class="section-divider-label">Workflow setup</h2>
+          <span class="section-divider-line"></span>
+        </div>
+        <div class="manager-grid">
+
+          <a href="#" class="function-card" data-title="proofing settings" data-desc="proofing stage configuration" data-tags="workflow">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-orange" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Proofing settings</div>
+              <div class="function-card-desc">Proofing stage configuration — invitations, rounds, final sign-off.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">workflow</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ======================= Content ======================= -->
+      <section class="manager-section">
+        <div class="section-divider">
+          <h2 class="section-divider-label">Content</h2>
+          <span class="section-divider-line"></span>
+        </div>
+        <div class="manager-grid">
+
+          <a href="#" class="function-card" data-title="content manager pages" data-desc="static cms pages about contact policies" data-tags="content">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-teal" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">14</div>
+                <div class="function-card-count-label">pages</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Content manager</div>
+              <div class="function-card-desc">Static CMS pages — About, Contact, Editorial Policies.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="media files uploads" data-desc="upload media files images documents" data-tags="content">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-teal" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">186</div>
+                <div class="function-card-count-label">files</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Media files</div>
+              <div class="function-card-desc">Upload and organise media files — images, PDFs, supplementary data.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="submission page items" data-desc="submission landing page items checklist" data-tags="content">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-teal" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Submission page items</div>
+              <div class="function-card-desc">Author-facing submission landing page — checklist, prose, policies.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="journal contacts directory" data-desc="public editor contact directory" data-tags="content people">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-teal" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">5</div>
+                <div class="function-card-count-label">contacts</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Journal contacts</div>
+              <div class="function-card-desc">Public-facing editor contact directory.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="editorial team roster" data-desc="editorial team members roles bios" data-tags="content people">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-teal" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">22</div>
+                <div class="function-card-count-label">members</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Editorial team</div>
+              <div class="function-card-desc">Public editorial team roster — bios, roles, photographs.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ======================= News ======================= -->
+      <section class="manager-section">
+        <div class="section-divider">
+          <h2 class="section-divider-label">News</h2>
+          <span class="section-divider-line"></span>
+        </div>
+        <div class="manager-grid">
+
+          <a href="#" class="function-card" data-title="news settings" data-desc="news section configuration rss" data-tags="content settings">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-pink" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">News settings</div>
+              <div class="function-card-desc">News section configuration — visibility, RSS, default authors.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="news manager posts" data-desc="write publish news posts announcements" data-tags="content">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-pink" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">38</div>
+                <div class="function-card-count-label">posts</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">News manager</div>
+              <div class="function-card-desc">Write and publish news posts and announcements.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ======================= Articles & Issues ======================= -->
+      <section class="manager-section">
+        <div class="section-divider">
+          <h2 class="section-divider-label">Articles &amp; issues</h2>
+          <span class="section-divider-line"></span>
+        </div>
+        <div class="manager-grid">
+
+          <a href="#" class="function-card" data-title="article display" data-desc="article display configuration metadata blocks" data-tags="content settings">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-yellow" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Article display</div>
+              <div class="function-card-desc">Metadata blocks, sidebars, and citation widget configuration.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="article images hero" data-desc="article images manager hero figures social" data-tags="content">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-yellow" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Article images</div>
+              <div class="function-card-desc">Article-level images — hero, social, alt-text management.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="issue manager volumes" data-desc="issue manager volumes numbers" data-tags="content">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-yellow" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">24</div>
+                <div class="function-card-count-label">issues</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Issue manager</div>
+              <div class="function-card-desc">Volume and issue management — order, cover, table of contents.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="sections article types" data-desc="sections article types editorial categories" data-tags="content">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-yellow" aria-hidden="true">≡</div>
+              <div class="function-card-counter">
+                <div class="function-card-count">7</div>
+                <div class="function-card-count-label">sections</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Sections</div>
+              <div class="function-card-desc">Article types and editorial categories — Article, Review, Editorial.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="licence manager copyright" data-desc="licence manager copyright cc by open access" data-tags="content">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-yellow" aria-hidden="true">©</div>
+              <div class="function-card-counter">
+                <div class="function-card-count">4</div>
+                <div class="function-card-count-label">licences</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Licences</div>
+              <div class="function-card-desc">Licence manager — CC BY, CC BY-NC, all rights reserved.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ======================= Identifiers ======================= -->
+      <section class="manager-section">
+        <div class="section-divider">
+          <h2 class="section-divider-label">Identifiers</h2>
+          <span class="section-divider-line"></span>
+        </div>
+        <div class="manager-grid">
+
+          <a href="#" class="function-card" data-title="doi manager beta" data-desc="doi manager registration crossref deposit" data-tags="identifiers">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-red" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">DOI manager <span class="tag tag-orange">Beta</span></div>
+              <div class="function-card-desc">Browse, register, and retry DOIs across your published articles.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">identifiers</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="crossref settings deposit" data-desc="crossref deposit credentials registration" data-tags="identifiers">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-red" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Crossref settings</div>
+              <div class="function-card-desc">CrossRef credentials, deposit defaults, retry policy.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">identifiers</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="crosscheck similarity ithenticate" data-desc="crosscheck plagiarism similarity ithenticate" data-tags="identifiers">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-red" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Crosscheck settings</div>
+              <div class="function-card-desc">Plagiarism similarity (iThenticate) integration settings.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">identifiers</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ======================= Users & Roles ======================= -->
+      <section class="manager-section">
+        <div class="section-divider">
+          <h2 class="section-divider-label">Users &amp; roles</h2>
+          <span class="section-divider-line"></span>
+        </div>
+        <div class="manager-grid">
+
+          <a href="#" class="function-card" data-title="journal users new" data-desc="journal users new unified directory" data-tags="people">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-purple" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">147</div>
+                <div class="function-card-count-label">users</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Journal users <span class="tag tag-blue">New</span></div>
+              <div class="function-card-desc">New unified user manager — search, edit, merge, enrol.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">people</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="enrolled users list" data-desc="enrolled users list directory" data-tags="people">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-purple" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">132</div>
+                <div class="function-card-count-label">enrolled</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Enrolled users</div>
+              <div class="function-card-desc">Users enrolled in this journal — legacy directory.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">people</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="enrol users add" data-desc="enrol users add to journal roles" data-tags="people">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-purple" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Enrol users</div>
+              <div class="function-card-desc">Add existing accounts to this journal with one or more roles.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">people</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="roles permissions matrix" data-desc="roles permissions matrix editor reviewer" data-tags="people">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-purple" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3 3-3-3-3"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">9</div>
+                <div class="function-card-count-label">roles</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Roles</div>
+              <div class="function-card-desc">Role definitions and the permissions matrix.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">people</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="inactive users staff" data-desc="inactive users not logged in staff only" data-tags="people system">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-grey" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Inactive users</div>
+              <div class="function-card-desc">Accounts that have not logged in recently. <span class="muted">Staff only.</span></div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">people</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="authenticated users online" data-desc="currently authenticated users online sessions" data-tags="people system">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-grey" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">8</div>
+                <div class="function-card-count-label">online</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Authenticated users</div>
+              <div class="function-card-desc">Currently signed-in sessions. <span class="muted">Staff only.</span></div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">people</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ======================= Cache, Cron & Emails ======================= -->
+      <section class="manager-section">
+        <div class="section-divider">
+          <h2 class="section-divider-label">Cache, cron &amp; emails</h2>
+          <span class="section-divider-line"></span>
+        </div>
+        <div class="manager-grid">
+
+          <a href="#" class="function-card" data-title="clear cache flush" data-desc="clear flush application cache" data-tags="system">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-grey" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Clear cache</div>
+              <div class="function-card-desc">Flush application cache — use after a settings or template change.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">system</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="scheduled reminders cron" data-desc="scheduled reminder emails cron due dates" data-tags="system">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-grey" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Scheduled reminders</div>
+              <div class="function-card-desc">Reminder emails — reviewer due dates, revisions, decision pings.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">system</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="email templates notifications" data-desc="email notification templates body subject" data-tags="system">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-grey" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg></div>
+              <div class="function-card-counter">
+                <div class="function-card-count">38</div>
+                <div class="function-card-count-label">templates</div>
+              </div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Email templates</div>
+              <div class="function-card-desc">All system notification templates — bodies, subjects, recipients.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">system</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="function-card" data-title="publication notifications readers" data-desc="publication notifications readers subscribers" data-tags="system">
+            <div class="function-card-top">
+              <div class="function-card-icon function-card-icon-grey" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg></div>
+            </div>
+            <div class="function-card-body">
+              <div class="function-card-title">Publication notifications</div>
+              <div class="function-card-desc">Notify readers when new articles or issues are published.</div>
+            </div>
+            <div class="function-card-foot">
+              <div class="function-card-tags"><span class="tag tag-grey">system</span></div>
+              <span class="function-card-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <div class="function-filter-empty" id="manager-empty" hidden>
+        <span class="function-filter-empty-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+        No functions match your search.
+      </div>
+
+    </div>
+
+    <footer class="app-footer">
+      <span>Janeway · v1.7</span>
+      <a href="#">Help &amp; documentation</a>
+    </footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('manager-filter');
+  var search = document.getElementById('mgr-search');
+  var empty = document.getElementById('manager-empty');
+  if (!form) return;
+
+  function activeTag() {
+    var c = form.querySelector('input[name="tag"]:checked');
+    return c ? c.value : 'all';
+  }
+
+  function apply() {
+    var q = (search.value || '').trim().toLowerCase();
+    var tag = activeTag();
+    var anyVisible = false;
+
+    document.querySelectorAll('.manager-section').forEach(function (section) {
+      var sectionVisible = false;
+      section.querySelectorAll('.function-card').forEach(function (card) {
+        var title = (card.dataset.title || '').toLowerCase();
+        var desc  = (card.dataset.desc  || '').toLowerCase();
+        var tags  = (card.dataset.tags  || '').toLowerCase().split(/\s+/);
+        var matchTag  = tag === 'all' || tags.indexOf(tag) !== -1;
+        var matchText = !q || title.indexOf(q) !== -1 || desc.indexOf(q) !== -1;
+        var visible = matchTag && matchText;
+        card.hidden = !visible;
+        if (visible) { sectionVisible = true; anyVisible = true; }
+      });
+      section.hidden = !sectionVisible;
+    });
+
+    empty.hidden = anyVisible;
+  }
+
+  search.addEventListener('input', apply);
+  form.addEventListener('change', apply);
+})();
+</script>
+
+</body>
+</html>

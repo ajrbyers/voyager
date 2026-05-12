@@ -1,0 +1,43 @@
+/* Section divider — small section heading line that separates groups
+   within a flat list. Used for severity buckets on the inbox dashboard
+   and category groupings on the manager.
+
+   Variants:
+     section-divider-critical / -warning / -info   coloured dot
+     section-divider-flush                         no top margin
+
+   Structure:
+     <div class="section-divider">
+       <span class="section-divider-dot"></span>   (optional)
+       <h2 class="section-divider-label">Label · 2</h2>
+       <span class="section-divider-line"></span>
+     </div>
+*/
+
+.section-divider{
+  display:flex;align-items:center;gap:var(--s-2);
+  margin:var(--s-4) 0 var(--s-2);
+  font-family:var(--font-system);
+}
+.section-divider.section-divider-flush{margin-top:0}
+
+.section-divider-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--colour-fg-muted);
+  flex-shrink:0;
+}
+.section-divider.section-divider-critical .section-divider-dot{background:var(--colour-error)}
+.section-divider.section-divider-warning  .section-divider-dot{background:var(--colour-warning)}
+.section-divider.section-divider-info     .section-divider-dot{background:var(--colour-info)}
+
+.section-divider-label{
+  margin:0;
+  font-size:11px;font-weight:700;
+  letter-spacing:0.04em;text-transform:uppercase;
+  color:var(--colour-fg-muted);
+  line-height:1.4;
+}
+
+.section-divider-line{
+  flex:1;height:1px;background:var(--colour-border-muted);
+}

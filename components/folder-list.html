@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folder list — Voyager</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="#">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation">
+    <span class="site-sidebar-section">Get started</span>
+    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
+      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
+    <span class="site-sidebar-section">Foundations</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../foundations/tokens.html">Tokens</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/typography.html">Typography</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/layout.html">Layout</a></li>
+    </ul>
+    <span class="site-sidebar-section">Components</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="page-header.html">Page header</a></li>
+      <li><a class="site-sidebar-link" href="button.html">Button</a></li>
+      <li><a class="site-sidebar-link" href="icon.html">Icon</a></li>
+      <li><a class="site-sidebar-link" href="summary-block.html">Summary block</a></li>
+      <li><a class="site-sidebar-link" href="information.html">Information</a></li>
+      <li><a class="site-sidebar-link" href="nav.html">Navigation</a></li>
+      <li><a class="site-sidebar-link" href="back-link.html">Back link</a></li>
+      <li><a class="site-sidebar-link" href="pagination.html">Pagination</a></li>
+      <li><a class="site-sidebar-link" href="tag.html">Tag &amp; chip</a></li>
+      <li><a class="site-sidebar-link" href="table.html">Table</a></li>
+      <li><a class="site-sidebar-link" href="form.html">Form</a></li>
+      <li><a class="site-sidebar-link" href="modal.html">Modal</a></li>
+      <li><a class="site-sidebar-link" href="details.html">Details</a></li>
+      <li><a class="site-sidebar-link" href="panel.html">Panel</a></li>
+      <li><a class="site-sidebar-link" href="stat.html">Stat &amp; queue</a></li>
+      <li><a class="site-sidebar-link" href="steps.html">Steps</a></li>
+      <li><a class="site-sidebar-link" href="avatar.html">Avatar</a></li>
+      <li><a class="site-sidebar-link" href="section-divider.html">Section divider</a></li>
+    </ul>
+    <span class="site-sidebar-section">Inbox pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="folder-list.html" aria-current="page">Folder list</a></li>
+      <li><a class="site-sidebar-link" href="article-card.html">Article card</a></li>
+      <li><a class="site-sidebar-link" href="filter-bar.html">Filter bar</a></li>
+      <li><a class="site-sidebar-link" href="progress-bar.html">Progress bar</a></li>
+    </ul>
+    <span class="site-sidebar-section">Manager pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="function-card.html">Function card</a></li>
+      <li><a class="site-sidebar-link" href="function-filter.html">Function filter</a></li>
+    </ul>
+    <span class="site-sidebar-section">Examples</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
+      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
+      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
+    </ul>
+  </nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Folder list</h1>
+    <p class="site-page-lede">
+      Sidebar navigation for inbox-style pages. Groups folders into labelled
+      sections, each item carries an icon, name, and optional count. Counts can
+      be coloured to flag critical or warning severity. Custom (user-created)
+      folders show a colour dot and inline edit/delete affordances on hover.
+    </p>
+
+    <h2>Default</h2>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <nav class="folder-list" aria-label="Demo inbox folders">
+          <div class="folder-list-search">
+            <label class="visually-hidden" for="ex-search">Search articles</label>
+            <input type="search" id="ex-search" class="form-input" placeholder="Search articles…">
+          </div>
+          <div class="folder-list-scroll">
+            <ul>
+              <li><h2 class="folder-list-section folder-list-section-first">Workflow</h2></li>
+              <li><a href="#" class="folder-item">
+                <span class="folder-item-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg></span>
+                <span class="folder-item-name">Unassigned</span>
+                <span class="folder-item-count folder-item-count-warning">7</span>
+              </a></li>
+              <li><a href="#" class="folder-item is-active" aria-current="page">
+                <span class="folder-item-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+                <span class="folder-item-name">Peer Review</span>
+                <span class="folder-item-count folder-item-count-critical">14</span>
+              </a></li>
+              <li><a href="#" class="folder-item">
+                <span class="folder-item-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+                <span class="folder-item-name">Copyediting</span>
+                <span class="folder-item-count">5</span>
+              </a></li>
+            </ul>
+          </div>
+          <button type="button" class="folder-list-add">+ New folder</button>
+        </nav>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;nav class="folder-list" aria-label="Inbox folders"&gt;
+  &lt;div class="folder-list-search"&gt;
+    &lt;label class="visually-hidden" for="inbox-search"&gt;Search articles&lt;/label&gt;
+    &lt;input type="search" id="inbox-search" class="form-input" placeholder="Search articles…"&gt;
+  &lt;/div&gt;
+  &lt;div class="folder-list-scroll"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;h2 class="folder-list-section folder-list-section-first"&gt;Workflow&lt;/h2&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="?folder=unassigned" class="folder-item"&gt;
+        &lt;span class="folder-item-icon" aria-hidden="true"&gt;✉&lt;/span&gt;
+        &lt;span class="folder-item-name"&gt;Unassigned&lt;/span&gt;
+        &lt;span class="folder-item-count folder-item-count-warning"&gt;7&lt;/span&gt;
+      &lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="?folder=peer_review" class="folder-item is-active" aria-current="page"&gt;
+        &lt;span class="folder-item-icon" aria-hidden="true"&gt;⌕&lt;/span&gt;
+        &lt;span class="folder-item-name"&gt;Peer Review&lt;/span&gt;
+        &lt;span class="folder-item-count folder-item-count-critical"&gt;14&lt;/span&gt;
+      &lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;button type="button" class="folder-list-add"&gt;+ New folder&lt;/button&gt;
+&lt;/nav&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/folder-list/folder-list.j2"
+   import folder_list, folder_list_section, folder_item %}
+
+{% call folder_list(search_action="/inbox/search") %}
+  {{ folder_list_section("Workflow", first=True) }}
+  {{ folder_item("Unassigned",  url="?folder=unassigned",
+                 icon="✉", count=7,  severity="warning") }}
+  {{ folder_item("Peer Review", url="?folder=peer_review",
+                 icon="⌕", count=14, severity="critical", current=True) }}
+  {{ folder_item("Copyediting", url="?folder=copyediting",
+                 icon="✎", count=5) }}
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Custom folder with actions</h2>
+    <p>User-created folders show a colour dot and inline edit/delete buttons that appear on hover.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <nav class="folder-list" aria-label="Custom folder demo">
+          <div class="folder-list-scroll">
+            <ul>
+              <li><h2 class="folder-list-section folder-list-section-first">Custom</h2></li>
+              <li class="folder-item folder-item-custom">
+                <a href="#" class="folder-item-link">
+                  <span class="folder-item-dot dashboard-dot-pink"></span>
+                  <span class="folder-item-name">Climate &amp; energy issue</span>
+                  <span class="folder-item-count">11</span>
+                </a>
+                <div class="folder-item-actions">
+                  <button type="button" class="folder-item-action-btn" aria-label="Edit folder"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                  <button type="button" class="folder-item-action-btn folder-item-action-btn-danger" aria-label="Delete folder"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;li class="folder-item folder-item-custom"&gt;
+  &lt;a href="?folder=custom:1" class="folder-item-link"&gt;
+    &lt;span class="folder-item-dot" data-colour="pink"&gt;&lt;/span&gt;
+    &lt;span class="folder-item-name"&gt;Climate &amp;amp; energy issue&lt;/span&gt;
+    &lt;span class="folder-item-count"&gt;11&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;div class="folder-item-actions"&gt;
+    &lt;button class="folder-item-action-btn" aria-label="Edit folder"&gt;✎&lt;/button&gt;
+    &lt;button class="folder-item-action-btn folder-item-action-btn-danger" aria-label="Delete folder"&gt;×&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/li&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{{ folder_item(
+    "Climate &amp; energy issue",
+    url="?folder=custom:1",
+    count=11,
+    custom=True,
+    dot_color="pink",
+    edit_url="/folders/1/edit",
+    delete_url="/folders/1/delete"
+) }}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>Counts use coloured backgrounds for critical/warning state, never colour alone — the count number is the primary signal; severity is supplementary.</li>
+      <li>The active folder gets <code>aria-current="page"</code> for assistive technology.</li>
+      <li>Custom folder actions are visually hidden until hover (or keyboard focus inside the row).</li>
+      <li>The search input uses the standard <code>.form-input</code> class — no special styling needed.</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

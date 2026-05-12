@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Function card — Voyager</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="#">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation">
+    <span class="site-sidebar-section">Get started</span>
+    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
+      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
+    <span class="site-sidebar-section">Foundations</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../foundations/tokens.html">Tokens</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/typography.html">Typography</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/layout.html">Layout</a></li>
+    </ul>
+    <span class="site-sidebar-section">Components</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="page-header.html">Page header</a></li>
+      <li><a class="site-sidebar-link" href="button.html">Button</a></li>
+      <li><a class="site-sidebar-link" href="icon.html">Icon</a></li>
+      <li><a class="site-sidebar-link" href="summary-block.html">Summary block</a></li>
+      <li><a class="site-sidebar-link" href="information.html">Information</a></li>
+      <li><a class="site-sidebar-link" href="nav.html">Navigation</a></li>
+      <li><a class="site-sidebar-link" href="back-link.html">Back link</a></li>
+      <li><a class="site-sidebar-link" href="pagination.html">Pagination</a></li>
+      <li><a class="site-sidebar-link" href="tag.html">Tag &amp; chip</a></li>
+      <li><a class="site-sidebar-link" href="table.html">Table</a></li>
+      <li><a class="site-sidebar-link" href="form.html">Form</a></li>
+      <li><a class="site-sidebar-link" href="modal.html">Modal</a></li>
+      <li><a class="site-sidebar-link" href="details.html">Details</a></li>
+      <li><a class="site-sidebar-link" href="panel.html">Panel</a></li>
+      <li><a class="site-sidebar-link" href="stat.html">Stat &amp; queue</a></li>
+      <li><a class="site-sidebar-link" href="steps.html">Steps</a></li>
+      <li><a class="site-sidebar-link" href="avatar.html">Avatar</a></li>
+      <li><a class="site-sidebar-link" href="section-divider.html">Section divider</a></li>
+    </ul>
+    <span class="site-sidebar-section">Inbox pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="folder-list.html">Folder list</a></li>
+      <li><a class="site-sidebar-link" href="article-card.html">Article card</a></li>
+      <li><a class="site-sidebar-link" href="filter-bar.html">Filter bar</a></li>
+      <li><a class="site-sidebar-link" href="progress-bar.html">Progress bar</a></li>
+    </ul>
+    <span class="site-sidebar-section">Manager pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="function-card.html" aria-current="page">Function card</a></li>
+      <li><a class="site-sidebar-link" href="function-filter.html">Function filter</a></li>
+    </ul>
+    <span class="site-sidebar-section">Examples</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
+      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
+      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
+    </ul>
+  </nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Function card</h1>
+    <p class="site-page-lede">
+      Bordered, clickable card for a single &ldquo;function&rdquo; in the manager —
+      a thing you can configure or open. Carries a coloured icon, an optional count,
+      a title, a description, category tags, and an arrow. Forms the building block
+      of the <a href="../examples/manager.html">Manager dashboard</a>.
+    </p>
+
+    <h2>Default</h2>
+    <p>Icon, count, title, description, tags, arrow. Hover lifts the card and shifts the arrow right.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <a href="#" class="function-card">
+          <div class="function-card-top">
+            <div class="function-card-icon function-card-icon-blue" aria-hidden="true">P</div>
+            <div class="function-card-counter">
+              <div class="function-card-count">14</div>
+              <div class="function-card-count-label">pages</div>
+            </div>
+          </div>
+          <div class="function-card-body">
+            <div class="function-card-title">Content pages</div>
+            <div class="function-card-desc">Static CMS pages — About, Contact, Editorial Policies.</div>
+          </div>
+          <div class="function-card-foot">
+            <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+            <span class="function-card-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;a href="/manager/pages" class="function-card"&gt;
+  &lt;div class="function-card-top"&gt;
+    &lt;div class="function-card-icon function-card-icon-blue" aria-hidden="true"&gt;P&lt;/div&gt;
+    &lt;div class="function-card-counter"&gt;
+      &lt;div class="function-card-count"&gt;14&lt;/div&gt;
+      &lt;div class="function-card-count-label"&gt;pages&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="function-card-body"&gt;
+    &lt;div class="function-card-title"&gt;Content pages&lt;/div&gt;
+    &lt;div class="function-card-desc"&gt;Static CMS pages — About, Contact, Editorial Policies.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="function-card-foot"&gt;
+    &lt;div class="function-card-tags"&gt;&lt;span class="function-card-tag"&gt;content&lt;/span&gt;&lt;/div&gt;
+    &lt;span class="function-card-arrow" aria-hidden="true"&gt;→&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/a&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/function-card/function-card.j2" import function_card %}
+
+{{ function_card(
+    title="Content pages",
+    description="Static CMS pages — About, Contact, Editorial Policies.",
+    url="/manager/pages",
+    icon="P", icon_colour="blue",
+    count=14,
+    tags=["content"]
+) }}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Icon colour pool</h2>
+    <p>Nine hardcoded colour pairs. Choose by category — e.g. blue for journal-level settings, purple for review, green for submission, orange for workflow stages, teal for content, yellow for people, red for system, grey for neutral.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="cluster">
+          <div class="function-card-icon function-card-icon-blue" aria-hidden="true">B</div>
+          <div class="function-card-icon function-card-icon-green" aria-hidden="true">G</div>
+          <div class="function-card-icon function-card-icon-orange" aria-hidden="true">O</div>
+          <div class="function-card-icon function-card-icon-purple" aria-hidden="true">P</div>
+          <div class="function-card-icon function-card-icon-pink" aria-hidden="true">K</div>
+          <div class="function-card-icon function-card-icon-teal" aria-hidden="true">T</div>
+          <div class="function-card-icon function-card-icon-red" aria-hidden="true">R</div>
+          <div class="function-card-icon function-card-icon-yellow" aria-hidden="true">Y</div>
+          <div class="function-card-icon function-card-icon-grey" aria-hidden="true">N</div>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="function-card-icon function-card-icon-blue"&gt;B&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-green"&gt;G&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-orange"&gt;O&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-purple"&gt;P&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-pink"&gt;K&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-teal"&gt;T&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-red"&gt;R&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-yellow"&gt;Y&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-grey"&gt;N&lt;/div&gt;</code></pre>
+    </div>
+
+    <h2>Coming-soon variant</h2>
+    <p>Use <code>is-coming-soon</code> for functions that are documented but not yet available. The card dims, becomes non-clickable, and shows a yellow &ldquo;Coming soon&rdquo; badge in place of the count.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <a href="#" class="function-card is-coming-soon">
+          <div class="function-card-top">
+            <div class="function-card-icon function-card-icon-purple" aria-hidden="true">⌘</div>
+            <span class="function-card-soon-badge">Coming soon</span>
+          </div>
+          <div class="function-card-body">
+            <div class="function-card-title">AI abstract translation</div>
+            <div class="function-card-desc">Automatic translation of article abstracts into journal-supported languages.</div>
+          </div>
+          <div class="function-card-foot">
+            <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+          </div>
+        </a>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;a href="#" class="function-card is-coming-soon"&gt;
+  &lt;div class="function-card-top"&gt;
+    &lt;div class="function-card-icon function-card-icon-purple"&gt;⌘&lt;/div&gt;
+    &lt;span class="function-card-soon-badge"&gt;Coming soon&lt;/span&gt;
+  &lt;/div&gt;
+  …
+&lt;/a&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{{ function_card(
+    title="AI abstract translation",
+    description="Automatic translation of abstracts into journal-supported languages.",
+    icon="⌘", icon_colour="purple",
+    coming_soon=True,
+    tags=["content"]
+) }}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Filtering</h2>
+    <p>For client-side filtering with <a href="function-filter.html">function-filter</a>, set three data attributes on each card so the JS can match:</p>
+    <ul>
+      <li><code>data-title</code> — lowercase title for text search</li>
+      <li><code>data-desc</code> — lowercase description tokens for text search</li>
+      <li><code>data-tags</code> — space-separated category tags for tag filter</li>
+    </ul>
+    <div class="example">
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;a href="#" class="function-card"
+   data-title="content pages"
+   data-desc="static cms pages about contact policies"
+   data-tags="content"&gt;
+  …
+&lt;/a&gt;</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>The card is a real <code>&lt;a&gt;</code> — focusable, keyboard-accessible by default.</li>
+      <li>Choose icon colour by <em>category</em>, not aesthetic — users learn that "blue means settings" over time.</li>
+      <li>Count is optional. If unknown or not meaningful, leave it off; the layout collapses gracefully.</li>
+      <li>Keep descriptions to one line where possible (the card has min-height to keep rows aligned).</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

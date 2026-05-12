@@ -1,0 +1,28 @@
+/* Theme toggle — small button that swaps between light and dark.
+   Sits in the site-header or example-banner. Uses currentColor so
+   it picks up the surrounding text colour (white on dark headers,
+   black on the yellow example banner). State is reflected via
+   aria-pressed on the button; the data-theme attribute on <html>
+   drives the icon swap and CSS dark-mode aliases. */
+
+.theme-toggle{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:3px 10px;
+  background:transparent;
+  border:1px solid currentColor;
+  color:inherit;
+  cursor:pointer;
+  font-family:var(--font-system);
+  font-size:12px;font-weight:500;
+  border-radius:0;
+  text-decoration:none;
+  /* WCAG 2.2 SC 2.5.8 — minimum 24x24 target. */
+  min-height:24px;
+}
+.theme-toggle:hover{background:rgba(127,127,127,0.18)}
+
+.theme-toggle .icon{width:14px;height:14px}
+
+.theme-toggle .theme-icon-sun{display:none}
+:root[data-theme="dark"] .theme-toggle .theme-icon-moon{display:none}
+:root[data-theme="dark"] .theme-toggle .theme-icon-sun{display:inline-block}

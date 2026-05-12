@@ -1,0 +1,7 @@
+{# back-link — small leading-caret link.
+   Args:
+     - label: link text (default: "Back")
+     - url:   target URL #}
+{% macro back_link(label="Back", url="#") %}
+<a href="{{ url }}" class="back-link">{{ label }}</a>
+{% endmacro %}

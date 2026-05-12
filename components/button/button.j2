@@ -1,0 +1,22 @@
+{# button — composable GOV.UK-style button.
+
+   Args:
+     - label:    button text
+     - kind:     'default' (grey GOV.UK secondary) | 'primary' (green) |
+                 'warning' (red) | 'start' (oversized green with arrow)
+     - size:     '' (default) | 'small' | 'large'
+     - href:     if given, renders as <a>; else <button type="…">
+     - type:     button type when not a link (default 'button')
+     - disabled: boolean
+#}
+{% macro button(label, kind="default", size="", href=None, type="button", disabled=False) %}
+{%- set classes = ['btn'] -%}
+{%- if kind != 'default' %}{% set classes = classes + ['btn-' ~ kind] %}{% endif -%}
+{%- if size %}{% set classes = classes + ['btn-' ~ size] %}{% endif -%}
+{%- set cls = classes|join(' ') -%}
+{%- if href -%}
+  <a href="{{ href }}" class="{{ cls }}">{{ label }}</a>
+{%- else -%}
+  <button type="{{ type }}" class="{{ cls }}"{% if disabled %} disabled{% endif %}>{{ label }}</button>
+{%- endif -%}
+{% endmacro %}

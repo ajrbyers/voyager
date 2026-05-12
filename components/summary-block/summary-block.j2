@@ -1,0 +1,70 @@
+{# summary-block — bordered container with header + body.
+   The body usually contains a summary list.
+
+   summary_block macros:
+     - summary_block(title, ...)  wrapper
+     - summary_action(label, url) one action link in the head
+
+   summary_list macros:
+     - summary_list()                                 wrapper
+     - summary_row(key, value, change=None,
+                   change_text='Change', change_label='')
+       change is the URL for the right-hand action link;
+       change_label is the visually-hidden suffix for screen readers.
+
+   Usage:
+     {% call summary_block("Files in Round 2", actions=[
+         {"label": "Add files",    "url": "#"},
+         {"label": "Manage round", "url": "#"},
+     ]) %}
+       {% call summary_list() %}
+         {{ summary_row(
+             key="Manuscript",
+             value='<span class="mono">okafor_lstm_v2.docx</span> · 342 KB',
+             change="#", change_text="Download", change_label="manuscript"
+         ) }}
+         {{ summary_row(
+             key="Figures",
+             value='<span class="mono">figures_v2.zip</span> · 1.8 MB',
+             change="#", change_text="Download", change_label="figures"
+         ) }}
+       {% endcall %}
+     {% endcall %}
+#}
+
+{% macro summary_block(title, title_id="", meta="", actions=[], clean=False) %}
+{%- set _id = title_id or ('sb-' ~ title|lower|replace(' ','-')) -%}
+<section class="summary-block{% if clean %} summary-block-clean{% endif %}"
+         aria-labelledby="{{ _id }}">
+  <div class="summary-block-head">
+    <h2 class="summary-block-title" id="{{ _id }}">
+      {{ title }}
+      {% if meta %}<span class="summary-block-meta">{{ meta }}</span>{% endif %}
+    </h2>
+    {% if actions %}
+    <div class="summary-block-actions">
+      {% for a in actions %}<a href="{{ a.url }}">{{ a.label }}</a>{% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  <div class="summary-block-body summary-block-body-flush">
+    {{ caller() }}
+  </div>
+</section>
+{% endmacro %}
+
+{% macro summary_list() %}
+<dl class="summary-list">{{ caller() }}</dl>
+{% endmacro %}
+
+{% macro summary_row(key, value, change=None, change_text="Change", change_label="") %}
+<div>
+  <dt>{{ key }}</dt>
+  <dd>{{ value|safe }}</dd>
+  <dd class="summary-list-change">
+    {% if change %}
+      <a href="{{ change }}">{{ change_text }}{% if change_label %}<span class="visually-hidden"> {{ change_label }}</span>{% endif %}</a>
+    {% endif %}
+  </dd>
+</div>
+{% endmacro %}

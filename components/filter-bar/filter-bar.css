@@ -1,0 +1,81 @@
+/* Filter bar — control row with select dropdowns and an active-chips
+   summary. Sits above a list of results. */
+
+.filter-bar{
+  background:var(--colour-canvas-muted);
+  border:1px solid var(--colour-border-muted);
+  padding:10px var(--s-3);
+  margin-bottom:var(--s-3);
+}
+.filter-bar-controls{
+  display:flex;align-items:center;gap:var(--s-2);flex-wrap:wrap;
+}
+.filter-bar-label{
+  font-size:var(--fs-sm);font-weight:600;color:var(--colour-fg-muted);
+  display:inline-flex;align-items:center;gap:6px;margin-right:4px;
+}
+
+/* Compact select inside the filter bar — pin the height and trim padding
+   so it sits comfortably next to chips. */
+.filter-bar .filter-select{
+  width:auto;min-width:140px;
+  font-size:var(--fs-sm);
+  padding:3px 8px;
+  background:var(--colour-canvas);
+  border:1px solid var(--colour-border-strong);
+  color:var(--colour-fg);
+  font-family:inherit;
+  line-height:1.5;
+  border-radius:0;
+}
+
+/* ---------- Active chips ---------- */
+.filter-bar-chips{
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  margin-top:var(--s-2);
+  min-height:0;
+}
+.filter-bar-chips:empty{display:none}
+
+.filter-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:2px 4px 2px 10px;
+  background:var(--colour-accent-subtle);
+  color:var(--colour-accent);
+  font-size:var(--fs-xs);font-weight:600;
+  border-radius:0;
+  border:1px solid #b6e3ff;
+}
+.filter-chip-remove{
+  background:transparent;border:0;cursor:pointer;
+  /* WCAG 2.2 SC 2.5.8 — minimum 24x24 target. The visible × is small
+     but the click area is full size. */
+  width:24px;height:24px;
+  display:inline-flex;align-items:center;justify-content:center;
+  color:var(--colour-accent);
+  border-radius:50%;
+  font-size:14px;line-height:1;
+  text-decoration:none;
+  padding:0;
+}
+.filter-chip-remove:hover{
+  background:var(--colour-accent);color:var(--colour-white);
+}
+
+/* Dark-mode adjustments. */
+:root[data-theme="dark"] .filter-chip{
+  background:var(--colour-dark-accent-subtle);
+  color:var(--colour-dark-link);
+  border-color:#1f4f7a;
+}
+:root[data-theme="dark"] .filter-chip-remove{color:var(--colour-dark-link)}
+:root[data-theme="dark"] .filter-chip-remove:hover{
+  background:var(--colour-dark-link);color:var(--colour-dark-canvas);
+}
+
+.filter-bar-clear{
+  font-size:var(--fs-xs);
+  color:var(--colour-link);
+  text-decoration:underline;
+  margin-left:4px;
+}

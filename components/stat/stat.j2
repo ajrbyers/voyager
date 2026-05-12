@@ -1,0 +1,12 @@
+{# stat — single large number + label.
+   Args:
+     - number: integer or string
+     - label:  text below the number
+     - kind:   '' (default) | 'alert' | 'success' | 'warning'
+#}
+{% macro stat(number, label, kind="") %}
+<div class="stat{% if kind %} stat-{{ kind }}{% endif %}">
+  <span class="stat-number">{{ number }}</span>
+  <span class="stat-label">{{ label }}</span>
+</div>
+{% endmacro %}

@@ -1,0 +1,18 @@
+/* App shell — sidebar + main content grid sitting under app-header.
+   Use directly inside <body> after the header. */
+
+.app-shell{
+  display:grid;
+  grid-template-columns:var(--shell-sidebar-width) minmax(0,1fr);
+  min-height:calc(100vh - 48px);
+
+  & .app-shell-main{
+    padding:0;
+    background:var(--colour-canvas);
+    min-width:0;
+  }
+
+  @media (max-width:900px){
+    & {grid-template-columns:1fr}
+  }
+}

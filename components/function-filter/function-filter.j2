@@ -1,0 +1,50 @@
+{# function-filter — search input + filter chip cluster.
+
+   Compose with three macros:
+     - function_filter(action="")                wrapper <form>
+     - function_filter_search(name, value="")    search input cluster
+     - function_filter_tag(name, value, label, checked=False)
+       one chip / radio. Repeat inside a wrapper.
+
+   Or use the all-in-one shortcut with a list of tags.
+
+   Usage (composable):
+     {% call function_filter() %}
+       {{ function_filter_search(name="q", value=q) }}
+       <div class="function-filter-tags" role="radiogroup" aria-label="Filter by category">
+         {{ function_filter_tag("tag", "all",      "All",      checked=(tag=='all')) }}
+         {{ function_filter_tag("tag", "settings", "Settings", checked=(tag=='settings')) }}
+       </div>
+     {% endcall %}
+#}
+
+{% macro function_filter(action="", htmx_target="") %}
+<form class="function-filter" role="search" aria-label="Filter functions"
+      {% if action %}action="{{ action }}"{% endif %}
+      {% if htmx_target %}hx-get="{{ action }}" hx-target="{{ htmx_target }}" hx-trigger="input changed delay:300ms from:input[type='search'], change from:input[type='radio']"{% endif %}>
+  {{ caller() }}
+</form>
+{% endmacro %}
+
+{% macro function_filter_search(name="q", value="", placeholder="Search functions…") %}
+<div class="function-filter-search">
+  <span class="function-filter-search-icon" aria-hidden="true">⌕</span>
+  <label class="visually-hidden" for="{{ name }}-input">Search</label>
+  <input type="search" name="{{ name }}" id="{{ name }}-input"
+         class="function-filter-input"
+         value="{{ value }}"
+         placeholder="{{ placeholder }}" autocomplete="off">
+</div>
+{% endmacro %}
+
+{% macro function_filter_tags() %}
+<div class="function-filter-tags" role="radiogroup" aria-label="Filter by category">
+  {{ caller() }}
+</div>
+{% endmacro %}
+
+{% macro function_filter_tag(name, value, label, checked=False) %}
+<label class="function-filter-tag">
+  <input type="radio" name="{{ name }}" value="{{ value }}" {% if checked %}checked{% endif %}> {{ label }}
+</label>
+{% endmacro %}

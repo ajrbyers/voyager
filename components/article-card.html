@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Article card — Voyager</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="#">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation">
+    <span class="site-sidebar-section">Get started</span>
+    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
+      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
+    <span class="site-sidebar-section">Foundations</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../foundations/tokens.html">Tokens</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/typography.html">Typography</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/layout.html">Layout</a></li>
+    </ul>
+    <span class="site-sidebar-section">Components</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="page-header.html">Page header</a></li>
+      <li><a class="site-sidebar-link" href="button.html">Button</a></li>
+      <li><a class="site-sidebar-link" href="icon.html">Icon</a></li>
+      <li><a class="site-sidebar-link" href="summary-block.html">Summary block</a></li>
+      <li><a class="site-sidebar-link" href="information.html">Information</a></li>
+      <li><a class="site-sidebar-link" href="nav.html">Navigation</a></li>
+      <li><a class="site-sidebar-link" href="back-link.html">Back link</a></li>
+      <li><a class="site-sidebar-link" href="pagination.html">Pagination</a></li>
+      <li><a class="site-sidebar-link" href="tag.html">Tag &amp; chip</a></li>
+      <li><a class="site-sidebar-link" href="table.html">Table</a></li>
+      <li><a class="site-sidebar-link" href="form.html">Form</a></li>
+      <li><a class="site-sidebar-link" href="modal.html">Modal</a></li>
+      <li><a class="site-sidebar-link" href="details.html">Details</a></li>
+      <li><a class="site-sidebar-link" href="panel.html">Panel</a></li>
+      <li><a class="site-sidebar-link" href="stat.html">Stat &amp; queue</a></li>
+      <li><a class="site-sidebar-link" href="steps.html">Steps</a></li>
+      <li><a class="site-sidebar-link" href="avatar.html">Avatar</a></li>
+      <li><a class="site-sidebar-link" href="section-divider.html">Section divider</a></li>
+    </ul>
+    <span class="site-sidebar-section">Inbox pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="folder-list.html">Folder list</a></li>
+      <li><a class="site-sidebar-link" href="article-card.html" aria-current="page">Article card</a></li>
+      <li><a class="site-sidebar-link" href="filter-bar.html">Filter bar</a></li>
+      <li><a class="site-sidebar-link" href="progress-bar.html">Progress bar</a></li>
+    </ul>
+    <span class="site-sidebar-section">Manager pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="function-card.html">Function card</a></li>
+      <li><a class="site-sidebar-link" href="function-filter.html">Function filter</a></li>
+    </ul>
+    <span class="site-sidebar-section">Examples</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
+      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
+      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
+    </ul>
+  </nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Article card</h1>
+    <p class="site-page-lede">
+      Inbox-style row representing a single article. Carries severity as a
+      coloured left stripe, an ID + tag + days-in-workflow row at the top, the
+      truncated title in the middle, byline at the bottom, and inline action
+      buttons. Alert pills (also documented here) form a quiet footer.
+    </p>
+
+    <h2>Severity variants</h2>
+    <p>Compose <code>article-card-critical</code>, <code>article-card-warning</code>, or <code>article-card-info</code>. Omit all three for the neutral state.</p>
+
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <article class="article-card article-card-critical">
+          <div class="article-card-inner">
+            <div class="article-card-body">
+              <div class="article-card-meta-top">
+                <span class="article-card-id">#1247</span>
+                <span class="tag tag-grey">Peer Review</span>
+                <span class="tag tag-grey">Article</span>
+                <span class="article-card-spacer"></span>
+                <span class="article-card-days article-card-days-critical">62d</span>
+              </div>
+              <h3 class="article-card-title"><a class="article-card-title-link" href="#">Reproducibility of LSTM forecasts for short-term electricity demand</a></h3>
+              <div class="article-card-meta-bottom">
+                <span>Okafor <span class="muted">+2</span></span>
+                <span class="article-card-sep">·</span>
+                <span>Editor: Hassan</span>
+              </div>
+            </div>
+            <div class="article-card-actions">
+              <button class="btn btn-small" type="button" aria-label="Snooze"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></button>
+              <a class="btn btn-small btn-primary" href="#">Open →</a>
+            </div>
+          </div>
+          <div class="article-card-alerts">
+            <a href="#" class="alert-pill alert-pill-critical">Reviewer overdue 12 days</a>
+            <a href="#" class="alert-pill alert-pill-warning">Whitfield not acknowledged</a>
+          </div>
+        </article>
+
+        <article class="article-card article-card-warning">
+          <div class="article-card-inner">
+            <div class="article-card-body">
+              <div class="article-card-meta-top">
+                <span class="article-card-id">#1252</span>
+                <span class="tag tag-grey">Peer Review</span>
+                <span class="article-card-spacer"></span>
+                <span class="article-card-days article-card-days-warning">38d</span>
+              </div>
+              <h3 class="article-card-title"><a class="article-card-title-link" href="#">A meta-review of capacity-credit methods for variable renewables</a></h3>
+              <div class="article-card-meta-bottom"><span>Mendes</span> <span class="article-card-sep">·</span> <span>Editor: Whitfield</span></div>
+            </div>
+            <div class="article-card-actions">
+              <a class="btn btn-small btn-primary" href="#">Open →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-card-inner">
+            <div class="article-card-body">
+              <div class="article-card-meta-top">
+                <span class="article-card-id">#1270</span>
+                <span class="tag tag-grey">Peer Review</span>
+                <span class="article-card-spacer"></span>
+                <span class="article-card-days">9d</span>
+              </div>
+              <h3 class="article-card-title"><a class="article-card-title-link" href="#">Demand-side flexibility in residential heat pump fleets</a></h3>
+              <div class="article-card-meta-bottom"><span>Akande</span> <span class="article-card-sep">·</span> <span>Editor: Patel</span></div>
+            </div>
+            <div class="article-card-actions">
+              <a class="btn btn-small btn-primary" href="#">Open →</a>
+            </div>
+          </div>
+        </article>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;article class="article-card article-card-critical"&gt;
+  &lt;div class="article-card-inner"&gt;
+    &lt;div class="article-card-body"&gt;
+      &lt;div class="article-card-meta-top"&gt;
+        &lt;span class="article-card-id"&gt;#1247&lt;/span&gt;
+        &lt;span class="tag tag-grey"&gt;Peer Review&lt;/span&gt;
+        &lt;span class="article-card-spacer"&gt;&lt;/span&gt;
+        &lt;span class="article-card-days article-card-days-critical"&gt;62d&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;h3 class="article-card-title"&gt;
+        &lt;a class="article-card-title-link" href="/article/1247"&gt;
+          Reproducibility of LSTM forecasts…
+        &lt;/a&gt;
+      &lt;/h3&gt;
+      &lt;div class="article-card-meta-bottom"&gt;
+        &lt;span&gt;Okafor &lt;span class="muted"&gt;+2&lt;/span&gt;&lt;/span&gt;
+        &lt;span class="article-card-sep"&gt;·&lt;/span&gt;
+        &lt;span&gt;Editor: Hassan&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="article-card-actions"&gt;
+      &lt;button class="btn btn-small" type="button" aria-label="Snooze"&gt;⌚&lt;/button&gt;
+      &lt;a class="btn btn-small btn-primary" href="/article/1247"&gt;Open →&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="article-card-alerts"&gt;
+    &lt;a class="alert-pill alert-pill-critical" href="#"&gt;Reviewer overdue 12 days&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/article-card/article-card.j2"
+   import article_card, article_card_body, article_card_alerts %}
+{% from "voyager/components/alert-pill/alert-pill.j2" import alert_pill %}
+{% from "voyager/components/button/button.j2" import button %}
+
+{% call article_card(severity="critical") %}
+  {% call article_card_body(
+      id="#1247",
+      url="/article/1247",
+      title="Reproducibility of LSTM forecasts for short-term electricity demand",
+      byline='&lt;span&gt;Okafor &lt;span class="muted"&gt;+2&lt;/span&gt;&lt;/span&gt;
+              &lt;span class="article-card-sep"&gt;·&lt;/span&gt;
+              &lt;span&gt;Editor: Hassan&lt;/span&gt;',
+      days="62d", days_severity="critical",
+      tags=[{"label": "Peer Review", "kind": "grey"},
+            {"label": "Article",    "kind": "grey"}]
+  ) %}
+    {{ button("⌚", size="small") }}
+    {{ button("Open →", kind="primary", size="small", href="/article/1247") }}
+  {% endcall %}
+  {% call article_card_alerts() %}
+    {{ alert_pill("Reviewer overdue 12 days", kind="critical", url="#") }}
+    {{ alert_pill("Whitfield not acknowledged", kind="warning", url="#") }}
+  {% endcall %}
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Alert pills</h2>
+    <p>Small inline status links used at the bottom of an article card to surface alerts. Four variants compose: <code>alert-pill-critical</code>, <code>alert-pill-warning</code>, <code>alert-pill-info</code>, <code>alert-pill-more</code> (for the &ldquo;+N more&rdquo; collapse).</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="cluster">
+          <a href="#" class="alert-pill alert-pill-critical">Reviewer overdue 12 days</a>
+          <a href="#" class="alert-pill alert-pill-warning">No editor assigned</a>
+          <a href="#" class="alert-pill alert-pill-info">All reviews received</a>
+          <span class="alert-pill alert-pill-more">+2 more</span>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;a href="#" class="alert-pill alert-pill-critical"&gt;Reviewer overdue 12 days&lt;/a&gt;
+&lt;a href="#" class="alert-pill alert-pill-warning"&gt;No editor assigned&lt;/a&gt;
+&lt;a href="#" class="alert-pill alert-pill-info"&gt;All reviews received&lt;/a&gt;
+&lt;span class="alert-pill alert-pill-more"&gt;+2 more&lt;/span&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{{ alert_pill("Reviewer overdue 12 days", kind="critical", url="#") }}
+{{ alert_pill("No editor assigned",       kind="warning",  url="#") }}
+{{ alert_pill("All reviews received",     kind="info",     url="#") }}
+{{ alert_pill("+2 more",                  kind="more") }}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>Severity is conveyed by both the left stripe colour <em>and</em> the alert pills below, never by stripe alone.</li>
+      <li>The days indicator (<code>article-card-days-critical</code>, <code>-warning</code>) follows the same thresholds as the alert pills: over 60 days critical, over 30 days warning.</li>
+      <li>Truncate titles at the consumer side (use a Django filter or CSS line clamp); the component doesn't enforce a length.</li>
+      <li>Action buttons should use <code>btn-small</code> to keep the row compact.</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

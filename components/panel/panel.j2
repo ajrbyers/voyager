@@ -1,0 +1,13 @@
+{# panel — large confirmation panel at the top of a completion page.
+   Args:
+     - title: large headline (h1)
+     - kind:  '' (default green) | 'warning' | 'error' | 'info'
+   Body content via {% call %}. #}
+{% macro panel(title, kind="") %}
+<div class="panel{% if kind %} panel-{{ kind }}{% endif %}">
+  <h1 class="panel-title">{{ title }}</h1>
+  <div class="panel-body">
+    {{ caller() }}
+  </div>
+</div>
+{% endmacro %}

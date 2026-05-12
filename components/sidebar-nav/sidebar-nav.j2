@@ -1,0 +1,47 @@
+{# sidebar-nav — left rail.
+   Compose with three macros:
+     - sidebar_nav()          wrapper, contains the journal block + sections
+     - sidebar_nav_section()  one named group of links
+     - sidebar_nav_item()     one link
+
+   Usage:
+     {% call sidebar_nav(journal={"mark":"JE","name":"Journal of Energy Modelling","sub":"Editor view"}) %}
+       {% call sidebar_nav_section("Workflow") %}
+         {{ sidebar_nav_item("Unassigned",  url="/unassigned", count=7) }}
+         {{ sidebar_nav_item("Peer Review", url="/review",      count=14, current=True) }}
+       {% endcall %}
+     {% endcall %}
+#}
+
+{% macro sidebar_nav(journal=None, label="Editorial navigation") %}
+<nav class="sidebar-nav" aria-label="{{ label }}">
+  {% if journal %}
+  <div class="sidebar-nav-journal">
+    <span class="sidebar-nav-mark" aria-hidden="true">{{ journal.mark }}</span>
+    <div>
+      <div class="sidebar-nav-name">{{ journal.name }}</div>
+      {% if journal.sub %}<div class="sidebar-nav-sub">{{ journal.sub }}</div>{% endif %}
+    </div>
+  </div>
+  {% endif %}
+  {{ caller() }}
+</nav>
+{% endmacro %}
+
+{% macro sidebar_nav_section(label) %}
+<h2 class="sidebar-nav-section">{{ label }}</h2>
+<ul>{{ caller() }}</ul>
+{% endmacro %}
+
+{% macro sidebar_nav_item(label, url="#", count=None, current=False) %}
+<li>
+  <a href="{{ url }}"
+     class="sidebar-nav-link"
+     {% if current %}aria-current="page"{% endif %}>
+    {{ label }}
+    {% if count is not none %}
+      <span class="sidebar-nav-count" aria-label="{{ count }} articles">{{ count }}</span>
+    {% endif %}
+  </a>
+</li>
+{% endmacro %}

@@ -1,0 +1,33 @@
+/* Table — Primer-flavoured data table.
+   Use for tabular data; for definition-style key/value content
+   reach for summary-list inside summary-block instead. */
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:var(--fs-base);
+  font-family:var(--font-system);
+  background:var(--colour-canvas);
+
+  & th{
+    text-align:left;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--colour-fg-muted);
+    font-weight:600;
+    padding:var(--s-2) var(--s-4);
+    background:var(--colour-canvas-muted);
+    border-bottom:1px solid var(--colour-border);
+  }
+  & td{
+    padding:10px var(--s-4);
+    border-bottom:1px solid var(--colour-border-muted);
+    vertical-align:top;
+    color:var(--colour-fg);
+  }
+  & tr:last-child td{border-bottom:0}
+}
+.table.table-bordered{
+  border:1px solid var(--colour-border-strong);
+}

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Summary block — Voyager</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="#">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation">
+    <span class="site-sidebar-section">Get started</span>
+    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
+      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
+    <span class="site-sidebar-section">Foundations</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../foundations/tokens.html">Tokens</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/typography.html">Typography</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/layout.html">Layout</a></li>
+    </ul>
+    <span class="site-sidebar-section">Components</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="page-header.html">Page header</a></li>
+      <li><a class="site-sidebar-link" href="button.html">Button</a></li>
+      <li><a class="site-sidebar-link" href="icon.html">Icon</a></li>
+      <li><a class="site-sidebar-link" href="summary-block.html" aria-current="page">Summary block</a></li>
+      <li><a class="site-sidebar-link" href="information.html">Information</a></li>
+      <li><a class="site-sidebar-link" href="nav.html">Navigation</a></li>
+      <li><a class="site-sidebar-link" href="back-link.html">Back link</a></li>
+      <li><a class="site-sidebar-link" href="pagination.html">Pagination</a></li>
+      <li><a class="site-sidebar-link" href="tag.html">Tag &amp; chip</a></li>
+      <li><a class="site-sidebar-link" href="table.html">Table</a></li>
+      <li><a class="site-sidebar-link" href="form.html">Form</a></li>
+      <li><a class="site-sidebar-link" href="modal.html">Modal</a></li>
+      <li><a class="site-sidebar-link" href="details.html">Details</a></li>
+      <li><a class="site-sidebar-link" href="panel.html">Panel</a></li>
+      <li><a class="site-sidebar-link" href="stat.html">Stat &amp; queue</a></li>
+      <li><a class="site-sidebar-link" href="steps.html">Steps</a></li>
+      <li><a class="site-sidebar-link" href="avatar.html">Avatar</a></li>
+      <li><a class="site-sidebar-link" href="section-divider.html">Section divider</a></li>
+    </ul>
+    <span class="site-sidebar-section">Inbox pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="folder-list.html">Folder list</a></li>
+      <li><a class="site-sidebar-link" href="article-card.html">Article card</a></li>
+      <li><a class="site-sidebar-link" href="filter-bar.html">Filter bar</a></li>
+      <li><a class="site-sidebar-link" href="progress-bar.html">Progress bar</a></li>
+    </ul>
+    <span class="site-sidebar-section">Manager pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="function-card.html">Function card</a></li>
+      <li><a class="site-sidebar-link" href="function-filter.html">Function filter</a></li>
+    </ul>
+    <span class="site-sidebar-section">Examples</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
+      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
+      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
+    </ul>
+  </nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Summary block</h1>
+    <p class="site-page-lede">
+      Bordered container with a grey header strip (title + actions) and a body that
+      typically holds a summary list. Replaces ad-hoc card boxes across the system.
+    </p>
+
+    <h2>With summary list</h2>
+    <p>The most common pairing. Each row is one fact: label, value, optional change link.</p>
+
+    <div class="example">
+      <div class="example-render">
+        <div class="example-render-inner">
+          <section class="summary-block" aria-labelledby="ex-files">
+            <div class="summary-block-head">
+              <h2 class="summary-block-title" id="ex-files">Files in Round 2</h2>
+              <div class="summary-block-actions">
+                <a href="#">Add files</a>
+                <a href="#">Manage round</a>
+              </div>
+            </div>
+            <div class="summary-block-body summary-block-body-flush">
+              <dl class="summary-list">
+                <div>
+                  <dt>Manuscript</dt>
+                  <dd><span class="mono">okafor_lstm_v2.docx</span> · 342 KB · 29 Apr 2026</dd>
+                  <dd class="summary-list-change"><a href="#">Download<span class="visually-hidden"> manuscript</span></a></dd>
+                </div>
+                <div>
+                  <dt>Figures</dt>
+                  <dd><span class="mono">figures_v2.zip</span> · 1.8 MB · 29 Apr 2026</dd>
+                  <dd class="summary-list-change"><a href="#">Download<span class="visually-hidden"> figures</span></a></dd>
+                </div>
+                <div>
+                  <dt>Supplementary</dt>
+                  <dd><span class="mono">supp_methods_v2.pdf</span> · 118 KB · 29 Apr 2026</dd>
+                  <dd class="summary-list-change"><a href="#">Download<span class="visually-hidden"> supplementary</span></a></dd>
+                </div>
+              </dl>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="example-tabs">
+        <button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button>
+        <button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button>
+      </div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;section class="summary-block" aria-labelledby="ex-files"&gt;
+  &lt;div class="summary-block-head"&gt;
+    &lt;h2 class="summary-block-title" id="ex-files"&gt;Files in Round 2&lt;/h2&gt;
+    &lt;div class="summary-block-actions"&gt;
+      &lt;a href="#"&gt;Add files&lt;/a&gt;
+      &lt;a href="#"&gt;Manage round&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="summary-block-body summary-block-body-flush"&gt;
+    &lt;dl class="summary-list"&gt;
+      &lt;div&gt;
+        &lt;dt&gt;Manuscript&lt;/dt&gt;
+        &lt;dd&gt;&lt;span class="mono"&gt;okafor_lstm_v2.docx&lt;/span&gt; · 342 KB · 29 Apr 2026&lt;/dd&gt;
+        &lt;dd class="summary-list-change"&gt;
+          &lt;a href="#"&gt;Download&lt;span class="visually-hidden"&gt; manuscript&lt;/span&gt;&lt;/a&gt;
+        &lt;/dd&gt;
+      &lt;/div&gt;
+      …
+    &lt;/dl&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/summary-block/summary-block.j2"
+   import summary_block, summary_list, summary_row %}
+
+{% call summary_block(
+    "Files in Round 2",
+    actions=[
+      {"label": "Add files",    "url": "#"},
+      {"label": "Manage round", "url": "#"},
+]) %}
+  {% call summary_list() %}
+    {{ summary_row(
+        key="Manuscript",
+        value='<span class="mono">okafor_lstm_v2.docx</span> · 342 KB · 29 Apr 2026',
+        change="#", change_text="Download", change_label="manuscript"
+    ) }}
+    {{ summary_row(
+        key="Figures",
+        value='<span class="mono">figures_v2.zip</span> · 1.8 MB · 29 Apr 2026',
+        change="#", change_text="Download", change_label="figures"
+    ) }}
+  {% endcall %}
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Reviewer variant</h2>
+    <p>Status tag in the head saves a row in the body. Use the <code>summary-block-clean</code> variant when the head feels heavy alongside a status tag.</p>
+
+    <div class="example">
+      <div class="example-render">
+        <div class="example-render-inner">
+          <section class="summary-block summary-block-clean" aria-labelledby="ex-r1">
+            <div class="summary-block-head">
+              <h2 class="summary-block-title" id="ex-r1">
+                <span class="avatar avatar-purple" aria-hidden="true">AH</span>
+                Dr Amira Hassan
+                <span class="summary-block-meta">#418 · King's College London</span>
+                <span class="tag tag-green">Review received</span>
+              </h2>
+              <div class="summary-block-actions">
+                <a href="#">Email<span class="visually-hidden"> Hassan</span></a>
+                <a href="#">Profile<span class="visually-hidden"> of Hassan</span></a>
+              </div>
+            </div>
+            <div class="summary-block-body summary-block-body-flush">
+              <dl class="summary-list">
+                <div>
+                  <dt>Invited</dt>
+                  <dd>Requested 12 Apr · accepted 13 Apr 2026</dd>
+                  <dd class="summary-list-change"></dd>
+                </div>
+                <div>
+                  <dt>Recommendation</dt>
+                  <dd><strong>Minor revisions</strong> · completed 4 May 2026 14:21</dd>
+                  <dd class="summary-list-change"><a href="#">View<span class="visually-hidden"> Hassan's review</span></a></dd>
+                </div>
+              </dl>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="example-tabs">
+        <button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button>
+        <button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button>
+      </div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;section class="summary-block summary-block-clean" aria-labelledby="ex-r1"&gt;
+  &lt;div class="summary-block-head"&gt;
+    &lt;h2 class="summary-block-title" id="ex-r1"&gt;
+      &lt;span class="avatar avatar-purple" aria-hidden="true"&gt;AH&lt;/span&gt;
+      Dr Amira Hassan
+      &lt;span class="summary-block-meta"&gt;#418 · King's College London&lt;/span&gt;
+      &lt;span class="tag tag-green"&gt;Review received&lt;/span&gt;
+    &lt;/h2&gt;
+    …
+  &lt;/div&gt;
+  &lt;div class="summary-block-body summary-block-body-flush"&gt;
+    &lt;dl class="summary-list"&gt; … &lt;/dl&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% call summary_block(
+    "Dr Amira Hassan",
+    title_id="r1",
+    clean=True,
+    actions=[{"label": "Email", "url": "#"}, {"label": "Profile", "url": "#"}]
+) %}
+  {% call summary_list() %}
+    {{ summary_row(key="Invited", value="Requested 12 Apr · accepted 13 Apr 2026") }}
+    {{ summary_row(
+        key="Recommendation",
+        value="<strong>Minor revisions</strong> · completed 4 May 2026 14:21",
+        change="#", change_text="View", change_label="Hassan's review"
+    ) }}
+  {% endcall %}
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>The title is always an <code>&lt;h2&gt;</code> — summary blocks live under the page H1.</li>
+      <li>Set <code>aria-labelledby</code> on the section to the title's id so screen readers announce the block by name.</li>
+      <li>Use <code>summary-block-body-flush</code> when the body is a summary list — it removes the body padding so the list rows go edge-to-edge.</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{# action-menu — vertical list of action links with leading icons.
+
+   Compose with two macros:
+     - action_menu()                       wrapper
+     - action_menu_item(icon, label, url)  one link
+
+   Usage:
+     {% call action_menu() %}
+       {{ action_menu_item("i", "View metadata",      url="/metadata") }}
+       {{ action_menu_item("D", "Document management", url="/docs") }}
+       {{ action_menu_item("+", "New review round",    url="/round/new") }}
+     {% endcall %}
+#}
+{% macro action_menu() %}
+<ul class="action-menu">{{ caller() }}</ul>
+{% endmacro %}
+
+{% macro action_menu_item(icon, label, url="#") %}
+<li>
+  <a href="{{ url }}">
+    <span class="action-menu-icon" aria-hidden="true">{{ icon }}</span>
+    {{ label }}
+  </a>
+</li>
+{% endmacro %}

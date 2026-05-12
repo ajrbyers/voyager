@@ -1,0 +1,79 @@
+/* Pagination — Previous / Next + numbered pages, GDS-inspired.
+   Used at the foot of any list view. The current page is announced
+   to AT via aria-current="page". */
+
+.pagination{
+  display:flex;flex-wrap:wrap;
+  align-items:center;
+  margin:var(--s-6) 0;
+  font-family:var(--font-sans);
+  font-size:var(--fs-md);
+}
+
+.pagination ul{
+  list-style:none;margin:0;padding:0;
+  display:flex;flex:1;flex-wrap:wrap;
+  align-items:center;
+}
+
+.pagination li{display:inline-flex}
+
+.pagination .pagination-prev,
+.pagination .pagination-next{
+  display:flex;flex-direction:column;
+}
+
+.pagination .pagination-prev{margin-right:auto}
+.pagination .pagination-next{margin-left:auto;text-align:right}
+
+.pagination a{
+  display:flex;flex-direction:column;
+  padding:var(--s-2) var(--s-3);
+  color:var(--colour-link);
+  text-decoration:underline;
+  text-decoration-thickness:1px;text-underline-offset:0.1em;
+}
+.pagination a:hover{
+  color:var(--colour-link-hover);
+  text-decoration-thickness:3px;
+}
+
+.pagination .pagination-direction{
+  font-weight:700;font-size:var(--fs-md);
+  display:flex;align-items:center;gap:6px;
+}
+.pagination .pagination-label{
+  font-size:var(--fs-sm);
+  color:var(--colour-fg-muted);
+  font-weight:400;
+  margin-top:2px;
+}
+
+/* Numbered pages */
+.pagination-numbers{
+  display:flex;align-items:center;gap:2px;
+  margin:0 var(--s-2);
+}
+.pagination-numbers a,
+.pagination-numbers .pagination-current,
+.pagination-numbers .pagination-ellipsis{
+  min-width:36px;height:36px;
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:0 var(--s-2);font-weight:700;
+  text-decoration:none;
+  border:1px solid transparent;
+}
+.pagination-numbers a{
+  color:var(--colour-link);
+}
+.pagination-numbers a:hover{
+  background:var(--colour-canvas-muted);
+  text-decoration:underline;
+}
+.pagination-numbers .pagination-current{
+  background:var(--colour-fg-strong);
+  color:var(--colour-white);
+}
+.pagination-numbers .pagination-ellipsis{
+  color:var(--colour-fg-muted);font-weight:400;
+}

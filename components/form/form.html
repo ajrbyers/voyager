@@ -1,0 +1,79 @@
+<!-- Text input with hint, optional -->
+<div class="form-group">
+  <label class="form-label" for="full-name">Full name (optional)</label>
+  <span class="form-hint" id="full-name-hint">As it should appear on the published article</span>
+  <input class="form-input" id="full-name" type="text" aria-describedby="full-name-hint">
+</div>
+
+<!-- Width-modified input (e.g. postcode) -->
+<div class="form-group">
+  <label class="form-label" for="postcode">Postcode</label>
+  <input class="form-input form-input-width-10" id="postcode" type="text" autocomplete="postal-code">
+</div>
+
+<!-- Textarea with character count (form-character-count wraps form-group) -->
+<div class="form-character-count" data-maxlength="4000">
+  <div class="form-group">
+    <label class="form-label" for="decision-letter">Decision letter</label>
+    <textarea class="form-textarea" id="decision-letter" rows="5"
+              maxlength="4000"
+              aria-describedby="decision-letter-info"></textarea>
+  </div>
+  <div id="decision-letter-info" class="form-character-count-message">
+    You can enter up to 4,000 characters
+  </div>
+</div>
+
+<!-- Radios in a fieldset -->
+<div class="form-group">
+  <fieldset class="form-fieldset">
+    <legend class="form-legend">What is your decision?</legend>
+    <div class="form-radios">
+      <label class="form-radio">
+        <input type="radio" name="decision">
+        <span class="form-radio-text"><strong>Accept submission</strong>
+          <span class="form-radio-hint">Move to the next workflow stage.</span>
+        </span>
+      </label>
+      <label class="form-radio">
+        <input type="radio" name="decision" checked>
+        <span class="form-radio-text"><strong>Request minor revisions</strong>
+          <span class="form-radio-hint">Author addresses small changes.</span>
+        </span>
+      </label>
+      <label class="form-radio">
+        <input type="radio" name="decision">
+        <span class="form-radio-text"><strong>Reject submission</strong></span>
+      </label>
+    </div>
+  </fieldset>
+</div>
+
+<!-- Date input -->
+<div class="form-group">
+  <fieldset class="form-fieldset" role="group" aria-describedby="due-date-hint">
+    <legend class="form-legend">Due date</legend>
+    <span class="form-hint" id="due-date-hint">For example, 27 5 2026</span>
+    <div class="form-date-input">
+      <div class="form-date-input-item">
+        <label class="form-date-input-label" for="due-date-day">Day</label>
+        <input type="text" inputmode="numeric" class="form-input form-input-width-2" id="due-date-day">
+      </div>
+      <div class="form-date-input-item">
+        <label class="form-date-input-label" for="due-date-month">Month</label>
+        <input type="text" inputmode="numeric" class="form-input form-input-width-2" id="due-date-month">
+      </div>
+      <div class="form-date-input-item">
+        <label class="form-date-input-label" for="due-date-year">Year</label>
+        <input type="text" inputmode="numeric" class="form-input form-input-width-4" id="due-date-year">
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<!-- Error state -->
+<div class="form-group form-group-error">
+  <label class="form-label" for="due-date-2">Due date</label>
+  <p class="form-error-message" id="due-date-2-error"><span class="visually-hidden">Error:</span> Enter a date in the future</p>
+  <input class="form-input form-input-error" id="due-date-2" type="date" value="2026-01-01" aria-describedby="due-date-2-error">
+</div>

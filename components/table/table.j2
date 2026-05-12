@@ -1,0 +1,58 @@
+{# table — data table.
+
+   Compose with three macros:
+     - table(bordered=True)        wrapper with thead / tbody slots via call
+     - thead()                     header row wrapper
+     - tr()                        body row wrapper
+     - th(label, scope="col")      header cell
+     - td(content, right=False)    body cell
+
+   Or for very simple tables, use the data-driven shortcut:
+     - simple_table(headers, rows, bordered=True)
+
+   Usage (composable):
+     {% call table() %}
+       {% call thead() %}
+         {{ th("File ID") }}{{ th("File name") }}{{ th("Uploaded") }}{{ th("Action") }}
+       {% endcall %}
+       {% call tr() %}
+         {{ td('<span class="mono">8421</span>') }}
+         {{ td("okafor_lstm_v2.docx") }}
+         {{ td("2026-04-29 09:14") }}
+         {{ td('<a href="#">Download</a>', right=True) }}
+       {% endcall %}
+     {% endcall %}
+#}
+{% macro table(bordered=True) %}
+<table class="table{% if bordered %} table-bordered{% endif %}">
+  {{ caller() }}
+</table>
+{% endmacro %}
+
+{% macro thead() %}<thead><tr>{{ caller() }}</tr></thead>{% endmacro %}
+
+{% macro tr() %}
+{# tbody is implicit here; tables that mix multiple body groups should
+   wrap them manually. #}
+<tbody><tr>{{ caller() }}</tr></tbody>
+{% endmacro %}
+
+{% macro th(label, scope="col") %}<th scope="{{ scope }}">{{ label }}</th>{% endmacro %}
+
+{% macro td(content, right=False) %}
+<td{% if right %} class="right"{% endif %}>{{ content|safe }}</td>
+{% endmacro %}
+
+{# Data-driven shortcut for simple cases. #}
+{% macro simple_table(headers=[], rows=[], bordered=True) %}
+<table class="table{% if bordered %} table-bordered{% endif %}">
+  <thead>
+    <tr>{% for h in headers %}<th scope="col">{{ h }}</th>{% endfor %}</tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+      <tr>{% for cell in row %}<td>{{ cell|safe }}</td>{% endfor %}</tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endmacro %}

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navigation — Voyager</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="#">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation">
+    <span class="site-sidebar-section">Get started</span>
+    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
+      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
+    <span class="site-sidebar-section">Foundations</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../foundations/tokens.html">Tokens</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/typography.html">Typography</a></li>
+      <li><a class="site-sidebar-link" href="../foundations/layout.html">Layout</a></li>
+    </ul>
+    <span class="site-sidebar-section">Components</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="page-header.html">Page header</a></li>
+      <li><a class="site-sidebar-link" href="button.html">Button</a></li>
+      <li><a class="site-sidebar-link" href="icon.html">Icon</a></li>
+      <li><a class="site-sidebar-link" href="summary-block.html">Summary block</a></li>
+      <li><a class="site-sidebar-link" href="information.html">Information</a></li>
+      <li><a class="site-sidebar-link" href="nav.html" aria-current="page">Navigation</a></li>
+      <li><a class="site-sidebar-link" href="back-link.html">Back link</a></li>
+      <li><a class="site-sidebar-link" href="pagination.html">Pagination</a></li>
+      <li><a class="site-sidebar-link" href="tag.html">Tag &amp; chip</a></li>
+      <li><a class="site-sidebar-link" href="table.html">Table</a></li>
+      <li><a class="site-sidebar-link" href="form.html">Form</a></li>
+      <li><a class="site-sidebar-link" href="modal.html">Modal</a></li>
+      <li><a class="site-sidebar-link" href="details.html">Details</a></li>
+      <li><a class="site-sidebar-link" href="panel.html">Panel</a></li>
+      <li><a class="site-sidebar-link" href="stat.html">Stat &amp; queue</a></li>
+      <li><a class="site-sidebar-link" href="steps.html">Steps</a></li>
+      <li><a class="site-sidebar-link" href="avatar.html">Avatar</a></li>
+      <li><a class="site-sidebar-link" href="section-divider.html">Section divider</a></li>
+    </ul>
+    <span class="site-sidebar-section">Inbox pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="folder-list.html">Folder list</a></li>
+      <li><a class="site-sidebar-link" href="article-card.html">Article card</a></li>
+      <li><a class="site-sidebar-link" href="filter-bar.html">Filter bar</a></li>
+      <li><a class="site-sidebar-link" href="progress-bar.html">Progress bar</a></li>
+    </ul>
+    <span class="site-sidebar-section">Manager pattern</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="function-card.html">Function card</a></li>
+      <li><a class="site-sidebar-link" href="function-filter.html">Function filter</a></li>
+    </ul>
+    <span class="site-sidebar-section">Examples</span>
+    <ul>
+      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
+      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
+      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
+    </ul>
+  </nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Navigation</h1>
+    <p class="site-page-lede">
+      Four navigation patterns: the <strong>app header</strong> at the top, the
+      <strong>sidebar nav</strong> on the left, <strong>breadcrumbs</strong> above
+      the page title, and <strong>tabs</strong> for filtered views of the same page.
+    </p>
+
+    <h2>App header</h2>
+    <p>One per page. Houses the brand, the primary nav, and the account menu.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <header class="app-header">
+          <a class="app-header-brand" href="#">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5zm0 2.18L19.5 8 12 11.82 4.5 8 12 4.18zM4 9.5l7 3.5v8l-7-3.5v-8zm9 11.5v-8l7-3.5v8l-7 3.5z"/></svg>
+            Janeway
+            <span class="app-header-chip">Editorial</span>
+          </a>
+          <nav class="app-header-nav" aria-label="Primary"><a href="#">Editorial</a><a href="#">Production</a><a href="#">Reports</a></nav>
+          <button type="button" class="app-header-avatar" aria-label="Account menu — signed in as t.kowalski">t.kowalski</button>
+        </header>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;header class="app-header"&gt;
+  &lt;a class="app-header-brand" href="/"&gt;
+    &lt;svg …&gt;&lt;/svg&gt; Janeway
+    &lt;span class="app-header-chip"&gt;Editorial&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;nav class="app-header-nav" aria-label="Primary"&gt;
+    &lt;a href="#"&gt;Editorial&lt;/a&gt;
+    &lt;a href="#"&gt;Production&lt;/a&gt;
+    &lt;a href="#"&gt;Reports&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;button type="button" class="app-header-avatar"
+          aria-label="Account menu — signed in as t.kowalski"&gt;t.kowalski&lt;/button&gt;
+&lt;/header&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/app-header/app-header.j2" import app_header, app_header_link %}
+
+{% call app_header(service="Editorial", user={"name": "t.kowalski"}) %}
+  {{ app_header_link("Editorial",  url="/editorial") }}
+  {{ app_header_link("Production", url="/production") }}
+  {{ app_header_link("Reports",    url="/reports") }}
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Breadcrumbs</h2>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Articles</a></li>
+            <li><a href="#"><span class="mono">#1247</span> Okafor</a></li>
+            <li aria-current="page">Peer Review</li>
+          </ol>
+        </nav>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;nav class="breadcrumbs" aria-label="Breadcrumb"&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;a href="/"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/articles"&gt;Articles&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mono"&gt;#1247&lt;/span&gt; Okafor&lt;/a&gt;&lt;/li&gt;
+    &lt;li aria-current="page"&gt;Peer Review&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/breadcrumbs/breadcrumbs.j2" import breadcrumbs, breadcrumb %}
+
+{% call breadcrumbs() %}
+  {{ breadcrumb("Dashboard", url="/") }}
+  {{ breadcrumb("Articles",  url="/articles") }}
+  {{ breadcrumb("#1247 Okafor", url="#") }}
+  {{ breadcrumb("Peer Review", current=True) }}
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Tabs (filter)</h2>
+    <p>Real navigation links — each tab is a different filtered view. Use <code>aria-current="true"</code> on the active link, not <code>role="tab"</code> (this is not an ARIA tabs widget).</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <nav class="tabs" aria-label="Review rounds">
+          <ul>
+            <li><a href="#">Round 1 <span class="tabs-count">closed</span></a></li>
+            <li><a href="#" aria-current="true">Round 2 <span class="tabs-count">active</span></a></li>
+          </ul>
+        </nav>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;nav class="tabs" aria-label="Review rounds"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="?round=1"&gt;Round 1 &lt;span class="tabs-count"&gt;closed&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="?round=2" aria-current="true"&gt;Round 2 &lt;span class="tabs-count"&gt;active&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/tabs/tabs.j2" import tabs, tab %}
+
+{% call tabs("Review rounds") %}
+  {{ tab("Round 1", url="?round=1", count="closed") }}
+  {{ tab("Round 2", url="?round=2", count="active", current=True) }}
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+    <h2>Sidebar nav</h2>
+    <p>Left rail with grouped sections. Each section has an <code>&lt;h2&gt;</code> label and a <code>&lt;ul&gt;</code> of links.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <nav class="sidebar-nav" aria-label="Editorial navigation">
+          <div class="sidebar-nav-journal">
+            <span class="sidebar-nav-mark" aria-hidden="true">JE</span>
+            <div>
+              <div class="sidebar-nav-name">Journal of Energy Modelling</div>
+              <div class="sidebar-nav-sub">Editor in Chief view</div>
+            </div>
+          </div>
+          <h2 class="sidebar-nav-section">Workflow</h2>
+          <ul>
+            <li><a href="#" class="sidebar-nav-link">Unassigned <span class="sidebar-nav-count" aria-label="7 articles">7</span></a></li>
+            <li><a href="#" class="sidebar-nav-link" aria-current="page">Peer Review <span class="sidebar-nav-count" aria-label="14 articles">14</span></a></li>
+            <li><a href="#" class="sidebar-nav-link">Copyediting <span class="sidebar-nav-count" aria-label="5 articles">5</span></a></li>
+          </ul>
+        </nav>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;nav class="sidebar-nav" aria-label="Editorial navigation"&gt;
+  &lt;div class="sidebar-nav-journal"&gt;
+    &lt;span class="sidebar-nav-mark" aria-hidden="true"&gt;JE&lt;/span&gt;
+    &lt;div&gt;
+      &lt;div class="sidebar-nav-name"&gt;Journal of Energy Modelling&lt;/div&gt;
+      &lt;div class="sidebar-nav-sub"&gt;Editor in Chief view&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;h2 class="sidebar-nav-section"&gt;Workflow&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#" class="sidebar-nav-link"&gt;Unassigned &lt;span class="sidebar-nav-count" aria-label="7 articles"&gt;7&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="sidebar-nav-link" aria-current="page"&gt;Peer Review …&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/sidebar-nav/sidebar-nav.j2"
+   import sidebar_nav, sidebar_nav_section, sidebar_nav_item %}
+
+{% call sidebar_nav(journal={
+    "mark": "JE",
+    "name": "Journal of Energy Modelling",
+    "sub":  "Editor in Chief view"
+}) %}
+  {% call sidebar_nav_section("Workflow") %}
+    {{ sidebar_nav_item("Unassigned",  url="/unassigned", count=7) }}
+    {{ sidebar_nav_item("Peer Review", url="/review",     count=14, current=True) }}
+    {{ sidebar_nav_item("Copyediting", url="/copyedit",   count=5) }}
+  {% endcall %}
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

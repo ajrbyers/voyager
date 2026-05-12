@@ -1,0 +1,8 @@
+{# tag — small uppercase status label.
+   Args:
+     - label: string
+     - kind:  '' (default blue) | 'green' | 'red' | 'orange' | 'grey' | 'blue'
+#}
+{% macro tag(label, kind="") %}
+<span class="tag{% if kind %} tag-{{ kind }}{% endif %}">{{ label }}</span>
+{% endmacro %}

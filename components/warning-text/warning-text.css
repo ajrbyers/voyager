@@ -1,0 +1,29 @@
+/* Warning text — heavy advisory message for serious consequences.
+   Distinct from inset-text, which is lower-prominence supplementary info.
+   Prefix is a black filled circle with a white "!" — purely visual,
+   the visually-hidden "Warning" prefix carries semantics for AT. */
+
+.warning-text{
+  position:relative;
+  padding:10px 0 10px 56px;
+  margin:0 0 var(--s-5);
+
+  & .warning-text-icon{
+    position:absolute;left:0;top:8px;
+    width:36px;height:36px;border-radius:50%;
+    background:var(--colour-fg-strong);
+    color:var(--colour-canvas);  /* flips with theme so always contrasts */
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:24px;line-height:1;
+    border:3px solid var(--colour-fg-strong);
+    user-select:none;
+  }
+
+  & .warning-text-text{
+    font-size:var(--fs-md);
+    font-weight:700;
+    line-height:1.4;
+    color:var(--colour-fg-strong);
+    display:block;
+  }
+}

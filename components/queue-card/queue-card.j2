@@ -1,0 +1,26 @@
+{# queue-card — bordered card with header, body (stack of stats), foot.
+   Pass content via {% call %}; place stats inside.
+
+   Args:
+     - title:    h2 text
+     - id:       prefix for aria-labelledby
+     - tag:      optional {label, kind} pill in the header
+     - cta:      optional {label, url} for the foot CTA
+#}
+{% macro queue_card(title, id="", tag=None, cta=None) %}
+{%- set _id = id or ('qc-' ~ title|lower|replace(' ','-')) -%}
+<section class="queue-card" aria-labelledby="{{ _id }}">
+  <div class="queue-card-head">
+    <h2 class="queue-card-title" id="{{ _id }}">{{ title }}</h2>
+    {% if tag %}<span class="tag tag-{{ tag.kind|default('grey') }}">{{ tag.label }}</span>{% endif %}
+  </div>
+  <div class="queue-card-body">
+    {{ caller() }}
+  </div>
+  {% if cta %}
+  <div class="queue-card-foot">
+    <a href="{{ cta.url }}" class="btn">{{ cta.label }}</a>
+  </div>
+  {% endif %}
+</section>
+{% endmacro %}

@@ -1,0 +1,45 @@
+/* Modal — dialog with backdrop, header, body, footer.
+   Show by adding .is-open to .modal-backdrop. JS handles ESC and
+   focus management; this stylesheet only positions and styles. */
+
+.modal-backdrop{
+  position:fixed;inset:0;
+  background:rgba(11,12,12,0.55);
+  display:none;
+  align-items:center;justify-content:center;
+  padding:var(--s-4);z-index:200;
+}
+.modal-backdrop.is-open{display:flex}
+
+.modal{
+  background:var(--colour-canvas);
+  width:100%;max-width:560px;max-height:90vh;
+  display:flex;flex-direction:column;
+  border:1px solid var(--colour-border-component);
+  box-shadow:0 16px 32px rgba(11,12,12,0.2);
+
+  & .modal-head{
+    padding:var(--s-3) var(--s-4);
+    background:var(--colour-surface-grey);
+    border-bottom:1px solid var(--colour-border-component);
+    display:flex;align-items:center;justify-content:space-between;
+    gap:var(--s-3);
+  }
+  & .modal-title{margin:0;font-size:var(--fs-h3);font-weight:700}
+
+  & .modal-close{
+    background:transparent;border:0;cursor:pointer;
+    width:28px;height:28px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;line-height:1;
+    color:var(--colour-fg);
+  }
+
+  & .modal-body{padding:var(--s-4);overflow:auto}
+
+  & .modal-foot{
+    padding:var(--s-3) var(--s-4);
+    border-top:1px solid var(--colour-border-component);
+    display:flex;gap:var(--s-2);justify-content:flex-end;flex-wrap:wrap;
+  }
+}

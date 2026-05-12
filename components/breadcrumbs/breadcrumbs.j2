@@ -1,0 +1,26 @@
+{# breadcrumbs — accessible breadcrumb trail.
+
+   Compose with two macros:
+     - breadcrumbs()      wrapper
+     - breadcrumb(label, url=None, current=False)
+       Items without a url render as the current page.
+
+   Usage:
+     {% call breadcrumbs() %}
+       {{ breadcrumb("Dashboard", url="/") }}
+       {{ breadcrumb("Articles",  url="/articles") }}
+       {{ breadcrumb("Peer Review", current=True) }}
+     {% endcall %}
+#}
+{% macro breadcrumbs(label="Breadcrumb") %}
+<nav class="breadcrumbs" aria-label="{{ label }}">
+  <ol>{{ caller() }}</ol>
+</nav>
+{% endmacro %}
+
+{% macro breadcrumb(label, url=None, current=False) %}
+<li{% if current or not url %} aria-current="page"{% endif %}>
+  {% if url %}<a href="{{ url }}">{{ label }}</a>
+  {% else %}{{ label }}{% endif %}
+</li>
+{% endmacro %}

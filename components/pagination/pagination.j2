@@ -1,0 +1,45 @@
+{# pagination — GDS-inspired Previous / Next + numbered pages.
+
+   Args:
+     - current:    integer, current page number (1-indexed)
+     - total:      integer, total number of pages
+     - url_for:    a callable or string template that yields a URL
+                   for a given page. In Django templates pre-compute and
+                   pass a list of {n, url} dicts via `pages` instead.
+
+   Simpler version: pass `prev_url`, `next_url`, and `pages` (list of
+   {n, url, current?, ellipsis?}). The macro just renders the chrome. #}
+{% macro pagination(prev_url=None, prev_label="", next_url=None, next_label="", pages=[]) %}
+<nav class="pagination" aria-label="Pagination">
+  <ul>
+    {% if prev_url %}
+    <li class="pagination-prev">
+      <a href="{{ prev_url }}" rel="prev">
+        <span class="pagination-direction">‹ Previous</span>
+        {% if prev_label %}<span class="pagination-label">{{ prev_label }}</span>{% endif %}
+      </a>
+    </li>
+    {% endif %}
+
+    {% if pages %}
+    <li class="pagination-numbers">
+      {% for p in pages %}
+        {% if p.ellipsis %}<span class="pagination-ellipsis">…</span>
+        {% elif p.current %}<span class="pagination-current" aria-current="page">{{ p.n }}</span>
+        {% else %}<a href="{{ p.url }}">{{ p.n }}</a>
+        {% endif %}
+      {% endfor %}
+    </li>
+    {% endif %}
+
+    {% if next_url %}
+    <li class="pagination-next">
+      <a href="{{ next_url }}" rel="next">
+        <span class="pagination-direction">Next ›</span>
+        {% if next_label %}<span class="pagination-label">{{ next_label }}</span>{% endif %}
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endmacro %}

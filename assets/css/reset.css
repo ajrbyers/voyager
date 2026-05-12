@@ -1,0 +1,18 @@
+/* ===========================================================
+   reset.css — minimal, opinionated reset
+   =========================================================== */
+
+*,*::before,*::after{box-sizing:border-box}
+
+html,body{margin:0;padding:0}
+
+img,svg,video{display:block;max-width:100%}
+
+button{font-family:inherit;cursor:pointer}
+
+/* Remove default margins inside common headings/lists; element layer
+   sets them deliberately. */
+h1,h2,h3,h4,h5,h6,p,figure,blockquote,dl,dd{margin:0}
+
+/* Forms inherit type by default */
+input,select,textarea,button{font:inherit;color:inherit}

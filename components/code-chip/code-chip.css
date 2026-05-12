@@ -1,0 +1,11 @@
+/* code-chip — inline monospace label for IDs, branch names, SHAs */
+.code-chip{
+  font-family:var(--font-mono);
+  background:var(--colour-canvas-muted);
+  color:var(--colour-fg);
+  padding:1px 6px;
+  border-radius:0;
+  font-size:0.88em;
+  border:1px solid var(--colour-border-muted);
+  white-space:nowrap;
+}

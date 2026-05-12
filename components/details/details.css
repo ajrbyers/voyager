@@ -1,0 +1,49 @@
+/* Details / disclosure — GDS-inspired collapsible block.
+   Uses the native <details>/<summary> elements so it works without JS.
+   The summary is a link-styled trigger with a triangle that rotates
+   when open. The body sits inside a left-bordered well. */
+
+.details{
+  display:block;
+  margin:0 0 var(--s-5);
+  font-family:var(--font-sans);
+  font-size:var(--fs-md);
+}
+
+.details summary{
+  display:inline-block;
+  color:var(--colour-link);
+  cursor:pointer;
+  font-weight:400;
+  text-decoration:underline;
+  text-decoration-thickness:1px;text-underline-offset:0.1em;
+  padding:0 0 0 18px;
+  position:relative;
+}
+.details summary::-webkit-details-marker{display:none}
+.details summary{list-style:none}
+
+.details summary::before{
+  content:"";
+  position:absolute;left:0;top:7px;
+  width:0;height:0;
+  border-top:6px solid transparent;
+  border-bottom:6px solid transparent;
+  border-left:7px solid currentColor;
+  transition:transform 0.1s ease;
+}
+.details[open] summary::before{
+  transform:rotate(90deg);
+}
+.details summary:hover{
+  color:var(--colour-link-hover);
+  text-decoration-thickness:3px;
+}
+
+.details-body{
+  margin-top:var(--s-3);
+  padding:var(--s-3) 0 var(--s-3) var(--s-4);
+  border-left:4px solid var(--colour-border-component);
+}
+.details-body > *:first-child{margin-top:0}
+.details-body > *:last-child{margin-bottom:0}

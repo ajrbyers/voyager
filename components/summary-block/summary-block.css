@@ -1,0 +1,86 @@
+/* Summary block — bordered container with optional grey header strip
+   (title + actions) and a body that typically holds a summary list.
+   Replaces ad-hoc "card" wrappers across the system. */
+
+.summary-block{
+  border:1px solid var(--colour-border-component);
+  background:var(--colour-canvas);
+  margin-bottom:var(--s-5);
+
+  & .summary-block-head{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:var(--s-3);
+    padding:var(--s-3) var(--s-4);
+    background:var(--colour-surface-grey);
+    border-bottom:1px solid var(--colour-border-component);
+  }
+
+  & .summary-block-title{
+    margin:0;
+    font-size:var(--fs-h3);font-weight:700;
+    color:var(--colour-fg-strong);
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  }
+
+  & .summary-block-meta{
+    font-family:var(--font-mono);
+    font-size:var(--fs-sm);
+    color:var(--colour-fg-muted);
+    font-weight:400;
+  }
+
+  & .summary-block-actions{
+    display:flex;align-items:center;gap:14px;
+    font-size:var(--fs-sm);
+  }
+  & .summary-block-actions a{
+    color:var(--colour-link);font-weight:400;
+  }
+
+  & .summary-block-body{padding:var(--s-4)}
+  & .summary-block-body-flush{padding:0}
+}
+
+/* Variant: clean header (white, no grey) — for reviewer cards
+   where the head feels lighter alongside the visible status tag. */
+.summary-block.summary-block-clean .summary-block-head{
+  background:var(--colour-canvas);
+}
+
+/* ---------------- Summary list ---------------- */
+/* Pairs with summary-block. Each row is a div with dt/dd/dd
+   (label / value / change). The third dd carries the "Change" link. */
+
+.summary-list{
+  margin:0;padding:0;list-style:none;
+  font-size:var(--fs-base);line-height:1.45;
+}
+.summary-list > div{
+  display:grid;
+  grid-template-columns:160px 1fr auto;
+  gap:var(--s-4);
+  padding:8px var(--s-4);
+  border-bottom:1px solid var(--colour-border-component);
+}
+.summary-block-body-flush .summary-list > div:last-child{
+  border-bottom:0;
+}
+.summary-list dt{
+  font-weight:600;margin:0;color:var(--colour-fg-strong);
+}
+.summary-list dd{margin:0;color:var(--colour-fg-strong)}
+.summary-list .summary-list-change{text-align:right}
+.summary-list .summary-list-change a{
+  font-weight:400;font-size:var(--fs-sm);
+}
+
+@media (max-width:600px){
+  .summary-list > div{
+    grid-template-columns:1fr;
+    gap:2px;
+    padding:8px var(--s-4);
+  }
+  .summary-list .summary-list-change{
+    text-align:left;margin-top:4px;
+  }
+}

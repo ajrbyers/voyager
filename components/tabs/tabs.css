@@ -1,0 +1,45 @@
+/* Tabs — filter selectors styled as Primer-inspired underline tabs.
+   These are real navigation links (each tab is a different
+   filtered view), NOT an ARIA tabs widget. Use aria-current="true"
+   on the active link. */
+
+.tabs{
+  border-bottom:1px solid var(--colour-border);
+  background:var(--colour-canvas);
+  font-family:var(--font-system);
+  margin-bottom:var(--s-5);
+
+  & ul{list-style:none;margin:0;padding:0;display:flex;gap:2px}
+  & li{display:inline-flex}
+
+  & a{
+    padding:10px 14px;
+    font-size:var(--fs-base);
+    color:var(--colour-fg);
+    border-bottom:2px solid transparent;
+    text-decoration:none;
+    display:inline-flex;align-items:center;gap:6px;
+    margin-bottom:-1px;
+  }
+  & a:hover{
+    color:var(--colour-accent);
+    background:var(--colour-canvas-muted);
+    text-decoration:none;
+  }
+  & a[aria-current="true"]{
+    border-bottom-color:#fd8c73;
+    font-weight:600;
+    color:var(--colour-fg);
+  }
+
+  & .tabs-count{
+    background:var(--colour-canvas-inset);
+    color:var(--colour-fg);
+    border-radius:0;
+    font-size:11px;padding:1px 7px;font-weight:500;
+  }
+  & a[aria-current="true"] .tabs-count{
+    background:var(--colour-accent-subtle);
+    color:var(--colour-accent);
+  }
+}

@@ -1,0 +1,45 @@
+/* Panel — large confirmation block shown at the top of a completion
+   page. Used after a workflow action completes: "Decision sent · DEC-2026-091".
+   Defaults to GOV.UK green; success/error/info variants compose. */
+
+.panel{
+  margin:0 0 var(--s-6);
+  padding:var(--s-6) var(--s-4) var(--s-5);
+  background:var(--colour-success);
+  color:var(--colour-white);
+  text-align:center;
+  font-family:var(--font-sans);
+  border:5px solid transparent;
+}
+
+/* Selectors nested under .panel keep specificity high enough to beat
+   ambient element-selector rules from the surrounding page. */
+.panel .panel-title{
+  margin:0 0 var(--s-3);
+  font-size:1.875rem;font-weight:700;line-height:1.05;
+  color:inherit;
+}
+.panel .panel-body{
+  font-size:1.25rem;line-height:1.31579;
+  color:inherit;
+}
+.panel .panel-body strong{font-weight:700}
+.panel .panel-body a{color:inherit;text-decoration:underline;text-decoration-thickness:2px}
+.panel .panel-body p{margin:0 0 var(--s-2);color:inherit}
+.panel .panel-body p:last-child{margin:0}
+
+/* Variants */
+.panel.panel-warning{background:var(--colour-warning);color:var(--colour-fg-strong)}
+.panel.panel-error{background:var(--colour-error)}
+.panel.panel-info{background:var(--colour-info)}
+
+/* Dark mode — coloured panels need dark text on the brighter hues. */
+:root[data-theme="dark"] .panel,
+:root[data-theme="dark"] .panel.panel-error,
+:root[data-theme="dark"] .panel.panel-info,
+:root[data-theme="dark"] .panel.panel-warning{
+  color:var(--colour-dark-canvas);
+}
+:root[data-theme="dark"] .panel a{
+  color:var(--colour-dark-canvas);
+}

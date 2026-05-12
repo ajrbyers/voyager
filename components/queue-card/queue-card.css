@@ -1,0 +1,28 @@
+/* Queue card — bordered container that frames a stack of stats
+   plus a header strip and a footer CTA. Used on dashboards to
+   represent a workflow queue (Reviewer, Copyeditor, Editor, …). */
+
+.queue-card{
+  border:1px solid var(--colour-border-component);
+  background:var(--colour-canvas);
+  display:flex;flex-direction:column;
+
+  & .queue-card-head{
+    padding:var(--s-3) var(--s-4);
+    background:var(--colour-surface-grey);
+    border-bottom:1px solid var(--colour-border-component);
+    display:flex;align-items:center;justify-content:space-between;
+    gap:var(--s-3);
+  }
+  & .queue-card-title{
+    margin:0;font-size:var(--fs-h3);font-weight:700;
+  }
+  & .queue-card-body{
+    padding:0 var(--s-4);flex:1;
+  }
+  & .queue-card-foot{
+    padding:var(--s-3) var(--s-4);
+    border-top:1px solid var(--colour-border-component);
+    display:flex;justify-content:flex-end;
+  }
+}

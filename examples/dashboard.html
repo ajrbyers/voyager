@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inbox — Journal of Energy Modelling</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/example.css">
+<link rel="stylesheet" href="dashboard.css">
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div class="progress-bar" aria-hidden="true"></div>
+
+<aside class="example-banner" aria-label="Voyager reference page">
+  <span class="example-banner-tag">Reference</span>
+  Voyager example — built only from documented components
+  <span class="example-banner-spacer"></span>
+  <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button>
+  <a href="../index.html">Back to Voyager</a>
+</aside>
+
+<header class="app-header">
+  <a class="app-header-brand" href="#">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5zm0 2.18L19.5 8 12 11.82 4.5 8 12 4.18zM4 9.5l7 3.5v8l-7-3.5v-8zm9 11.5v-8l7-3.5v8l-7 3.5z"/></svg>
+    Janeway
+    <span class="app-header-chip">Editorial</span>
+  </a>
+  <nav class="app-header-nav" aria-label="Primary">
+    <a href="#">Inbox</a>
+    <a href="manager.html">Manager</a>
+    <a href="#">Reports</a>
+  </nav>
+  <button type="button" class="app-header-avatar" aria-label="Account menu — signed in as t.kowalski">t.kowalski</button>
+</header>
+
+<div class="inbox-shell">
+
+  <nav class="folder-list" aria-label="Inbox folders">
+    <div class="folder-list-search">
+      <label class="visually-hidden" for="inbox-search">Search articles</label>
+      <input type="search" id="inbox-search" class="form-input" placeholder="Search articles…" autocomplete="off">
+    </div>
+
+    <div class="folder-list-scroll">
+      <ul>
+        <li><h2 class="folder-list-section folder-list-section-first">Workflow</h2></li>
+        <li><a href="#" class="folder-item">
+          <span class="folder-item-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span class="folder-item-name">Unassigned</span>
+          <span class="folder-item-count folder-item-count-warning">7</span>
+        </a></li>
+        <li><a href="#" class="folder-item is-active" aria-current="page">
+          <span class="folder-item-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+          <span class="folder-item-name">Peer Review</span>
+          <span class="folder-item-count folder-item-count-critical">14</span>
+        </a></li>
+        <li><a href="#" class="folder-item">
+          <span class="folder-item-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+          <span class="folder-item-name">Copyediting</span>
+          <span class="folder-item-count">5</span>
+        </a></li>
+        <li><a href="#" class="folder-item">
+          <span class="folder-item-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg></span>
+          <span class="folder-item-name">Typesetting</span>
+          <span class="folder-item-count">3</span>
+        </a></li>
+        <li><a href="#" class="folder-item">
+          <span class="folder-item-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span class="folder-item-name">Proofing</span>
+          <span class="folder-item-count">2</span>
+        </a></li>
+        <li><a href="#" class="folder-item">
+          <span class="folder-item-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+          <span class="folder-item-name">Pre-publication</span>
+        </a></li>
+
+        <li><h2 class="folder-list-section">Personal</h2></li>
+        <li><a href="#" class="folder-item">
+          <span class="folder-item-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span>
+          <span class="folder-item-name">My alerts</span>
+          <span class="folder-item-count folder-item-count-critical">3</span>
+        </a></li>
+        <li><a href="#" class="folder-item">
+          <span class="folder-item-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          <span class="folder-item-name">Snoozed</span>
+          <span class="folder-item-count">4</span>
+        </a></li>
+
+        <li><h2 class="folder-list-section">Custom</h2></li>
+        <li class="folder-item folder-item-custom">
+          <a href="#" class="folder-item-link">
+            <span class="folder-item-dot folder-item-dot-pink"></span>
+            <span class="folder-item-name">Climate &amp; energy issue</span>
+            <span class="folder-item-count">11</span>
+          </a>
+          <div class="folder-item-actions">
+            <button type="button" class="folder-item-action-btn" aria-label="Edit folder"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button type="button" class="folder-item-action-btn folder-item-action-btn-danger" aria-label="Delete folder"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+          </div>
+        </li>
+        <li class="folder-item folder-item-custom">
+          <a href="#" class="folder-item-link">
+            <span class="folder-item-dot folder-item-dot-teal"></span>
+            <span class="folder-item-name">Replication studies</span>
+            <span class="folder-item-count folder-item-count-warning">6</span>
+          </a>
+          <div class="folder-item-actions">
+            <button type="button" class="folder-item-action-btn" aria-label="Edit folder"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button type="button" class="folder-item-action-btn folder-item-action-btn-danger" aria-label="Delete folder"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <button type="button" class="folder-list-add">+ New folder</button>
+  </nav>
+
+  <main class="inbox-content" id="main">
+
+    <div class="inbox-sticky">
+    <header class="inbox-toolbar">
+      <div class="inbox-toolbar-left">
+        <h1 class="inbox-toolbar-title">Peer Review</h1>
+        <span class="inbox-toolbar-count">14 articles</span>
+        <span class="inbox-toolbar-updated">Updated 2 min ago · <button type="button" class="inbox-toolbar-refresh">Refresh</button></span>
+      </div>
+      <div class="inbox-toolbar-right">
+        <span class="inbox-sort-label">Sort:</span>
+        <a href="#" class="inbox-sort-btn is-active" aria-current="true">Severity</a>
+        <a href="#" class="inbox-sort-btn">Age</a>
+        <a href="#" class="inbox-sort-btn">Title</a>
+        <a href="#" class="inbox-sort-btn">Alerts</a>
+      </div>
+    </header>
+
+    <div class="filter-bar" role="search" aria-label="Filter articles">
+      <div class="filter-bar-controls">
+        <span class="filter-bar-label">Filter:</span>
+        <label class="visually-hidden" for="f-editor">Editor</label>
+        <select class="filter-select" id="f-editor">
+          <option value="">All editors</option>
+          <option value="1">Dr Amira Hassan</option>
+          <option value="2" selected>Prof Marcus Whitfield</option>
+          <option value="3">Dr Sanjay Patel</option>
+        </select>
+        <label class="visually-hidden" for="f-section">Section</label>
+        <select class="filter-select" id="f-section">
+          <option value="">All sections</option>
+          <option value="article">Article</option>
+          <option value="review">Review</option>
+        </select>
+        <label class="visually-hidden" for="f-age">Age</label>
+        <select class="filter-select" id="f-age">
+          <option value="">Any age</option>
+          <option value="14">Under 2 weeks</option>
+          <option value="30" selected>Over 30 days</option>
+        </select>
+      </div>
+      <div class="filter-bar-chips">
+        <span class="filter-chip">
+          Whitfield
+          <a href="#" class="filter-chip-remove" aria-label="Remove editor filter">×</a>
+        </span>
+        <span class="filter-chip">
+          Over 30 days
+          <a href="#" class="filter-chip-remove" aria-label="Remove age filter">×</a>
+        </span>
+        <a href="#" class="filter-bar-clear">Clear filters</a>
+      </div>
+    </div>
+
+    </div><!-- /inbox-sticky -->
+
+    <div class="inbox-cards-wrap">
+    <div class="inbox-card-list">
+
+      <div class="section-divider section-divider-critical section-divider-flush">
+        <span class="section-divider-dot" aria-hidden="true"></span>
+        <h2 class="section-divider-label">Critical · 2</h2>
+        <span class="section-divider-line"></span>
+      </div>
+
+      <article class="article-card article-card-critical">
+        <div class="article-card-inner">
+          <div class="article-card-body">
+            <div class="article-card-meta-top">
+              <span class="article-card-id">#1247</span>
+              <span class="tag tag-grey">Article</span>
+              <span class="article-card-spacer"></span>
+              <span class="article-card-days article-card-days-critical" title="62 days in workflow · since 9 Mar 2026">62d</span>
+            </div>
+            <h3 class="article-card-title">
+              <a class="article-card-title-link" href="peer-review.html">Reproducibility of LSTM forecasts for short-term electricity demand: a multi-region replication study</a>
+            </h3>
+            <div class="article-card-meta-bottom">
+              <span class="inbox-byline-person"><span class="avatar avatar-purple" aria-hidden="true">AO</span>Okafor <span class="muted">+2</span></span>
+              <span class="article-card-sep">·</span>
+              <span class="inbox-byline-person"><span class="avatar avatar-purple" aria-hidden="true">AH</span>Hassan</span>
+            </div>
+          </div>
+          <div class="article-card-actions">
+            <button type="button" class="btn btn-small" aria-label="Snooze article"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></button>
+            <a href="peer-review.html" class="btn btn-small btn-primary" aria-label="Open article">Open →</a>
+          </div>
+        </div>
+        <div class="article-card-alerts">
+          <a href="#" class="alert-pill alert-pill-critical">Reviewer overdue 12 days</a>
+          <a href="#" class="alert-pill alert-pill-critical">Revision R-2026-091 overdue 4 days</a>
+          <a href="#" class="alert-pill alert-pill-warning">Whitfield not acknowledged</a>
+        </div>
+      </article>
+
+      <article class="article-card article-card-critical">
+        <div class="article-card-inner">
+          <div class="article-card-body">
+            <div class="article-card-meta-top">
+              <span class="article-card-id">#1239</span>
+              <span class="tag tag-grey">Article</span>
+              <span class="article-card-spacer"></span>
+              <span class="article-card-days article-card-days-critical" title="71 days in workflow · since 28 Feb 2026">71d</span>
+            </div>
+            <h3 class="article-card-title">
+              <a class="article-card-title-link" href="#">Wind generation forecast skill across the North Sea: a hindcast of operational models</a>
+            </h3>
+            <div class="article-card-meta-bottom">
+              <span class="inbox-byline-person"><span class="avatar avatar-teal" aria-hidden="true">JB</span>Bauer <span class="muted">+1</span></span>
+              <span class="article-card-sep">·</span>
+              <span class="muted">No editor assigned</span>
+            </div>
+          </div>
+          <div class="article-card-actions">
+            <button type="button" class="btn btn-small" aria-label="Snooze article"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></button>
+            <a href="#" class="btn btn-small btn-primary">Open →</a>
+          </div>
+        </div>
+        <div class="article-card-alerts">
+          <a href="#" class="alert-pill alert-pill-critical">No editor assigned</a>
+          <a href="#" class="alert-pill alert-pill-warning">All reviews in, no decision</a>
+          <a href="#" class="alert-pill alert-pill-info">Plagiarism check complete</a>
+        </div>
+      </article>
+
+      <div class="section-divider section-divider-warning">
+        <span class="section-divider-dot" aria-hidden="true"></span>
+        <h2 class="section-divider-label">Warning · 2</h2>
+        <span class="section-divider-line"></span>
+      </div>
+
+      <article class="article-card article-card-warning">
+        <div class="article-card-inner">
+          <div class="article-card-body">
+            <div class="article-card-meta-top">
+              <span class="article-card-id">#1252</span>
+              <span class="tag tag-grey">Review</span>
+              <span class="article-card-spacer"></span>
+              <span class="article-card-days article-card-days-warning" title="38 days in workflow">38d</span>
+            </div>
+            <h3 class="article-card-title">
+              <a class="article-card-title-link" href="#">A meta-review of capacity-credit methods for variable renewables</a>
+            </h3>
+            <div class="article-card-meta-bottom">
+              <span class="inbox-byline-person"><span class="avatar avatar-orange" aria-hidden="true">RM</span>Mendes</span>
+              <span class="article-card-sep">·</span>
+              <span class="inbox-byline-person"><span class="avatar avatar-orange" aria-hidden="true">MW</span>Whitfield</span>
+            </div>
+          </div>
+          <div class="article-card-actions">
+            <button type="button" class="btn btn-small" aria-label="Snooze article"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></button>
+            <a href="#" class="btn btn-small btn-primary">Open →</a>
+          </div>
+        </div>
+        <div class="article-card-alerts">
+          <a href="#" class="alert-pill alert-pill-warning">2 of 3 reviewers responded</a>
+          <a href="#" class="alert-pill alert-pill-info">Reviewers invited 12 Apr</a>
+        </div>
+      </article>
+
+      <article class="article-card article-card-warning">
+        <div class="article-card-inner">
+          <div class="article-card-body">
+            <div class="article-card-meta-top">
+              <span class="article-card-id">#1258</span>
+              <span class="tag tag-grey">Article</span>
+              <span class="article-card-spacer"></span>
+              <span class="article-card-days article-card-days-warning" title="32 days in workflow">32d</span>
+            </div>
+            <h3 class="article-card-title">
+              <a class="article-card-title-link" href="#">Sensor placement strategies for low-voltage substations in distribution networks</a>
+            </h3>
+            <div class="article-card-meta-bottom">
+              <span class="inbox-byline-person"><span class="avatar avatar-green" aria-hidden="true">JL</span>Liang <span class="muted">+3</span></span>
+              <span class="article-card-sep">·</span>
+              <span class="inbox-byline-person"><span class="avatar avatar-purple" aria-hidden="true">AH</span>Hassan</span>
+            </div>
+          </div>
+          <div class="article-card-actions">
+            <button type="button" class="btn btn-small" aria-label="Snooze article"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></button>
+            <a href="#" class="btn btn-small btn-primary">Open →</a>
+          </div>
+        </div>
+        <div class="article-card-alerts">
+          <a href="#" class="alert-pill alert-pill-warning">Awaiting acknowledgement</a>
+        </div>
+      </article>
+
+      <div class="section-divider section-divider-info">
+        <span class="section-divider-dot" aria-hidden="true"></span>
+        <h2 class="section-divider-label">Info · 1</h2>
+        <span class="section-divider-line"></span>
+      </div>
+
+      <article class="article-card article-card-info">
+        <div class="article-card-inner">
+          <div class="article-card-body">
+            <div class="article-card-meta-top">
+              <span class="article-card-id">#1263</span>
+              <span class="tag tag-grey">Article</span>
+              <span class="article-card-spacer"></span>
+              <span class="article-card-days" title="18 days in workflow">18d</span>
+            </div>
+            <h3 class="article-card-title">
+              <a class="article-card-title-link" href="#">Electrolyser deployment scenarios for the UK industrial decarbonisation pathway</a>
+            </h3>
+            <div class="article-card-meta-bottom">
+              <span class="inbox-byline-person"><span class="avatar avatar-red" aria-hidden="true">TK</span>Kowalski</span>
+              <span class="article-card-sep">·</span>
+              <span class="inbox-byline-person"><span class="avatar avatar-orange" aria-hidden="true">MW</span>Whitfield</span>
+            </div>
+          </div>
+          <div class="article-card-actions">
+            <button type="button" class="btn btn-small" aria-label="Snooze article"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></button>
+            <a href="#" class="btn btn-small btn-primary">Open →</a>
+          </div>
+        </div>
+        <div class="article-card-alerts">
+          <a href="#" class="alert-pill alert-pill-info">All 3 reviews received</a>
+          <a href="#" class="alert-pill alert-pill-info">Awaiting decision</a>
+        </div>
+      </article>
+
+      <div class="section-divider">
+        <span class="section-divider-dot" aria-hidden="true"></span>
+        <h2 class="section-divider-label">All clear · 1</h2>
+        <span class="section-divider-line"></span>
+      </div>
+
+      <article class="article-card">
+        <div class="article-card-inner">
+          <div class="article-card-body">
+            <div class="article-card-meta-top">
+              <span class="article-card-id">#1270</span>
+              <span class="tag tag-grey">Article</span>
+              <span class="article-card-spacer"></span>
+              <span class="article-card-days" title="9 days in workflow">9d</span>
+            </div>
+            <h3 class="article-card-title">
+              <a class="article-card-title-link" href="#">Demand-side flexibility in residential heat pump fleets: an empirical study</a>
+            </h3>
+            <div class="article-card-meta-bottom">
+              <span class="inbox-byline-person"><span class="avatar avatar-pink" aria-hidden="true">TA</span>Akande</span>
+              <span class="article-card-sep">·</span>
+              <span class="inbox-byline-person"><span class="avatar avatar-green" aria-hidden="true">SP</span>Patel</span>
+            </div>
+          </div>
+          <div class="article-card-actions">
+            <button type="button" class="btn btn-small" aria-label="Snooze article"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></button>
+            <a href="#" class="btn btn-small btn-primary">Open →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    </div><!-- /inbox-cards-wrap -->
+
+  </main>
+
+</div>
+
+</body>
+</html>

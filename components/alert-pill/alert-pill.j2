@@ -1,0 +1,13 @@
+{# alert-pill — small status pill, typically a link.
+   Args:
+     - label:   display text (truncates around 32ex)
+     - kind:    '' | 'critical' | 'warning' | 'info' | 'more'
+     - url:     if set, renders as <a>; else <span>
+#}
+{% macro alert_pill(label, kind="", url=None) %}
+{%- set classes = ['alert-pill'] -%}
+{%- if kind %}{% set classes = classes + ['alert-pill-' ~ kind] %}{% endif -%}
+{%- set cls = classes|join(' ') -%}
+{%- if url -%}<a href="{{ url }}" class="{{ cls }}">{{ label }}</a>
+{%- else -%}<span class="{{ cls }}">{{ label }}</span>{%- endif -%}
+{% endmacro %}

@@ -1,0 +1,129 @@
+/* Button — GOV.UK Design System styling for every variant.
+   Flat shape, no border-radius, 2px solid black bottom shadow,
+   GOV.UK type stack and sizing.
+
+   Default (.btn alone) is the GOV.UK secondary button — grey, used
+   for almost every editorial action. Compose with one of the variants:
+
+     btn-primary   GOV.UK green — the page's main commit action
+     btn-warning   GOV.UK red   — destructive primary action
+     btn-start     Oversized green with arrow — service entry point
+
+   Sizes (compose with the above):
+     btn-small     Compact, for table-row actions and dense toolbars
+     btn-large     Used sparingly for emphasis on landing actions
+*/
+
+.btn{
+  font-family:var(--font-sans);
+  font-size:var(--fs-md);
+  font-weight:400;
+  line-height:1.1875;
+  padding:7px 10px 6px;
+
+  border:2px solid transparent;
+  border-radius:0;
+
+  background:var(--colour-surface-grey);
+  color:var(--colour-fg-strong);
+  box-shadow:0 2px 0 var(--colour-focus-fg);
+
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.btn:hover{
+  background:var(--colour-govuk-grey-1);
+  color:var(--colour-fg-strong);
+  text-decoration:none;
+  box-shadow:0 2px 0 var(--colour-focus-fg);
+}
+.btn:disabled,.btn.is-disabled{
+  opacity:0.5;cursor:not-allowed;
+  box-shadow:0 2px 0 var(--colour-focus-fg);
+}
+
+/* Sizes — minimum 24px hit area (WCAG 2.2 SC 2.5.8). */
+.btn-small{
+  font-size:var(--fs-sm);
+  padding:5px 8px 4px;
+  min-height:24px;
+}
+.btn-large{
+  font-size:var(--fs-lg);
+  padding:9px 14px 8px;
+}
+
+/* Primary — GOV.UK green */
+.btn-primary{
+  background:var(--colour-success);
+  color:var(--colour-white);
+}
+.btn-primary:hover{
+  background:var(--colour-success-dark);
+  color:var(--colour-white);
+}
+
+/* Warning — destructive primary */
+.btn-warning{
+  background:var(--colour-error);
+  color:var(--colour-white);
+}
+.btn-warning:hover{
+  background:var(--colour-error-dark);
+  color:var(--colour-white);
+}
+
+/* Start — oversized GOV.UK CTA with arrow */
+.btn-start{
+  font-weight:700;
+  font-size:1.125rem;line-height:1;
+  padding:11px 14px 10px;
+
+  background:var(--colour-success);
+  color:var(--colour-white);
+  border:2px solid transparent;border-radius:0;
+  box-shadow:0 2px 0 var(--colour-focus-fg);
+
+  display:inline-flex;align-items:center;gap:12px;
+  text-decoration:none;
+}
+.btn-start::after{
+  content:"";display:inline-block;
+  width:0;height:0;
+  border-top:7px solid transparent;
+  border-bottom:7px solid transparent;
+  border-left:11px solid var(--colour-white);
+}
+.btn-start:hover{
+  background:var(--colour-success-dark);
+  color:var(--colour-white);
+}
+
+/* Button group — horizontal cluster */
+.btn-group{
+  display:flex;gap:var(--s-2);flex-wrap:wrap;align-items:center;
+}
+.btn-group-vertical{
+  display:flex;flex-direction:column;align-items:stretch;gap:var(--s-2);
+}
+.btn-group-vertical .btn{justify-content:flex-start}
+
+/* Dark mode — the brighter green/red used in dark canvas needs dark
+   text on top, not white, to maintain ≥ 4.5:1. Also flips the bottom
+   shadow from black (invisible on dark canvas) to a light line. */
+:root[data-theme="dark"] .btn-primary,
+:root[data-theme="dark"] .btn-warning,
+:root[data-theme="dark"] .btn-start{
+  color:var(--colour-dark-canvas);
+}
+:root[data-theme="dark"] .btn,
+:root[data-theme="dark"] .btn-primary,
+:root[data-theme="dark"] .btn-secondary,
+:root[data-theme="dark"] .btn-warning,
+:root[data-theme="dark"] .btn-start{
+  box-shadow:0 2px 0 var(--colour-dark-fg-strong);
+}
+:root[data-theme="dark"] .btn-start::after{
+  border-left-color:var(--colour-dark-canvas);
+}

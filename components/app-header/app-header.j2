@@ -1,0 +1,33 @@
+{# app-header — Janeway top bar.
+
+   Compose with two macros:
+     - app_header(service)      wrapper, contains brand + nav + account
+     - app_header_link(label, url)  one item in the primary nav
+
+   Usage:
+     {% call app_header(service="Editorial", user={"name": "t.kowalski"}) %}
+       {{ app_header_link("Editorial",  url="/editorial") }}
+       {{ app_header_link("Production", url="/production") }}
+       {{ app_header_link("Reports",    url="/reports") }}
+     {% endcall %}
+#}
+{% macro app_header(service="Editorial", user=None, brand_url="/") %}
+<header class="app-header">
+  <a class="app-header-brand" href="{{ brand_url }}">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2L2 7v10l10 5 10-5V7l-10-5zm0 2.18L19.5 8 12 11.82 4.5 8 12 4.18zM4 9.5l7 3.5v8l-7-3.5v-8zm9 11.5v-8l7-3.5v8l-7 3.5z"/>
+    </svg>
+    Janeway
+    {% if service %}<span class="app-header-chip">{{ service }}</span>{% endif %}
+  </a>
+  <nav class="app-header-nav" aria-label="Primary">
+    {{ caller() }}
+  </nav>
+  {% if user %}
+  <button type="button" class="app-header-avatar"
+          aria-label="Account menu — signed in as {{ user.name }}">{{ user.name }}</button>
+  {% endif %}
+</header>
+{% endmacro %}
+
+{% macro app_header_link(label, url="#") %}<a href="{{ url }}">{{ label }}</a>{% endmacro %}

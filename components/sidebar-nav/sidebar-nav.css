@@ -1,0 +1,72 @@
+/* Sidebar navigation — left rail with grouped link sections,
+   each headed by an h2 section label, lists of links, optional
+   counts. Active link uses aria-current="page". */
+
+.sidebar-nav{
+  border-right:1px solid var(--colour-border);
+  background:var(--colour-canvas-muted);
+  padding:var(--s-3) var(--s-2);
+  font-family:var(--font-system);
+  font-size:var(--fs-sm);
+
+  & ul{list-style:none;margin:0 0 2px;padding:0}
+
+  & .sidebar-nav-journal{
+    display:flex;align-items:center;gap:10px;
+    padding:6px 10px var(--s-3);
+    border-bottom:1px solid var(--colour-border-muted);
+    margin-bottom:var(--s-2);
+  }
+
+  & .sidebar-nav-mark{
+    width:28px;height:28px;border-radius:0;
+    background:var(--colour-accent);color:var(--colour-white);
+    font-weight:700;font-size:11px;letter-spacing:0.02em;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+
+  & .sidebar-nav-name{font-weight:600;font-size:var(--fs-sm);color:var(--colour-fg)}
+  & .sidebar-nav-sub{font-size:11px;color:var(--colour-fg-muted)}
+
+  & .sidebar-nav-section{
+    margin:var(--s-3) 0 2px;
+    padding:0 10px;
+    font-size:11px;font-weight:600;
+    color:var(--colour-fg-muted);
+    text-transform:uppercase;letter-spacing:0.04em;
+    line-height:1.4;
+  }
+
+  & .sidebar-nav-link{
+    display:flex;align-items:center;gap:var(--s-2);
+    padding:5px 10px;border-radius:0;
+    color:var(--colour-fg);text-decoration:none;
+    font-size:var(--fs-sm);line-height:1.4;
+  }
+  & .sidebar-nav-link:hover{background:rgba(127,127,127,0.12);text-decoration:none}
+  & .sidebar-nav-link[aria-current="page"]{
+    background:var(--colour-accent-subtle);
+    color:var(--colour-accent);
+    font-weight:600;
+  }
+
+  & .sidebar-nav-count{
+    margin-left:auto;
+    background:var(--colour-canvas-inset);
+    color:var(--colour-fg-muted);
+    font-size:11px;padding:0 6px;border-radius:0;font-weight:500;
+  }
+  & .sidebar-nav-link[aria-current="page"] .sidebar-nav-count{
+    background:var(--colour-white);color:var(--colour-accent);
+  }
+}
+
+/* Dark mode — the brighter accent (#58a6ff) needs dark text to keep AA. */
+:root[data-theme="dark"] .sidebar-nav .sidebar-nav-mark{
+  color:var(--colour-dark-canvas);
+}
+:root[data-theme="dark"] .sidebar-nav .sidebar-nav-link[aria-current="page"] .sidebar-nav-count{
+  background:var(--colour-dark-canvas);
+  color:var(--colour-dark-link);
+}

@@ -1,0 +1,49 @@
+/* Alert pill — small inline status link used at the bottom of
+   article-card and similar containers. Variants compose:
+     alert-pill-critical (red)
+     alert-pill-warning  (orange)
+     alert-pill-info     (blue)
+     alert-pill-more     (neutral "+N more") */
+
+.alert-pill{
+  display:inline-flex;align-items:center;
+  padding:2px 8px;
+  font-size:var(--fs-xs);font-weight:600;line-height:1.4;
+  border-radius:0;
+  text-decoration:none;
+  color:var(--colour-fg-strong);
+  background:var(--colour-canvas-muted);
+  border:1px solid var(--colour-border);
+  white-space:nowrap;
+  max-width:32ex;
+  overflow:hidden;text-overflow:ellipsis;
+}
+.alert-pill:hover{
+  text-decoration:underline;color:var(--colour-fg-strong);
+}
+
+.alert-pill.alert-pill-critical{
+  background:#fff1ef;color:#a4291b;border-color:#f3b9b1;
+}
+.alert-pill.alert-pill-warning{
+  background:#fdf4e7;color:#74510b;border-color:#f5dcb0;
+}
+.alert-pill.alert-pill-info{
+  background:var(--colour-accent-subtle);color:#0550ae;border-color:#b6e3ff;
+}
+.alert-pill.alert-pill-more{
+  background:var(--colour-canvas-muted);color:var(--colour-fg-muted);
+  border-color:var(--colour-border-muted);
+}
+
+/* Dark mode — desaturated tinted backgrounds with light foregrounds.
+   All pairs verified ≥ 4.5:1 against the variant background. */
+:root[data-theme="dark"] .alert-pill.alert-pill-critical{
+  background:#3a1717;color:#ffa198;border-color:#5c2222;
+}
+:root[data-theme="dark"] .alert-pill.alert-pill-warning{
+  background:#332710;color:#e8a35a;border-color:#4a3a17;
+}
+:root[data-theme="dark"] .alert-pill.alert-pill-info{
+  background:#0c2d4a;color:#79c0ff;border-color:#1f4f7a;
+}

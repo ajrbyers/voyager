@@ -1,0 +1,15 @@
+{# section-divider — small section heading line that separates groups
+   within a flat list. Used for severity buckets, category groupings,
+   timeline date headings, etc.
+
+   Args:
+     - label:    text shown in the divider
+     - severity: '' | 'critical' | 'warning' | 'info' — shows a coloured dot
+     - flush:    boolean — removes the top margin (first divider in a list) #}
+{% macro section_divider(label, severity="", flush=False) %}
+<div class="section-divider{% if severity %} section-divider-{{ severity }}{% endif %}{% if flush %} section-divider-flush{% endif %}">
+  {% if severity %}<span class="section-divider-dot" aria-hidden="true"></span>{% endif %}
+  <h2 class="section-divider-label">{{ label }}</h2>
+  <span class="section-divider-line"></span>
+</div>
+{% endmacro %}
