@@ -47,27 +47,6 @@
   background:var(--colour-canvas);
 }
 
-/* Nested treatment: when summary-blocks sit inside another summary-block
-   the parent supplies the outer border. Children become rows separated by
-   a single hairline. Pair with summary-block-body-flush on the parent so
-   children sit edge-to-edge. Left border is preserved so coloured rails
-   (see modifiers below) remain visible at the parent's left edge. */
-.summary-block .summary-block{
-  border-top:0;
-  border-right:0;
-  border-left:0;
-  border-bottom:1px solid var(--colour-border-component);
-  margin-bottom:0;
-}
-.summary-block .summary-block:last-child{border-bottom:0}
-
-/* Status rail modifiers — same idiom as article-card. A 4px coloured
-   left border replaces the default 1px so the row's state is readable at
-   a glance from the left edge of the parent block. */
-.summary-block.summary-block-rail-green{border-left:4px solid var(--colour-success)}
-.summary-block.summary-block-rail-amber{border-left:4px solid var(--colour-warning)}
-.summary-block.summary-block-rail-red  {border-left:4px solid var(--colour-error)}
-
 /* ---------------- Summary list ---------------- */
 /* Pairs with summary-block. Each row is a div with dt/dd/dd
    (label / value / change). The third dd carries the "Change" link. */

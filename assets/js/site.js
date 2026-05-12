@@ -2,7 +2,6 @@
 // 1) Tab switcher for code preview blocks.
 // 2) Password show/hide toggle driver (used by the form component).
 // 3) Theme toggle (light / dark) with localStorage persistence.
-// 4) Details open/closed state persistence (opt-in via data-details-persist).
 
 (function () {
   // ---- Theme toggle ----
@@ -55,22 +54,5 @@
     var showing = input.type === 'text';
     input.type = showing ? 'password' : 'text';
     btn.textContent = showing ? 'Show' : 'Hide';
-  });
-
-  // ---- Details persistence ----
-  // Opt-in: add `data-details-persist="<unique-key>"` to a <details>.
-  // State is stored under `voyager-details:<key>`. Stored state overrides
-  // the server-rendered `open` attribute; absence of stored state preserves it.
-  // Native `toggle` doesn't bubble, so we attach a listener per element.
-  var DETAILS_PREFIX = 'voyager-details:';
-  document.querySelectorAll('details[data-details-persist]').forEach(function (el) {
-    var key = DETAILS_PREFIX + el.getAttribute('data-details-persist');
-    var stored = null;
-    try { stored = localStorage.getItem(key); } catch (e) {}
-    if (stored === 'open') el.open = true;
-    else if (stored === 'closed') el.open = false;
-    el.addEventListener('toggle', function () {
-      try { localStorage.setItem(key, el.open ? 'open' : 'closed'); } catch (e) {}
-    });
   });
 })();
