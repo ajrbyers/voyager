@@ -2,9 +2,13 @@
    Args:
      - summary: the visible link/trigger text
      - open:    boolean, default False — render expanded by default
+     - persist: optional string key. When given, the open/closed state is
+                remembered in localStorage under `voyager-details:<key>`.
+                Use for long-lived disclosures (file lists, panels);
+                do NOT use for help text or error messages.
    Body content via {% call %}. #}
-{% macro details(summary, open=False) %}
-<details class="details"{% if open %} open{% endif %}>
+{% macro details(summary, open=False, persist=None) %}
+<details class="details"{% if open %} open{% endif %}{% if persist %} data-details-persist="{{ persist }}"{% endif %}>
   <summary>{{ summary }}</summary>
   <div class="details-body">
     {{ caller() }}

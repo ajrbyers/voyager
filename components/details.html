@@ -127,11 +127,41 @@
 &lt;/details&gt;</code></pre>
     </div>
 
+    <h2>Remembers open state</h2>
+    <p>
+      Add <code>data-details-persist="&lt;key&gt;"</code> to opt in to localStorage
+      persistence. The first visit respects the server-rendered state; after
+      that, the last toggle by this user wins. The state is stored under
+      <code>voyager-details:&lt;key&gt;</code>. Pick a key that is unique to the
+      disclosure's purpose — same key on two pages will share state.
+    </p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <details class="details" data-details-persist="voyager-docs-demo">
+          <summary>Toggle me, then reload</summary>
+          <div class="details-body">
+            <p>The next page load will reopen this block if you left it open, or keep it closed if you closed it. Try it.</p>
+          </div>
+        </details>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;details class="details" data-details-persist="peer-review-r419"&gt;
+  &lt;summary&gt;Details&lt;/summary&gt;
+  &lt;div class="details-body"&gt; … &lt;/div&gt;
+&lt;/details&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/details/details.j2" import details %}
+
+{% call details("Details", persist="peer-review-r419") %}
+  &lt;p&gt;…&lt;/p&gt;
+{% endcall %}{% endraw %}</code></pre>
+    </div>
+
     <h2>Notes</h2>
     <ul>
       <li>Use <code>&lt;details&gt;</code> — never roll your own collapsible. Keyboard and screen-reader support is free.</li>
       <li>The summary should describe what's inside, not "Show more". A user should know whether to click without trying.</li>
       <li>Don't hide critical content. If a user must see it to complete a task, don't put it inside details.</li>
+      <li>Persist (<code>data-details-persist</code>) is for long-lived disclosures such as file lists or expanded panels — not for help text, validation messages, or anything that should reset on each page-load.</li>
     </ul>
 
   </main>

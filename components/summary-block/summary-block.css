@@ -47,6 +47,14 @@
   background:var(--colour-canvas);
 }
 
+/* Status rail modifiers — same idiom as article-card. A 4px coloured
+   left border replaces the default 1px so the row's state is readable at
+   a glance from the left edge of the card. Pair with a status tag inside
+   the head; the rail and tag reinforce each other. */
+.summary-block.summary-block-rail-green{border-left:4px solid var(--colour-success)}
+.summary-block.summary-block-rail-amber{border-left:4px solid var(--colour-warning)}
+.summary-block.summary-block-rail-red  {border-left:4px solid var(--colour-error)}
+
 /* ---------------- Summary list ---------------- */
 /* Pairs with summary-block. Each row is a div with dt/dd/dd
    (label / value / change). The third dd carries the "Change" link. */
