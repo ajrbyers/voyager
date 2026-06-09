@@ -90,7 +90,11 @@
   background:var(--colour-canvas);
   min-width:0;
 }
-.site-main h1{
+/* Documentation headings are direct children of .site-main. The child
+   combinator keeps this chrome off component headings rendered inside
+   example previews (e.g. .section-divider-label, .notice-head), which
+   must show their own component styles. */
+.site-main > h1{
   font-size:32px;font-weight:700;line-height:1.15;
   margin:0 0 var(--s-3);letter-spacing:-0.005em;
   color:var(--colour-fg-strong);
@@ -99,15 +103,15 @@
   font-size:18px;line-height:1.5;color:var(--colour-fg-muted);
   margin:0 0 var(--s-8);max-width:36em;
 }
-.site-main h2{
+.site-main > h2{
   font-size:20px;font-weight:700;
   margin:var(--s-10) 0 var(--s-3);
   padding-bottom:6px;
   border-bottom:1px solid var(--colour-border);
   color:var(--colour-fg-strong);
 }
-.site-main h2:first-of-type{margin-top:0}
-.site-main h3{
+.site-main > h2:first-of-type{margin-top:0}
+.site-main > h3{
   font-size:16px;font-weight:700;
   margin:var(--s-6) 0 var(--s-2);color:var(--colour-fg-strong);
 }
