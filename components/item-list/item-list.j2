@@ -1,0 +1,99 @@
+{# item-list -- dynamic add/remove repeating form item list.
+   Uses HTMX for add/delete operations; degrades to type="submit"
+   buttons without JS.
+
+   Macros:
+     - item_list(name, item_label, count, max_items, htmx_url, errors)
+       Wrapper. Body via {% call %} containing item_list_item() calls.
+
+     - item_list_item(index, name, item_label, show_delete, htmx_url)
+       One item. Body via {% call %} containing form field macros.
+
+   Usage:
+     {% from "voyager/components/item-list/item-list.j2"
+        import item_list, item_list_item %}
+     {% from "voyager/components/form/form.j2" import form_text %}
+
+     {% call item_list(name="patents", item_label="Patent",
+         count=2, max_items=10, htmx_url="/api/patents") %}
+       {% call item_list_item(0, "patents", "Patent", show_delete=False,
+           htmx_url="/api/patents") %}
+         {{ form_text("patent_title_0", "patent_title_0", "Title") }}
+       {% endcall %}
+       {% call item_list_item(1, "patents", "Patent",
+           htmx_url="/api/patents") %}
+         {{ form_text("patent_title_1", "patent_title_1", "Title") }}
+       {% endcall %}
+     {% endcall %}
+#}
+
+{% macro item_list(name, item_label="Item", count=1, max_items=10,
+                    htmx_url="", errors=[]) %}
+{%- set _id = 'item-list-' ~ name -%}
+{%- set remaining = max_items - count -%}
+<div class="item-list" id="{{ _id }}">
+  {% if errors %}
+  <div class="item-list-errors" role="alert">
+    <ul>
+      {% for err in errors %}<li>{{ err }}</li>{% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  <input type="hidden" name="{{ name }}-count" value="{{ count }}" aria-hidden="true">
+  <input type="hidden" name="{{ name }}-max" value="{{ max_items }}" aria-hidden="true">
+  <div class="item-list-items">
+    {{ caller() }}
+  </div>
+  {% if remaining > 0 %}
+  <div class="item-list-add">
+    {% if htmx_url %}
+    <button type="button" class="btn"
+            hx-post="{{ htmx_url }}"
+            hx-target="#{{ _id }}"
+            hx-swap="outerHTML"
+            hx-include="#{{ _id }}"
+            hx-vals='{"action": "add"}'>
+      Add another {{ item_label|lower }}
+    </button>
+    {% else %}
+    <button type="submit" class="btn" name="{{ name }}-action" value="add">
+      Add another {{ item_label|lower }}
+    </button>
+    {% endif %}
+    <p class="item-list-remaining">
+      You can add {{ remaining }} more {{ item_label|lower }}{{ 's' if remaining != 1 else '' }}
+    </p>
+  </div>
+  {% endif %}
+</div>
+{% endmacro %}
+
+{% macro item_list_item(index, name="", item_label="Item",
+                         show_delete=True, htmx_url="") %}
+{%- set _target = '#item-list-' ~ name -%}
+<div class="item-list-item" id="{{ name }}-item-{{ index }}">
+  <div class="item-list-item-header">
+    <h3 class="item-list-item-heading">{{ item_label }} {{ index + 1 }}</h3>
+    {% if show_delete %}
+    {% if htmx_url %}
+    <button type="button" class="btn btn-small"
+            hx-post="{{ htmx_url }}"
+            hx-target="{{ _target }}"
+            hx-swap="outerHTML"
+            hx-include="{{ _target }}"
+            hx-vals='{"action": "delete", "delete_index": "{{ index }}"}'>
+      Delete<span class="visually-hidden"> {{ item_label|lower }} {{ index + 1 }}</span>
+    </button>
+    {% else %}
+    <button type="submit" class="btn btn-small"
+            name="{{ name }}-action" value="delete-{{ index }}">
+      Delete<span class="visually-hidden"> {{ item_label|lower }} {{ index + 1 }}</span>
+    </button>
+    {% endif %}
+    {% endif %}
+  </div>
+  <div class="item-list-item-body">
+    {{ caller() }}
+  </div>
+</div>
+{% endmacro %}

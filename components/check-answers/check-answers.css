@@ -1,0 +1,36 @@
+/* Check answers -- review page pattern for multi-step forms.
+   Composes summary-list with section headings and a submit action. */
+
+.check-answers{
+  max-width:40em;
+  margin:0 0 var(--s-6);
+}
+
+.check-answers-title{
+  font-size:var(--fs-h1);
+  font-weight:700;
+  line-height:1.15;
+  color:var(--colour-fg-strong);
+  margin:0 0 var(--s-6);
+}
+
+.check-answers-section{
+  margin:0 0 var(--s-6);
+}
+
+.check-answers-heading{
+  font-size:var(--fs-h2);
+  font-weight:700;
+  color:var(--colour-fg-strong);
+  margin:0 0 var(--s-3);
+  padding-bottom:6px;
+  border-bottom:1px solid var(--colour-border);
+}
+
+.check-answers-section .summary-list > div:last-child{
+  border-bottom:1px solid var(--colour-border-component);
+}
+
+.check-answers-submit{
+  margin-top:var(--s-6);
+}

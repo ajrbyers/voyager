@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Layout — Voyager</title>
+<title>Layout - Voyager</title>
 <link rel="stylesheet" href="../assets/css/index.css">
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="stylesheet" href="layout.css">
@@ -28,62 +28,13 @@
 
 <div class="site-shell">
 
-  <nav class="site-sidebar" aria-label="Documentation">
-    <span class="site-sidebar-section">Get started</span>
-    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
-      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
-    <span class="site-sidebar-section">Foundations</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="tokens.html">Tokens</a></li>
-      <li><a class="site-sidebar-link" href="typography.html">Typography</a></li>
-      <li><a class="site-sidebar-link" href="layout.html" aria-current="page">Layout</a></li>
-    </ul>
-    <span class="site-sidebar-section">Components</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="../components/page-header.html">Page header</a></li>
-      <li><a class="site-sidebar-link" href="../components/button.html">Button</a></li>
-      <li><a class="site-sidebar-link" href="../components/icon.html">Icon</a></li>
-      <li><a class="site-sidebar-link" href="../components/summary-block.html">Summary block</a></li>
-      <li><a class="site-sidebar-link" href="../components/information.html">Information</a></li>
-      <li><a class="site-sidebar-link" href="../components/nav.html">Navigation</a></li>
-      <li><a class="site-sidebar-link" href="../components/back-link.html">Back link</a></li>
-      <li><a class="site-sidebar-link" href="../components/pagination.html">Pagination</a></li>
-      <li><a class="site-sidebar-link" href="../components/tag.html">Tag &amp; chip</a></li>
-      <li><a class="site-sidebar-link" href="../components/table.html">Table</a></li>
-      <li><a class="site-sidebar-link" href="../components/form.html">Form</a></li>
-      <li><a class="site-sidebar-link" href="../components/modal.html">Modal</a></li>
-      <li><a class="site-sidebar-link" href="../components/details.html">Details</a></li>
-      <li><a class="site-sidebar-link" href="../components/panel.html">Panel</a></li>
-      <li><a class="site-sidebar-link" href="../components/stat.html">Stat &amp; queue</a></li>
-      <li><a class="site-sidebar-link" href="../components/steps.html">Steps</a></li>
-      <li><a class="site-sidebar-link" href="../components/avatar.html">Avatar</a></li>
-      <li><a class="site-sidebar-link" href="../components/section-divider.html">Section divider</a></li>
-    </ul>
-    <span class="site-sidebar-section">Inbox pattern</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="../components/folder-list.html">Folder list</a></li>
-      <li><a class="site-sidebar-link" href="../components/article-card.html">Article card</a></li>
-      <li><a class="site-sidebar-link" href="../components/filter-bar.html">Filter bar</a></li>
-      <li><a class="site-sidebar-link" href="../components/progress-bar.html">Progress bar</a></li>
-    </ul>
-    <span class="site-sidebar-section">Manager pattern</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="../components/function-card.html">Function card</a></li>
-      <li><a class="site-sidebar-link" href="../components/function-filter.html">Function filter</a></li>
-    </ul>
-    <span class="site-sidebar-section">Examples</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
-      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
-      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
-    </ul>
-  </nav>
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base=".."></nav>
 
   <main class="site-main" id="main">
 
     <h1>Layout</h1>
     <p class="site-page-lede">
-      Janeway pages share a common shell — top header, left sidebar, main column —
+      Janeway pages share a common shell - top header, left sidebar, main column -
       and a small set of inner layouts. Use the shell components for the chrome
       and the layout utilities to arrange page content.
     </p>
@@ -122,16 +73,16 @@
     <h2>Spacing primitives</h2>
     <p>Two layout primitives in <code>utilities.css</code>:</p>
     <ul>
-      <li><code>.stack</code> — vertical rhythm. Adds <code>margin-top</code> to every direct child after the first. Variants: <code>.stack-sm</code>, <code>.stack-lg</code>, <code>.stack-xl</code>.</li>
-      <li><code>.cluster</code> — horizontal flex group with gap and wrap. Variants: <code>.cluster-sm</code>, <code>.cluster-lg</code>.</li>
+      <li><code>.stack</code> - vertical rhythm. Adds <code>margin-top</code> to every direct child after the first. Variants: <code>.stack-sm</code>, <code>.stack-lg</code>, <code>.stack-xl</code>.</li>
+      <li><code>.cluster</code> - horizontal flex group with gap and wrap. Variants: <code>.cluster-sm</code>, <code>.cluster-lg</code>.</li>
     </ul>
 
     <h2>Breakpoints</h2>
     <p>Voyager uses two breakpoints, both <em>max-width</em>:</p>
     <ul>
-      <li><strong>900px</strong> — sidebar collapses to top, multi-column grids collapse to one.</li>
-      <li><strong>1100px</strong> — <code>.layout-with-rail</code> stacks the rail below main.</li>
-      <li><strong>600px</strong> — summary-list rows stack key/value/change vertically.</li>
+      <li><strong>900px</strong> - sidebar collapses to top, multi-column grids collapse to one.</li>
+      <li><strong>1100px</strong> - <code>.layout-with-rail</code> stacks the rail below main.</li>
+      <li><strong>600px</strong> - summary-list rows stack key/value/change vertically.</li>
     </ul>
 
   </main>

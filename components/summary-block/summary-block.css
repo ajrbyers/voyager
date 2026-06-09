@@ -1,4 +1,4 @@
-/* Summary block — bordered container with optional grey header strip
+/* Summary block - bordered container with optional grey header strip
    (title + actions) and a body that typically holds a summary list.
    Replaces ad-hoc "card" wrappers across the system. */
 
@@ -41,13 +41,13 @@
   & .summary-block-body-flush{padding:0}
 }
 
-/* Variant: clean header (white, no grey) — for reviewer cards
+/* Variant: clean header (white, no grey) - for reviewer cards
    where the head feels lighter alongside the visible status tag. */
 .summary-block.summary-block-clean .summary-block-head{
   background:var(--colour-canvas);
 }
 
-/* Status rail modifiers — same idiom as article-card. A 4px coloured
+/* Status rail modifiers - same idiom as article-card. A 4px coloured
    left border replaces the default 1px so the row's state is readable at
    a glance from the left edge of the card. Pair with a status tag inside
    the head; the rail and tag reinforce each other. */
@@ -56,8 +56,9 @@
 .summary-block.summary-block-rail-red  {border-left:4px solid var(--colour-error)}
 
 /* ---------------- Summary list ---------------- */
-/* Pairs with summary-block. Each row is a div with dt/dd/dd
-   (label / value / change). The third dd carries the "Change" link. */
+/* Pairs with summary-block or check-answers. Each row is a div with
+   dt/dd (label/value) and an optional dd.summary-list-actions for
+   action links. Rows without actions collapse to a two-column grid. */
 
 .summary-list{
   margin:0;padding:0;list-style:none;
@@ -70,6 +71,9 @@
   padding:8px var(--s-4);
   border-bottom:1px solid var(--colour-border-component);
 }
+.summary-list > div.summary-list-row-no-actions{
+  grid-template-columns:160px 1fr;
+}
 .summary-block-body-flush .summary-list > div:last-child{
   border-bottom:0;
 }
@@ -77,9 +81,15 @@
   font-weight:600;margin:0;color:var(--colour-fg-strong);
 }
 .summary-list dd{margin:0;color:var(--colour-fg-strong)}
-.summary-list .summary-list-change{text-align:right}
-.summary-list .summary-list-change a{
+.summary-list .summary-list-actions{
+  text-align:right;white-space:nowrap;
+}
+.summary-list .summary-list-actions a{
   font-weight:400;font-size:var(--fs-sm);
+  color:var(--colour-link);
+}
+.summary-list .summary-list-actions a + a{
+  margin-left:var(--s-3);
 }
 
 @media (max-width:600px){
@@ -88,7 +98,10 @@
     gap:2px;
     padding:8px var(--s-4);
   }
-  .summary-list .summary-list-change{
+  .summary-list > div.summary-list-row-no-actions{
+    grid-template-columns:1fr;
+  }
+  .summary-list .summary-list-actions{
     text-align:left;margin-top:4px;
   }
 }

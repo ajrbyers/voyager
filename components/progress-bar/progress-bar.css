@@ -1,4 +1,4 @@
-/* Progress bar — thin top-of-page strip that animates during async
+/* Progress bar - thin top-of-page strip that animates during async
    work. Pair with HTMX events (or any fetch lifecycle):
      - On request start, add .is-running and the bar fills to 85%
      - On settle, fill to 100% and fade out.

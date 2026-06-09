@@ -1,4 +1,4 @@
-/* Theme toggle — small button that swaps between light and dark.
+/* Theme toggle - small button that swaps between light and dark.
    Sits in the site-header or example-banner. Uses currentColor so
    it picks up the surrounding text colour (white on dark headers,
    black on the yellow example banner). State is reflected via
@@ -16,7 +16,7 @@
   font-size:12px;font-weight:500;
   border-radius:0;
   text-decoration:none;
-  /* WCAG 2.2 SC 2.5.8 — minimum 24x24 target. */
+  /* WCAG 2.2 SC 2.5.8 - minimum 24x24 target. */
   min-height:24px;
 }
 .theme-toggle:hover{background:rgba(127,127,127,0.18)}

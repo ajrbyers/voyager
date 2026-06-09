@@ -1,0 +1,47 @@
+{# check-answers -- "check your answers before submitting" page pattern.
+   Composes summary_list from the summary-block component with section
+   headings and a submit button. Use at the end of a multi-step form
+   to let users review their answers before final submission.
+
+   Macros:
+     - check_answers(title, submit_label, submit_kind)
+       Wrapper. Body via {% call %} containing check_answers_section() calls.
+
+     - check_answers_section(heading)
+       A section heading (h2) followed by a summary list.
+       Body via {% call %} containing summary_row() calls.
+
+   Usage:
+     {% from "voyager/components/check-answers/check-answers.j2"
+        import check_answers, check_answers_section %}
+     {% from "voyager/components/summary-block/summary-block.j2"
+        import summary_row %}
+
+     {% call check_answers() %}
+       {% call check_answers_section("Personal details") %}
+         {{ summary_row("Name", "Sarah Philips",
+              actions=[{"label": "Change", "url": "/step-1#name",
+                        "hidden": "name"}]) }}
+       {% endcall %}
+     {% endcall %}
+#}
+
+{% macro check_answers(title="Check your answers before submitting",
+                        submit_label="Accept and send", submit_kind="primary") %}
+<div class="check-answers">
+  <h1 class="check-answers-title">{{ title }}</h1>
+  {{ caller() }}
+  <div class="check-answers-submit">
+    <button type="submit" class="btn btn-{{ submit_kind }}">{{ submit_label }}</button>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro check_answers_section(heading) %}
+<div class="check-answers-section">
+  <h2 class="check-answers-heading">{{ heading }}</h2>
+  <dl class="summary-list">
+    {{ caller() }}
+  </dl>
+</div>
+{% endmacro %}

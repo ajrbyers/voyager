@@ -1,4 +1,4 @@
-/* Article card — inbox-style row representing a single article.
+/* Article card - inbox-style row representing a single article.
    Severity stripe runs down the left edge in critical/warning/info
    colour. Composes alert-pills, tags, and small buttons. */
 
@@ -23,7 +23,7 @@
 .article-card.article-card-warning {border-left-color:var(--colour-warning)}
 .article-card.article-card-info    {border-left-color:var(--colour-info)}
 
-/* Whole-row click target — the title link's pseudo-element covers the
+/* Whole-row click target - the title link's pseudo-element covers the
    entire card. Action buttons and alert pills layer above it via z-index. */
 .article-card .article-card-title-link::after{
   content:"";position:absolute;inset:0;z-index:1;

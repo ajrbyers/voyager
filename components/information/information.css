@@ -1,4 +1,4 @@
-/* Information — three patterns for surfacing status messages:
+/* Information - three patterns for surfacing status messages:
      .notice        coloured-border banner with header strip + body
      .inset-text    quiet left-bordered block of body text
      .error-summary GOV.UK-style error list, used at the top of
@@ -26,7 +26,7 @@
   & .notice-body a{color:var(--colour-link);font-weight:600}
 }
 
-/* Variants — change border + head colour together */
+/* Variants - change border + head colour together */
 .notice.notice-warning{border-color:var(--colour-warning)}
 .notice.notice-warning .notice-head{
   background:var(--colour-warning);color:var(--colour-focus-fg);
@@ -69,7 +69,7 @@
   }
 }
 
-/* Dark mode — coloured notice headers need dark text on the brighter
+/* Dark mode - coloured notice headers need dark text on the brighter
    status hues to maintain ≥ 4.5:1 contrast. */
 :root[data-theme="dark"] .notice .notice-head,
 :root[data-theme="dark"] .notice.notice-error .notice-head,

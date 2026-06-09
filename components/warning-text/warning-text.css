@@ -1,6 +1,6 @@
-/* Warning text — heavy advisory message for serious consequences.
+/* Warning text - heavy advisory message for serious consequences.
    Distinct from inset-text, which is lower-prominence supplementary info.
-   Prefix is a black filled circle with a white "!" — purely visual,
+   Prefix is a black filled circle with a white "!" - purely visual,
    the visually-hidden "Warning" prefix carries semantics for AT. */
 
 .warning-text{

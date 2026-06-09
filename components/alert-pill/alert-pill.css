@@ -1,4 +1,4 @@
-/* Alert pill — small inline status link used at the bottom of
+/* Alert pill - small inline status link used at the bottom of
    article-card and similar containers. Variants compose:
      alert-pill-critical (red)
      alert-pill-warning  (orange)
@@ -36,7 +36,7 @@
   border-color:var(--colour-border-muted);
 }
 
-/* Dark mode — desaturated tinted backgrounds with light foregrounds.
+/* Dark mode - desaturated tinted backgrounds with light foregrounds.
    All pairs verified ≥ 4.5:1 against the variant background. */
 :root[data-theme="dark"] .alert-pill.alert-pill-critical{
   background:#3a1717;color:#ffa198;border-color:#5c2222;

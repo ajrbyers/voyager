@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Architecture — Voyager</title>
+<title>Architecture - Voyager</title>
 <link rel="stylesheet" href="assets/css/index.css">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="architecture.css">
@@ -24,64 +24,13 @@
 
 <div class="site-shell">
 
-  <nav class="site-sidebar" aria-label="Documentation">
-    <span class="site-sidebar-section">Get started</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="index.html">Overview</a></li>
-      <li><a class="site-sidebar-link" href="architecture.html" aria-current="page">Architecture</a></li>
-    </ul>
-    <span class="site-sidebar-section">Foundations</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="foundations/tokens.html">Tokens</a></li>
-      <li><a class="site-sidebar-link" href="foundations/typography.html">Typography</a></li>
-      <li><a class="site-sidebar-link" href="foundations/layout.html">Layout</a></li>
-    </ul>
-    <span class="site-sidebar-section">Components</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="components/page-header.html">Page header</a></li>
-      <li><a class="site-sidebar-link" href="components/button.html">Button</a></li>
-      <li><a class="site-sidebar-link" href="components/icon.html">Icon</a></li>
-      <li><a class="site-sidebar-link" href="components/summary-block.html">Summary block</a></li>
-      <li><a class="site-sidebar-link" href="components/information.html">Information</a></li>
-      <li><a class="site-sidebar-link" href="components/nav.html">Navigation</a></li>
-      <li><a class="site-sidebar-link" href="components/back-link.html">Back link</a></li>
-      <li><a class="site-sidebar-link" href="components/pagination.html">Pagination</a></li>
-      <li><a class="site-sidebar-link" href="components/tag.html">Tag &amp; chip</a></li>
-      <li><a class="site-sidebar-link" href="components/table.html">Table</a></li>
-      <li><a class="site-sidebar-link" href="components/form.html">Form</a></li>
-      <li><a class="site-sidebar-link" href="components/modal.html">Modal</a></li>
-      <li><a class="site-sidebar-link" href="components/details.html">Details</a></li>
-      <li><a class="site-sidebar-link" href="components/panel.html">Panel</a></li>
-      <li><a class="site-sidebar-link" href="components/stat.html">Stat &amp; queue</a></li>
-      <li><a class="site-sidebar-link" href="components/steps.html">Steps</a></li>
-      <li><a class="site-sidebar-link" href="components/avatar.html">Avatar</a></li>
-      <li><a class="site-sidebar-link" href="components/section-divider.html">Section divider</a></li>
-    </ul>
-    <span class="site-sidebar-section">Inbox pattern</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="components/folder-list.html">Folder list</a></li>
-      <li><a class="site-sidebar-link" href="components/article-card.html">Article card</a></li>
-      <li><a class="site-sidebar-link" href="components/filter-bar.html">Filter bar</a></li>
-      <li><a class="site-sidebar-link" href="components/progress-bar.html">Progress bar</a></li>
-    </ul>
-    <span class="site-sidebar-section">Manager pattern</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="components/function-card.html">Function card</a></li>
-      <li><a class="site-sidebar-link" href="components/function-filter.html">Function filter</a></li>
-    </ul>
-    <span class="site-sidebar-section">Examples</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="examples/dashboard.html">Dashboard</a></li>
-      <li><a class="site-sidebar-link" href="examples/manager.html">Manager</a></li>
-      <li><a class="site-sidebar-link" href="examples/peer-review.html">Peer review</a></li>
-    </ul>
-  </nav>
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base="."></nav>
 
   <main class="site-main" id="main">
 
     <h1>Architecture</h1>
     <p class="site-page-lede">
-      Voyager is plain modern CSS — no preprocessor, no Tailwind, no framework.
+      Voyager is plain modern CSS - no preprocessor, no Tailwind, no framework.
       Native CSS nesting and custom properties only. The system follows an
       ITCSS-style layered structure with co-located components, two-tier tokens,
       and a small set of hard rules.
@@ -89,12 +38,12 @@
 
     <h2>Inspiration</h2>
     <p>
-      Voyager is inspired by two design systems we admire — GitHub Primer for chrome
+      Voyager is inspired by two design systems we admire - GitHub Primer for chrome
       density and admin patterns, and the UK Government Design System for accessibility
       discipline and form conventions. Voyager owes its visual rhythm to Primer and its
       content semantics to GDS, but every component is hand-written for Janeway's
       editorial admin context. <strong>Nothing in Voyager is imported from either
-      system</strong> — the lessons are theirs; the code is ours.
+      system</strong> - the lessons are theirs; the code is ours.
     </p>
     <h2>Layer order</h2>
     <p>
@@ -113,7 +62,7 @@
         <tr>
           <td><strong>Settings</strong></td>
           <td><code>settings.css</code></td>
-          <td>Tokens — colour, type stacks, type scale, space scale, radii, layout. Two-tier: raw tokens (<code>--colour-grey-9</code>) plus semantic aliases (<code>--colour-fg</code>).</td>
+          <td>Tokens - colour, type stacks, type scale, space scale, radii, layout. Two-tier: raw tokens (<code>--colour-grey-9</code>) plus semantic aliases (<code>--colour-fg</code>).</td>
         </tr>
         <tr>
           <td><strong>Reset</strong></td>
@@ -144,19 +93,19 @@
       co-located files:
     </p>
     <ul>
-      <li><code>&lt;name&gt;.html</code> — the canonical markup, copy-pasteable</li>
-      <li><code>&lt;name&gt;.css</code> — single root class, native nesting, no element selectors</li>
-      <li><code>&lt;name&gt;.j2</code> — illustrative Jinja2 macro for production use</li>
+      <li><code>&lt;name&gt;.html</code> - the canonical markup, copy-pasteable</li>
+      <li><code>&lt;name&gt;.css</code> - single root class, native nesting, no element selectors</li>
+      <li><code>&lt;name&gt;.j2</code> - illustrative Jinja2 macro for production use</li>
     </ul>
     <p>
       The CSS opens with the root class and nests everything inside it with the
       native <code>&amp;</code> selector. Variants are extra flat classes
-      composed in the markup — not BEM modifiers.
+      composed in the markup - not BEM modifiers.
     </p>
 
     <div class="example">
       <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">CSS</button></div>
-      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>/* button.css — root class is .btn, everything nests under it.
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>/* button.css - root class is .btn, everything nests under it.
    Variants compose as additional flat classes in the markup. */
 
 .btn{
@@ -166,7 +115,7 @@
 }
 .btn:hover{ … }
 
-/* Variants — extra classes, not BEM modifiers */
+/* Variants - extra classes, not BEM modifiers */
 .btn-primary{ background:var(--colour-success);color:var(--colour-white) }
 .btn-warning{ background:var(--colour-error);   color:var(--colour-white) }
 
@@ -191,19 +140,19 @@
 &lt;a class="btn btn-start" href="/start"&gt;Start review&lt;/a&gt;</code></pre>
     </div>
 
-    <h2>Tokens — two-tier system</h2>
+    <h2>Tokens - two-tier system</h2>
     <p>
       All design tokens live on <code>:root</code> in <code>settings.css</code>.
       Two tiers:
     </p>
     <ol>
-      <li><strong>Raw tokens</strong> — the underlying value: <code>--colour-grey-9: #1f2328</code></li>
-      <li><strong>Semantic aliases</strong> — point at raw tokens by role: <code>--colour-fg: var(--colour-grey-9)</code></li>
+      <li><strong>Raw tokens</strong> - the underlying value: <code>--colour-grey-9: #1f2328</code></li>
+      <li><strong>Semantic aliases</strong> - point at raw tokens by role: <code>--colour-fg: var(--colour-grey-9)</code></li>
     </ol>
     <p>
       Components reference <strong>semantic</strong> tokens only. Pages and
       themes can override semantic aliases without touching raw tokens. This
-      makes a future dark mode straightforward — alias remapping in a single
+      makes a future dark mode straightforward - alias remapping in a single
       <code>[data-theme="dark"]</code> block.
     </p>
 
@@ -215,7 +164,7 @@
   --colour-blue-5:  #0969da;
   --colour-green:   #00703c;
 
-  /* Semantic aliases — components reference these */
+  /* Semantic aliases - components reference these */
   --colour-fg:      var(--colour-grey-7);
   --colour-accent:  var(--colour-blue-5);
   --colour-success: var(--colour-green);
@@ -235,7 +184,7 @@
       </li>
       <li>
         <strong>Element selectors stay in <code>elements.css</code>.</strong>
-        Don't add element selectors to component files — reach for a class.
+        Don't add element selectors to component files - reach for a class.
       </li>
       <li>
         <strong>Components don't reference each other's classes.</strong> A
@@ -253,18 +202,18 @@
         <code>aria-current</code> on active nav.
       </li>
       <li>
-        <strong>Squared edges everywhere</strong> — no <code>border-radius</code>
+        <strong>Squared edges everywhere</strong> - no <code>border-radius</code>
         on rectangles. Inherently circular elements (avatars, dots, step
         badges, the password show/hide circle for keyboard focus) use
         <code>border-radius: 50%</code>.
       </li>
       <li>
         <strong>Use the <code>.tag</code> chip baseline</strong> for all
-        chip-style elements. Don't invent a parallel chip — extend or
+        chip-style elements. Don't invent a parallel chip - extend or
         compose.
       </li>
       <li>
-        <strong>Inline SVG icons only</strong> — no unicode glyphs in
+        <strong>Inline SVG icons only</strong> - no unicode glyphs in
         component icon slots. See the
         <a href="components/icon.html">icon component</a>.
       </li>
@@ -272,7 +221,7 @@
         <strong>Macros follow the wrapper + item pattern</strong> for any
         component that contains a repeating child (folder list, tabs,
         breadcrumbs, steps, action menu, error summary). Compose via
-        <code>{% raw %}{% call %}{% endraw %}</code> in templates rather than
+        <code>{% call %}</code> in templates rather than
         passing data dictionaries.
       </li>
     </ol>
@@ -302,7 +251,7 @@
       <a href="https://github.com/openlibhums/memory-alpha">Memory Alpha</a>,
       OLH's Pelican-based site theme. Memory Alpha pioneered the co-located
       component pattern with native CSS nesting and composable variant classes
-      — Voyager carries those decisions forward, adds form discipline inspired
+      - Voyager carries those decisions forward, adds form discipline inspired
       by GOV.UK, chrome conventions inspired by Primer, and a stricter
       "no inline styles" stance.
     </p>

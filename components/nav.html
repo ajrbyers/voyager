@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Navigation — Voyager</title>
+<title>Navigation - Voyager</title>
 <link rel="stylesheet" href="../assets/css/index.css">
 <link rel="stylesheet" href="../assets/css/site.css">
 <script src="../assets/js/site.js" defer></script>
@@ -22,56 +22,7 @@
 </header>
 
 <div class="site-shell">
-  <nav class="site-sidebar" aria-label="Documentation">
-    <span class="site-sidebar-section">Get started</span>
-    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
-      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
-    <span class="site-sidebar-section">Foundations</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="../foundations/tokens.html">Tokens</a></li>
-      <li><a class="site-sidebar-link" href="../foundations/typography.html">Typography</a></li>
-      <li><a class="site-sidebar-link" href="../foundations/layout.html">Layout</a></li>
-    </ul>
-    <span class="site-sidebar-section">Components</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="page-header.html">Page header</a></li>
-      <li><a class="site-sidebar-link" href="button.html">Button</a></li>
-      <li><a class="site-sidebar-link" href="icon.html">Icon</a></li>
-      <li><a class="site-sidebar-link" href="summary-block.html">Summary block</a></li>
-      <li><a class="site-sidebar-link" href="information.html">Information</a></li>
-      <li><a class="site-sidebar-link" href="nav.html" aria-current="page">Navigation</a></li>
-      <li><a class="site-sidebar-link" href="back-link.html">Back link</a></li>
-      <li><a class="site-sidebar-link" href="pagination.html">Pagination</a></li>
-      <li><a class="site-sidebar-link" href="tag.html">Tag &amp; chip</a></li>
-      <li><a class="site-sidebar-link" href="table.html">Table</a></li>
-      <li><a class="site-sidebar-link" href="form.html">Form</a></li>
-      <li><a class="site-sidebar-link" href="modal.html">Modal</a></li>
-      <li><a class="site-sidebar-link" href="details.html">Details</a></li>
-      <li><a class="site-sidebar-link" href="panel.html">Panel</a></li>
-      <li><a class="site-sidebar-link" href="stat.html">Stat &amp; queue</a></li>
-      <li><a class="site-sidebar-link" href="steps.html">Steps</a></li>
-      <li><a class="site-sidebar-link" href="avatar.html">Avatar</a></li>
-      <li><a class="site-sidebar-link" href="section-divider.html">Section divider</a></li>
-    </ul>
-    <span class="site-sidebar-section">Inbox pattern</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="folder-list.html">Folder list</a></li>
-      <li><a class="site-sidebar-link" href="article-card.html">Article card</a></li>
-      <li><a class="site-sidebar-link" href="filter-bar.html">Filter bar</a></li>
-      <li><a class="site-sidebar-link" href="progress-bar.html">Progress bar</a></li>
-    </ul>
-    <span class="site-sidebar-section">Manager pattern</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="function-card.html">Function card</a></li>
-      <li><a class="site-sidebar-link" href="function-filter.html">Function filter</a></li>
-    </ul>
-    <span class="site-sidebar-section">Examples</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
-      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
-      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
-    </ul>
-  </nav>
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base=".."></nav>
 
   <main class="site-main" id="main">
 
@@ -93,7 +44,7 @@
             <span class="app-header-chip">Editorial</span>
           </a>
           <nav class="app-header-nav" aria-label="Primary"><a href="#">Editorial</a><a href="#">Production</a><a href="#">Reports</a></nav>
-          <button type="button" class="app-header-avatar" aria-label="Account menu — signed in as t.kowalski">t.kowalski</button>
+          <button type="button" class="app-header-avatar" aria-label="Account menu - signed in as t.kowalski">t.kowalski</button>
         </header>
       </div></div>
       <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
@@ -108,15 +59,15 @@
     &lt;a href="#"&gt;Reports&lt;/a&gt;
   &lt;/nav&gt;
   &lt;button type="button" class="app-header-avatar"
-          aria-label="Account menu — signed in as t.kowalski"&gt;t.kowalski&lt;/button&gt;
+          aria-label="Account menu - signed in as t.kowalski"&gt;t.kowalski&lt;/button&gt;
 &lt;/header&gt;</code></pre>
-      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/app-header/app-header.j2" import app_header, app_header_link %}
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/app-header/app-header.j2" import app_header, app_header_link %}
 
 {% call app_header(service="Editorial", user={"name": "t.kowalski"}) %}
   {{ app_header_link("Editorial",  url="/editorial") }}
   {{ app_header_link("Production", url="/production") }}
   {{ app_header_link("Reports",    url="/reports") }}
-{% endcall %}{% endraw %}</code></pre>
+{% endcall %}</code></pre>
     </div>
 
     <h2>Breadcrumbs</h2>
@@ -140,18 +91,18 @@
     &lt;li aria-current="page"&gt;Peer Review&lt;/li&gt;
   &lt;/ol&gt;
 &lt;/nav&gt;</code></pre>
-      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/breadcrumbs/breadcrumbs.j2" import breadcrumbs, breadcrumb %}
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/breadcrumbs/breadcrumbs.j2" import breadcrumbs, breadcrumb %}
 
 {% call breadcrumbs() %}
   {{ breadcrumb("Dashboard", url="/") }}
   {{ breadcrumb("Articles",  url="/articles") }}
   {{ breadcrumb("#1247 Okafor", url="#") }}
   {{ breadcrumb("Peer Review", current=True) }}
-{% endcall %}{% endraw %}</code></pre>
+{% endcall %}</code></pre>
     </div>
 
     <h2>Tabs (filter)</h2>
-    <p>Real navigation links — each tab is a different filtered view. Use <code>aria-current="true"</code> on the active link, not <code>role="tab"</code> (this is not an ARIA tabs widget).</p>
+    <p>Real navigation links - each tab is a different filtered view. Use <code>aria-current="true"</code> on the active link, not <code>role="tab"</code> (this is not an ARIA tabs widget).</p>
     <div class="example">
       <div class="example-render"><div class="example-render-inner">
         <nav class="tabs" aria-label="Review rounds">
@@ -168,12 +119,12 @@
     &lt;li&gt;&lt;a href="?round=2" aria-current="true"&gt;Round 2 &lt;span class="tabs-count"&gt;active&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/nav&gt;</code></pre>
-      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/tabs/tabs.j2" import tabs, tab %}
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/tabs/tabs.j2" import tabs, tab %}
 
 {% call tabs("Review rounds") %}
   {{ tab("Round 1", url="?round=1", count="closed") }}
   {{ tab("Round 2", url="?round=2", count="active", current=True) }}
-{% endcall %}{% endraw %}</code></pre>
+{% endcall %}</code></pre>
     </div>
 
     <h2>Sidebar nav</h2>
@@ -211,7 +162,7 @@
     &lt;li&gt;&lt;a href="#" class="sidebar-nav-link" aria-current="page"&gt;Peer Review …&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/nav&gt;</code></pre>
-      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/sidebar-nav/sidebar-nav.j2"
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/sidebar-nav/sidebar-nav.j2"
    import sidebar_nav, sidebar_nav_section, sidebar_nav_item %}
 
 {% call sidebar_nav(journal={
@@ -224,7 +175,7 @@
     {{ sidebar_nav_item("Peer Review", url="/review",     count=14, current=True) }}
     {{ sidebar_nav_item("Copyediting", url="/copyedit",   count=5) }}
   {% endcall %}
-{% endcall %}{% endraw %}</code></pre>
+{% endcall %}</code></pre>
     </div>
 
   </main>

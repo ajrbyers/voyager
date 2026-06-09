@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page header — Voyager</title>
+<title>Page header - Voyager</title>
 <link rel="stylesheet" href="../assets/css/index.css">
 <link rel="stylesheet" href="../assets/css/site.css">
 <script src="../assets/js/site.js" defer></script>
@@ -22,56 +22,7 @@
 </header>
 
 <div class="site-shell">
-  <nav class="site-sidebar" aria-label="Documentation">
-    <span class="site-sidebar-section">Get started</span>
-    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
-      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
-    <span class="site-sidebar-section">Foundations</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="../foundations/tokens.html">Tokens</a></li>
-      <li><a class="site-sidebar-link" href="../foundations/typography.html">Typography</a></li>
-      <li><a class="site-sidebar-link" href="../foundations/layout.html">Layout</a></li>
-    </ul>
-    <span class="site-sidebar-section">Components</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="page-header.html" aria-current="page">Page header</a></li>
-      <li><a class="site-sidebar-link" href="button.html">Button</a></li>
-      <li><a class="site-sidebar-link" href="icon.html">Icon</a></li>
-      <li><a class="site-sidebar-link" href="summary-block.html">Summary block</a></li>
-      <li><a class="site-sidebar-link" href="information.html">Information</a></li>
-      <li><a class="site-sidebar-link" href="nav.html">Navigation</a></li>
-      <li><a class="site-sidebar-link" href="back-link.html">Back link</a></li>
-      <li><a class="site-sidebar-link" href="pagination.html">Pagination</a></li>
-      <li><a class="site-sidebar-link" href="tag.html">Tag &amp; chip</a></li>
-      <li><a class="site-sidebar-link" href="table.html">Table</a></li>
-      <li><a class="site-sidebar-link" href="form.html">Form</a></li>
-      <li><a class="site-sidebar-link" href="modal.html">Modal</a></li>
-      <li><a class="site-sidebar-link" href="details.html">Details</a></li>
-      <li><a class="site-sidebar-link" href="panel.html">Panel</a></li>
-      <li><a class="site-sidebar-link" href="stat.html">Stat &amp; queue</a></li>
-      <li><a class="site-sidebar-link" href="steps.html">Steps</a></li>
-      <li><a class="site-sidebar-link" href="avatar.html">Avatar</a></li>
-      <li><a class="site-sidebar-link" href="section-divider.html">Section divider</a></li>
-    </ul>
-    <span class="site-sidebar-section">Inbox pattern</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="folder-list.html">Folder list</a></li>
-      <li><a class="site-sidebar-link" href="article-card.html">Article card</a></li>
-      <li><a class="site-sidebar-link" href="filter-bar.html">Filter bar</a></li>
-      <li><a class="site-sidebar-link" href="progress-bar.html">Progress bar</a></li>
-    </ul>
-    <span class="site-sidebar-section">Manager pattern</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="function-card.html">Function card</a></li>
-      <li><a class="site-sidebar-link" href="function-filter.html">Function filter</a></li>
-    </ul>
-    <span class="site-sidebar-section">Examples</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
-      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
-      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
-    </ul>
-  </nav>
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base=".."></nav>
 
   <main class="site-main" id="main">
 
@@ -119,7 +70,7 @@
     &lt;span class="tag tag-grey"&gt;Article&lt;/span&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/page-header/page-header.j2" import page_header %}
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/page-header/page-header.j2" import page_header %}
 {% from "voyager/components/code-chip/code-chip.j2" import code_chip %}
 {% from "voyager/components/tag/tag.j2" import tag %}
 
@@ -131,11 +82,11 @@
   {{ tag("Under review", kind="green") }}
   {{ tag("Round 2 of 2", kind="grey") }}
   {{ tag("Article",      kind="grey") }}
-{% endcall %}{% endraw %}</code></pre>
+{% endcall %}</code></pre>
     </div>
 
     <h2>Without tags</h2>
-    <p>Tags are optional. Caption and byline are too — but the title is required.</p>
+    <p>Tags are optional. Caption and byline are too - but the title is required.</p>
 
     <div class="example">
       <div class="example-render">
@@ -156,11 +107,11 @@
     Settings, content, and workflow configuration for the journal.
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
-      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{# Without tags — wrap with an empty {% call %} #}
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{# Without tags - wrap with an empty {% call %} #}
 {% call page_header(
     title='Manager',
     byline='Settings, content, and workflow configuration for the journal.'
-) %}{% endcall %}{% endraw %}</code></pre>
+) %}{% endcall %}</code></pre>
     </div>
 
     <h2>Placement</h2>
@@ -169,7 +120,7 @@
     <h2>Accessibility</h2>
     <ul>
       <li>The title is the only H1 on the page.</li>
-      <li>Caption is a span, not a heading — it provides context, not hierarchy.</li>
+      <li>Caption is a span, not a heading - it provides context, not hierarchy.</li>
       <li>Tags are decorative status labels; the same information must be available in the byline or status section so colour isn't the only carrier.</li>
     </ul>
 

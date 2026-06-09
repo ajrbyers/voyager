@@ -1,4 +1,4 @@
-/* Avatar — circular initials block. Three sizes via composable classes.
+/* Avatar - circular initials block. Three sizes via composable classes.
    Background colour is set by an additional class (avatar-purple, etc.)
    or via inline-class on the consumer side. Names like avatar-purple
    stay generic so the system can grow without coupling colour to a person. */
@@ -14,7 +14,7 @@
 .avatar.avatar-md{width:32px;height:32px;font-size:11px}
 .avatar.avatar-lg{width:48px;height:48px;font-size:14px}
 
-/* Generic colour pool — pick a stable one per user via hash on consumer side. */
+/* Generic colour pool - pick a stable one per user via hash on consumer side. */
 .avatar.avatar-purple{background:#5b21b6}
 .avatar.avatar-orange{background:#9a3412}
 .avatar.avatar-green{background:#166534}

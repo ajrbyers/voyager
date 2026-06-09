@@ -1,4 +1,4 @@
-/* Stat — large number + label, used on dashboards.
+/* Stat - large number + label, used on dashboards.
    Stack vertically inside a container; consecutive stats get a top border. */
 
 .stat{
@@ -20,7 +20,7 @@
   border-top:1px solid var(--colour-border-component);
 }
 
-/* Variants — colour the number to indicate severity */
+/* Variants - colour the number to indicate severity */
 .stat.stat-alert .stat-number{color:var(--colour-error)}
 .stat.stat-success .stat-number{color:var(--colour-success)}
 .stat.stat-warning .stat-number{color:var(--colour-warning-fg)}

@@ -1,4 +1,4 @@
-/* Tabs — filter selectors styled as Primer-inspired underline tabs.
+/* Tabs - filter selectors styled as Primer-inspired underline tabs.
    These are real navigation links (each tab is a different
    filtered view), NOT an ARIA tabs widget. Use aria-current="true"
    on the active link. */

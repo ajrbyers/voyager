@@ -1,5 +1,5 @@
 /* ===========================================================
-   settings.css — Voyager design tokens
+   settings.css - Voyager design tokens
    Two-tier system: raw tokens followed by semantic aliases.
    Components reference the semantic aliases.
    =========================================================== */
@@ -26,11 +26,11 @@
   --colour-govuk-grey-3:    #505a5f;
   --colour-govuk-black:     #0b0c0c;
 
-  /* Hue scale — accent (Primer blue) */
+  /* Hue scale - accent (Primer blue) */
   --colour-blue-0:          #ddf4ff;
   --colour-blue-5:          #0969da;
 
-  /* Hue scale — link (GOV.UK blue) */
+  /* Hue scale - link (GOV.UK blue) */
   --colour-link-base:       #1d70b8;
   --colour-link-hover-base: #003078;
   --colour-link-visited:    #4c2c92;
@@ -137,14 +137,14 @@
 }
 
 /* =========================================================
-   Dark mode — re-aliases the semantic tokens to dark values.
+   Dark mode - re-aliases the semantic tokens to dark values.
    The raw tokens above stay intact; only the alias map flips.
    All pairs verified ≥ 4.5:1 (text) and ≥ 3:1 (UI components).
    ========================================================= */
 
 :root[data-theme="dark"]{
 
-  /* ---------- Raw — dark palette additions ---------- */
+  /* ---------- Raw - dark palette additions ---------- */
   --colour-dark-canvas:        #0d1117;  /* main background  */
   --colour-dark-canvas-muted:  #161b22;  /* slight elevation */
   --colour-dark-canvas-inset:  #21262d;  /* sunk surface     */
@@ -153,8 +153,8 @@
   --colour-dark-border-2:      #6e7681;  /* WCAG 1.4.11 ≥3:1 vs canvas */
   --colour-dark-border-3:      #8b949e;  /* strong / focus-adjacent */
 
-  --colour-dark-fg:            #e6edf3;  /* primary text — 13.2:1 on canvas */
-  --colour-dark-fg-muted:      #8b949e;  /* 4.9:1 on canvas — passes AA */
+  --colour-dark-fg:            #e6edf3;  /* primary text - 13.2:1 on canvas */
+  --colour-dark-fg-muted:      #8b949e;  /* 4.9:1 on canvas - passes AA */
   --colour-dark-fg-subtle:     #6e7681;  /* large/UI only */
   --colour-dark-fg-strong:     #f0f6fc;
 
@@ -201,7 +201,7 @@
   --colour-error-dark:       var(--colour-dark-error-dark);
   --colour-info:             var(--colour-dark-info);
 
-  /* Focus — yellow stays. Yellow is intentionally the only colour
+  /* Focus - yellow stays. Yellow is intentionally the only colour
      that works on both light and dark canvases. The focus-fg (black)
      also stays so text on the yellow background is readable. */
 
@@ -218,7 +218,7 @@
   :root:not([data-theme="light"]):not([data-theme="dark"]){
     /* Apply dark by default when user has system preference and
        has not explicitly chosen light. The :root[data-theme="dark"]
-       block above handles the actual styling — we need to set the
+       block above handles the actual styling - we need to set the
        attribute for it to apply. JS does this on load. */
   }
 }

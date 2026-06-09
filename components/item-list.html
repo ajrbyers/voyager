@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Item list - Voyager</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="#">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base=".."></nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Item list</h1>
+    <p class="site-page-lede">
+      A dynamic add/remove repeating form item list. Uses HTMX for
+      progressive enhancement - add and delete items without a full page
+      reload. Falls back to standard form submission without JavaScript.
+    </p>
+
+    <h2>Default</h2>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="item-list" id="item-list-authors">
+          <input type="hidden" name="authors-count" value="2" aria-hidden="true">
+          <input type="hidden" name="authors-max" value="10" aria-hidden="true">
+          <div class="item-list-items">
+            <div class="item-list-item" id="authors-item-0">
+              <div class="item-list-item-header">
+                <h3 class="item-list-item-heading">Author 1</h3>
+              </div>
+              <div class="item-list-item-body">
+                <div class="form-group">
+                  <label class="form-label" for="author_name_0">Name</label>
+                  <input class="form-input" type="text" id="author_name_0" name="author_name_0" value="Sarah Philips">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="author_email_0">Email</label>
+                  <input class="form-input" type="email" id="author_email_0" name="author_email_0" value="sarah@example.com">
+                </div>
+              </div>
+            </div>
+            <div class="item-list-item" id="authors-item-1">
+              <div class="item-list-item-header">
+                <h3 class="item-list-item-heading">Author 2</h3>
+                <button type="button" class="btn btn-small">Delete<span class="visually-hidden"> author 2</span></button>
+              </div>
+              <div class="item-list-item-body">
+                <div class="form-group">
+                  <label class="form-label" for="author_name_1">Name</label>
+                  <input class="form-input" type="text" id="author_name_1" name="author_name_1">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="author_email_1">Email</label>
+                  <input class="form-input" type="email" id="author_email_1" name="author_email_1">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item-list-add">
+            <button type="button" class="btn">Add another author</button>
+            <p class="item-list-remaining">You can add 8 more authors</p>
+          </div>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="item-list" id="item-list-authors"&gt;
+  &lt;input type="hidden" name="authors-count" value="2"&gt;
+  &lt;input type="hidden" name="authors-max" value="10"&gt;
+  &lt;div class="item-list-items"&gt;
+    &lt;div class="item-list-item"&gt;
+      &lt;div class="item-list-item-header"&gt;
+        &lt;h3 class="item-list-item-heading"&gt;Author 1&lt;/h3&gt;
+      &lt;/div&gt;
+      &lt;div class="item-list-item-body"&gt;
+        &lt;!-- form fields --&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="item-list-item"&gt;
+      &lt;div class="item-list-item-header"&gt;
+        &lt;h3 class="item-list-item-heading"&gt;Author 2&lt;/h3&gt;
+        &lt;button type="button" class="btn btn-small"&gt;Delete&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="item-list-item-body"&gt;
+        &lt;!-- form fields --&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="item-list-add"&gt;
+    &lt;button type="button" class="btn"&gt;Add another author&lt;/button&gt;
+    &lt;p class="item-list-remaining"&gt;You can add 8 more authors&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/item-list/item-list.j2"
+   import item_list, item_list_item %}
+{% from "voyager/components/form/form.j2" import form_text %}
+
+{% call item_list(name="authors", item_label="Author",
+    count=2, max_items=10, htmx_url="/api/authors") %}
+  {% call item_list_item(0, "authors", "Author",
+      show_delete=False, htmx_url="/api/authors") %}
+    {{ form_text("author_name_0", "author_name_0", "Name") }}
+    {{ form_text("author_email_0", "author_email_0", "Email",
+        type="email") }}
+  {% endcall %}
+  {% call item_list_item(1, "authors", "Author",
+      htmx_url="/api/authors") %}
+    {{ form_text("author_name_1", "author_name_1", "Name") }}
+    {{ form_text("author_email_1", "author_email_1", "Email",
+        type="email") }}
+  {% endcall %}
+{% endcall %}</code></pre>
+    </div>
+
+    <h2>With errors</h2>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="item-list" id="item-list-patents">
+          <div class="item-list-errors" role="alert">
+            <ul>
+              <li>Patent 1: Enter a patent title</li>
+              <li>Patent 2: Enter a patent number</li>
+            </ul>
+          </div>
+          <input type="hidden" name="patents-count" value="2" aria-hidden="true">
+          <input type="hidden" name="patents-max" value="5" aria-hidden="true">
+          <div class="item-list-items">
+            <div class="item-list-item" id="patents-item-0">
+              <div class="item-list-item-header">
+                <h3 class="item-list-item-heading">Patent 1</h3>
+              </div>
+              <div class="item-list-item-body">
+                <div class="form-group form-group-error">
+                  <label class="form-label" for="patent_title_0">Title</label>
+                  <p class="form-error-message" id="patent_title_0-error"><span class="visually-hidden">Error:</span> Enter a patent title</p>
+                  <input class="form-input form-input-error" type="text" id="patent_title_0" name="patent_title_0" aria-describedby="patent_title_0-error">
+                </div>
+              </div>
+            </div>
+            <div class="item-list-item" id="patents-item-1">
+              <div class="item-list-item-header">
+                <h3 class="item-list-item-heading">Patent 2</h3>
+                <button type="button" class="btn btn-small">Delete<span class="visually-hidden"> patent 2</span></button>
+              </div>
+              <div class="item-list-item-body">
+                <div class="form-group form-group-error">
+                  <label class="form-label" for="patent_number_1">Number</label>
+                  <p class="form-error-message" id="patent_number_1-error"><span class="visually-hidden">Error:</span> Enter a patent number</p>
+                  <input class="form-input form-input-error" type="text" id="patent_number_1" name="patent_number_1" aria-describedby="patent_number_1-error">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item-list-add">
+            <button type="button" class="btn">Add another patent</button>
+            <p class="item-list-remaining">You can add 3 more patents</p>
+          </div>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="item-list" id="item-list-patents"&gt;
+  &lt;div class="item-list-errors" role="alert"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Patent 1: Enter a patent title&lt;/li&gt;
+      &lt;li&gt;Patent 2: Enter a patent number&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;!-- items ... --&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% call item_list(name="patents", item_label="Patent",
+    count=2, max_items=5, htmx_url="/api/patents",
+    errors=["Patent 1: Enter a patent title",
+            "Patent 2: Enter a patent number"]) %}
+  {# items ... #}
+{% endcall %}</code></pre>
+    </div>
+
+    <h2>At maximum</h2>
+    <p>
+      When <code>count</code> equals <code>max_items</code>, the add button
+      and remaining count are hidden automatically.
+    </p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="item-list" id="item-list-refs">
+          <input type="hidden" name="refs-count" value="3" aria-hidden="true">
+          <input type="hidden" name="refs-max" value="3" aria-hidden="true">
+          <div class="item-list-items">
+            <div class="item-list-item" id="refs-item-0">
+              <div class="item-list-item-header">
+                <h3 class="item-list-item-heading">Reference 1</h3>
+                <button type="button" class="btn btn-small">Delete<span class="visually-hidden"> reference 1</span></button>
+              </div>
+              <div class="item-list-item-body">
+                <div class="form-group"><label class="form-label" for="ref_0">URL</label><input class="form-input" type="url" id="ref_0" name="ref_0" value="https://doi.org/10.1234/abc"></div>
+              </div>
+            </div>
+            <div class="item-list-item" id="refs-item-1">
+              <div class="item-list-item-header">
+                <h3 class="item-list-item-heading">Reference 2</h3>
+                <button type="button" class="btn btn-small">Delete<span class="visually-hidden"> reference 2</span></button>
+              </div>
+              <div class="item-list-item-body">
+                <div class="form-group"><label class="form-label" for="ref_1">URL</label><input class="form-input" type="url" id="ref_1" name="ref_1" value="https://doi.org/10.5678/def"></div>
+              </div>
+            </div>
+            <div class="item-list-item" id="refs-item-2">
+              <div class="item-list-item-header">
+                <h3 class="item-list-item-heading">Reference 3</h3>
+                <button type="button" class="btn btn-small">Delete<span class="visually-hidden"> reference 3</span></button>
+              </div>
+              <div class="item-list-item-body">
+                <div class="form-group"><label class="form-label" for="ref_2">URL</label><input class="form-input" type="url" id="ref_2" name="ref_2" value="https://doi.org/10.9012/ghi"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;!-- When count == max_items, the add button section is omitted --&gt;
+&lt;div class="item-list" id="item-list-refs"&gt;
+  &lt;input type="hidden" name="refs-count" value="3"&gt;
+  &lt;input type="hidden" name="refs-max" value="3"&gt;
+  &lt;div class="item-list-items"&gt;
+    &lt;!-- 3 of 3 items - no add button --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>The <code>name</code>, <code>item_label</code>, and <code>htmx_url</code> parameters must be passed to both <code>item_list()</code> and each <code>item_list_item()</code>. This repetition is necessary because Jinja2 macros have isolated scopes.</li>
+      <li>Set <code>show_delete=False</code> on the first item when <code>count == 1</code>. The macro cannot count siblings, so the caller must manage this.</li>
+      <li>The HTMX endpoint should accept a POST and return the complete <code>&lt;div class="item-list"&gt;</code> HTML, which is swapped via <code>outerHTML</code>. The hidden <code>count</code> and <code>max</code> fields are included in the request via <code>hx-include</code>.</li>
+      <li>Without <code>htmx_url</code>, buttons fall back to <code>type="submit"</code> with a <code>name</code>/<code>value</code> pair (<code>name-action=add</code> or <code>name-action=delete-N</code>), so the server can handle add/delete as a standard form POST.</li>
+      <li>Delete buttons include a <code>visually-hidden</code> suffix (e.g. "Delete author 2") so screen readers announce which item is being deleted.</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

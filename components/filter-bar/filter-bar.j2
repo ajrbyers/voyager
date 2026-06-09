@@ -1,4 +1,4 @@
-{# filter-bar — control row with selects and active-chip summary.
+{# filter-bar - control row with selects and active-chip summary.
 
    Compose with three macros:
      - filter_bar()        wrapper
@@ -28,7 +28,7 @@
 </div>
 {% endmacro %}
 
-{# filter_select — compact select; options is a list of {value, label, selected?} #}
+{# filter_select - compact select; options is a list of {value, label, selected?} #}
 {% macro filter_select(id, label, options=[], value=None) %}
 <label class="visually-hidden" for="{{ id }}">{{ label }}</label>
 <select id="{{ id }}" name="{{ id }}" class="filter-select" aria-label="{{ label }}">

@@ -1,9 +1,9 @@
-/* dashboard.css — page-specific layout for the inbox example.
+/* dashboard.css - page-specific layout for the inbox example.
    Defines the inbox-shell grid and the per-folder dot colours.
    Inbox shell, toolbar, and card-list utilities live here because
    they're page-level layout; the component CSS handles the parts. */
 
-/* ---------- Inbox shell — two-column under app-header ---------- */
+/* ---------- Inbox shell - two-column under app-header ---------- */
 .inbox-shell{
   display:grid;
   grid-template-columns:280px minmax(0,1fr);
@@ -16,7 +16,7 @@
 .inbox-content{
   padding:0;
   min-width:0;background:var(--colour-canvas);
-  /* WCAG 2.2 SC 2.4.11 — when a card receives focus, scroll it past the
+  /* WCAG 2.2 SC 2.4.11 - when a card receives focus, scroll it past the
      sticky toolbar so the focused element isn't obscured. The padding
      value matches the toolbar's collapsed height. */
   scroll-padding-top:140px;
@@ -70,7 +70,7 @@
 }
 .inbox-sort-label{color:var(--colour-fg-muted);margin-right:4px}
 .inbox-sort-btn{
-  /* WCAG 2.2 SC 2.5.8 — minimum 24x24. */
+  /* WCAG 2.2 SC 2.5.8 - minimum 24x24. */
   display:inline-flex;align-items:center;
   min-height:24px;
   padding:4px 10px;border-radius:0;

@@ -1,4 +1,4 @@
-{# page-header — title block at the top of a page.
+{# page-header - title block at the top of a page.
 
    Args:
      - caption:  text above the H1 (HTML allowed; pass code-chip etc.)
@@ -17,7 +17,7 @@
        {{ tag("Round 2 of 2", kind="grey") }}
      {% endcall %}
 
-   Usage without tags — wrap with an empty {% call %} block:
+   Usage without tags - wrap with an empty {% call %} block:
      {% call page_header(title="Manager", byline="Settings and content.") %}{% endcall %}
 #}
 {% macro page_header(caption="", title="", byline="") %}

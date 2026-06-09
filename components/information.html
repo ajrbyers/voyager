@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Information — Voyager</title>
+<title>Information - Voyager</title>
 <link rel="stylesheet" href="../assets/css/index.css">
 <link rel="stylesheet" href="../assets/css/site.css">
 <script src="../assets/js/site.js" defer></script>
@@ -22,56 +22,7 @@
 </header>
 
 <div class="site-shell">
-  <nav class="site-sidebar" aria-label="Documentation">
-    <span class="site-sidebar-section">Get started</span>
-    <ul><li><a class="site-sidebar-link" href="../index.html">Overview</a></li>
-      <li><a class="site-sidebar-link" href="../architecture.html">Architecture</a></li></ul>
-    <span class="site-sidebar-section">Foundations</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="../foundations/tokens.html">Tokens</a></li>
-      <li><a class="site-sidebar-link" href="../foundations/typography.html">Typography</a></li>
-      <li><a class="site-sidebar-link" href="../foundations/layout.html">Layout</a></li>
-    </ul>
-    <span class="site-sidebar-section">Components</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="page-header.html">Page header</a></li>
-      <li><a class="site-sidebar-link" href="button.html">Button</a></li>
-      <li><a class="site-sidebar-link" href="icon.html">Icon</a></li>
-      <li><a class="site-sidebar-link" href="summary-block.html">Summary block</a></li>
-      <li><a class="site-sidebar-link" href="information.html" aria-current="page">Information</a></li>
-      <li><a class="site-sidebar-link" href="nav.html">Navigation</a></li>
-      <li><a class="site-sidebar-link" href="back-link.html">Back link</a></li>
-      <li><a class="site-sidebar-link" href="pagination.html">Pagination</a></li>
-      <li><a class="site-sidebar-link" href="tag.html">Tag &amp; chip</a></li>
-      <li><a class="site-sidebar-link" href="table.html">Table</a></li>
-      <li><a class="site-sidebar-link" href="form.html">Form</a></li>
-      <li><a class="site-sidebar-link" href="modal.html">Modal</a></li>
-      <li><a class="site-sidebar-link" href="details.html">Details</a></li>
-      <li><a class="site-sidebar-link" href="panel.html">Panel</a></li>
-      <li><a class="site-sidebar-link" href="stat.html">Stat &amp; queue</a></li>
-      <li><a class="site-sidebar-link" href="steps.html">Steps</a></li>
-      <li><a class="site-sidebar-link" href="avatar.html">Avatar</a></li>
-      <li><a class="site-sidebar-link" href="section-divider.html">Section divider</a></li>
-    </ul>
-    <span class="site-sidebar-section">Inbox pattern</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="folder-list.html">Folder list</a></li>
-      <li><a class="site-sidebar-link" href="article-card.html">Article card</a></li>
-      <li><a class="site-sidebar-link" href="filter-bar.html">Filter bar</a></li>
-      <li><a class="site-sidebar-link" href="progress-bar.html">Progress bar</a></li>
-    </ul>
-    <span class="site-sidebar-section">Manager pattern</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="function-card.html">Function card</a></li>
-      <li><a class="site-sidebar-link" href="function-filter.html">Function filter</a></li>
-    </ul>
-    <span class="site-sidebar-section">Examples</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="../examples/dashboard.html">Dashboard</a></li>
-      <li><a class="site-sidebar-link" href="../examples/manager.html">Manager</a></li>
-      <li><a class="site-sidebar-link" href="../examples/peer-review.html">Peer review</a></li>
-    </ul>
-  </nav>
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base=".."></nav>
 
   <main class="site-main" id="main">
 
@@ -83,13 +34,13 @@
       actions, and <strong>error summary</strong> for failed form submissions.
     </p>
 
-    <h2>Notice — info (default)</h2>
+    <h2>Notice - info (default)</h2>
     <div class="example">
       <div class="example-render"><div class="example-render-inner">
         <section class="notice" aria-labelledby="info-1">
           <h2 class="notice-head" id="info-1">Important</h2>
           <div class="notice-body">
-            <p>Reviewer #419 has not acknowledged the invitation sent on 12 April 2026 — 28 days ago.</p>
+            <p>Reviewer #419 has not acknowledged the invitation sent on 12 April 2026 - 28 days ago.</p>
           </div>
         </section>
       </div></div>
@@ -97,17 +48,17 @@
       <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;section class="notice" aria-labelledby="info-1"&gt;
   &lt;h2 class="notice-head" id="info-1"&gt;Important&lt;/h2&gt;
   &lt;div class="notice-body"&gt;
-    &lt;p&gt;Reviewer #419 has not acknowledged the invitation sent on 12 April 2026 — 28 days ago.&lt;/p&gt;
+    &lt;p&gt;Reviewer #419 has not acknowledged the invitation sent on 12 April 2026 - 28 days ago.&lt;/p&gt;
   &lt;/div&gt;
 &lt;/section&gt;</code></pre>
-      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/information/information.j2" import notice %}
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/information/information.j2" import notice %}
 
 {% call notice("Important") %}
   &lt;p&gt;Reviewer #419 has not acknowledged the invitation sent on 12 April 2026.&lt;/p&gt;
-{% endcall %}{% endraw %}</code></pre>
+{% endcall %}</code></pre>
     </div>
 
-    <h2>Notice — variants</h2>
+    <h2>Notice - variants</h2>
     <p>Compose <code>.notice-warning</code>, <code>.notice-error</code>, or <code>.notice-success</code> alongside <code>.notice</code>.</p>
 
     <div class="example">
@@ -129,9 +80,9 @@
       <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;section class="notice notice-warning"&gt; … &lt;/section&gt;
 &lt;section class="notice notice-error"&gt;   … &lt;/section&gt;
 &lt;section class="notice notice-success"&gt; … &lt;/section&gt;</code></pre>
-      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% call notice("Action needed", kind="warning") %} … {% endcall %}
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% call notice("Action needed", kind="warning") %} … {% endcall %}
 {% call notice("Something went wrong", kind="error") %} … {% endcall %}
-{% call notice("Decision sent", kind="success") %} … {% endcall %}{% endraw %}</code></pre>
+{% call notice("Decision sent", kind="success") %} … {% endcall %}</code></pre>
     </div>
 
     <h2>Inset text</h2>
@@ -147,13 +98,13 @@
       <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="inset-text"&gt;
   &lt;p&gt;Currently in &lt;strong&gt;Under Review&lt;/strong&gt;. An active minor revision is in flight.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% call inset_text() %}
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% call inset_text() %}
   &lt;p&gt;Currently in &lt;strong&gt;Under Review&lt;/strong&gt;. An active minor revision is in flight.&lt;/p&gt;
-{% endcall %}{% endraw %}</code></pre>
+{% endcall %}</code></pre>
     </div>
 
     <h2>Warning text</h2>
-    <p>For serious advisories — irreversible actions, legal consequences, data loss. Heavier than inset text. The black filled circle is decorative; the visually-hidden &ldquo;Warning&rdquo; prefix carries semantics for assistive technology.</p>
+    <p>For serious advisories - irreversible actions, legal consequences, data loss. Heavier than inset text. The black filled circle is decorative; the visually-hidden &ldquo;Warning&rdquo; prefix carries semantics for assistive technology.</p>
     <div class="example">
       <div class="example-render"><div class="example-render-inner">
         <div class="warning-text">
@@ -172,9 +123,9 @@
     Withdrawing this submission will email the corresponding author and cannot be reversed.
   &lt;/strong&gt;
 &lt;/div&gt;</code></pre>
-      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/warning-text/warning-text.j2" import warning_text %}
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/warning-text/warning-text.j2" import warning_text %}
 
-{{ warning_text("Withdrawing this submission will email the corresponding author and cannot be reversed.") }}{% endraw %}</code></pre>
+{{ warning_text("Withdrawing this submission will email the corresponding author and cannot be reversed.") }}</code></pre>
     </div>
 
     <h2>Error summary</h2>
@@ -197,14 +148,14 @@
     &lt;li&gt;&lt;a href="#decision-kind"&gt;Choose a decision&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
-      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/information/information.j2"
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/information/information.j2"
    import error_summary, error_summary_item %}
 
 {% call error_summary() %}
   {{ error_summary_item("Enter a decision letter to send to the author",
                          anchor="decision-letter") }}
   {{ error_summary_item("Choose a decision", anchor="decision-kind") }}
-{% endcall %}{% endraw %}</code></pre>
+{% endcall %}</code></pre>
     </div>
 
   </main>

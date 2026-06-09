@@ -1,5 +1,5 @@
 /* ===========================================================
-   elements.css — base styling on element selectors only.
+   elements.css - base styling on element selectors only.
    No classes here. Components and utilities use classes.
    =========================================================== */
 
@@ -32,7 +32,7 @@ a:hover{
   text-decoration-thickness:2px;
 }
 
-/* Universal yellow focus — inspired by the GOV.UK focus pattern.
+/* Universal yellow focus - inspired by the GOV.UK focus pattern.
    Scoped to interactive elements; works for keyboard users only.
    The bottom 4px underline provides 3:1 separation from canvas. */
 a:focus-visible,
@@ -50,7 +50,7 @@ summary:focus-visible,
   text-decoration:none;
 }
 
-/* Dark mode — flip the bottom underline from black to light so it
+/* Dark mode - flip the bottom underline from black to light so it
    stays visible on a dark canvas. The yellow background + black text
    inside the focus ring still works (text-on-yellow is always black). */
 :root[data-theme="dark"] a:focus-visible,

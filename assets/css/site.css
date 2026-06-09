@@ -1,12 +1,12 @@
 /* ===========================================================
-   site.css — Voyager documentation site chrome only.
+   site.css - Voyager documentation site chrome only.
    This stylesheet is for the docs site itself (sidebar nav,
    page header, code preview tabs, examples). It is NOT part
    of the Voyager design system surfaced to consumers.
    It depends on Voyager tokens (--colour-*, --s-*, --fs-*).
    =========================================================== */
 
-/* Site shell — header on top, sidebar + content below.
+/* Site shell - header on top, sidebar + content below.
    Always-dark chrome: uses raw tokens so it doesn't flip in dark mode. */
 .site-header{
   background:#1f2328;
@@ -124,7 +124,7 @@
   font-size:0.92em;
 }
 
-/* ---------- Example block — render + tabbed code preview ---------- */
+/* ---------- Example block - render + tabbed code preview ---------- */
 .example{
   border:1px solid var(--colour-border-component);
   background:var(--colour-canvas);
@@ -145,6 +145,12 @@
   background:var(--colour-canvas);
   padding:var(--s-5);
   border:1px solid var(--colour-border-muted);
+}
+
+/* Extra room for examples whose component overlays content below
+   (e.g. an open tag-picker dropdown). */
+.example-render-tall .example-render-inner{
+  padding-bottom:200px;
 }
 
 /* Tabs above the code panes */
@@ -171,7 +177,7 @@
   margin-bottom:-1px;
 }
 
-/* Code panes stay dark in both light and dark modes — code editors
+/* Code panes stay dark in both light and dark modes - code editors
    are dark by convention. */
 .example-pane{
   display:none;

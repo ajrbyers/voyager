@@ -1,0 +1,108 @@
+{# tag-picker -- HTMX-driven many-to-many autocomplete.
+   Selected items render as removable chips; a search input queries
+   the server, which returns matching items and an optional
+   "Create" action for new values. Requires HTMX; there is no
+   non-JS fallback, so pair it with a plain multi-select where
+   progressive enhancement is required.
+
+   Macros:
+     - tag_picker(name, label, items, search_url, empty_text)
+       The widget. `items` is a list of dicts, each with `name`
+       and `remove_url` keys. The whole widget (id
+       `tag-picker-{name}`) is the swap target for add/remove.
+
+     - tag_picker_results(name, q, results, add_url, can_create)
+       The dropdown partial the search endpoint returns. `results`
+       is a list of dicts with `id` and `name` keys. `can_create`
+       shows a "Create «q»" action that POSTs the query string.
+
+   Server contract (three endpoints):
+     - search: GET  ?q=...      -> returns tag_picker_results() HTML
+     - add:    POST item_id     -> returns tag_picker() HTML
+               POST name        -> creates the item, then as above
+     - remove: POST (per item)  -> returns tag_picker() HTML
+
+   Usage:
+     {% from "voyager/components/tag-picker/tag-picker.j2"
+        import tag_picker %}
+
+     {{ tag_picker(
+         name="categories",
+         label="category",
+         items=[
+           {"name": "Astrophysics", "remove_url": "/categories/1/remove/"},
+         ],
+         search_url="/categories/search/",
+         empty_text="No categories added yet") }}
+#}
+
+{% from "voyager/components/icon/icon.j2" import icon %}
+
+{% macro tag_picker(name, label="item", items=[], search_url="",
+                    empty_text="") %}
+{%- set _id = 'tag-picker-' ~ name -%}
+<div class="tag-picker" id="{{ _id }}">
+  <div class="tag-picker-tags">
+    {% for item in items %}
+    <span class="tag-picker-tag">
+      <span>{{ item.name }}</span>
+      <button type="button"
+              class="tag-picker-tag-remove"
+              hx-post="{{ item.remove_url }}"
+              hx-target="#{{ _id }}"
+              hx-swap="outerHTML"
+              aria-label="Remove {{ item.name }}">
+        {{ icon("x") }}
+      </button>
+    </span>
+    {% else %}
+    <span class="tag-picker-none">{{ empty_text or 'No ' ~ label ~ 's added yet' }}</span>
+    {% endfor %}
+  </div>
+  <div class="tag-picker-search">
+    <input type="text"
+           class="form-input"
+           name="q"
+           placeholder="Search or create {{ label }}…"
+           aria-label="Search or create {{ label }}"
+           hx-get="{{ search_url }}"
+           hx-target="#{{ _id }}-results"
+           hx-trigger="input changed delay:200ms, focus"
+           autocomplete="off">
+    <div id="{{ _id }}-results" class="tag-picker-results"></div>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro tag_picker_results(name, q, results=[], add_url="",
+                            can_create=False) %}
+{%- set _target = '#tag-picker-' ~ name -%}
+{% if results or can_create %}
+<div class="tag-picker-results-inner">
+  {% for item in results %}
+  <button type="button"
+          class="tag-picker-result"
+          hx-post="{{ add_url }}"
+          hx-vals='{"item_id": "{{ item.id }}"}'
+          hx-target="{{ _target }}"
+          hx-swap="outerHTML">
+    {{ icon("plus") }} {{ item.name }}
+  </button>
+  {% endfor %}
+  {% if can_create %}
+  <button type="button"
+          class="tag-picker-result tag-picker-result-create"
+          hx-post="{{ add_url }}"
+          hx-vals='{"name": "{{ q }}"}'
+          hx-target="{{ _target }}"
+          hx-swap="outerHTML">
+    {{ icon("plus") }} Create "{{ q }}"
+  </button>
+  {% endif %}
+</div>
+{% elif q %}
+<div class="tag-picker-results-inner">
+  <span class="tag-picker-empty">No matches for "{{ q }}"</span>
+</div>
+{% endif %}
+{% endmacro %}

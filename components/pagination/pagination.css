@@ -1,4 +1,4 @@
-/* Pagination — Previous / Next + numbered pages, GDS-inspired.
+/* Pagination - Previous / Next + numbered pages, GDS-inspired.
    Used at the foot of any list view. The current page is announced
    to AT via aria-current="page". */
 

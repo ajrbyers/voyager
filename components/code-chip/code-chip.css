@@ -1,4 +1,4 @@
-/* code-chip — inline monospace label for IDs, branch names, SHAs */
+/* code-chip - inline monospace label for IDs, branch names, SHAs */
 .code-chip{
   font-family:var(--font-mono);
   background:var(--colour-canvas-muted);

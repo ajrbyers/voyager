@@ -1,4 +1,4 @@
-/* Tag — small uppercase status label.
+/* Tag - small uppercase status label.
    Default uses the info blue. Variants compose:
      tag-green tag-red tag-orange tag-grey tag-blue
 */
@@ -16,7 +16,7 @@
 .tag.tag-grey{background:var(--colour-surface-grey);color:var(--colour-fg-strong)}
 .tag.tag-blue{background:var(--colour-info)}
 
-/* Dark mode — brighter status hues need dark text to keep ≥ 4.5:1. */
+/* Dark mode - brighter status hues need dark text to keep ≥ 4.5:1. */
 :root[data-theme="dark"] .tag,
 :root[data-theme="dark"] .tag.tag-green,
 :root[data-theme="dark"] .tag.tag-red,

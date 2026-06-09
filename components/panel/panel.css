@@ -1,4 +1,4 @@
-/* Panel — large confirmation block shown at the top of a completion
+/* Panel - large confirmation block shown at the top of a completion
    page. Used after a workflow action completes: "Decision sent · DEC-2026-091".
    Defaults to GOV.UK green; success/error/info variants compose. */
 
@@ -33,7 +33,7 @@
 .panel.panel-error{background:var(--colour-error)}
 .panel.panel-info{background:var(--colour-info)}
 
-/* Dark mode — coloured panels need dark text on the brighter hues. */
+/* Dark mode - coloured panels need dark text on the brighter hues. */
 :root[data-theme="dark"] .panel,
 :root[data-theme="dark"] .panel.panel-error,
 :root[data-theme="dark"] .panel.panel-info,

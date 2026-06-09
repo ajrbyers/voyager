@@ -1,4 +1,4 @@
-/* Sidebar navigation — left rail with grouped link sections,
+/* Sidebar navigation - left rail with grouped link sections,
    each headed by an h2 section label, lists of links, optional
    counts. Active link uses aria-current="page". */
 
@@ -62,7 +62,7 @@
   }
 }
 
-/* Dark mode — the brighter accent (#58a6ff) needs dark text to keep AA. */
+/* Dark mode - the brighter accent (#58a6ff) needs dark text to keep AA. */
 :root[data-theme="dark"] .sidebar-nav .sidebar-nav-mark{
   color:var(--colour-dark-canvas);
 }

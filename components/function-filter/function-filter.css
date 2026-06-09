@@ -1,4 +1,4 @@
-/* Function filter — search input + horizontal filter chip group.
+/* Function filter - search input + horizontal filter chip group.
    Used above a function-card grid to narrow the visible cards. The
    chips are radio inputs styled as pill buttons; `:has(input:checked)`
    handles the active state without any JavaScript.

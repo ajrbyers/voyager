@@ -1,4 +1,4 @@
-/* Form — inspired by the UK Government Design System.
+/* Form - inspired by the UK Government Design System.
 
    Building blocks:
      .form-group            wrapper around a label + control + hint + error
@@ -124,7 +124,7 @@
   color:var(--colour-fg-strong);
 }
 
-/* Width modifiers — character-based fixed widths */
+/* Width modifiers - character-based fixed widths */
 .form-input-width-2  {max-width:5.4ex}
 .form-input-width-3  {max-width:7.2ex}
 .form-input-width-4  {max-width:9ex}
@@ -278,7 +278,7 @@
   color:var(--colour-fg);
 }
 
-/* Small variant — 24×24 visible control with 40px touch area preserved
+/* Small variant - 24×24 visible control with 40px touch area preserved
    via padding so AAA target size is still met. */
 .form-radio.form-radio-small input[type="radio"]{width:24px;height:24px}
 .form-radio.form-radio-small input[type="radio"]:checked::after{inset:5px}

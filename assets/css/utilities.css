@@ -1,5 +1,5 @@
 /* ===========================================================
-   utilities.css — single-purpose helpers. Imported LAST so
+   utilities.css - single-purpose helpers. Imported LAST so
    utility classes win on specificity over component styles.
    =========================================================== */
 
@@ -34,18 +34,18 @@
 .status-success{color:var(--colour-success);font-weight:600}
 
 /* ---------- Layout primitives ---------- */
-/* Stack — vertical rhythm */
+/* Stack - vertical rhythm */
 .stack > * + *{margin-top:var(--s-3)}
 .stack-sm > * + *{margin-top:var(--s-2)}
 .stack-lg > * + *{margin-top:var(--s-5)}
 .stack-xl > * + *{margin-top:var(--s-8)}
 
-/* Cluster — horizontal group with gap and wrap */
+/* Cluster - horizontal group with gap and wrap */
 .cluster{display:flex;gap:var(--s-2);flex-wrap:wrap;align-items:center}
 .cluster-sm{display:flex;gap:var(--s-1);flex-wrap:wrap;align-items:center}
 .cluster-lg{display:flex;gap:var(--s-4);flex-wrap:wrap;align-items:center}
 
-/* Grid — equal columns */
+/* Grid - equal columns */
 .grid{display:grid;gap:var(--s-4)}
 .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -54,7 +54,7 @@
   .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
 }
 
-/* App layouts — two columns with rail */
+/* App layouts - two columns with rail */
 .layout-with-rail{
   display:grid;
   grid-template-columns:minmax(0,1fr) var(--shell-rail-width);

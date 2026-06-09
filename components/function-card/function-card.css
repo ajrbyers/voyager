@@ -1,11 +1,11 @@
-/* Function card — bordered, clickable card for a single manager
+/* Function card - bordered, clickable card for a single manager
    "function" (a thing you can configure or manage). Composed of a
    coloured icon, a count, a title, a description, category tags,
    and an arrow.
 
    Variants:
      function-card-icon-{blue|green|orange|purple|pink|teal|red|yellow|grey}
-     function-card.is-coming-soon  — dims the card and disables clicks. */
+     function-card.is-coming-soon  - dims the card and disables clicks. */
 
 .function-card{
   background:var(--colour-canvas);
@@ -63,7 +63,7 @@
   font-family:var(--font-system);
 }
 
-/* Icon colour pool — fg colour + 10% tint of same hue for background.
+/* Icon colour pool - fg colour + 10% tint of same hue for background.
    Hardcoded so authors don't need inline styles per card. */
 .function-card-icon-blue   {background:#dbeafe;color:#1d4ed8}
 .function-card-icon-green  {background:#d1fae5;color:#047857}
@@ -75,7 +75,7 @@
 .function-card-icon-yellow {background:#fef3c7;color:#92400e}
 .function-card-icon-grey   {background:var(--colour-canvas-muted);color:var(--colour-fg-muted)}
 
-/* Dark-mode icon tile pairs — saturated foreground on darker tinted bg. */
+/* Dark-mode icon tile pairs - saturated foreground on darker tinted bg. */
 :root[data-theme="dark"] .function-card-icon-blue   {background:#0c2d4a;color:#79c0ff}
 :root[data-theme="dark"] .function-card-icon-green  {background:#0f2a1b;color:#3fb950}
 :root[data-theme="dark"] .function-card-icon-orange {background:#3a2510;color:#e8a35a}
@@ -133,7 +133,7 @@
   padding-top:var(--s-2);
   border-top:1px solid var(--colour-border-muted);
 }
-/* Tag wrapper at the foot — uses the standard .tag component
+/* Tag wrapper at the foot - uses the standard .tag component
    (typically .tag tag-grey) for the chips themselves. */
 .function-card-tags{
   display:flex;flex-wrap:wrap;gap:4px;

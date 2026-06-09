@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Voyager — Janeway design system</title>
+<title>Voyager - Janeway design system</title>
 <link rel="stylesheet" href="assets/css/index.css">
 <link rel="stylesheet" href="assets/css/site.css">
 <script src="assets/js/site.js" defer></script>
@@ -30,65 +30,14 @@
 
 <div class="site-shell">
 
-  <nav class="site-sidebar" aria-label="Documentation">
-    <span class="site-sidebar-section">Get started</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="index.html" aria-current="page">Overview</a></li>
-      <li><a class="site-sidebar-link" href="architecture.html">Architecture</a></li>
-    </ul>
-    <span class="site-sidebar-section">Foundations</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="foundations/tokens.html">Tokens</a></li>
-      <li><a class="site-sidebar-link" href="foundations/typography.html">Typography</a></li>
-      <li><a class="site-sidebar-link" href="foundations/layout.html">Layout</a></li>
-    </ul>
-    <span class="site-sidebar-section">Components</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="components/page-header.html">Page header</a></li>
-      <li><a class="site-sidebar-link" href="components/button.html">Button</a></li>
-      <li><a class="site-sidebar-link" href="components/icon.html">Icon</a></li>
-      <li><a class="site-sidebar-link" href="components/summary-block.html">Summary block</a></li>
-      <li><a class="site-sidebar-link" href="components/information.html">Information</a></li>
-      <li><a class="site-sidebar-link" href="components/nav.html">Navigation</a></li>
-      <li><a class="site-sidebar-link" href="components/back-link.html">Back link</a></li>
-      <li><a class="site-sidebar-link" href="components/pagination.html">Pagination</a></li>
-      <li><a class="site-sidebar-link" href="components/tag.html">Tag &amp; chip</a></li>
-      <li><a class="site-sidebar-link" href="components/table.html">Table</a></li>
-      <li><a class="site-sidebar-link" href="components/form.html">Form</a></li>
-      <li><a class="site-sidebar-link" href="components/modal.html">Modal</a></li>
-      <li><a class="site-sidebar-link" href="components/details.html">Details</a></li>
-      <li><a class="site-sidebar-link" href="components/panel.html">Panel</a></li>
-      <li><a class="site-sidebar-link" href="components/stat.html">Stat &amp; queue</a></li>
-      <li><a class="site-sidebar-link" href="components/steps.html">Steps</a></li>
-      <li><a class="site-sidebar-link" href="components/avatar.html">Avatar</a></li>
-      <li><a class="site-sidebar-link" href="components/section-divider.html">Section divider</a></li>
-    </ul>
-    <span class="site-sidebar-section">Inbox pattern</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="components/folder-list.html">Folder list</a></li>
-      <li><a class="site-sidebar-link" href="components/article-card.html">Article card</a></li>
-      <li><a class="site-sidebar-link" href="components/filter-bar.html">Filter bar</a></li>
-      <li><a class="site-sidebar-link" href="components/progress-bar.html">Progress bar</a></li>
-    </ul>
-    <span class="site-sidebar-section">Manager pattern</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="components/function-card.html">Function card</a></li>
-      <li><a class="site-sidebar-link" href="components/function-filter.html">Function filter</a></li>
-    </ul>
-    <span class="site-sidebar-section">Examples</span>
-    <ul>
-      <li><a class="site-sidebar-link" href="examples/dashboard.html">Dashboard</a></li>
-      <li><a class="site-sidebar-link" href="examples/manager.html">Manager</a></li>
-      <li><a class="site-sidebar-link" href="examples/peer-review.html">Peer review</a></li>
-    </ul>
-  </nav>
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base="."></nav>
 
   <main class="site-main" id="main">
 
     <h1>Voyager</h1>
     <p class="site-page-lede">
       Voyager is Janeway's design system. It draws inspiration from two systems we
-      admire — GitHub Primer and the UK Government Design System — but Voyager is its
+      admire - GitHub Primer and the UK Government Design System - but Voyager is its
       own thing. Every component is hand-written for Janeway's editorial admin context;
       nothing is imported from either source.
     </p>
@@ -97,22 +46,22 @@
     <p>
       Janeway is an editorial admin tool. Editors and managers spend a lot of time
       scanning lists, reading metadata, and navigating between queues. That points us
-      toward the kind of compact density and chrome we admire in GitHub Primer — thin
+      toward the kind of compact density and chrome we admire in GitHub Primer - thin
       top bars, left rails, hairline borders, monospaced identifiers. Editorial actions
       are also consequential: sending a decision letter, withdrawing a reviewer,
       requesting revisions. That points us toward the accessibility discipline we
-      admire in the UK Government Design System — summary lists, inset text, yellow
+      admire in the UK Government Design System - summary lists, inset text, yellow
       focus rings, unambiguous link text, and a strict form pattern.
     </p>
     <p>
-      We re-write rather than re-use — the lessons are theirs; the code is ours.
+      We re-write rather than re-use - the lessons are theirs; the code is ours.
     </p>
 
     <h2>How it's organised</h2>
     <ul>
-      <li><strong>Foundations</strong> — the tokens, type scale, and layout primitives that everything else builds on.</li>
-      <li><strong>Components</strong> — self-contained patterns. Each component lives in its own folder with co-located <code>.html</code>, <code>.css</code>, and <code>.j2</code> macro. The CSS uses a single root class with native nesting; variants compose as additional flat classes.</li>
-      <li><strong>Examples</strong> — three real Janeway pages built entirely from Voyager components: the editor dashboard, the manager index, and the peer-review screen.</li>
+      <li><strong>Foundations</strong> - the tokens, type scale, and layout primitives that everything else builds on.</li>
+      <li><strong>Components</strong> - self-contained patterns. Each component lives in its own folder with co-located <code>.html</code>, <code>.css</code>, and <code>.j2</code> macro. The CSS uses a single root class with native nesting; variants compose as additional flat classes.</li>
+      <li><strong>Examples</strong> - three real Janeway pages built entirely from Voyager components: the editor dashboard, the manager index, and the peer-review screen.</li>
     </ul>
 
     <h2>How to use it</h2>
@@ -133,10 +82,10 @@
 
 &lt;span class="tag tag-green"&gt;Under review&lt;/span&gt;
 &lt;span class="tag tag-grey"&gt;Article&lt;/span&gt;</code></pre>
-      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% raw %}{% from "voyager/components/tag/tag.j2" import tag %}
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/tag/tag.j2" import tag %}
 
 {{ tag("Under review", kind="green") }}
-{{ tag("Article", kind="grey") }}{% endraw %}</code></pre>
+{{ tag("Article", kind="grey") }}</code></pre>
     </div>
 
     <h2>Architecture</h2>

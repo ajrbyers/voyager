@@ -1,11 +1,11 @@
-{# Form macros — inspired by the UK Government Design System.
+{# Form macros - inspired by the UK Government Design System.
 
    Field types share a structure: form-group wrapper, label, hint,
    error message, control. aria-describedby links hint and error
    to the control in that order (hint first, then error).
 
    GDS conventions that inspired Voyager:
-     · Mark optional fields ("Full name (optional)") — never required
+     · Mark optional fields ("Full name (optional)") - never required
      · Error message is <p> with visually-hidden "Error:" prefix
      · Form-group--error adds left border + padding
      · Inputs that are 40px touch-target (radios/checkboxes) by default
@@ -18,7 +18,7 @@
 
 {# ---------- Single-control field macros ---------- #}
 
-{# form_text — text input.
+{# form_text - text input.
    Optional fields take optional=True and the label gets " (optional)" appended. #}
 {% macro form_text(name, id, label, hint="", value="", error="", optional=False,
                     type="text", autocomplete=None, width=None, fluid=None,
@@ -41,7 +41,7 @@
 </div>
 {% endmacro %}
 
-{# form_textarea — textarea. Pair with form_textarea_with_count
+{# form_textarea - textarea. Pair with form_textarea_with_count
    for character-counted variants. #}
 {% macro form_textarea(name, id, label, hint="", value="", error="",
                         optional=False, rows=5, label_size="m") %}
@@ -58,7 +58,7 @@
 </div>
 {% endmacro %}
 
-{# form_textarea_with_count — textarea wrapped in a character-count container.
+{# form_textarea_with_count - textarea wrapped in a character-count container.
    The count message is a sibling div, not inside the form-group. #}
 {% macro form_textarea_with_count(name, id, label, maxlength, hint="", value="",
                                     error="", optional=False, rows=5,
@@ -83,7 +83,7 @@
 </div>
 {% endmacro %}
 
-{# form_select — composes a wrapper + form_select_option calls.
+{# form_select - composes a wrapper + form_select_option calls.
    Usage:
      {% call form_select("section", "section", "Section") %}
        {{ form_select_option("article", "Article", selected=True) }}
@@ -113,7 +113,7 @@
 
 {# ---------- Radio group ---------- #}
 
-{# form_radios — wrapper. Use heading_legend=True when the legend is
+{# form_radios - wrapper. Use heading_legend=True when the legend is
    the page heading (the legend will wrap an h1 with form-fieldset-heading). #}
 {% macro form_radios(name, legend, hint="", error="", legend_size="m",
                       heading_legend=False) %}
@@ -133,7 +133,7 @@
 </div>
 {% endmacro %}
 
-{# form_radio — one option. name should match the parent fieldset. #}
+{# form_radio - one option. name should match the parent fieldset. #}
 {% macro form_radio(name, value, label, hint="", checked=False, small=False) %}
 <label class="form-radio{% if small %} form-radio-small{% endif %}">
   <input type="radio" name="{{ name }}" value="{{ value }}" {% if checked %}checked{% endif %}>
@@ -180,7 +180,7 @@
 
 {# ---------- Date input ---------- #}
 
-{# form_date — three text inputs (day, month, year) inside a fieldset.
+{# form_date - three text inputs (day, month, year) inside a fieldset.
    Args:
      - name:    base name; the three inputs use {name}-day, {name}-month, {name}-year
      - id:      base id; the three inputs use {id}-day, {id}-month, {id}-year
@@ -225,7 +225,7 @@
 {% endmacro %}
 
 {# ---------- Password input ---------- #}
-{# form_password — password input with show/hide toggle.
+{# form_password - password input with show/hide toggle.
    The toggle is a sibling button; a small JS handler swaps the input's
    type between 'password' and 'text'. See form docs page for the JS. #}
 {% macro form_password(name, id, label, hint="", value="", error="",
@@ -252,9 +252,9 @@
 {% endmacro %}
 
 {# ---------- File upload ---------- #}
-{# form_file — native file input styled as a GDS file upload.
+{# form_file - native file input styled as a GDS file upload.
    Args:
-     - multiple: boolean — allow multiple file selection
+     - multiple: boolean - allow multiple file selection
      - accept:   accept attribute (e.g. ".pdf,.docx") #}
 {% macro form_file(name, id, label, hint="", error="", optional=False,
                     multiple=False, accept="", label_size="m") %}

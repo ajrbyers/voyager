@@ -1,4 +1,4 @@
-{# summary-block — bordered container with header + body.
+{# summary-block - bordered container with header + body.
    The body usually contains a summary list.
 
    summary_block macros:
@@ -8,9 +8,11 @@
    summary_list macros:
      - summary_list()                                 wrapper
      - summary_row(key, value, change=None,
-                   change_text='Change', change_label='')
-       change is the URL for the right-hand action link;
-       change_label is the visually-hidden suffix for screen readers.
+                   change_text='Change', change_label='',
+                   actions=[])
+       change/change_text/change_label is a shorthand for a single action link.
+       actions is a list of {"label", "url", "hidden"} dicts for multiple actions.
+       Rows with no actions collapse to a two-column grid.
 
    Usage:
      {% call summary_block("Files in Round 2", actions=[
@@ -57,14 +59,20 @@
 <dl class="summary-list">{{ caller() }}</dl>
 {% endmacro %}
 
-{% macro summary_row(key, value, change=None, change_text="Change", change_label="") %}
-<div>
+{% macro summary_row(key, value, change=None, change_text="Change", change_label="", actions=[]) %}
+{%- set _actions = actions -%}
+{%- if not _actions and change -%}
+  {%- set _actions = [{"label": change_text, "url": change, "hidden": change_label}] -%}
+{%- endif -%}
+<div{% if not _actions %} class="summary-list-row-no-actions"{% endif %}>
   <dt>{{ key }}</dt>
   <dd>{{ value|safe }}</dd>
-  <dd class="summary-list-change">
-    {% if change %}
-      <a href="{{ change }}">{{ change_text }}{% if change_label %}<span class="visually-hidden"> {{ change_label }}</span>{% endif %}</a>
-    {% endif %}
+  {% if _actions %}
+  <dd class="summary-list-actions">
+    {% for a in _actions %}
+      <a href="{{ a.url }}">{{ a.label }}{% if a.hidden %}<span class="visually-hidden"> {{ a.hidden }}</span>{% endif %}</a>
+    {% endfor %}
   </dd>
+  {% endif %}
 </div>
 {% endmacro %}
