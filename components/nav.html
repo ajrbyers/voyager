@@ -128,7 +128,7 @@
     </div>
 
     <h2>Sidebar nav</h2>
-    <p>Left rail with grouped sections. Each section has an <code>&lt;h2&gt;</code> label and a <code>&lt;ul&gt;</code> of links.</p>
+    <p>Left rail with grouped sections. Each section has an <code>&lt;h2&gt;</code> label and a <code>&lt;ul&gt;</code> of links. Below 900px the sections collapse behind the Menu button in the journal row; the shared disclosure driver in <code>site.js</code> toggles them via <code>data-disclosure-toggle</code>, <code>aria-controls</code> and <code>aria-expanded</code>.</p>
     <div class="example">
       <div class="example-render"><div class="example-render-inner">
         <nav class="sidebar-nav" aria-label="Editorial navigation">
@@ -138,13 +138,19 @@
               <div class="sidebar-nav-name">Journal of Energy Modelling</div>
               <div class="sidebar-nav-sub">Editor in Chief view</div>
             </div>
+            <button type="button" class="sidebar-nav-toggle" data-disclosure-toggle aria-expanded="false" aria-controls="sidebar-nav-content-demo">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              Menu
+            </button>
           </div>
-          <h2 class="sidebar-nav-section">Workflow</h2>
-          <ul>
-            <li><a href="#" class="sidebar-nav-link">Unassigned <span class="sidebar-nav-count" aria-label="7 articles">7</span></a></li>
-            <li><a href="#" class="sidebar-nav-link" aria-current="page">Peer Review <span class="sidebar-nav-count" aria-label="14 articles">14</span></a></li>
-            <li><a href="#" class="sidebar-nav-link">Copyediting <span class="sidebar-nav-count" aria-label="5 articles">5</span></a></li>
-          </ul>
+          <div class="sidebar-nav-content" id="sidebar-nav-content-demo">
+            <h2 class="sidebar-nav-section">Workflow</h2>
+            <ul>
+              <li><a href="#" class="sidebar-nav-link">Unassigned <span class="sidebar-nav-count" aria-label="7 articles">7</span></a></li>
+              <li><a href="#" class="sidebar-nav-link" aria-current="page">Peer Review <span class="sidebar-nav-count" aria-label="14 articles">14</span></a></li>
+              <li><a href="#" class="sidebar-nav-link">Copyediting <span class="sidebar-nav-count" aria-label="5 articles">5</span></a></li>
+            </ul>
+          </div>
         </nav>
       </div></div>
       <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
@@ -155,12 +161,19 @@
       &lt;div class="sidebar-nav-name"&gt;Journal of Energy Modelling&lt;/div&gt;
       &lt;div class="sidebar-nav-sub"&gt;Editor in Chief view&lt;/div&gt;
     &lt;/div&gt;
+    &lt;button type="button" class="sidebar-nav-toggle" data-disclosure-toggle
+            aria-expanded="false" aria-controls="sidebar-nav-content"&gt;
+      &lt;svg class="icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;path d="m6 9 6 6 6-6"/&gt;&lt;/svg&gt;
+      Menu
+    &lt;/button&gt;
   &lt;/div&gt;
-  &lt;h2 class="sidebar-nav-section"&gt;Workflow&lt;/h2&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a href="#" class="sidebar-nav-link"&gt;Unassigned &lt;span class="sidebar-nav-count" aria-label="7 articles"&gt;7&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="#" class="sidebar-nav-link" aria-current="page"&gt;Peer Review …&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
+  &lt;div class="sidebar-nav-content" id="sidebar-nav-content"&gt;
+    &lt;h2 class="sidebar-nav-section"&gt;Workflow&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#" class="sidebar-nav-link"&gt;Unassigned &lt;span class="sidebar-nav-count" aria-label="7 articles"&gt;7&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" class="sidebar-nav-link" aria-current="page"&gt;Peer Review …&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
 &lt;/nav&gt;</code></pre>
       <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/sidebar-nav/sidebar-nav.j2"
    import sidebar_nav, sidebar_nav_section, sidebar_nav_item %}

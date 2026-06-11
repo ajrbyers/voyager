@@ -124,7 +124,14 @@
   var nav = document.querySelector('.site-sidebar[data-sidebar-base]');
   if (nav) {
     var base = nav.getAttribute('data-sidebar-base');
-    nav.innerHTML = SIDEBAR_HTML;
+    // The Menu disclosure button only shows below 900px (see site.css);
+    // on narrow screens the nav list stays hidden until opened so the
+    // content is not pushed below thirty-odd links.
+    nav.innerHTML = ''
+      + '<button type="button" class="site-sidebar-toggle" data-disclosure-toggle aria-expanded="false" aria-controls="site-sidebar-content">'
+      + '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>'
+      + 'Menu</button>'
+      + '<div class="site-sidebar-content" id="site-sidebar-content">' + SIDEBAR_HTML + '</div>';
     nav.querySelectorAll('a[href]').forEach(function (a) {
       var href = a.getAttribute('href');
       if (href && !href.startsWith('http') && !href.startsWith('#')) {
@@ -138,6 +145,20 @@
       }
     });
   }
+
+  // ---- Nav disclosure driver (mobile Menu buttons) ----
+  // Contract: a button with data-disclosure-toggle and
+  // aria-controls="<id>" toggles .is-open on the controlled element
+  // and mirrors the state on aria-expanded. CSS decides at which
+  // widths the button shows and the content hides.
+  document.addEventListener('click', function (event) {
+    var btn = event.target.closest('[data-disclosure-toggle]');
+    if (!btn) return;
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    var content = document.getElementById(btn.getAttribute('aria-controls'));
+    if (content) content.classList.toggle('is-open', !open);
+  });
 
   // ---- Modal driver ----
   // Contract: an opener carries data-modal-open="<backdrop-id>"; the

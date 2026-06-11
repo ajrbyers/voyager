@@ -47,8 +47,13 @@
     <div class="folder-list-search">
       <label class="visually-hidden" for="inbox-search">Search articles</label>
       <input type="search" id="inbox-search" class="form-input" placeholder="Search articles…" autocomplete="off">
+      <button type="button" class="folder-list-toggle" data-disclosure-toggle aria-expanded="false" aria-controls="folder-list-content">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        Folders
+      </button>
     </div>
 
+    <div class="folder-list-content" id="folder-list-content">
     <div class="folder-list-scroll">
       <ul>
         <li><h2 class="folder-list-section folder-list-section-first">Workflow</h2></li>
@@ -121,6 +126,7 @@
     </div>
 
     <button type="button" class="folder-list-add">+ New folder</button>
+    </div>
   </nav>
 
   <main class="inbox-content" id="main">

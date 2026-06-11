@@ -53,12 +53,32 @@
   .site-shell{grid-template-columns:1fr}
 }
 
-/* Site sidebar (docs navigation) */
+/* Site sidebar (docs navigation). site.js injects a Menu disclosure
+   button followed by the nav list in .site-sidebar-content; below
+   900px the list is hidden until the button opens it. */
 .site-sidebar{
   border-right:1px solid var(--colour-border);
   background:var(--colour-canvas-muted);
   padding:var(--s-4) var(--s-3);
   font-size:13px;
+
+  & .site-sidebar-toggle{
+    display:none;
+    align-items:center;gap:6px;
+    width:100%;
+    padding:6px 10px;
+    background:var(--colour-canvas);
+    border:1px solid var(--colour-border-strong);
+    color:var(--colour-fg);
+    font:inherit;font-weight:600;
+    cursor:pointer;
+    border-radius:0;
+    /* WCAG 2.2 SC 2.5.8 - minimum 24x24 target. */
+    min-height:24px;
+
+    & .icon{width:14px;height:14px;transition:transform 0.1s ease}
+    &[aria-expanded="true"] .icon{transform:rotate(180deg)}
+  }
 
   & ul{list-style:none;margin:0 0 2px;padding:0}
 
@@ -80,6 +100,17 @@
     background:var(--colour-accent-subtle);
     color:var(--colour-accent);
     font-weight:600;
+  }
+}
+@media (max-width:900px){
+  .site-sidebar{
+    border-right:0;
+    border-bottom:1px solid var(--colour-border);
+    padding:var(--s-3);
+
+    & .site-sidebar-toggle{display:flex}
+    & .site-sidebar-content{display:none}
+    & .site-sidebar-content.is-open{display:block;margin-top:var(--s-3)}
   }
 }
 

@@ -1,6 +1,11 @@
 /* Sidebar navigation - left rail with grouped link sections,
    each headed by an h2 section label, lists of links, optional
-   counts. Active link uses aria-current="page". */
+   counts. Active link uses aria-current="page".
+
+   Below 900px the journal identity row stays visible and the link
+   sections (.sidebar-nav-content) collapse behind the Menu button.
+   The button carries data-disclosure-toggle + aria-controls; the
+   shared nav disclosure driver toggles .is-open. */
 
 .sidebar-nav{
   border-right:1px solid var(--colour-border);
@@ -16,6 +21,37 @@
     padding:6px 10px var(--s-3);
     border-bottom:1px solid var(--colour-border-muted);
     margin-bottom:var(--s-2);
+  }
+
+  & .sidebar-nav-toggle{
+    display:none;
+    align-items:center;gap:6px;
+    margin-left:auto;
+    padding:3px 10px;
+    background:var(--colour-canvas);
+    border:1px solid var(--colour-border-strong);
+    color:var(--colour-fg);
+    font:inherit;font-weight:600;font-size:var(--fs-sm);
+    cursor:pointer;
+    border-radius:0;
+    /* WCAG 2.2 SC 2.5.8 - minimum 24x24 target. */
+    min-height:24px;
+
+    & .icon{width:14px;height:14px;transition:transform 0.1s ease}
+    &[aria-expanded="true"] .icon{transform:rotate(180deg)}
+  }
+
+  @media (max-width:900px){
+    & {border-right:0;border-bottom:1px solid var(--colour-border)}
+    & .sidebar-nav-journal{border-bottom:0;margin-bottom:0;padding-bottom:6px}
+    & .sidebar-nav-toggle{display:flex}
+    & .sidebar-nav-content{display:none}
+    & .sidebar-nav-content.is-open{
+      display:block;
+      margin-top:var(--s-2);
+      border-top:1px solid var(--colour-border-muted);
+      padding-top:var(--s-2);
+    }
   }
 
   & .sidebar-nav-mark{

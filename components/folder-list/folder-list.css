@@ -1,7 +1,12 @@
 /* Folder list - sidebar variant used by inbox-style dashboards.
    Groups folders into labelled sections (Workflow / Personal / Custom),
    each item carries an icon, name, and optional count. Counts can be
-   coloured to flag critical/warning severity. */
+   coloured to flag critical/warning severity.
+
+   Below 900px the search row stays visible and the folder tree
+   (.folder-list-content) collapses behind the Folders button, which
+   uses the shared nav disclosure driver (data-disclosure-toggle +
+   aria-controls). */
 
 .folder-list{
   border-right:1px solid var(--colour-border);
@@ -20,6 +25,43 @@
   & .folder-list-search{
     padding:var(--s-3) var(--s-3) var(--s-2);
     border-bottom:1px solid var(--colour-border-muted);
+    display:flex;align-items:center;gap:var(--s-2);
+
+    & input{flex:1;min-width:0}
+  }
+
+  & .folder-list-toggle{
+    display:none;
+    align-items:center;gap:6px;
+    padding:3px 10px;
+    background:var(--colour-canvas);
+    border:1px solid var(--colour-border-strong);
+    color:var(--colour-fg);
+    font:inherit;font-weight:600;font-size:var(--fs-sm);
+    cursor:pointer;
+    border-radius:0;
+    flex-shrink:0;
+    /* WCAG 2.2 SC 2.5.8 - minimum 24x24 target. */
+    min-height:24px;
+
+    & .icon{width:14px;height:14px;transition:transform 0.1s ease}
+    &[aria-expanded="true"] .icon{transform:rotate(180deg)}
+  }
+
+  /* The content wrapper preserves the column layout so the scroll
+     area keeps its flex sizing. */
+  & .folder-list-content{
+    display:flex;flex-direction:column;
+    flex:1;min-height:0;
+  }
+
+  @media (max-width:900px){
+    & {border-right:0;border-bottom:1px solid var(--colour-border)}
+    & .folder-list-toggle{display:flex}
+    & .folder-list-content{display:none}
+    & .folder-list-content.is-open{
+      display:flex;flex-direction:column;min-height:0;
+    }
   }
 
   /* ---------------- Section labels ---------------- */
