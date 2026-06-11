@@ -31,16 +31,16 @@
                     htmx_url="", errors=[]) %}
 {%- set _id = 'item-list-' ~ name -%}
 {%- set remaining = max_items - count -%}
-<div class="item-list" id="{{ _id }}">
+<div class="item-list" id="{{ _id|e }}">
   {% if errors %}
   <div class="item-list-errors" role="alert">
     <ul>
-      {% for err in errors %}<li>{{ err }}</li>{% endfor %}
+      {% for err in errors %}<li>{{ err|e }}</li>{% endfor %}
     </ul>
   </div>
   {% endif %}
-  <input type="hidden" name="{{ name }}-count" value="{{ count }}" aria-hidden="true">
-  <input type="hidden" name="{{ name }}-max" value="{{ max_items }}" aria-hidden="true">
+  <input type="hidden" name="{{ name|e }}-count" value="{{ count|e }}" aria-hidden="true">
+  <input type="hidden" name="{{ name|e }}-max" value="{{ max_items|e }}" aria-hidden="true">
   <div class="item-list-items">
     {{ caller() }}
   </div>
@@ -48,20 +48,20 @@
   <div class="item-list-add">
     {% if htmx_url %}
     <button type="button" class="btn"
-            hx-post="{{ htmx_url }}"
-            hx-target="#{{ _id }}"
+            hx-post="{{ htmx_url|e }}"
+            hx-target="#{{ _id|e }}"
             hx-swap="outerHTML"
-            hx-include="#{{ _id }}"
-            hx-vals='{"action": "add"}'>
-      Add another {{ item_label|lower }}
+            hx-include="#{{ _id|e }}"
+            hx-vals='{{ {"action": "add"}|tojson }}'>
+      Add another {{ item_label|lower|e }}
     </button>
     {% else %}
-    <button type="submit" class="btn" name="{{ name }}-action" value="add">
-      Add another {{ item_label|lower }}
+    <button type="submit" class="btn" name="{{ name|e }}-action" value="add">
+      Add another {{ item_label|lower|e }}
     </button>
     {% endif %}
     <p class="item-list-remaining">
-      You can add {{ remaining }} more {{ item_label|lower }}{{ 's' if remaining != 1 else '' }}
+      You can add {{ remaining|e }} more {{ item_label|lower|e }}{{ 's' if remaining != 1 else '' }}
     </p>
   </div>
   {% endif %}
@@ -71,23 +71,23 @@
 {% macro item_list_item(index, name="", item_label="Item",
                          show_delete=True, htmx_url="") %}
 {%- set _target = '#item-list-' ~ name -%}
-<div class="item-list-item" id="{{ name }}-item-{{ index }}">
+<div class="item-list-item" id="{{ name|e }}-item-{{ index|e }}">
   <div class="item-list-item-header">
-    <h3 class="item-list-item-heading">{{ item_label }} {{ index + 1 }}</h3>
+    <h3 class="item-list-item-heading">{{ item_label|e }} {{ (index + 1)|e }}</h3>
     {% if show_delete %}
     {% if htmx_url %}
     <button type="button" class="btn btn-small"
-            hx-post="{{ htmx_url }}"
-            hx-target="{{ _target }}"
+            hx-post="{{ htmx_url|e }}"
+            hx-target="{{ _target|e }}"
             hx-swap="outerHTML"
-            hx-include="{{ _target }}"
-            hx-vals='{"action": "delete", "delete_index": "{{ index }}"}'>
-      Delete<span class="visually-hidden"> {{ item_label|lower }} {{ index + 1 }}</span>
+            hx-include="{{ _target|e }}"
+            hx-vals='{{ {"action": "delete", "delete_index": index|string}|tojson }}'>
+      Delete<span class="visually-hidden"> {{ item_label|lower|e }} {{ (index + 1)|e }}</span>
     </button>
     {% else %}
     <button type="submit" class="btn btn-small"
-            name="{{ name }}-action" value="delete-{{ index }}">
-      Delete<span class="visually-hidden"> {{ item_label|lower }} {{ index + 1 }}</span>
+            name="{{ name|e }}-action" value="delete-{{ index|e }}">
+      Delete<span class="visually-hidden"> {{ item_label|lower|e }} {{ (index + 1)|e }}</span>
     </button>
     {% endif %}
     {% endif %}

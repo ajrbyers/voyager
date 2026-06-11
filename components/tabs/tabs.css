@@ -27,7 +27,7 @@
     text-decoration:none;
   }
   & a[aria-current="true"]{
-    border-bottom-color:#fd8c73;
+    border-bottom-color:var(--colour-tab-underline);
     font-weight:600;
     color:var(--colour-fg);
   }
@@ -36,7 +36,7 @@
     background:var(--colour-canvas-inset);
     color:var(--colour-fg);
     border-radius:0;
-    font-size:11px;padding:1px 7px;font-weight:500;
+    font-size:var(--fs-2xs);padding:1px 7px;font-weight:500;
   }
   & a[aria-current="true"] .tabs-count{
     background:var(--colour-accent-subtle);

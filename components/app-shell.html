@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Application shell - Voyager</title>
+<link rel="stylesheet" href="../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script src="../assets/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="#">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base=".."></nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Application shell</h1>
+    <p class="site-page-lede">
+      The page-level layout for admin screens: a two-column grid with the
+      <strong>sidebar nav</strong> on the left and the page content on the right,
+      finished with a modest <strong>app footer</strong>. The app header that sits
+      above the shell is documented on the <a href="nav.html">Navigation</a> page.
+    </p>
+
+    <h2>App shell</h2>
+    <p>
+      Place <code>.app-shell</code> directly inside <code>&lt;body&gt;</code>, after the
+      app header. The first child is the sidebar nav; the second is
+      <code>&lt;main class="app-shell-main"&gt;</code>, which holds the page content. The
+      grid collapses to a single column below 900px. The main column has no padding of
+      its own - use a layout utility such as <code>.layout-full</code> or
+      <code>.layout-with-rail</code> (see the <a href="rail.html">Rail</a> page) to
+      space the content. See <a href="../examples/peer-review.html">the peer review
+      example</a> for the shell in full context.
+    </p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="app-shell">
+          <nav class="sidebar-nav" aria-label="Editorial navigation">
+            <div class="sidebar-nav-journal">
+              <span class="sidebar-nav-mark" aria-hidden="true">JE</span>
+              <div>
+                <div class="sidebar-nav-name">Journal of Energy Modelling</div>
+                <div class="sidebar-nav-sub">Editor in Chief view</div>
+              </div>
+            </div>
+            <h2 class="sidebar-nav-section">Workflow</h2>
+            <ul>
+              <li><a href="#" class="sidebar-nav-link">Unassigned <span class="sidebar-nav-count" aria-label="7 articles">7</span></a></li>
+              <li><a href="#" class="sidebar-nav-link" aria-current="page">Peer Review <span class="sidebar-nav-count" aria-label="14 articles">14</span></a></li>
+              <li><a href="#" class="sidebar-nav-link">Copyediting <span class="sidebar-nav-count" aria-label="5 articles">5</span></a></li>
+            </ul>
+          </nav>
+          <div class="app-shell-main">
+            <div class="layout-full">
+              <p>Page content sits here, inside a layout utility that provides the padding.</p>
+            </div>
+            <footer class="app-footer">
+              <span>Janeway · v1.7</span>
+              <a href="#">Help &amp; documentation</a>
+            </footer>
+          </div>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;header class="app-header"&gt;…&lt;/header&gt;
+
+&lt;div class="app-shell"&gt;
+  &lt;nav class="sidebar-nav" aria-label="Editorial navigation"&gt;…&lt;/nav&gt;
+
+  &lt;main class="app-shell-main" id="main"&gt;
+    &lt;div class="layout-full"&gt;
+      &lt;!-- Page content --&gt;
+    &lt;/div&gt;
+    &lt;footer class="app-footer"&gt;
+      &lt;span&gt;Janeway · v1.7&lt;/span&gt;
+      &lt;a href="/help"&gt;Help &amp;amp; documentation&lt;/a&gt;
+    &lt;/footer&gt;
+  &lt;/main&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/app-shell/app-shell.j2" import app_shell %}
+{% from "voyager/components/app-footer/app-footer.j2" import app_footer %}
+
+{% call app_shell() %}
+  {# Sidebar nav - see the Navigation page #}
+  {{ sidebar_nav_markup }}
+
+  &lt;main class="app-shell-main" id="main"&gt;
+    &lt;div class="layout-full"&gt;
+      {# Page content #}
+    &lt;/div&gt;
+    {{ app_footer(version="v1.7", help_url="/help") }}
+  &lt;/main&gt;
+{% endcall %}</code></pre>
+    </div>
+
+    <h2>App footer</h2>
+    <p>
+      A modest meta strip at the bottom of every admin page: version on the left,
+      a help link on the right. Place it as the last child of
+      <code>.app-shell-main</code> so it sits beneath the page content.
+    </p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <footer class="app-footer">
+          <span>Janeway · v1.7</span>
+          <a href="#">Help &amp; documentation</a>
+        </footer>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;footer class="app-footer"&gt;
+  &lt;span&gt;Janeway · v1.7&lt;/span&gt;
+  &lt;a href="/help"&gt;Help &amp;amp; documentation&lt;/a&gt;
+&lt;/footer&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/app-footer/app-footer.j2" import app_footer %}
+
+{{ app_footer(version="v1.7", help_url="/help") }}</code></pre>
+    </div>
+
+    <h2>When to use</h2>
+    <ul>
+      <li>Use the app shell on every signed-in admin screen - dashboards, workflow pages, manager pages.</li>
+      <li>Don't use it on public-facing or reading pages; those have their own layouts.</li>
+      <li>One shell per page. Nesting shells or adding extra columns at this level breaks the responsive collapse - use <code>.layout-with-rail</code> inside the main column instead.</li>
+    </ul>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>The app header is a sibling <em>above</em> the shell, not a child of it - the shell's <code>min-height</code> is calculated against the header's height. It is documented on the <a href="nav.html">Navigation</a> page.</li>
+      <li>Give <code>.app-shell-main</code> the <code>id="main"</code> so the skip link has a target.</li>
+      <li>The sidebar column width comes from the <code>--shell-sidebar-width</code> token; override it at the page level only if a screen genuinely needs a wider nav.</li>
+      <li>Keep the footer light: version and a help link. It is not the place for navigation or legal boilerplate.</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

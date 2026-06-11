@@ -4,7 +4,9 @@
      - folder_list(search_action="", search_value="")   wrapper
      - folder_list_section(label)                       section header
      - folder_item(label, url, icon, count, current,
-                   severity, custom, dot_color, edit_url, delete_url)
+                   severity, custom, dot_colour, edit_url, delete_url)
+       dot_colour (custom folders): 'pink' | 'teal' | 'purple' |
+       'orange' | 'green' | 'blue'
 
    Usage:
      {% call folder_list(search_action="/inbox/search") %}
@@ -18,13 +20,13 @@
 #}
 
 {% macro folder_list(search_action="", search_value="", label="Inbox folders") %}
-<nav class="folder-list" aria-label="{{ label }}">
+<nav class="folder-list" aria-label="{{ label|e }}">
   {% if search_action %}
   <div class="folder-list-search">
     <label class="visually-hidden" for="inbox-search">Search articles</label>
     <input type="search" id="inbox-search" name="q" class="form-input"
            placeholder="Search articles…" autocomplete="off"
-           value="{{ search_value }}">
+           value="{{ search_value|e }}">
   </div>
   {% endif %}
   <div class="folder-list-scroll">
@@ -34,19 +36,19 @@
 {% endmacro %}
 
 {% macro folder_list_section(label, first=False) %}
-<li><h2 class="folder-list-section{% if first %} folder-list-section-first{% endif %}">{{ label }}</h2></li>
+<li><h2 class="folder-list-section{% if first %} folder-list-section-first{% endif %}">{{ label|e }}</h2></li>
 {% endmacro %}
 
 {% macro folder_item(label, url="#", icon=None, count=None, current=False,
-                      severity=None, custom=False, dot_color=None,
+                      severity=None, custom=False, dot_colour=None,
                       edit_url=None, delete_url=None) %}
 {% if custom %}
 <li class="folder-item folder-item-custom{% if current %} is-active{% endif %}">
-  <a href="{{ url }}" class="folder-item-link">
-    {% if dot_color %}<span class="folder-item-dot"></span>{% endif %}
-    <span class="folder-item-name">{{ label }}</span>
+  <a href="{{ url|e }}" class="folder-item-link">
+    {% if dot_colour %}<span class="folder-item-dot folder-item-dot-{{ dot_colour|e }}"></span>{% endif %}
+    <span class="folder-item-name">{{ label|e }}</span>
     {% if count is not none %}
-      <span class="folder-item-count{% if severity %} folder-item-count-{{ severity }}{% endif %}">{{ count }}</span>
+      <span class="folder-item-count{% if severity %} folder-item-count-{{ severity|e }}{% endif %}">{{ count|e }}</span>
     {% endif %}
   </a>
   {% if edit_url or delete_url %}
@@ -58,12 +60,12 @@
 </li>
 {% else %}
 <li>
-  <a href="{{ url }}" class="folder-item{% if current %} is-active{% endif %}"
+  <a href="{{ url|e }}" class="folder-item{% if current %} is-active{% endif %}"
      {% if current %}aria-current="page"{% endif %}>
-    {% if icon %}<span class="folder-item-icon" aria-hidden="true">{{ icon }}</span>{% endif %}
-    <span class="folder-item-name">{{ label }}</span>
+    {% if icon %}<span class="folder-item-icon" aria-hidden="true">{{ icon|e }}</span>{% endif %}
+    <span class="folder-item-name">{{ label|e }}</span>
     {% if count is not none %}
-      <span class="folder-item-count{% if severity %} folder-item-count-{{ severity }}{% endif %}">{{ count }}</span>
+      <span class="folder-item-count{% if severity %} folder-item-count-{{ severity|e }}{% endif %}">{{ count|e }}</span>
     {% endif %}
   </a>
 </li>
@@ -71,5 +73,5 @@
 {% endmacro %}
 
 {% macro folder_list_add(label="New folder", url="#") %}
-<button type="button" class="folder-list-add">+ {{ label }}</button>
+<button type="button" class="folder-list-add">+ {{ label|e }}</button>
 {% endmacro %}

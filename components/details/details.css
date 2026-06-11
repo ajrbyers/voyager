@@ -8,42 +8,46 @@
   margin:0 0 var(--s-5);
   font-family:var(--font-sans);
   font-size:var(--fs-md);
-}
 
-.details summary{
-  display:inline-block;
-  color:var(--colour-link);
-  cursor:pointer;
-  font-weight:400;
-  text-decoration:underline;
-  text-decoration-thickness:1px;text-underline-offset:0.1em;
-  padding:0 0 0 18px;
-  position:relative;
-}
-.details summary::-webkit-details-marker{display:none}
-.details summary{list-style:none}
+  & summary{
+    display:inline-block;
+    color:var(--colour-link);
+    cursor:pointer;
+    font-weight:400;
+    text-decoration:underline;
+    text-decoration-thickness:1px;text-underline-offset:0.1em;
+    padding:0 0 0 18px;
+    position:relative;
+    list-style:none;
 
-.details summary::before{
-  content:"";
-  position:absolute;left:0;top:7px;
-  width:0;height:0;
-  border-top:6px solid transparent;
-  border-bottom:6px solid transparent;
-  border-left:7px solid currentColor;
-  transition:transform 0.1s ease;
-}
-.details[open] summary::before{
-  transform:rotate(90deg);
-}
-.details summary:hover{
-  color:var(--colour-link-hover);
-  text-decoration-thickness:3px;
-}
+    &::-webkit-details-marker{display:none}
 
-.details-body{
-  margin-top:var(--s-3);
-  padding:var(--s-3) 0 var(--s-3) var(--s-4);
-  border-left:4px solid var(--colour-border-component);
+    &::before{
+      content:"";
+      position:absolute;left:0;top:7px;
+      width:0;height:0;
+      border-top:6px solid transparent;
+      border-bottom:6px solid transparent;
+      border-left:7px solid currentColor;
+      transition:transform 0.1s ease;
+    }
+
+    &:hover{
+      color:var(--colour-link-hover);
+      text-decoration-thickness:3px;
+    }
+  }
+
+  &[open] summary::before{
+    transform:rotate(90deg);
+  }
+
+  & .details-body{
+    margin-top:var(--s-3);
+    padding:var(--s-3) 0 var(--s-3) var(--s-4);
+    border-left:4px solid var(--colour-border-component);
+
+    & > *:first-child{margin-top:0}
+    & > *:last-child{margin-bottom:0}
+  }
 }
-.details-body > *:first-child{margin-top:0}
-.details-body > *:last-child{margin-bottom:0}

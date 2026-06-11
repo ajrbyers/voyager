@@ -6,20 +6,26 @@
      - id:       prefix for aria-labelledby
      - tag:      optional {label, kind} pill in the header
      - cta:      optional {label, url} for the foot CTA
+
+   Usage:
+     {% call queue_card("Peer review", tag={"label": "14", "kind": "grey"},
+                        cta={"label": "Open queue", "url": "/review"}) %}
+       {{ stat(3, "Overdue", kind="alert") }}
+     {% endcall %}
 #}
 {% macro queue_card(title, id="", tag=None, cta=None) %}
 {%- set _id = id or ('qc-' ~ title|lower|replace(' ','-')) -%}
-<section class="queue-card" aria-labelledby="{{ _id }}">
+<section class="queue-card" aria-labelledby="{{ _id|e }}">
   <div class="queue-card-head">
-    <h2 class="queue-card-title" id="{{ _id }}">{{ title }}</h2>
-    {% if tag %}<span class="tag tag-{{ tag.kind|default('grey') }}">{{ tag.label }}</span>{% endif %}
+    <h2 class="queue-card-title" id="{{ _id|e }}">{{ title|e }}</h2>
+    {% if tag %}<span class="tag tag-{{ tag.kind|default('grey')|e }}">{{ tag.label|e }}</span>{% endif %}
   </div>
   <div class="queue-card-body">
     {{ caller() }}
   </div>
   {% if cta %}
   <div class="queue-card-foot">
-    <a href="{{ cta.url }}" class="btn">{{ cta.label }}</a>
+    <a href="{{ cta.url|e }}" class="btn">{{ cta.label|e }}</a>
   </div>
   {% endif %}
 </section>

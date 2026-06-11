@@ -1,22 +1,25 @@
 {# pagination - GDS-inspired Previous / Next + numbered pages.
 
-   Args:
-     - current:    integer, current page number (1-indexed)
-     - total:      integer, total number of pages
-     - url_for:    a callable or string template that yields a URL
-                   for a given page. In Django templates pre-compute and
-                   pass a list of {n, url} dicts via `pages` instead.
+   Pass `prev_url`, `next_url`, and `pages` (list of
+   {n, url, current?, ellipsis?}). The macro just renders the chrome.
+   In Django views, pre-compute the pages list and hand it over.
 
-   Simpler version: pass `prev_url`, `next_url`, and `pages` (list of
-   {n, url, current?, ellipsis?}). The macro just renders the chrome. #}
+   Usage:
+     {{ pagination(prev_url="?page=1", next_url="?page=3", pages=[
+         {"n": 1, "url": "?page=1"},
+         {"n": 2, "url": "?page=2", "current": True},
+         {"ellipsis": True},
+         {"n": 9, "url": "?page=9"},
+     ]) }}
+#}
 {% macro pagination(prev_url=None, prev_label="", next_url=None, next_label="", pages=[]) %}
 <nav class="pagination" aria-label="Pagination">
   <ul>
     {% if prev_url %}
     <li class="pagination-prev">
-      <a href="{{ prev_url }}" rel="prev">
+      <a href="{{ prev_url|e }}" rel="prev">
         <span class="pagination-direction">‹ Previous</span>
-        {% if prev_label %}<span class="pagination-label">{{ prev_label }}</span>{% endif %}
+        {% if prev_label %}<span class="pagination-label">{{ prev_label|e }}</span>{% endif %}
       </a>
     </li>
     {% endif %}
@@ -25,8 +28,8 @@
     <li class="pagination-numbers">
       {% for p in pages %}
         {% if p.ellipsis %}<span class="pagination-ellipsis">…</span>
-        {% elif p.current %}<span class="pagination-current" aria-current="page">{{ p.n }}</span>
-        {% else %}<a href="{{ p.url }}">{{ p.n }}</a>
+        {% elif p.current %}<span class="pagination-current" aria-current="page">{{ p.n|e }}</span>
+        {% else %}<a href="{{ p.url|e }}">{{ p.n|e }}</a>
         {% endif %}
       {% endfor %}
     </li>
@@ -34,9 +37,9 @@
 
     {% if next_url %}
     <li class="pagination-next">
-      <a href="{{ next_url }}" rel="next">
+      <a href="{{ next_url|e }}" rel="next">
         <span class="pagination-direction">Next ›</span>
-        {% if next_label %}<span class="pagination-label">{{ next_label }}</span>{% endif %}
+        {% if next_label %}<span class="pagination-label">{{ next_label|e }}</span>{% endif %}
       </a>
     </li>
     {% endif %}

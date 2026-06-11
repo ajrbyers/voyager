@@ -17,9 +17,9 @@
 
 {% macro action_menu_item(icon, label, url="#") %}
 <li>
-  <a href="{{ url }}">
-    <span class="action-menu-icon" aria-hidden="true">{{ icon }}</span>
-    {{ label }}
+  <a href="{{ url|e }}">
+    <span class="action-menu-icon" aria-hidden="true">{{ icon|e }}</span>
+    {{ label|e }}
   </a>
 </li>
 {% endmacro %}

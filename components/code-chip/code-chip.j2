@@ -1,1 +1,8 @@
-{% macro code_chip(value) %}<span class="code-chip">{{ value }}</span>{% endmacro %}
+{# code-chip - inline monospace label for IDs, branch names, SHAs.
+   Args:
+     - value: the text to display (escaped; plain text only)
+
+   Usage:
+     {{ code_chip("#1247") }}
+#}
+{% macro code_chip(value) %}<span class="code-chip">{{ value|e }}</span>{% endmacro %}

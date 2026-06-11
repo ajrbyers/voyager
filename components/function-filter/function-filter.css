@@ -11,74 +11,78 @@
   display:flex;align-items:center;gap:var(--s-4);
   flex-wrap:wrap;
   margin-bottom:var(--s-5);
-}
 
-/* ---------- Search input ---------- */
-.function-filter-search{
-  position:relative;flex:1;
-  max-width:360px;min-width:240px;
-}
-.function-filter-search-icon{
-  position:absolute;left:12px;top:50%;
-  transform:translateY(-50%);
-  color:var(--colour-fg-muted);
-  font-size:14px;pointer-events:none;
-}
-.function-filter-input{
-  width:100%;
-  padding:7px 12px 6px 36px;
-  background:var(--colour-canvas);
-  color:var(--colour-fg);
-  border:1px solid var(--colour-border-strong);
-  border-radius:0;
-  font-size:var(--fs-base);
-  font-family:inherit;
-  line-height:1.5;
-  transition:border-color 0.1s, box-shadow 0.1s;
-}
-.function-filter-input:focus-visible{
-  outline:3px solid var(--colour-focus);outline-offset:0;
-  background:var(--colour-canvas);color:var(--colour-fg);
-  box-shadow:inset 0 0 0 1px var(--colour-fg-strong);
-}
+  /* ---------- Search input ---------- */
+  & .function-filter-search{
+    position:relative;flex:1;
+    max-width:360px;min-width:240px;
+  }
+  & .function-filter-search-icon{
+    position:absolute;left:12px;top:50%;
+    transform:translateY(-50%);
+    color:var(--colour-fg-muted);
+    font-size:var(--fs-base);pointer-events:none;
+  }
+  & .function-filter-input{
+    width:100%;
+    padding:7px 12px 6px 36px;
+    background:var(--colour-canvas);
+    color:var(--colour-fg);
+    border:1px solid var(--colour-border-strong);
+    border-radius:0;
+    font-size:var(--fs-base);
+    font-family:inherit;
+    line-height:1.5;
+    transition:border-color 0.1s, box-shadow 0.1s;
 
-/* ---------- Filter chips ---------- */
-.function-filter-tags{
-  display:flex;gap:6px;flex-wrap:wrap;
-}
-.function-filter-tag{
-  position:relative;
-  padding:5px 12px;
-  border:1px solid var(--colour-border-strong);
-  border-radius:0;
-  background:var(--colour-canvas);
-  color:var(--colour-fg-muted);
-  font-size:var(--fs-sm);
-  font-weight:500;
-  font-family:var(--font-system);
-  cursor:pointer;
-  user-select:none;
-  transition:color 0.1s, border-color 0.1s, background 0.1s;
-}
-.function-filter-tag input[type="radio"]{
-  position:absolute;opacity:0;width:0;height:0;
-  pointer-events:none;
-}
-.function-filter-tag:hover{
-  color:var(--colour-fg);
-  border-color:var(--colour-fg-muted);
-}
-.function-filter-tag:has(input:checked){
-  background:var(--colour-accent-subtle);
-  border-color:var(--colour-accent);
-  color:var(--colour-accent);
-  font-weight:600;
-}
-.function-filter-tag:has(input:focus-visible){
-  outline:3px solid var(--colour-focus);outline-offset:2px;
+    &:focus-visible{
+      outline:3px solid var(--colour-focus);outline-offset:0;
+      background:var(--colour-canvas);color:var(--colour-fg);
+      box-shadow:inset 0 0 0 1px var(--colour-fg-strong);
+    }
+  }
+
+  /* ---------- Filter chips ---------- */
+  & .function-filter-tags{
+    display:flex;gap:6px;flex-wrap:wrap;
+  }
+  & .function-filter-tag{
+    position:relative;
+    padding:5px 12px;
+    border:1px solid var(--colour-border-strong);
+    border-radius:0;
+    background:var(--colour-canvas);
+    color:var(--colour-fg-muted);
+    font-size:var(--fs-sm);
+    font-weight:500;
+    font-family:var(--font-system);
+    cursor:pointer;
+    user-select:none;
+    transition:color 0.1s, border-color 0.1s, background 0.1s;
+
+    & input[type="radio"]{
+      position:absolute;opacity:0;width:0;height:0;
+      pointer-events:none;
+    }
+    &:hover{
+      color:var(--colour-fg);
+      border-color:var(--colour-fg-muted);
+    }
+    &:has(input:checked){
+      background:var(--colour-accent-subtle);
+      border-color:var(--colour-accent);
+      color:var(--colour-accent);
+      font-weight:600;
+    }
+    &:has(input:focus-visible){
+      outline:3px solid var(--colour-focus);outline-offset:2px;
+    }
+  }
 }
 
 /* ---------- Empty state ---------- */
+/* Stays top-level: the empty block sits beside the filtered card grid,
+   outside the .function-filter form (see examples/manager.html). */
 .function-filter-empty{
   text-align:center;padding:var(--s-8) var(--s-4);
   color:var(--colour-fg-muted);
@@ -86,8 +90,9 @@
   border:1px dashed var(--colour-border-strong);
   border-radius:0;
   font-size:var(--fs-md);
-}
-.function-filter-empty-icon{
-  font-size:32px;display:block;margin-bottom:var(--s-3);
-  color:var(--colour-fg-subtle);
+
+  & .function-filter-empty-icon{
+    font-size:32px;display:block;margin-bottom:var(--s-3);
+    color:var(--colour-fg-subtle);
+  }
 }

@@ -75,11 +75,14 @@
 {% macro icon(name, title=None, size=None, class="") %}
 {%- set size_class = ('icon-' ~ size) if size and size in ['sm','md','lg','xl'] else '' -%}
 {%- set custom_size = size if size and size not in ['sm','md','lg','xl'] else None -%}
-<svg class="icon{% if size_class %} {{ size_class }}{% endif %}{% if class %} {{ class }}{% endif %}"
-     {% if custom_size %}width="{{ custom_size }}" height="{{ custom_size }}"{% endif %}
+<svg class="icon{% if size_class %} {{ size_class|e }}{% endif %}{% if class %} {{ class|e }}{% endif %}"
+     {% if custom_size %}width="{{ custom_size|e }}" height="{{ custom_size|e }}"{% endif %}
      viewBox="0 0 24 24"
-     {% if title %}role="img" aria-label="{{ title }}"{% else %}aria-hidden="true"{% endif %}>
-  {% if title %}<title>{{ title }}</title>{% endif %}
+     {% if title %}role="img" aria-label="{{ title|e }}"{% else %}aria-hidden="true"{% endif %}>
+  {% if title %}<title>{{ title|e }}</title>{% endif %}
+  {# |safe is deliberate: _ICONS is a template-authored constant map of
+     SVG fragments above, never caller data. `name` only selects a key;
+     unknown names render nothing. #}
   {{ _ICONS[name]|safe }}
 </svg>
 {% endmacro %}

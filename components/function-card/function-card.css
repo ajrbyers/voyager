@@ -20,126 +20,120 @@
   min-height:170px;
 
   transition:border-color 0.1s ease, box-shadow 0.1s ease, transform 0.1s ease;
-}
-.function-card:hover{
-  border-color:var(--colour-accent);
-  box-shadow:0 0 0 1px var(--colour-accent-subtle);
-  color:inherit;text-decoration:none;
-}
-.function-card:hover .function-card-arrow{
-  color:var(--colour-accent);transform:translateX(2px);
-}
 
-/* Coming-soon variant: dim the content explicitly via colour so that
-   accessibility tools can still measure real contrast. We avoid opacity
-   on the card root (it lowers contrast of every nested foreground). */
-.function-card.is-coming-soon{
-  cursor:default;pointer-events:none;
-  background:var(--colour-canvas-muted);
-}
-.function-card.is-coming-soon .function-card-title,
-.function-card.is-coming-soon .function-card-desc{
-  color:var(--colour-fg-muted);
-}
-.function-card.is-coming-soon .function-card-icon{
-  filter:saturate(0.4);
-}
+  &:hover{
+    border-color:var(--colour-accent);
+    box-shadow:0 0 0 1px var(--colour-accent-subtle);
+    color:inherit;text-decoration:none;
 
-/* ---------- Top row: icon + counter / soon-badge ---------- */
-.function-card-top{
-  display:flex;align-items:flex-start;justify-content:space-between;
-  gap:var(--s-3);
-}
+    & .function-card-arrow{
+      color:var(--colour-accent);transform:translateX(2px);
+    }
+  }
 
-.function-card-icon{
-  width:36px;height:36px;
-  border-radius:0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:18px;line-height:1;
-  flex-shrink:0;
-  background:var(--colour-canvas-muted);
-  color:var(--colour-fg-muted);
-  font-weight:700;
-  font-family:var(--font-system);
-}
+  /* Coming-soon variant: dim the content explicitly via colour so that
+     accessibility tools can still measure real contrast. We avoid opacity
+     on the card root (it lowers contrast of every nested foreground). */
+  &.is-coming-soon{
+    cursor:default;pointer-events:none;
+    background:var(--colour-canvas-muted);
 
-/* Icon colour pool - fg colour + 10% tint of same hue for background.
-   Hardcoded so authors don't need inline styles per card. */
-.function-card-icon-blue   {background:#dbeafe;color:#1d4ed8}
-.function-card-icon-green  {background:#d1fae5;color:#047857}
-.function-card-icon-orange {background:#ffedd5;color:#b45309}
-.function-card-icon-purple {background:#ede9fe;color:#6d28d9}
-.function-card-icon-pink   {background:#fce7f3;color:#be185d}
-.function-card-icon-teal   {background:#ccfbf1;color:#0f766e}
-.function-card-icon-red    {background:#fee2e2;color:#b91c1c}
-.function-card-icon-yellow {background:#fef3c7;color:#92400e}
-.function-card-icon-grey   {background:var(--colour-canvas-muted);color:var(--colour-fg-muted)}
+    & .function-card-title,
+    & .function-card-desc{
+      color:var(--colour-fg-muted);
+    }
+    & .function-card-icon{
+      filter:saturate(0.4);
+    }
+  }
 
-/* Dark-mode icon tile pairs - saturated foreground on darker tinted bg. */
-:root[data-theme="dark"] .function-card-icon-blue   {background:#0c2d4a;color:#79c0ff}
-:root[data-theme="dark"] .function-card-icon-green  {background:#0f2a1b;color:#3fb950}
-:root[data-theme="dark"] .function-card-icon-orange {background:#3a2510;color:#e8a35a}
-:root[data-theme="dark"] .function-card-icon-purple {background:#231736;color:#b08bff}
-:root[data-theme="dark"] .function-card-icon-pink   {background:#3a1530;color:#f178b6}
-:root[data-theme="dark"] .function-card-icon-teal   {background:#0d2a28;color:#39c5bb}
-:root[data-theme="dark"] .function-card-icon-red    {background:#3a1717;color:#ff7b72}
-:root[data-theme="dark"] .function-card-icon-yellow {background:#332710;color:#e8b339}
+  /* ---------- Top row: icon + counter / soon-badge ---------- */
+  & .function-card-top{
+    display:flex;align-items:flex-start;justify-content:space-between;
+    gap:var(--s-3);
+  }
 
-.function-card-counter{
-  text-align:right;line-height:1.1;
-  flex-shrink:0;
-}
-.function-card-count{
-  font-size:1.4rem;font-weight:700;
-  color:var(--colour-fg-strong);
-  font-variant-numeric:tabular-nums;
-}
-.function-card-count-label{
-  font-size:11px;color:var(--colour-fg-muted);
-  text-transform:uppercase;letter-spacing:0.04em;
-  margin-top:2px;
-}
+  & .function-card-icon{
+    width:36px;height:36px;
+    border-radius:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:var(--fs-xl);line-height:1;
+    flex-shrink:0;
+    background:var(--colour-canvas-muted);
+    color:var(--colour-fg-muted);
+    font-weight:700;
+    font-family:var(--font-system);
+  }
 
-.function-card-soon-badge{
-  font-size:11px;font-weight:700;
-  letter-spacing:0.04em;text-transform:uppercase;
-  padding:3px 8px;
-  background:var(--colour-warning);color:#000;
-  border-radius:0;
-  white-space:nowrap;
-}
+  /* Icon colour pool - hue-keyed tile tokens (pastel bg + deep fg per
+     hue, remapped for dark mode), so authors compose a colour class per
+     card instead of inline styles. */
+  & .function-card-icon-blue   {background:var(--colour-tile-blue-bg);color:var(--colour-tile-blue-fg)}
+  & .function-card-icon-green  {background:var(--colour-tile-green-bg);color:var(--colour-tile-green-fg)}
+  & .function-card-icon-orange {background:var(--colour-tile-orange-bg);color:var(--colour-tile-orange-fg)}
+  & .function-card-icon-purple {background:var(--colour-tile-purple-bg);color:var(--colour-tile-purple-fg)}
+  & .function-card-icon-pink   {background:var(--colour-tile-pink-bg);color:var(--colour-tile-pink-fg)}
+  & .function-card-icon-teal   {background:var(--colour-tile-teal-bg);color:var(--colour-tile-teal-fg)}
+  & .function-card-icon-red    {background:var(--colour-tile-red-bg);color:var(--colour-tile-red-fg)}
+  & .function-card-icon-yellow {background:var(--colour-tile-yellow-bg);color:var(--colour-tile-yellow-fg)}
+  & .function-card-icon-grey   {background:var(--colour-canvas-muted);color:var(--colour-fg-muted)}
 
-/* ---------- Body: title + description ---------- */
-.function-card-body{
-  display:flex;flex-direction:column;gap:4px;
-  flex:1;min-width:0;
-}
-.function-card-title{
-  font-size:var(--fs-md);font-weight:700;
-  color:var(--colour-fg-strong);
-  line-height:1.3;
-}
-.function-card-desc{
-  font-size:var(--fs-sm);
-  color:var(--colour-fg-muted);
-  line-height:1.45;
-}
+  & .function-card-counter{
+    text-align:right;line-height:1.1;
+    flex-shrink:0;
+  }
+  & .function-card-count{
+    font-size:1.4rem;font-weight:700;
+    color:var(--colour-fg-strong);
+    font-variant-numeric:tabular-nums;
+  }
+  & .function-card-count-label{
+    font-size:var(--fs-2xs);color:var(--colour-fg-muted);
+    text-transform:uppercase;letter-spacing:0.04em;
+    margin-top:2px;
+  }
 
-/* ---------- Foot: tags + arrow ---------- */
-.function-card-foot{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:var(--s-2);
-  margin-top:auto;
-  padding-top:var(--s-2);
-  border-top:1px solid var(--colour-border-muted);
-}
-/* Tag wrapper at the foot - uses the standard .tag component
-   (typically .tag tag-grey) for the chips themselves. */
-.function-card-tags{
-  display:flex;flex-wrap:wrap;gap:4px;
-}
-.function-card-arrow{
-  color:var(--colour-fg-subtle);
-  font-size:14px;
-  transition:color 0.1s, transform 0.1s;
+  & .function-card-soon-badge{
+    font-size:var(--fs-2xs);font-weight:700;
+    letter-spacing:0.04em;text-transform:uppercase;
+    padding:3px 8px;
+    background:var(--colour-warning);color:var(--colour-focus-fg);
+    border-radius:0;
+    white-space:nowrap;
+  }
+
+  /* ---------- Body: title + description ---------- */
+  & .function-card-body{
+    display:flex;flex-direction:column;gap:4px;
+    flex:1;min-width:0;
+  }
+  & .function-card-title{
+    font-size:var(--fs-md);font-weight:700;
+    color:var(--colour-fg-strong);
+    line-height:1.3;
+  }
+  & .function-card-desc{
+    font-size:var(--fs-sm);
+    color:var(--colour-fg-muted);
+    line-height:1.45;
+  }
+
+  /* ---------- Foot: tags + arrow ---------- */
+  & .function-card-foot{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:var(--s-2);
+    margin-top:auto;
+    padding-top:var(--s-2);
+    border-top:1px solid var(--colour-border-muted);
+  }
+  /* Tag wrapper at the foot - uses the standard .tag component
+     (typically .tag tag-grey) for the chips themselves. */
+  & .function-card-tags{
+    display:flex;flex-wrap:wrap;gap:4px;
+  }
+  & .function-card-arrow{
+    color:var(--colour-fg-subtle);
+    font-size:var(--fs-base);
+    transition:color 0.1s, transform 0.1s;
+  }
 }

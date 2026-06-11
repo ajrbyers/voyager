@@ -14,6 +14,14 @@
        actions is a list of {"label", "url", "hidden"} dicts for multiple actions.
        Rows with no actions collapse to a two-column grid.
 
+   Values are escaped by default. Where a row's value legitimately needs
+   markup (mono spans, links), use summary_row as a {% call %} block - the
+   block content is template-authored, not data:
+     {% call summary_row("Manuscript",
+         change="#", change_text="Download", change_label="manuscript") %}
+       <span class="mono">okafor_lstm_v2.docx</span> · 342 KB
+     {% endcall %}
+
    Usage:
      {% call summary_block("Files in Round 2", actions=[
          {"label": "Add files",    "url": "#"},
@@ -22,14 +30,13 @@
        {% call summary_list() %}
          {{ summary_row(
              key="Manuscript",
-             value='<span class="mono">okafor_lstm_v2.docx</span> · 342 KB',
+             value="okafor_lstm_v2.docx · 342 KB",
              change="#", change_text="Download", change_label="manuscript"
          ) }}
-         {{ summary_row(
-             key="Figures",
-             value='<span class="mono">figures_v2.zip</span> · 1.8 MB',
-             change="#", change_text="Download", change_label="figures"
-         ) }}
+         {% call summary_row("Figures",
+             change="#", change_text="Download", change_label="figures") %}
+           <span class="mono">figures_v2.zip</span> · 1.8 MB
+         {% endcall %}
        {% endcall %}
      {% endcall %}
 #}
@@ -37,15 +44,15 @@
 {% macro summary_block(title, title_id="", meta="", actions=[], clean=False) %}
 {%- set _id = title_id or ('sb-' ~ title|lower|replace(' ','-')) -%}
 <section class="summary-block{% if clean %} summary-block-clean{% endif %}"
-         aria-labelledby="{{ _id }}">
+         aria-labelledby="{{ _id|e }}">
   <div class="summary-block-head">
-    <h2 class="summary-block-title" id="{{ _id }}">
-      {{ title }}
-      {% if meta %}<span class="summary-block-meta">{{ meta }}</span>{% endif %}
+    <h2 class="summary-block-title" id="{{ _id|e }}">
+      {{ title|e }}
+      {% if meta %}<span class="summary-block-meta">{{ meta|e }}</span>{% endif %}
     </h2>
     {% if actions %}
     <div class="summary-block-actions">
-      {% for a in actions %}<a href="{{ a.url }}">{{ a.label }}</a>{% endfor %}
+      {% for a in actions %}<a href="{{ a.url|e }}">{{ a.label|e }}</a>{% endfor %}
     </div>
     {% endif %}
   </div>
@@ -59,18 +66,18 @@
 <dl class="summary-list">{{ caller() }}</dl>
 {% endmacro %}
 
-{% macro summary_row(key, value, change=None, change_text="Change", change_label="", actions=[]) %}
+{% macro summary_row(key, value="", change=None, change_text="Change", change_label="", actions=[]) %}
 {%- set _actions = actions -%}
 {%- if not _actions and change -%}
   {%- set _actions = [{"label": change_text, "url": change, "hidden": change_label}] -%}
 {%- endif -%}
 <div{% if not _actions %} class="summary-list-row-no-actions"{% endif %}>
-  <dt>{{ key }}</dt>
-  <dd>{{ value|safe }}</dd>
+  <dt>{{ key|e }}</dt>
+  <dd>{% if caller is defined %}{{ caller() }}{% else %}{{ value|e }}{% endif %}</dd>
   {% if _actions %}
   <dd class="summary-list-actions">
     {% for a in _actions %}
-      <a href="{{ a.url }}">{{ a.label }}{% if a.hidden %}<span class="visually-hidden"> {{ a.hidden }}</span>{% endif %}</a>
+      <a href="{{ a.url|e }}">{{ a.label|e }}{% if a.hidden %}<span class="visually-hidden"> {{ a.hidden|e }}</span>{% endif %}</a>
     {% endfor %}
   </dd>
   {% endif %}

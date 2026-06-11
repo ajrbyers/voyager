@@ -1,6 +1,14 @@
 {# modal - dialog with backdrop, header, body, and footer.
-   Show by adding .is-open to the backdrop. JS owns ESC, focus
-   trapping, and restoring focus on close.
+
+   JS driver contract (driver lives in site.js):
+     - The opener button carries data-modal-open="<backdrop-id>",
+       where <backdrop-id> is the id passed to this macro.
+     - Anything inside the dialog carrying data-modal-close closes it,
+       as do the Esc key and a click on the backdrop.
+     - While open, focus is trapped inside the dialog and restored to
+       the opener on close.
+   Render closed by default; pass is_open=True to render expanded
+   (adds .is-open to the backdrop).
 
    Compose with three macros:
      - modal(title, id, is_open=False)   wrapper (body + foot via call)
@@ -8,6 +16,7 @@
      - modal_foot()                      footer with action buttons
 
    Usage (simple):
+     <button class="btn" type="button" data-modal-open="m-1">Withdraw…</button>
      {% call modal("Withdraw reviewer assignment", id="m-1") %}
        <p>Withdrawing this reviewer will close their assignment …</p>
      {% endcall %}
@@ -24,12 +33,12 @@
      {% endcall %}
 #}
 {% macro modal(title, id="modal", is_open=False) %}
-<div class="modal-backdrop{% if is_open %} is-open{% endif %}"
-     role="dialog" aria-modal="true" aria-labelledby="{{ id }}-title">
+<div class="modal-backdrop{% if is_open %} is-open{% endif %}" id="{{ id|e }}"
+     role="dialog" aria-modal="true" aria-labelledby="{{ id|e }}-title">
   <div class="modal">
     <div class="modal-head">
-      <h2 class="modal-title" id="{{ id }}-title">{{ title }}</h2>
-      <button type="button" class="modal-close" aria-label="Close dialog">×</button>
+      <h2 class="modal-title" id="{{ id|e }}-title">{{ title|e }}</h2>
+      <button type="button" class="modal-close" aria-label="Close dialog" data-modal-close>×</button>
     </div>
     {{ caller() }}
   </div>

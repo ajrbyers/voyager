@@ -41,35 +41,35 @@
 {% macro tag_picker(name, label="item", items=[], search_url="",
                     empty_text="") %}
 {%- set _id = 'tag-picker-' ~ name -%}
-<div class="tag-picker" id="{{ _id }}">
+<div class="tag-picker" id="{{ _id|e }}">
   <div class="tag-picker-tags">
     {% for item in items %}
     <span class="tag-picker-tag">
-      <span>{{ item.name }}</span>
+      <span>{{ item.name|e }}</span>
       <button type="button"
               class="tag-picker-tag-remove"
-              hx-post="{{ item.remove_url }}"
-              hx-target="#{{ _id }}"
+              hx-post="{{ item.remove_url|e }}"
+              hx-target="#{{ _id|e }}"
               hx-swap="outerHTML"
-              aria-label="Remove {{ item.name }}">
+              aria-label="Remove {{ item.name|e }}">
         {{ icon("x") }}
       </button>
     </span>
     {% else %}
-    <span class="tag-picker-none">{{ empty_text or 'No ' ~ label ~ 's added yet' }}</span>
+    <span class="tag-picker-none">{{ (empty_text or 'No ' ~ label ~ 's added yet')|e }}</span>
     {% endfor %}
   </div>
   <div class="tag-picker-search">
     <input type="text"
            class="form-input"
            name="q"
-           placeholder="Search or create {{ label }}…"
-           aria-label="Search or create {{ label }}"
-           hx-get="{{ search_url }}"
-           hx-target="#{{ _id }}-results"
+           placeholder="Search or create {{ label|e }}…"
+           aria-label="Search or create {{ label|e }}"
+           hx-get="{{ search_url|e }}"
+           hx-target="#{{ _id|e }}-results"
            hx-trigger="input changed delay:200ms, focus"
            autocomplete="off">
-    <div id="{{ _id }}-results" class="tag-picker-results"></div>
+    <div id="{{ _id|e }}-results" class="tag-picker-results"></div>
   </div>
 </div>
 {% endmacro %}
@@ -82,27 +82,27 @@
   {% for item in results %}
   <button type="button"
           class="tag-picker-result"
-          hx-post="{{ add_url }}"
-          hx-vals='{"item_id": "{{ item.id }}"}'
-          hx-target="{{ _target }}"
+          hx-post="{{ add_url|e }}"
+          hx-vals='{{ {"item_id": item.id|string}|tojson }}'
+          hx-target="{{ _target|e }}"
           hx-swap="outerHTML">
-    {{ icon("plus") }} {{ item.name }}
+    {{ icon("plus") }} {{ item.name|e }}
   </button>
   {% endfor %}
   {% if can_create %}
   <button type="button"
           class="tag-picker-result tag-picker-result-create"
-          hx-post="{{ add_url }}"
-          hx-vals='{"name": "{{ q }}"}'
-          hx-target="{{ _target }}"
+          hx-post="{{ add_url|e }}"
+          hx-vals='{{ {"name": q|string}|tojson }}'
+          hx-target="{{ _target|e }}"
           hx-swap="outerHTML">
-    {{ icon("plus") }} Create "{{ q }}"
+    {{ icon("plus") }} Create "{{ q|e }}"
   </button>
   {% endif %}
 </div>
 {% elif q %}
 <div class="tag-picker-results-inner">
-  <span class="tag-picker-empty">No matches for "{{ q }}"</span>
+  <span class="tag-picker-empty">No matches for "{{ q|e }}"</span>
 </div>
 {% endif %}
 {% endmacro %}

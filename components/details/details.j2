@@ -6,10 +6,16 @@
                 remembered in localStorage under `voyager-details:<key>`.
                 Use for long-lived disclosures (file lists, panels);
                 do NOT use for help text or error messages.
-   Body content via {% call %}. #}
+   Body content via {% call %}.
+
+   Usage:
+     {% call details("Help with review criteria") %}
+       <p>Score each criterion from 1 to 5.</p>
+     {% endcall %}
+#}
 {% macro details(summary, open=False, persist=None) %}
-<details class="details"{% if open %} open{% endif %}{% if persist %} data-details-persist="{{ persist }}"{% endif %}>
-  <summary>{{ summary }}</summary>
+<details class="details"{% if open %} open{% endif %}{% if persist %} data-details-persist="{{ persist|e }}"{% endif %}>
+  <summary>{{ summary|e }}</summary>
   <div class="details-body">
     {{ caller() }}
   </div>

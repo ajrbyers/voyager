@@ -1,6 +1,10 @@
 /* ===========================================================
-   utilities.css - single-purpose helpers. Imported LAST so
-   utility classes win on specificity over component styles.
+   utilities.css - single-purpose helpers. Imported LAST.
+   Override utilities (text, margin, flow) carry !important so
+   they beat component declarations regardless of nesting depth -
+   the ITCSS terminal layer. Layout primitives (stack, cluster,
+   grid, app layouts) are starting points, not overrides, and
+   stay unweighted.
    =========================================================== */
 
 /* ---------- Visibility ---------- */
@@ -22,16 +26,16 @@
 .skip-link:focus-visible{left:8px;top:8px}
 
 /* ---------- Text ---------- */
-.muted{color:var(--colour-fg-muted)}
-.subtle{color:var(--colour-fg-subtle)}
-.mono{font-family:var(--font-mono);font-size:0.92em}
-.strong{font-weight:600}
-.right{text-align:right}
-.nowrap{white-space:nowrap}
+.muted{color:var(--colour-fg-muted)!important}
+.subtle{color:var(--colour-fg-subtle)!important}
+.mono{font-family:var(--font-mono)!important;font-size:0.92em!important}
+.strong{font-weight:600!important}
+.right{text-align:right!important}
+.nowrap{white-space:nowrap!important}
 
-.status-overdue{color:var(--colour-error);font-weight:600}
-.status-pending{color:var(--colour-warning-fg);font-weight:600}
-.status-success{color:var(--colour-success);font-weight:600}
+.status-overdue{color:var(--colour-error)!important;font-weight:600!important}
+.status-pending{color:var(--colour-warning-fg)!important;font-weight:600!important}
+.status-success{color:var(--colour-success)!important;font-weight:600!important}
 
 /* ---------- Layout primitives ---------- */
 /* Stack - vertical rhythm */
@@ -72,19 +76,19 @@
 }
 
 /* ---------- Margin and gap ---------- */
-.m-0{margin:0}
-.mt-0{margin-top:0}
-.mt-3{margin-top:var(--s-3)}
-.mt-4{margin-top:var(--s-4)}
-.mt-5{margin-top:var(--s-5)}
-.mt-6{margin-top:var(--s-6)}
-.mb-0{margin-bottom:0}
-.mb-3{margin-bottom:var(--s-3)}
-.mb-4{margin-bottom:var(--s-4)}
-.mb-5{margin-bottom:var(--s-5)}
-.mb-6{margin-bottom:var(--s-6)}
-.mb-8{margin-bottom:var(--s-8)}
+.m-0{margin:0!important}
+.mt-0{margin-top:0!important}
+.mt-3{margin-top:var(--s-3)!important}
+.mt-4{margin-top:var(--s-4)!important}
+.mt-5{margin-top:var(--s-5)!important}
+.mt-6{margin-top:var(--s-6)!important}
+.mb-0{margin-bottom:0!important}
+.mb-3{margin-bottom:var(--s-3)!important}
+.mb-4{margin-bottom:var(--s-4)!important}
+.mb-5{margin-bottom:var(--s-5)!important}
+.mb-6{margin-bottom:var(--s-6)!important}
+.mb-8{margin-bottom:var(--s-8)!important}
 
 /* ---------- Flow control ---------- */
-.flex-1{flex:1}
-.ml-auto{margin-left:auto}
+.flex-1{flex:1!important}
+.ml-auto{margin-left:auto!important}

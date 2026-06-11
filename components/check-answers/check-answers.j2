@@ -29,17 +29,17 @@
 {% macro check_answers(title="Check your answers before submitting",
                         submit_label="Accept and send", submit_kind="primary") %}
 <div class="check-answers">
-  <h1 class="check-answers-title">{{ title }}</h1>
+  <h1 class="check-answers-title">{{ title|e }}</h1>
   {{ caller() }}
   <div class="check-answers-submit">
-    <button type="submit" class="btn btn-{{ submit_kind }}">{{ submit_label }}</button>
+    <button type="submit" class="btn btn-{{ submit_kind|e }}">{{ submit_label|e }}</button>
   </div>
 </div>
 {% endmacro %}
 
 {% macro check_answers_section(heading) %}
 <div class="check-answers-section">
-  <h2 class="check-answers-heading">{{ heading }}</h2>
+  <h2 class="check-answers-heading">{{ heading|e }}</h2>
   <dl class="summary-list">
     {{ caller() }}
   </dl>

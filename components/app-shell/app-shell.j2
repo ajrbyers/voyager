@@ -1,6 +1,13 @@
 {# app-shell - sidebar + main content grid.
    Use as a layout wrapper. The caller provides the sidebar markup
-   (typically the sidebar-nav macro) and the page content. #}
+   (typically the sidebar-nav macro) and the page content.
+
+   Usage:
+     {% call app_shell() %}
+       {{ sidebar_nav(...) }}
+       <main>…</main>
+     {% endcall %}
+#}
 {% macro app_shell() %}
 <div class="app-shell">
   {{ caller() }}

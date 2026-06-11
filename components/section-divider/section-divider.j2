@@ -3,13 +3,18 @@
    timeline date headings, etc.
 
    Args:
-     - label:    text shown in the divider
-     - severity: '' | 'critical' | 'warning' | 'info' - shows a coloured dot
-     - flush:    boolean - removes the top margin (first divider in a list) #}
-{% macro section_divider(label, severity="", flush=False) %}
-<div class="section-divider{% if severity %} section-divider-{{ severity }}{% endif %}{% if flush %} section-divider-flush{% endif %}">
-  {% if severity %}<span class="section-divider-dot" aria-hidden="true"></span>{% endif %}
-  <h2 class="section-divider-label">{{ label }}</h2>
+     - label: text shown in the divider
+     - kind:  '' | 'critical' | 'warning' | 'info' - shows a coloured dot
+     - flush: boolean - removes the top margin (first divider in a list)
+
+   Usage:
+     {{ section_divider("Needs attention", kind="critical", flush=True) }}
+     {{ section_divider("In progress") }}
+#}
+{% macro section_divider(label, kind="", flush=False) %}
+<div class="section-divider{% if kind %} section-divider-{{ kind|e }}{% endif %}{% if flush %} section-divider-flush{% endif %}">
+  {% if kind %}<span class="section-divider-dot" aria-hidden="true"></span>{% endif %}
+  <h2 class="section-divider-label">{{ label|e }}</h2>
   <span class="section-divider-line"></span>
 </div>
 {% endmacro %}

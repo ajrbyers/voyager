@@ -20,6 +20,6 @@
 {% macro step(label, hint="", state=None) %}
 <li{% if state == 'done' %} class="is-done"
   {% elif state == 'current' %} class="is-current" aria-current="step"{% endif %}>
-  {{ label }}{% if hint %}<small>{{ hint }}</small>{% endif %}
+  {{ label|e }}{% if hint %}<small>{{ hint|e }}</small>{% endif %}
 </li>
 {% endmacro %}

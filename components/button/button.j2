@@ -8,6 +8,10 @@
      - href:     if given, renders as <a>; else <button type="…">
      - type:     button type when not a link (default 'button')
      - disabled: boolean
+
+   Usage:
+     {{ button("Save and continue", kind="primary") }}
+     {{ button("Open →", size="small", href="/article/1247") }}
 #}
 {% macro button(label, kind="default", size="", href=None, type="button", disabled=False) %}
 {%- set classes = ['btn'] -%}
@@ -15,8 +19,8 @@
 {%- if size %}{% set classes = classes + ['btn-' ~ size] %}{% endif -%}
 {%- set cls = classes|join(' ') -%}
 {%- if href -%}
-  <a href="{{ href }}" class="{{ cls }}">{{ label }}</a>
+  <a href="{{ href|e }}" class="{{ cls|e }}">{{ label|e }}</a>
 {%- else -%}
-  <button type="{{ type }}" class="{{ cls }}"{% if disabled %} disabled{% endif %}>{{ label }}</button>
+  <button type="{{ type|e }}" class="{{ cls|e }}"{% if disabled %} disabled{% endif %}>{{ label|e }}</button>
 {%- endif -%}
 {% endmacro %}

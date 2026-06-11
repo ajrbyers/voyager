@@ -6,18 +6,21 @@
 .avatar{
   width:24px;height:24px;border-radius:50%;
   display:inline-flex;align-items:center;justify-content:center;
+  /* Initials are sized to the circle geometry, not the type ramp,
+     so the px font-sizes below stay deliberately off-token. */
   font-weight:700;font-size:10px;color:var(--colour-white);
   flex-shrink:0;
   font-family:var(--font-system);
   background:var(--colour-fg-muted); /* default neutral */
-}
-.avatar.avatar-md{width:32px;height:32px;font-size:11px}
-.avatar.avatar-lg{width:48px;height:48px;font-size:14px}
 
-/* Generic colour pool - pick a stable one per user via hash on consumer side. */
-.avatar.avatar-purple{background:#5b21b6}
-.avatar.avatar-orange{background:#9a3412}
-.avatar.avatar-green{background:#166534}
-.avatar.avatar-red{background:#9b2c2c}
-.avatar.avatar-teal{background:#115e59}
-.avatar.avatar-pink{background:#9d174d}
+  &.avatar-md{width:32px;height:32px;font-size:11px}
+  &.avatar-lg{width:48px;height:48px;font-size:14px}
+
+  /* Generic colour pool - pick a stable one per user via hash on consumer side. */
+  &.avatar-purple{background:var(--colour-avatar-purple)}
+  &.avatar-orange{background:var(--colour-avatar-orange)}
+  &.avatar-green{background:var(--colour-avatar-green)}
+  &.avatar-red{background:var(--colour-avatar-red)}
+  &.avatar-teal{background:var(--colour-avatar-teal)}
+  &.avatar-pink{background:var(--colour-avatar-pink)}
+}

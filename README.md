@@ -31,7 +31,9 @@ ITCSS layer order:
 settings  →  reset  →  elements  →  components  →  utilities
 ```
 
-Utilities load **last** so they win on specificity. See
+Utilities load **last**, and single-purpose override utilities (text,
+margin, flow) carry `!important` so they beat component declarations at
+any nesting depth - the ITCSS terminal layer. See
 [`assets/css/README.md`](assets/css/README.md) for the full architecture
 document.
 
@@ -39,8 +41,8 @@ document.
 
 Two-tier system on `:root` in `settings.css`:
 
-1. **Raw tokens** - the underlying value: `--colour-grey-9: #1f2328;`
-2. **Semantic aliases** - point at raw tokens by role: `--colour-fg: var(--colour-grey-9);`
+1. **Raw tokens** - the underlying value: `--colour-grey-7: #1f2328;`
+2. **Semantic aliases** - point at raw tokens by role: `--colour-fg: var(--colour-grey-7);`
 
 Components reference **semantic** tokens. Pages and themes can override
 semantic aliases without touching raw tokens.

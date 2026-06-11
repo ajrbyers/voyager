@@ -13,14 +13,14 @@
      {% endcall %}
 #}
 {% macro breadcrumbs(label="Breadcrumb") %}
-<nav class="breadcrumbs" aria-label="{{ label }}">
+<nav class="breadcrumbs" aria-label="{{ label|e }}">
   <ol>{{ caller() }}</ol>
 </nav>
 {% endmacro %}
 
 {% macro breadcrumb(label, url=None, current=False) %}
 <li{% if current or not url %} aria-current="page"{% endif %}>
-  {% if url %}<a href="{{ url }}">{{ label }}</a>
-  {% else %}{{ label }}{% endif %}
+  {% if url %}<a href="{{ url|e }}">{{ label|e }}</a>
+  {% else %}{{ label|e }}{% endif %}
 </li>
 {% endmacro %}

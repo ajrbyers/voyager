@@ -3,10 +3,13 @@
      - number: integer or string
      - label:  text below the number
      - kind:   '' (default) | 'alert' | 'success' | 'warning'
+
+   Usage:
+     {{ stat(14, "In review", kind="alert") }}
 #}
 {% macro stat(number, label, kind="") %}
-<div class="stat{% if kind %} stat-{{ kind }}{% endif %}">
-  <span class="stat-number">{{ number }}</span>
-  <span class="stat-label">{{ label }}</span>
+<div class="stat{% if kind %} stat-{{ kind|e }}{% endif %}">
+  <span class="stat-number">{{ number|e }}</span>
+  <span class="stat-label">{{ label|e }}</span>
 </div>
 {% endmacro %}

@@ -12,5 +12,6 @@
   pointer-events:none;
   opacity:0;
   transition:width 0.15s ease, opacity 0.2s ease;
+
+  &.is-running{opacity:1}
 }
-.progress-bar.is-running{opacity:1}

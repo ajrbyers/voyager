@@ -15,9 +15,9 @@
 #}
 {% macro notice(title, kind="info", id="") %}
 {%- set _id = id or ('notice-' ~ title|lower|replace(' ','-')) -%}
-<section class="notice{% if kind != 'info' %} notice-{{ kind }}{% endif %}"
-         aria-labelledby="{{ _id }}">
-  <h2 class="notice-head" id="{{ _id }}">{{ title }}</h2>
+<section class="notice{% if kind != 'info' %} notice-{{ kind|e }}{% endif %}"
+         aria-labelledby="{{ _id|e }}">
+  <h2 class="notice-head" id="{{ _id|e }}">{{ title|e }}</h2>
   <div class="notice-body">{{ caller() }}</div>
 </section>
 {% endmacro %}
@@ -46,12 +46,12 @@
 #}
 {% macro error_summary(title="There is a problem", id="") %}
 {%- set _id = id or 'es-' ~ title|lower|replace(' ','-') -%}
-<div class="error-summary" role="alert" aria-labelledby="{{ _id }}">
-  <h2 class="error-summary-title" id="{{ _id }}">{{ title }}</h2>
+<div class="error-summary" role="alert" aria-labelledby="{{ _id|e }}">
+  <h2 class="error-summary-title" id="{{ _id|e }}">{{ title|e }}</h2>
   <ul>{{ caller() }}</ul>
 </div>
 {% endmacro %}
 
 {% macro error_summary_item(message, anchor) %}
-<li><a href="#{{ anchor }}">{{ message }}</a></li>
+<li><a href="#{{ anchor|e }}">{{ message|e }}</a></li>
 {% endmacro %}

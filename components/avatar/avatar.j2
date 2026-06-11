@@ -2,11 +2,15 @@
    Args:
      - initials: 1-3 letters
      - size:     '' (24px) | 'md' (32px) | 'lg' (48px)
-     - colour:   '' (neutral) | 'purple' | 'orange' | 'green' | 'red' | 'teal' | 'pink'
+     - kind:     '' (neutral) | 'purple' | 'orange' | 'green' | 'red' | 'teal' | 'pink'
+
+   Usage:
+     {{ avatar("AH", kind="purple") }}
+     {{ avatar("MW", size="md", kind="orange") }}
 #}
-{% macro avatar(initials, size="", colour="") %}
+{% macro avatar(initials, size="", kind="") %}
 {%- set classes = ['avatar'] -%}
 {%- if size %}{% set classes = classes + ['avatar-' ~ size] %}{% endif -%}
-{%- if colour %}{% set classes = classes + ['avatar-' ~ colour] %}{% endif -%}
-<span class="{{ classes|join(' ') }}" aria-hidden="true">{{ initials }}</span>
+{%- if kind %}{% set classes = classes + ['avatar-' ~ kind] %}{% endif -%}
+<span class="{{ classes|join(' ')|e }}" aria-hidden="true">{{ initials|e }}</span>
 {% endmacro %}

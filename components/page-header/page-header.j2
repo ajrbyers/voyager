@@ -1,33 +1,64 @@
 {# page-header - title block at the top of a page.
 
+   All string params are escaped - never pass pre-rendered HTML.
+
    Args:
-     - caption:  text above the H1 (HTML allowed; pass code-chip etc.)
-     - title:    the H1 text
-     - byline:   byline below the title (HTML allowed)
+     - title:          the H1 text
+     - caption:        plain text above the H1
+     - caption_prefix: structured caption - text before the code chip
+     - caption_chip:   structured caption - rendered as a code-chip
+     - caption_suffix: structured caption - text after the code chip
+       (use the structured trio instead of caption when the caption
+       contains an ID chip, e.g. "Article [#1247] · Peer review")
+     - byline:         byline below the title
+     - byline_lead:    leading name rendered in <strong>, separated from
+                       byline with " · "
 
-   Tags go inside the {% call %} block. Use the `tag` macro for each.
+   Tags go inside the optional {% call %} block. Use the `tag` macro for
+   each; the block is template-authored, so it may contain markup.
 
-   Usage with tags:
+   Usage with a structured caption and tags:
      {% call page_header(
-         caption='Article ' ~ code_chip('#1247') ~ ' · Peer review',
-         title='Reproducibility of LSTM forecasts…',
-         byline='<strong>Dr Adaeze Okafor</strong> · University of Lagos'
+         title="Reproducibility of LSTM forecasts…",
+         caption_prefix="Article",
+         caption_chip="#1247",
+         caption_suffix="· Peer review",
+         byline_lead="Dr Adaeze Okafor",
+         byline="University of Lagos · submitted 4 March 2026"
      ) %}
        {{ tag("Under review", kind="green") }}
        {{ tag("Round 2 of 2", kind="grey") }}
      {% endcall %}
 
-   Usage without tags - wrap with an empty {% call %} block:
-     {% call page_header(title="Manager", byline="Settings and content.") %}{% endcall %}
+   Usage without tags - no call block needed:
+     {{ page_header(title="Manager", byline="Settings and content.") }}
 #}
-{% macro page_header(caption="", title="", byline="") %}
+{% from "voyager/components/code-chip/code-chip.j2" import code_chip %}
+
+{% macro page_header(title="", caption="", caption_prefix="", caption_chip="",
+                     caption_suffix="", byline="", byline_lead="") %}
 <div class="page-header">
-  {% if caption %}<span class="page-header-caption">{{ caption|safe }}</span>{% endif %}
-  <h1 class="page-header-title">{{ title }}</h1>
-  {% if byline %}<p class="page-header-byline">{{ byline|safe }}</p>{% endif %}
-  {%- set tags_content = caller()|trim -%}
+  {% if caption or caption_prefix or caption_chip or caption_suffix %}
+  <span class="page-header-caption">
+    {%- if caption -%}
+      {{ caption|e }}
+    {%- else -%}
+      {%- if caption_prefix %}{{ caption_prefix|e }} {% endif -%}
+      {%- if caption_chip %}{{ code_chip(caption_chip) }}{% endif -%}
+      {%- if caption_suffix %} {{ caption_suffix|e }}{% endif -%}
+    {%- endif -%}
+  </span>
+  {% endif %}
+  <h1 class="page-header-title">{{ title|e }}</h1>
+  {% if byline or byline_lead %}
+  <p class="page-header-byline">
+    {%- if byline_lead %}<strong>{{ byline_lead|e }}</strong>{% if byline %} · {% endif %}{% endif -%}
+    {{- byline|e -}}
+  </p>
+  {% endif %}
+  {%- set tags_content = caller()|trim if caller is defined else '' -%}
   {% if tags_content %}
-    <div class="page-header-tags">{{ tags_content|safe }}</div>
+    <div class="page-header-tags">{{ tags_content }}</div>
   {% endif %}
 </div>
 {% endmacro %}

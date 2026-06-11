@@ -3,6 +3,7 @@
 // 2) Password show/hide toggle driver (used by the form component).
 // 3) Theme toggle (light / dark) with localStorage persistence.
 // 4) Details open/closed state persistence (opt-in via data-details-persist).
+// 5) Modal driver - open/close, ESC, focus trap, focus restore.
 
 (function () {
   // ---- Theme toggle ----
@@ -79,6 +80,8 @@
     + '<li><a class="site-sidebar-link" href="components/summary-block.html">Summary block</a></li>'
     + '<li><a class="site-sidebar-link" href="components/information.html">Information</a></li>'
     + '<li><a class="site-sidebar-link" href="components/nav.html">Navigation</a></li>'
+    + '<li><a class="site-sidebar-link" href="components/app-shell.html">Application shell</a></li>'
+    + '<li><a class="site-sidebar-link" href="components/rail.html">Rail</a></li>'
     + '<li><a class="site-sidebar-link" href="components/back-link.html">Back link</a></li>'
     + '<li><a class="site-sidebar-link" href="components/pagination.html">Pagination</a></li>'
     + '<li><a class="site-sidebar-link" href="components/tag.html">Tag &amp; chip</a></li>'
@@ -90,6 +93,7 @@
     + '<li><a class="site-sidebar-link" href="components/stat.html">Stat &amp; queue</a></li>'
     + '<li><a class="site-sidebar-link" href="components/steps.html">Steps</a></li>'
     + '<li><a class="site-sidebar-link" href="components/avatar.html">Avatar</a></li>'
+    + '<li><a class="site-sidebar-link" href="components/theme-toggle.html">Theme toggle</a></li>'
     + '<li><a class="site-sidebar-link" href="components/section-divider.html">Section divider</a></li>'
     + '<li><a class="site-sidebar-link" href="components/item-list.html">Item list</a></li>'
     + '<li><a class="site-sidebar-link" href="components/tag-picker.html">Tag picker</a></li>'
@@ -134,6 +138,75 @@
       }
     });
   }
+
+  // ---- Modal driver ----
+  // Contract: an opener carries data-modal-open="<backdrop-id>"; the
+  // backdrop (.modal-backdrop) carries that id; anything inside with
+  // data-modal-close closes it, as do ESC and a click on the backdrop
+  // itself. Focus is trapped while open and restored to the opener on
+  // close.
+  var openModal = null;     // the open .modal-backdrop element
+  var modalOpener = null;   // the element to restore focus to
+
+  var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), ' +
+    'select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+  function modalFocusables() {
+    if (!openModal) return [];
+    return Array.prototype.filter.call(
+      openModal.querySelectorAll(FOCUSABLE),
+      function (el) { return el.offsetParent !== null; }
+    );
+  }
+
+  function showModal(backdrop, opener) {
+    openModal = backdrop;
+    modalOpener = opener || document.activeElement;
+    backdrop.classList.add('is-open');
+    var focusables = modalFocusables();
+    if (focusables.length) focusables[0].focus();
+  }
+
+  function hideModal() {
+    if (!openModal) return;
+    openModal.classList.remove('is-open');
+    openModal = null;
+    if (modalOpener && typeof modalOpener.focus === 'function') modalOpener.focus();
+    modalOpener = null;
+  }
+
+  document.addEventListener('click', function (event) {
+    var opener = event.target.closest('[data-modal-open]');
+    if (opener) {
+      var backdrop = document.getElementById(opener.getAttribute('data-modal-open'));
+      if (backdrop) showModal(backdrop, opener);
+      return;
+    }
+    if (!openModal) return;
+    if (event.target.closest('[data-modal-close]') || event.target === openModal) {
+      hideModal();
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (!openModal) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      hideModal();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    var focusables = modalFocusables();
+    if (!focusables.length) { event.preventDefault(); return; }
+    var first = focusables[0];
+    var last = focusables[focusables.length - 1];
+    var active = document.activeElement;
+    if (event.shiftKey && (active === first || !openModal.contains(active))) {
+      event.preventDefault(); last.focus();
+    } else if (!event.shiftKey && active === last) {
+      event.preventDefault(); first.focus();
+    }
+  });
 
   // ---- Details persistence ----
   // Opt-in: add `data-details-persist="<unique-key>"` to a <details>.

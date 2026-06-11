@@ -188,7 +188,7 @@
   cursor:pointer;
 }
 .form-file::file-selector-button:hover{
-  background:var(--colour-govuk-grey-1);
+  background:var(--colour-surface-grey-hover);
 }
 
 /* Fluid widths */

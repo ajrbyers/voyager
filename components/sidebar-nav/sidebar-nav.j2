@@ -14,13 +14,13 @@
 #}
 
 {% macro sidebar_nav(journal=None, label="Editorial navigation") %}
-<nav class="sidebar-nav" aria-label="{{ label }}">
+<nav class="sidebar-nav" aria-label="{{ label|e }}">
   {% if journal %}
   <div class="sidebar-nav-journal">
-    <span class="sidebar-nav-mark" aria-hidden="true">{{ journal.mark }}</span>
+    <span class="sidebar-nav-mark" aria-hidden="true">{{ journal.mark|e }}</span>
     <div>
-      <div class="sidebar-nav-name">{{ journal.name }}</div>
-      {% if journal.sub %}<div class="sidebar-nav-sub">{{ journal.sub }}</div>{% endif %}
+      <div class="sidebar-nav-name">{{ journal.name|e }}</div>
+      {% if journal.sub %}<div class="sidebar-nav-sub">{{ journal.sub|e }}</div>{% endif %}
     </div>
   </div>
   {% endif %}
@@ -29,18 +29,18 @@
 {% endmacro %}
 
 {% macro sidebar_nav_section(label) %}
-<h2 class="sidebar-nav-section">{{ label }}</h2>
+<h2 class="sidebar-nav-section">{{ label|e }}</h2>
 <ul>{{ caller() }}</ul>
 {% endmacro %}
 
 {% macro sidebar_nav_item(label, url="#", count=None, current=False) %}
 <li>
-  <a href="{{ url }}"
+  <a href="{{ url|e }}"
      class="sidebar-nav-link"
      {% if current %}aria-current="page"{% endif %}>
-    {{ label }}
+    {{ label|e }}
     {% if count is not none %}
-      <span class="sidebar-nav-count" aria-label="{{ count }} articles">{{ count }}</span>
+      <span class="sidebar-nav-count" aria-label="{{ count|e }} articles">{{ count|e }}</span>
     {% endif %}
   </a>
 </li>

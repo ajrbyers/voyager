@@ -12,16 +12,16 @@
      {% endcall %}
 #}
 {% macro tabs(label="Sections") %}
-<nav class="tabs" aria-label="{{ label }}">
+<nav class="tabs" aria-label="{{ label|e }}">
   <ul>{{ caller() }}</ul>
 </nav>
 {% endmacro %}
 
 {% macro tab(label, url="#", count=None, current=False) %}
 <li>
-  <a href="{{ url }}"{% if current %} aria-current="true"{% endif %}>
-    {{ label }}
-    {% if count %}<span class="tabs-count">{{ count }}</span>{% endif %}
+  <a href="{{ url|e }}"{% if current %} aria-current="true"{% endif %}>
+    {{ label|e }}
+    {% if count %}<span class="tabs-count">{{ count|e }}</span>{% endif %}
   </a>
 </li>
 {% endmacro %}

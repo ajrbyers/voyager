@@ -27,12 +27,12 @@
   & .app-header-brand:hover{text-decoration:none}
 
   & .app-header-chip{
-    font-size:11px;
+    font-size:var(--fs-2xs);
     font-weight:500;
     padding:1px 6px;
     border-radius:0;
-    background:rgba(255,255,255,0.12);
-    color:rgba(255,255,255,0.9);
+    background:var(--colour-header-chip-bg);
+    color:var(--colour-header-chip-fg);
     letter-spacing:0.02em;
   }
 
@@ -46,7 +46,7 @@
   & .app-header-avatar{
     width:28px;height:28px;
     border-radius:50%;
-    background:linear-gradient(135deg,#59c2ff,#1763a3);
+    background:var(--gradient-header-avatar);
     border:0;padding:0;cursor:pointer;
     display:inline-flex;align-items:center;justify-content:center;
     color:transparent;font:inherit;

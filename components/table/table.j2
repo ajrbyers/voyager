@@ -1,14 +1,19 @@
 {# table - data table.
 
-   Compose with three macros:
+   Compose with these macros:
      - table(bordered=True)        wrapper with thead / tbody slots via call
      - thead()                     header row wrapper
      - tr()                        body row wrapper
-     - th(label, scope="col")      header cell
-     - td(content, right=False)    body cell
+     - th(label, scope="col")      header cell (label is escaped)
+     - td(content, right=False)    body cell (content is escaped)
+
+   Cell content is escaped by default. Where a cell legitimately needs
+   markup (links, tags, mono spans), use td as a {% call %} block - the
+   block content is template-authored, not data:
+     {% call td(right=True) %}<a href="#">Download</a>{% endcall %}
 
    Or for very simple tables, use the data-driven shortcut:
-     - simple_table(headers, rows, bordered=True)
+     - simple_table(headers, rows, bordered=True)   (all cells escaped)
 
    Usage (composable):
      {% call table() %}
@@ -16,10 +21,10 @@
          {{ th("File ID") }}{{ th("File name") }}{{ th("Uploaded") }}{{ th("Action") }}
        {% endcall %}
        {% call tr() %}
-         {{ td('<span class="mono">8421</span>') }}
+         {% call td() %}<span class="mono">8421</span>{% endcall %}
          {{ td("okafor_lstm_v2.docx") }}
          {{ td("2026-04-29 09:14") }}
-         {{ td('<a href="#">Download</a>', right=True) }}
+         {% call td(right=True) %}<a href="#">Download</a>{% endcall %}
        {% endcall %}
      {% endcall %}
 #}
@@ -37,21 +42,22 @@
 <tbody><tr>{{ caller() }}</tr></tbody>
 {% endmacro %}
 
-{% macro th(label, scope="col") %}<th scope="{{ scope }}">{{ label }}</th>{% endmacro %}
+{% macro th(label, scope="col") %}<th scope="{{ scope|e }}">{{ label|e }}</th>{% endmacro %}
 
-{% macro td(content, right=False) %}
-<td{% if right %} class="right"{% endif %}>{{ content|safe }}</td>
+{% macro td(content="", right=False) %}
+<td{% if right %} class="right"{% endif %}>{% if caller is defined %}{{ caller() }}{% else %}{{ content|e }}{% endif %}</td>
 {% endmacro %}
 
-{# Data-driven shortcut for simple cases. #}
+{# Data-driven shortcut for simple cases. All cells are escaped; use the
+   composable form with {% call td() %} when a cell needs markup. #}
 {% macro simple_table(headers=[], rows=[], bordered=True) %}
 <table class="table{% if bordered %} table-bordered{% endif %}">
   <thead>
-    <tr>{% for h in headers %}<th scope="col">{{ h }}</th>{% endfor %}</tr>
+    <tr>{% for h in headers %}<th scope="col">{{ h|e }}</th>{% endfor %}</tr>
   </thead>
   <tbody>
     {% for row in rows %}
-      <tr>{% for cell in row %}<td>{{ cell|safe }}</td>{% endfor %}</tr>
+      <tr>{% for cell in row %}<td>{{ cell|e }}</td>{% endfor %}</tr>
     {% endfor %}
   </tbody>
 </table>

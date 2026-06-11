@@ -13,16 +13,19 @@
   color:inherit;
   cursor:pointer;
   font-family:var(--font-system);
-  font-size:12px;font-weight:500;
+  font-size:var(--fs-xs);font-weight:500;
   border-radius:0;
   text-decoration:none;
   /* WCAG 2.2 SC 2.5.8 - minimum 24x24 target. */
   min-height:24px;
+
+  &:hover{background:var(--colour-hover)}
+
+  & .icon{width:14px;height:14px}
+
+  & .theme-icon-sun{display:none}
+  :root[data-theme="dark"] &{
+    & .theme-icon-moon{display:none}
+    & .theme-icon-sun{display:inline-block}
+  }
 }
-.theme-toggle:hover{background:rgba(127,127,127,0.18)}
-
-.theme-toggle .icon{width:14px;height:14px}
-
-.theme-toggle .theme-icon-sun{display:none}
-:root[data-theme="dark"] .theme-toggle .theme-icon-moon{display:none}
-:root[data-theme="dark"] .theme-toggle .theme-icon-sun{display:inline-block}

@@ -9,13 +9,19 @@
 
    article_card(severity) accepts: 'critical' | 'warning' | 'info' | None
 
+   The byline is built from structured params (all escaped):
+     - authors:     lead author surname(s), e.g. "Okafor"
+     - extra_count: number of additional authors, renders "+2" muted
+     - editor:      editor name, renders "Editor: Hassan" after a separator
+     - byline:      plain-text fallback when the structured form doesn't fit
+
    Usage:
      {% call article_card(severity="critical") %}
        {% call article_card_body(
            id="#1247",
            url="/article/1247",
            title="Reproducibility of LSTM forecasts…",
-           byline="Okafor +2 · Editor: Hassan",
+           authors="Okafor", extra_count=2, editor="Hassan",
            days="62d",
            days_severity="critical",
            tags=[{"label": "Peer Review", "kind": "grey"}, {"label": "Article", "kind": "grey"}]
@@ -31,25 +37,36 @@
 #}
 
 {% macro article_card(severity=None) %}
-<article class="article-card{% if severity %} article-card-{{ severity }}{% endif %}">
+<article class="article-card{% if severity %} article-card-{{ severity|e }}{% endif %}">
   {{ caller() }}
 </article>
 {% endmacro %}
 
-{% macro article_card_body(id="", url="#", title="", byline="", days=None,
+{% macro article_card_body(id="", url="#", title="", authors="", extra_count=None,
+                            editor="", byline="", days=None,
                             days_severity=None, tags=[]) %}
 <div class="article-card-inner">
   <div class="article-card-body">
     <div class="article-card-meta-top">
-      {% if id %}<span class="article-card-id">{{ id }}</span>{% endif %}
-      {% for t in tags %}<span class="tag tag-{{ t.kind|default('grey') }}">{{ t.label }}</span>{% endfor %}
+      {% if id %}<span class="article-card-id">{{ id|e }}</span>{% endif %}
+      {% for t in tags %}<span class="tag tag-{{ t.kind|default('grey')|e }}">{{ t.label|e }}</span>{% endfor %}
       <span class="article-card-spacer"></span>
-      {% if days %}<span class="article-card-days{% if days_severity %} article-card-days-{{ days_severity }}{% endif %}">{{ days }}</span>{% endif %}
+      {% if days %}<span class="article-card-days{% if days_severity %} article-card-days-{{ days_severity|e }}{% endif %}">{{ days|e }}</span>{% endif %}
     </div>
     <h3 class="article-card-title">
-      <a class="article-card-title-link" href="{{ url }}">{{ title }}</a>
+      <a class="article-card-title-link" href="{{ url|e }}">{{ title|e }}</a>
     </h3>
-    {% if byline %}<div class="article-card-meta-bottom">{{ byline|safe }}</div>{% endif %}
+    {% if authors or editor or byline %}
+    <div class="article-card-meta-bottom">
+      {%- if byline -%}
+        <span>{{ byline|e }}</span>
+      {%- else -%}
+        {% if authors %}<span>{{ authors|e }}{% if extra_count %} <span class="muted">+{{ extra_count|e }}</span>{% endif %}</span>{% endif %}
+        {% if authors and editor %}<span class="article-card-sep">·</span>{% endif %}
+        {% if editor %}<span>Editor: {{ editor|e }}</span>{% endif %}
+      {%- endif -%}
+    </div>
+    {% endif %}
   </div>
   <div class="article-card-actions">
     {{ caller() }}

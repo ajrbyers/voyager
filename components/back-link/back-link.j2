@@ -1,7 +1,12 @@
 {# back-link - small leading-caret link.
    Args:
      - label: link text (default: "Back")
-     - url:   target URL #}
+     - url:   target URL
+
+   Usage:
+     {{ back_link(url="/dashboard") }}
+     {{ back_link("Back to review round", url="/round/2") }}
+#}
 {% macro back_link(label="Back", url="#") %}
-<a href="{{ url }}" class="back-link">{{ label }}</a>
+<a href="{{ url|e }}" class="back-link">{{ label|e }}</a>
 {% endmacro %}

@@ -13,8 +13,9 @@ Tailwind, no framework. Native CSS nesting and custom properties only.
 settings  →  reset  →  elements  →  components  →  utilities
 ```
 
-Each layer is a file or set of files. Utilities are imported **last** so they
-win on specificity. `index.css` imports the layers in order.
+Each layer is a file or set of files. Utilities are imported **last**, and
+single-purpose override utilities (text, margin, flow) carry `!important` so
+they beat component declarations at any nesting depth. `index.css` imports the layers in order.
 
 | Layer | File | Contains |
 | ----- | ---- | -------- |
@@ -34,8 +35,8 @@ win on specificity. `index.css` imports the layers in order.
 
 Two-tier system on `:root` in `settings.css`:
 
-1. **Raw tokens** - the underlying value: `--colour-grey-9: #1f2328;`
-2. **Semantic aliases** - point at raw tokens by role: `--colour-fg: var(--colour-grey-9);`
+1. **Raw tokens** - the underlying value: `--colour-grey-7: #1f2328;`
+2. **Semantic aliases** - point at raw tokens by role: `--colour-fg: var(--colour-grey-7);`
 
 Components reference **semantic** tokens. Pages and themes can override semantic aliases without touching raw tokens.
 

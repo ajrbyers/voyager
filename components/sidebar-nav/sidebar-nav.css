@@ -21,18 +21,18 @@
   & .sidebar-nav-mark{
     width:28px;height:28px;border-radius:0;
     background:var(--colour-accent);color:var(--colour-white);
-    font-weight:700;font-size:11px;letter-spacing:0.02em;
+    font-weight:700;font-size:var(--fs-2xs);letter-spacing:0.02em;
     display:flex;align-items:center;justify-content:center;
     flex-shrink:0;
   }
 
   & .sidebar-nav-name{font-weight:600;font-size:var(--fs-sm);color:var(--colour-fg)}
-  & .sidebar-nav-sub{font-size:11px;color:var(--colour-fg-muted)}
+  & .sidebar-nav-sub{font-size:var(--fs-2xs);color:var(--colour-fg-muted)}
 
   & .sidebar-nav-section{
     margin:var(--s-3) 0 2px;
     padding:0 10px;
-    font-size:11px;font-weight:600;
+    font-size:var(--fs-2xs);font-weight:600;
     color:var(--colour-fg-muted);
     text-transform:uppercase;letter-spacing:0.04em;
     line-height:1.4;
@@ -44,7 +44,7 @@
     color:var(--colour-fg);text-decoration:none;
     font-size:var(--fs-sm);line-height:1.4;
   }
-  & .sidebar-nav-link:hover{background:rgba(127,127,127,0.12);text-decoration:none}
+  & .sidebar-nav-link:hover{background:var(--colour-hover-soft);text-decoration:none}
   & .sidebar-nav-link[aria-current="page"]{
     background:var(--colour-accent-subtle);
     color:var(--colour-accent);
@@ -55,7 +55,7 @@
     margin-left:auto;
     background:var(--colour-canvas-inset);
     color:var(--colour-fg-muted);
-    font-size:11px;padding:0 6px;border-radius:0;font-weight:500;
+    font-size:var(--fs-2xs);padding:0 6px;border-radius:0;font-weight:500;
   }
   & .sidebar-nav-link[aria-current="page"] .sidebar-nav-count{
     background:var(--colour-white);color:var(--colour-accent);

@@ -7,14 +7,14 @@
 <link rel="stylesheet" href="../assets/css/index.css">
 <link rel="stylesheet" href="../assets/css/site.css">
 <script src="../assets/js/site.js" defer></script>
-<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
 
 <header class="site-header">
   <a class="site-brand" href="../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
-  <div class="site-meta"><a href="#">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+  <div class="site-meta"><a href="https://github.com/openlibhums/janeway">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
     <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
     <span data-theme-label>Dark</span>
@@ -29,42 +29,49 @@
     <h1>Modal</h1>
     <p class="site-page-lede">
       Dialog with a backdrop, header, body, and footer. Used for confirmations and
-      short focused actions. Add <code>.is-open</code> to the backdrop to show it.
-      JS handles ESC to close, focus trapping, and restoring focus on close.
+      short focused actions. The site JS provides the driver: a control with
+      <code>data-modal-open="&lt;backdrop-id&gt;"</code> opens the modal; anything inside
+      carrying <code>data-modal-close</code> closes it, as do <kbd>Esc</kbd> and a click
+      on the backdrop. Focus is trapped while open and returned to the opener on close.
     </p>
 
     <h2>Confirm a destructive action</h2>
-    <p>The modal below is rendered inline as a static demo (no backdrop overlay).</p>
+    <p>This demo is live - the button opens a working modal with focus trapping.</p>
 
     <div class="example">
       <div class="example-render"><div class="example-render-inner modal-demo">
-        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-demo-1">
-          <div class="modal-head">
-            <h2 class="modal-title" id="modal-demo-1">Withdraw reviewer assignment</h2>
-            <button class="modal-close" type="button" aria-label="Close dialog">×</button>
-          </div>
-          <div class="modal-body">
-            <p>Withdrawing this reviewer will close their assignment and notify them by email. The author will not be informed.</p>
-            <p>You can replace the reviewer afterwards from the reviewer list.</p>
-          </div>
-          <div class="modal-foot">
-            <button class="btn">Cancel</button>
-            <button class="btn btn-warning">Withdraw reviewer</button>
+        <button class="btn" type="button" data-modal-open="modal-demo-live">Withdraw reviewer…</button>
+        <div class="modal-backdrop" id="modal-demo-live" role="dialog" aria-modal="true" aria-labelledby="modal-demo-1">
+          <div class="modal">
+            <div class="modal-head">
+              <h2 class="modal-title" id="modal-demo-1">Withdraw reviewer assignment</h2>
+              <button class="modal-close" type="button" aria-label="Close dialog" data-modal-close>×</button>
+            </div>
+            <div class="modal-body">
+              <p>Withdrawing this reviewer will close their assignment and notify them by email. The author will not be informed.</p>
+              <p>You can replace the reviewer afterwards from the reviewer list.</p>
+            </div>
+            <div class="modal-foot">
+              <button class="btn" data-modal-close>Cancel</button>
+              <button class="btn btn-warning">Withdraw reviewer</button>
+            </div>
           </div>
         </div>
       </div></div>
       <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
-      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="modal-backdrop is-open" role="dialog" aria-modal="true" aria-labelledby="m-1"&gt;
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;button class="btn" type="button" data-modal-open="m-1-backdrop"&gt;Withdraw reviewer…&lt;/button&gt;
+
+&lt;div class="modal-backdrop" id="m-1-backdrop" role="dialog" aria-modal="true" aria-labelledby="m-1"&gt;
   &lt;div class="modal"&gt;
     &lt;div class="modal-head"&gt;
       &lt;h2 class="modal-title" id="m-1"&gt;Withdraw reviewer assignment&lt;/h2&gt;
-      &lt;button class="modal-close" type="button" aria-label="Close dialog"&gt;×&lt;/button&gt;
+      &lt;button class="modal-close" type="button" aria-label="Close dialog" data-modal-close&gt;×&lt;/button&gt;
     &lt;/div&gt;
     &lt;div class="modal-body"&gt;
       &lt;p&gt;Withdrawing this reviewer will close their assignment …&lt;/p&gt;
     &lt;/div&gt;
     &lt;div class="modal-foot"&gt;
-      &lt;button class="btn"&gt;Cancel&lt;/button&gt;
+      &lt;button class="btn" data-modal-close&gt;Cancel&lt;/button&gt;
       &lt;button class="btn btn-warning"&gt;Withdraw reviewer&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;

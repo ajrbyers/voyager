@@ -10,16 +10,18 @@
   text-decoration:underline;
   text-decoration-thickness:1px;text-underline-offset:0.1em;
   margin:var(--s-3) 0;
-}
-.back-link:hover{
-  color:var(--colour-link-hover);
-  text-decoration-thickness:3px;
-}
-.back-link::before{
-  content:"";display:inline-block;
-  width:7px;height:7px;
-  border-left:1px solid currentColor;
-  border-bottom:1px solid currentColor;
-  transform:rotate(45deg);
-  margin-right:4px;
+
+  &:hover{
+    color:var(--colour-link-hover);
+    text-decoration-thickness:3px;
+  }
+
+  &::before{
+    content:"";display:inline-block;
+    width:7px;height:7px;
+    border-left:1px solid currentColor;
+    border-bottom:1px solid currentColor;
+    transform:rotate(45deg);
+    margin-right:4px;
+  }
 }

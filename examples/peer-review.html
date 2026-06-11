@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../assets/css/index.css">
 <link rel="stylesheet" href="../assets/css/example.css">
 <script src="../assets/js/site.js" defer></script>
-<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem(k)||(d?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>

@@ -46,6 +46,43 @@
   /* Focus (GOV.UK) */
   --colour-yellow:          #ffdd00;
 
+  /* Tint palette - pastel background / deep foreground pairs per hue.
+     One vocabulary for every "tinted chip" in the system: status
+     pills, severity counts, icon tiles. Borders only where a
+     component draws one. */
+  --colour-tint-red-bg:     #fff1ef;
+  --colour-tint-red-fg:     #a4291b;
+  --colour-tint-red-border: #f3b9b1;
+  --colour-tint-orange-bg:     #fdf4e7;
+  --colour-tint-orange-fg:     #74510b;
+  --colour-tint-orange-border: #f5dcb0;
+  --colour-tint-blue-bg:     #ddf4ff;
+  --colour-tint-blue-fg:     #0550ae;
+  --colour-tint-blue-border: #b6e3ff;
+  --colour-tint-green-bg:   #d1fae5;
+  --colour-tint-green-fg:   #047857;
+  --colour-tint-purple-bg:  #ede9fe;
+  --colour-tint-purple-fg:  #6d28d9;
+  --colour-tint-pink-bg:    #fce7f3;
+  --colour-tint-pink-fg:    #be185d;
+  --colour-tint-teal-bg:    #ccfbf1;
+  --colour-tint-teal-fg:    #0f766e;
+  --colour-tint-yellow-bg:  #fef3c7;
+  --colour-tint-yellow-fg:  #92400e;
+
+  /* Solid hue pool - deep hues that carry white text or act as
+     identity dots. Stable per-entity colours (avatars, folders). */
+  --colour-pool-purple: #5b21b6;
+  --colour-pool-orange: #9a3412;
+  --colour-pool-green:  #166534;
+  --colour-pool-red:    #9b2c2c;
+  --colour-pool-teal:   #115e59;
+  --colour-pool-pink:   #9d174d;
+  --colour-pool-blue:   #1e40af;
+
+  /* Primer coral - the active-tab underline. */
+  --colour-coral: #fd8c73;
+
   /* ---------- Semantic aliases ---------- */
 
   /* Surfaces */
@@ -53,11 +90,12 @@
   --colour-canvas-muted:    var(--colour-grey-0);
   --colour-canvas-inset:    var(--colour-grey-1);
   --colour-surface-grey:    var(--colour-govuk-grey-0);
+  --colour-surface-grey-hover: var(--colour-govuk-grey-1);
 
   /* Borders */
   --colour-border:          var(--colour-grey-3);
   --colour-border-muted:    var(--colour-grey-2);
-  --colour-border-strong:   var(--colour-grey-4);   /* WCAG 1.4.11: 3:1 vs canvas */
+  --colour-border-strong:   var(--colour-grey-5);   /* 4.5:1 vs canvas - safely past the WCAG 1.4.11 3:1 bar */
   --colour-border-component:var(--colour-govuk-grey-2);
 
   /* Foreground */
@@ -81,6 +119,64 @@
   --colour-error-dark:      var(--colour-red-dark);
   --colour-info:            var(--colour-link-base);
 
+  /* Status tints - bg/fg(/border) trios for tinted status chrome
+     (alert pills, severity counts). */
+  --colour-critical-tint-bg:     var(--colour-tint-red-bg);
+  --colour-critical-tint-fg:     var(--colour-tint-red-fg);
+  --colour-critical-tint-border: var(--colour-tint-red-border);
+  --colour-warning-tint-bg:      var(--colour-tint-orange-bg);
+  --colour-warning-tint-fg:      var(--colour-tint-orange-fg);
+  --colour-warning-tint-border:  var(--colour-tint-orange-border);
+  --colour-info-tint-bg:         var(--colour-tint-blue-bg);
+  --colour-info-tint-fg:         var(--colour-tint-blue-fg);
+  --colour-info-tint-border:     var(--colour-tint-blue-border);
+
+  /* Icon tiles - hue-keyed bg/fg pairs (function-card icons). */
+  --colour-tile-blue-bg:    var(--colour-tint-blue-bg);
+  --colour-tile-blue-fg:    var(--colour-tint-blue-fg);
+  --colour-tile-green-bg:   var(--colour-tint-green-bg);
+  --colour-tile-green-fg:   var(--colour-tint-green-fg);
+  --colour-tile-orange-bg:  var(--colour-tint-orange-bg);
+  --colour-tile-orange-fg:  var(--colour-tint-orange-fg);
+  --colour-tile-purple-bg:  var(--colour-tint-purple-bg);
+  --colour-tile-purple-fg:  var(--colour-tint-purple-fg);
+  --colour-tile-pink-bg:    var(--colour-tint-pink-bg);
+  --colour-tile-pink-fg:    var(--colour-tint-pink-fg);
+  --colour-tile-teal-bg:    var(--colour-tint-teal-bg);
+  --colour-tile-teal-fg:    var(--colour-tint-teal-fg);
+  --colour-tile-red-bg:     var(--colour-tint-red-bg);
+  --colour-tile-red-fg:     var(--colour-tint-red-fg);
+  --colour-tile-yellow-bg:  var(--colour-tint-yellow-bg);
+  --colour-tile-yellow-fg:  var(--colour-tint-yellow-fg);
+
+  /* Identity dots - small solid markers (folder list). Remapped to
+     brighter hues in dark mode so they stay visible. */
+  --colour-dot-purple: var(--colour-pool-purple);
+  --colour-dot-orange: var(--colour-pool-orange);
+  --colour-dot-green:  var(--colour-pool-green);
+  --colour-dot-teal:   var(--colour-pool-teal);
+  --colour-dot-pink:   var(--colour-pool-pink);
+  --colour-dot-blue:   var(--colour-pool-blue);
+
+  /* Avatars - solid backgrounds under white initials. Deliberately
+     NOT remapped in dark mode: white-on-deep-hue passes on both
+     canvases, and a person's colour should not change with theme. */
+  --colour-avatar-purple: var(--colour-pool-purple);
+  --colour-avatar-orange: var(--colour-pool-orange);
+  --colour-avatar-green:  var(--colour-pool-green);
+  --colour-avatar-red:    var(--colour-pool-red);
+  --colour-avatar-teal:   var(--colour-pool-teal);
+  --colour-avatar-pink:   var(--colour-pool-pink);
+
+  /* Interaction overlays - translucent so they sit on any surface. */
+  --colour-hover-soft:  rgba(127,127,127,0.12);  /* quiet row/button hover   */
+  --colour-hover:       rgba(127,127,127,0.18);  /* stronger control hover   */
+  --colour-hover-muted: rgba(208,215,222,0.4);   /* list-row hover wash      */
+  --colour-scrim:       rgba(11,12,12,0.55);     /* modal backdrop           */
+
+  /* Tabs */
+  --colour-tab-underline: var(--colour-coral);
+
   /* Focus */
   --colour-focus:           var(--colour-yellow);
   --colour-focus-fg:        var(--colour-govuk-black);
@@ -88,6 +184,9 @@
   /* Header */
   --colour-header-bg:       var(--colour-grey-7);
   --colour-header-fg:       var(--colour-white);
+  --colour-header-chip-bg:  rgba(255,255,255,0.12);
+  --colour-header-chip-fg:  rgba(255,255,255,0.9);
+  --gradient-header-avatar: linear-gradient(135deg,#59c2ff,#1763a3);
 
   /* ---------- Type ---------- */
 
@@ -95,11 +194,13 @@
   --font-system:  -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --font-mono:    ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
 
+  --fs-2xs:     11px;   /* dense chrome: tags, counts, section labels */
   --fs-xs:      12px;
   --fs-sm:      13px;
   --fs-base:    14px;
   --fs-md:      15px;
   --fs-lg:      16px;
+  --fs-xl:      18px;
   --fs-h3:      16px;
   --fs-h2:      18px;
   --fs-h1:      24px;
@@ -127,7 +228,9 @@
 
   /* ---------- Shadow ---------- */
 
-  --shadow-sm: 0 1px 0 rgba(31,35,40,0.04);
+  --shadow-sm:      0 1px 0 rgba(31,35,40,0.04);
+  --shadow-overlay: 0 4px 12px rgba(11,12,12,0.16);   /* dropdowns / popovers */
+  --shadow-modal:   0 16px 32px rgba(11,12,12,0.2);
 
   /* ---------- Layout ---------- */
 
@@ -171,11 +274,34 @@
   --colour-dark-warning-fg:    #d29922;
   --colour-dark-info:          #58a6ff;
 
+  /* Dark tint palette - desaturated tinted backgrounds with bright
+     foregrounds. All fg/bg pairs ≥ 4.5:1. */
+  --colour-dark-tint-red-bg:     #3a1717;
+  --colour-dark-tint-red-fg:     #ff7b72;
+  --colour-dark-tint-red-border: #5c2222;
+  --colour-dark-tint-orange-bg:     #332710;
+  --colour-dark-tint-orange-fg:     #e8a35a;
+  --colour-dark-tint-orange-border: #4a3a17;
+  --colour-dark-tint-blue-bg:     #0c2d4a;
+  --colour-dark-tint-blue-fg:     #79c0ff;
+  --colour-dark-tint-blue-border: #1f4f7a;
+  --colour-dark-tint-green-bg:   #0f2a1b;
+  --colour-dark-tint-green-fg:   #3fb950;
+  --colour-dark-tint-purple-bg:  #231736;
+  --colour-dark-tint-purple-fg:  #b08bff;
+  --colour-dark-tint-pink-bg:    #3a1530;
+  --colour-dark-tint-pink-fg:    #f178b6;
+  --colour-dark-tint-teal-bg:    #0d2a28;
+  --colour-dark-tint-teal-fg:    #39c5bb;
+  --colour-dark-tint-yellow-bg:  #332710;
+  --colour-dark-tint-yellow-fg:  #e8b339;
+
   /* ---------- Semantic alias remap ---------- */
   --colour-canvas:           var(--colour-dark-canvas);
   --colour-canvas-muted:     var(--colour-dark-canvas-muted);
   --colour-canvas-inset:     var(--colour-dark-canvas-inset);
   --colour-surface-grey:     var(--colour-dark-surface);
+  --colour-surface-grey-hover: var(--colour-dark-canvas-inset);
 
   --colour-border:           var(--colour-dark-border-1);
   --colour-border-muted:     var(--colour-dark-border-1);
@@ -201,6 +327,49 @@
   --colour-error-dark:       var(--colour-dark-error-dark);
   --colour-info:             var(--colour-dark-info);
 
+  /* Status tints */
+  --colour-critical-tint-bg:     var(--colour-dark-tint-red-bg);
+  --colour-critical-tint-fg:     var(--colour-dark-tint-red-fg);
+  --colour-critical-tint-border: var(--colour-dark-tint-red-border);
+  --colour-warning-tint-bg:      var(--colour-dark-tint-orange-bg);
+  --colour-warning-tint-fg:      var(--colour-dark-tint-orange-fg);
+  --colour-warning-tint-border:  var(--colour-dark-tint-orange-border);
+  --colour-info-tint-bg:         var(--colour-dark-tint-blue-bg);
+  --colour-info-tint-fg:         var(--colour-dark-tint-blue-fg);
+  --colour-info-tint-border:     var(--colour-dark-tint-blue-border);
+
+  /* Icon tiles */
+  --colour-tile-blue-bg:    var(--colour-dark-tint-blue-bg);
+  --colour-tile-blue-fg:    var(--colour-dark-tint-blue-fg);
+  --colour-tile-green-bg:   var(--colour-dark-tint-green-bg);
+  --colour-tile-green-fg:   var(--colour-dark-tint-green-fg);
+  --colour-tile-orange-bg:  var(--colour-dark-tint-orange-bg);
+  --colour-tile-orange-fg:  var(--colour-dark-tint-orange-fg);
+  --colour-tile-purple-bg:  var(--colour-dark-tint-purple-bg);
+  --colour-tile-purple-fg:  var(--colour-dark-tint-purple-fg);
+  --colour-tile-pink-bg:    var(--colour-dark-tint-pink-bg);
+  --colour-tile-pink-fg:    var(--colour-dark-tint-pink-fg);
+  --colour-tile-teal-bg:    var(--colour-dark-tint-teal-bg);
+  --colour-tile-teal-fg:    var(--colour-dark-tint-teal-fg);
+  --colour-tile-red-bg:     var(--colour-dark-tint-red-bg);
+  --colour-tile-red-fg:     var(--colour-dark-tint-red-fg);
+  --colour-tile-yellow-bg:  var(--colour-dark-tint-yellow-bg);
+  --colour-tile-yellow-fg:  var(--colour-dark-tint-yellow-fg);
+
+  /* Identity dots - brighter hues so they read on the dark canvas. */
+  --colour-dot-purple: var(--colour-dark-tint-purple-fg);
+  --colour-dot-orange: var(--colour-dark-tint-orange-fg);
+  --colour-dot-green:  var(--colour-dark-tint-green-fg);
+  --colour-dot-teal:   var(--colour-dark-tint-teal-fg);
+  --colour-dot-pink:   var(--colour-dark-tint-pink-fg);
+  --colour-dot-blue:   var(--colour-dark-tint-blue-fg);
+
+  /* Interaction overlays */
+  --colour-hover-muted: rgba(255,255,255,0.06);
+
+  /* Shadows - heavier so edges stay visible on the dark canvas. */
+  --shadow-overlay: 0 4px 12px rgba(0,0,0,0.5);
+
   /* Focus - yellow stays. Yellow is intentionally the only colour
      that works on both light and dark canvases. The focus-fg (black)
      also stays so text on the yellow background is readable. */
@@ -212,13 +381,8 @@
   --shadow-sm: 0 1px 0 rgba(0,0,0,0.4);
 }
 
-/* Respect prefers-color-scheme by default; user can still override
-   via the toggle which writes data-theme=dark to <html>. */
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]):not([data-theme="dark"]){
-    /* Apply dark by default when user has system preference and
-       has not explicitly chosen light. The :root[data-theme="dark"]
-       block above handles the actual styling - we need to set the
-       attribute for it to apply. JS does this on load. */
-  }
-}
+/* Theme selection is attribute-driven: the inline head script reads
+   prefers-color-scheme (and any stored choice) and sets data-theme
+   on <html> before first paint. With JS disabled the site falls back
+   to light - an accepted trade-off that keeps the dark alias map in
+   one place instead of duplicating it under a media query. */

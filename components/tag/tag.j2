@@ -2,7 +2,11 @@
    Args:
      - label: string
      - kind:  '' (default blue) | 'green' | 'red' | 'orange' | 'grey' | 'blue'
+
+   Usage:
+     {{ tag("Under review", kind="green") }}
+     {{ tag("Article", kind="grey") }}
 #}
 {% macro tag(label, kind="") %}
-<span class="tag{% if kind %} tag-{{ kind }}{% endif %}">{{ label }}</span>
+<span class="tag{% if kind %} tag-{{ kind|e }}{% endif %}">{{ label|e }}</span>
 {% endmacro %}

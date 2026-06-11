@@ -24,6 +24,6 @@
     background:var(--colour-surface-grey);
     color:var(--colour-fg-strong);
     display:flex;align-items:center;justify-content:center;
-    font-size:11px;flex-shrink:0;font-weight:700;
+    font-size:var(--fs-2xs);flex-shrink:0;font-weight:700;
   }
 }

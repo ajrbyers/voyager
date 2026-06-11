@@ -2,10 +2,16 @@
    Args:
      - title: large headline (h1)
      - kind:  '' (default green) | 'warning' | 'error' | 'info'
-   Body content via {% call %}. #}
+   Body content via {% call %}.
+
+   Usage:
+     {% call panel("Decision sent") %}
+       Your reference number<br><strong>HDJ2123F</strong>
+     {% endcall %}
+#}
 {% macro panel(title, kind="") %}
-<div class="panel{% if kind %} panel-{{ kind }}{% endif %}">
-  <h1 class="panel-title">{{ title }}</h1>
+<div class="panel{% if kind %} panel-{{ kind|e }}{% endif %}">
+  <h1 class="panel-title">{{ title|e }}</h1>
   <div class="panel-body">
     {{ caller() }}
   </div>

@@ -2,9 +2,11 @@
    Show by adding .is-open to .modal-backdrop. JS handles ESC and
    focus management; this stylesheet only positions and styles. */
 
+/* The backdrop is the component's second root: it wraps .modal in the
+   markup but is addressed independently (.is-open toggles on it). */
 .modal-backdrop{
   position:fixed;inset:0;
-  background:rgba(11,12,12,0.55);
+  background:var(--colour-scrim);
   display:none;
   align-items:center;justify-content:center;
   padding:var(--s-4);z-index:200;
@@ -16,7 +18,7 @@
   width:100%;max-width:560px;max-height:90vh;
   display:flex;flex-direction:column;
   border:1px solid var(--colour-border-component);
-  box-shadow:0 16px 32px rgba(11,12,12,0.2);
+  box-shadow:var(--shadow-modal);
 
   & .modal-head{
     padding:var(--s-3) var(--s-4);
@@ -31,7 +33,7 @@
     background:transparent;border:0;cursor:pointer;
     width:28px;height:28px;
     display:flex;align-items:center;justify-content:center;
-    font-size:18px;line-height:1;
+    font-size:var(--fs-xl);line-height:1;
     color:var(--colour-fg);
   }
 
