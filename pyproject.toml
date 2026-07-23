@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "janeway-voyager"
+version = "0.1.0"
+description = "Voyager - Janeway's design system, packaged as a Django app"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+dependencies = ["Django>=4.2"]
+classifiers = [
+    "Framework :: Django",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+]
+
+[project.urls]
+Source = "https://github.com/openlibhums/voyager"
+
+[tool.hatch.build.targets.wheel]
+packages = ["voyager"]
+# The static/ and jinja2/ trees inside the package are dev-only symlinks
+# back to assets/ and components/; the build hook maps the real files in.
+exclude = ["voyager/static", "voyager/jinja2"]
+
+[tool.hatch.build.targets.wheel.hooks.custom]
+path = "hatch_build.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "voyager",
+    "assets",
+    "components",
+    "hatch_build.py",
+    "README.md",
+    "LICENSE",
+]
+exclude = ["voyager/static", "voyager/jinja2"]

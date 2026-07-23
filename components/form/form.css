@@ -1,4 +1,4 @@
-/* Form - inspired by the UK Government Design System.
+/* Form - one shared structure for every field type.
 
    Building blocks:
      .form-group            wrapper around a label + control + hint + error
@@ -169,6 +169,12 @@
   color:var(--colour-fg-strong);
   max-width:30em;
 }
+/* Error state - the input gains a border, so it needs matching
+   horizontal padding to keep the chooser button aligned. */
+.form-file.form-file-error{
+  border:2px solid var(--colour-error);
+  padding:5px var(--s-2);
+}
 /* Style the native file input. The actual file chooser button is
    browser-styled but inherits the input's font and colour. */
 .form-file:focus-visible{
@@ -206,7 +212,7 @@
   display:flex;flex-direction:column;gap:0;
 }
 
-/* GDS standard 40×40 control. */
+/* 40×40 control - a comfortable touch target. */
 .form-radio,
 .form-checkbox{
   display:flex;
@@ -291,12 +297,8 @@
 .form-radio.form-radio-small .form-radio-text,
 .form-checkbox.form-checkbox-small .form-checkbox-text{padding-top:1px}
 
-/* ---------- Character count ---------- */
-
-.form-character-count{
-  /* This class wraps the form-group. The count message lives outside
-     the form-group as a sibling div. */
-}
+/* Character count: .form-character-count wraps the form-group; the count
+   message lives outside the form-group as a sibling div. No styles needed. */
 
 .form-character-count-message{
   display:block;

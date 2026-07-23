@@ -10,7 +10,7 @@
    Usage:
      {% call queue_card("Peer review", tag={"label": "14", "kind": "grey"},
                         cta={"label": "Open queue", "url": "/review"}) %}
-       {{ stat(3, "Overdue", kind="alert") }}
+       {{ stat(3, "Overdue", kind="critical") }}
      {% endcall %}
 #}
 {% macro queue_card(title, id="", tag=None, cta=None) %}

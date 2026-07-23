@@ -1,11 +1,7 @@
 # Voyager CSS architecture
 
-Voyager is Janeway's design system. It is inspired by two systems we admire -
-GitHub Primer (chrome density, admin patterns) and the UK Government Design
-System (accessibility discipline, form conventions) - but every component is
-hand-written. Voyager has no runtime dependency on Primer or GDS; the lessons
-are theirs, the code is ours. It is plain modern CSS - no preprocessor, no
-Tailwind, no framework. Native CSS nesting and custom properties only.
+Voyager is Janeway's design system. It is plain modern CSS - no
+preprocessor, no framework. Native CSS nesting and custom properties only.
 
 ## Layer order
 
@@ -19,16 +15,16 @@ they beat component declarations at any nesting depth. `index.css` imports the l
 
 | Layer | File | Contains |
 | ----- | ---- | -------- |
-| Settings | `settings.css` | Tokens - colour, type stacks, type scale, space scale, radii, layout. Two-tier: raw tokens (`--colour-blue-7`) plus semantic aliases (`--colour-link`). |
+| Settings | `settings.css` | Tokens - colour, type stacks, type scale, space scale, layout. Two-tier: raw tokens (`--colour-blue-7`) plus semantic aliases (`--colour-link`). |
 | Reset | `reset.css` | Box-sizing, margin/padding zeroing, list-style stripping where appropriate. |
 | Elements | `elements.css` | Typography and link styles set on **element selectors only** (`body`, `h1`, `a`, `p`, …). No classes. |
-| Components | `../../components/<name>.css` | One namespaced root class per component, all declarations nested under it with native `&`. No BEM. |
+| Components | `../../components/<name>/<name>.css` | One namespaced root class per component, all declarations nested under it with native `&`. No BEM. |
 | Utilities | `utilities.css` | Single-purpose helper classes (`.muted`, `.mono`, `.visually-hidden`, `.stack`, `.cluster`). Win over component styles. |
 
 ## Component file pattern
 
-- Each component lives in `components/<name>/` as **two co-located files**: `component.html` (or `.j2` macro snippet) and `component.css`.
-- The CSS file opens with **one root class** matching the component name. Every other declaration nests under it via `&`.
+- Each component lives in `components/<name>/` as **two co-located source files**: `<name>.css` and a `<name>.j2` macro. The component's documentation page (with canonical markup) lives at `docs/components/<name>.html`.
+- The CSS file opens with a **root class** matching the component name; everything nests under it via `&`. Scoped element selectors under the root (`& li`, `& a`) are fine. A few components expose a small family of related roots (e.g. `form`, `information`, `summary-block`) rather than a single class.
 - Variants are **extra flat classes composed in the markup** - not BEM modifiers. Example: `<a class="btn btn-primary btn-large">` not `<a class="btn btn--primary btn--large">`. The visual axes (kind, size, intent) compose via separate classes, so a `<button class="btn btn-primary">` can also be `<button class="btn btn-secondary btn-small">` without the modifier suffix proliferation.
 
 ## Tokens
@@ -44,14 +40,15 @@ Components reference **semantic** tokens. Pages and themes can override semantic
 
 1. **No inline styles.** Anywhere. If a one-off margin or width is needed, add a utility class.
 2. **No `style="..."` attributes** in component HTML or example pages.
-3. **Element selectors stay in `elements.css`.** Don't add element selectors to component files. Reach for a class.
-4. **Components don't reference each other's classes.** A component is self-contained. Composition happens in the markup.
+3. **No *unscoped* element selectors in component files.** Bare `h1`/`a`/`p` belong in `elements.css`; element selectors *scoped under the root class* (`& li`, `& a`) are fine and used throughout.
+4. **Components don't reference each other's classes.** A component is self-contained; composition happens in the markup. The one deliberate exception is `.icon`, a shared primitive that each host component (`.btn`, `.app-header`, `.sidebar-nav`, …) sizes to its own context.
 5. **Utilities are last-resort and load last.** Prefer composing existing components.
 6. **Accessibility is a quality bar.** AA contrast, real focus rings, semantic HTML, no fake ARIA.
 
 ## Bundle
 
-`index.css` is the single entry point. Pages link only to that file:
+`index.css` is the single entry point for the **design system** - the only file
+consumers ship. Pages link it directly:
 
 ```html
 <link rel="stylesheet" href="/voyager/assets/css/index.css">
@@ -59,3 +56,17 @@ Components reference **semantic** tokens. Pages and themes can override semantic
 
 It uses `@import` to pull in every layer file in order. Authoring stays split;
 the browser fetches one stylesheet (effectively - `@import` cascades).
+
+## Docs-site chrome
+
+The documentation site has its own assets, kept entirely out of this folder so
+`assets/` holds nothing but the shippable system. `docs/assets/css/site.css` is
+the docs entry point (header, sidebar, code-preview tabs) and `@import`s the
+per-page styles in `docs/assets/css/pages/` (architecture diagrams, token
+swatches, example-page layouts). Every doc/example page links both bundles -
+the shipped system, then the docs chrome:
+
+```html
+<link rel="stylesheet" href="/voyager/assets/css/index.css">
+<link rel="stylesheet" href="/voyager/docs/assets/css/site.css">
+```

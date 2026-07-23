@@ -4,14 +4,24 @@
      - folder_list(search_action="", search_value="")   wrapper
      - folder_list_section(label)                       section header
      - folder_item(label, url, icon, count, current,
-                   severity, custom, dot_colour, edit_url, delete_url)
+                   severity, custom, dot_colour, dot_style,
+                   snoozed, edit_url, delete_url,
+                   attrs, edit_attrs, delete_attrs)
        dot_colour (custom folders): 'pink' | 'teal' | 'purple' |
-       'orange' | 'green' | 'blue'
+       'orange' | 'green' | 'blue' | 'user' (with dot_style
+       supplying e.g. "--folder-color:#aabbcc")
 
    Below 900px the folder tree collapses behind the Folders button
    (the search row stays visible). The button uses the shared nav
    disclosure driver: data-disclosure-toggle + aria-controls. Pass a
    unique `id` when more than one folder-list renders on a page.
+
+   attrs / search_attrs / edit_attrs / delete_attrs are optional dicts
+   of extra attributes (hx-*, data-*, aria-*) rendered via xmlattr, so
+   callers can wire HTMX behaviour without bespoke markup.
+
+   ul_id names the inner <ul> so dynamic UIs can re-render the item
+   list (e.g. an hx-target) without touching the wrapper.
 
    The icon parameter takes the caller's pre-rendered inline SVG
    (Markup) - no unicode glyphs.
@@ -27,14 +37,14 @@
      {% endcall %}
 #}
 
-{% macro folder_list(search_action="", search_value="", label="Inbox folders", id="folder-list-content", add_label=None) %}
-<nav class="folder-list" aria-label="{{ label|e }}">
+{% macro folder_list(search_action="", search_value="", label="Inbox folders", id="folder-list-content", ul_id=None, add_label=None, attrs=None, search_attrs=None) %}
+<nav class="folder-list" aria-label="{{ label|e }}"{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
   <div class="folder-list-search">
     {% if search_action %}
     <label class="visually-hidden" for="inbox-search">Search articles</label>
     <input type="search" id="inbox-search" name="q" class="form-input"
            placeholder="Search articles…" autocomplete="off"
-           value="{{ search_value|e }}">
+           value="{{ search_value|e }}"{% if search_attrs %}{{ search_attrs|xmlattr }}{% endif %}>
     {% endif %}
     <button type="button" class="folder-list-toggle" data-disclosure-toggle
             aria-expanded="false" aria-controls="{{ id|e }}">
@@ -44,7 +54,7 @@
   </div>
   <div class="folder-list-content" id="{{ id|e }}">
     <div class="folder-list-scroll">
-      <ul>{{ caller() }}</ul>
+      <ul{% if ul_id %} id="{{ ul_id|e }}"{% endif %}>{{ caller() }}</ul>
     </div>
     {% if add_label %}<button type="button" class="folder-list-add">+ {{ add_label|e }}</button>{% endif %}
   </div>
@@ -57,37 +67,50 @@
 
 {% macro folder_item(label, url="#", icon=None, count=None, current=False,
                       severity=None, custom=False, dot_colour=None,
-                      edit_url=None, delete_url=None) %}
+                      dot_style=None, snoozed=None,
+                      edit_url=None, delete_url=None,
+                      attrs=None, edit_attrs=None, delete_attrs=None) %}
 {% if custom %}
 <li class="folder-item folder-item-custom{% if current %} is-active{% endif %}">
-  <a href="{{ url|e }}" class="folder-item-link">
-    {% if dot_colour %}<span class="folder-item-dot folder-item-dot-{{ dot_colour|e }}"></span>{% endif %}
+  <a href="{{ url|e }}" class="folder-item-link"
+     {% if current %}aria-current="page"{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
+    {% if dot_colour %}<span class="folder-item-dot folder-item-dot-{{ dot_colour|e }}"{% if dot_style %} style="{{ dot_style|e }}"{% endif %} aria-hidden="true"></span>{% endif %}
     <span class="folder-item-name">{{ label|e }}</span>
     {% if count is not none %}
       <span class="folder-item-count{% if severity %} folder-item-count-{{ severity|e }}{% endif %}">{{ count|e }}</span>
     {% endif %}
+    {% if snoozed %}
+      <span class="folder-item-snoozed" title="{{ snoozed|e }} snoozed">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>{{ snoozed|e }}
+      </span>
+    {% endif %}
   </a>
   {% if edit_url or delete_url %}
   <div class="folder-item-actions">
-    {% if edit_url %}<button type="button" class="folder-item-action-btn" aria-label="Edit folder"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>{% endif %}
-    {% if delete_url %}<button type="button" class="folder-item-action-btn folder-item-action-btn-danger" aria-label="Delete folder"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>{% endif %}
+    {% if edit_url %}<button type="button" class="folder-item-action-btn" aria-label="Edit {{ label|e }}" title="Edit"{% if edit_attrs %}{{ edit_attrs|xmlattr }}{% endif %}><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>{% endif %}
+    {% if delete_url %}<button type="button" class="folder-item-action-btn folder-item-action-btn-danger" aria-label="Delete {{ label|e }}" title="Delete"{% if delete_attrs %}{{ delete_attrs|xmlattr }}{% endif %}><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>{% endif %}
   </div>
   {% endif %}
 </li>
 {% else %}
 <li>
   <a href="{{ url|e }}" class="folder-item{% if current %} is-active{% endif %}"
-     {% if current %}aria-current="page"{% endif %}>
-    {% if icon %}<span class="folder-item-icon" aria-hidden="true">{{ icon|e }}</span>{% endif %}
+     {% if current %}aria-current="page"{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
+    {% if icon %}<span class="folder-item-icon" aria-hidden="true">{{ icon }}</span>{% endif %}
     <span class="folder-item-name">{{ label|e }}</span>
     {% if count is not none %}
       <span class="folder-item-count{% if severity %} folder-item-count-{{ severity|e }}{% endif %}">{{ count|e }}</span>
+    {% endif %}
+    {% if snoozed %}
+      <span class="folder-item-snoozed" title="{{ snoozed|e }} snoozed">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>{{ snoozed|e }}
+      </span>
     {% endif %}
   </a>
 </li>
 {% endif %}
 {% endmacro %}
 
-{% macro folder_list_add(label="New folder", url="#") %}
-<button type="button" class="folder-list-add">+ {{ label|e }}</button>
+{% macro folder_list_add(label="New folder", attrs=None) %}
+<button type="button" class="folder-list-add"{% if attrs %}{{ attrs|xmlattr }}{% endif %}>+ {{ label|e }}</button>
 {% endmacro %}

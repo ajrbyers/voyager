@@ -1,4 +1,4 @@
-/* Details / disclosure - GDS-inspired collapsible block.
+/* Details / disclosure - collapsible block.
    Uses the native <details>/<summary> elements so it works without JS.
    The summary is a link-styled trigger with a triangle that rotates
    when open. The body sits inside a left-bordered well. */

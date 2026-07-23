@@ -1,26 +1,29 @@
-{# button - composable GOV.UK-style button.
+{# button - composable button.
 
    Args:
      - label:    button text
-     - kind:     'default' (grey GOV.UK secondary) | 'primary' (green) |
-                 'warning' (red) | 'start' (oversized green with arrow)
+     - kind:     'default' (neutral grey) | 'primary' (green) |
+                 'warning' (red)
      - size:     '' (default) | 'small' | 'large'
      - href:     if given, renders as <a>; else <button type="…">
      - type:     button type when not a link (default 'button')
      - disabled: boolean
+     - attrs:    optional dict of extra attributes (aria-*, data-*,
+                 hx-*) rendered verbatim via xmlattr
 
    Usage:
      {{ button("Save and continue", kind="primary") }}
      {{ button("Open →", size="small", href="/article/1247") }}
+     {{ button("Snooze", attrs={"hx-get": "/snooze/1/", "hx-target": "#pane"}) }}
 #}
-{% macro button(label, kind="default", size="", href=None, type="button", disabled=False) %}
+{% macro button(label, kind="default", size="", href=None, type="button", disabled=False, attrs=None) %}
 {%- set classes = ['btn'] -%}
 {%- if kind != 'default' %}{% set classes = classes + ['btn-' ~ kind] %}{% endif -%}
 {%- if size %}{% set classes = classes + ['btn-' ~ size] %}{% endif -%}
 {%- set cls = classes|join(' ') -%}
 {%- if href -%}
-  <a href="{{ href|e }}" class="{{ cls|e }}">{{ label|e }}</a>
+  <a href="{{ href|e }}" class="{{ cls|e }}"{% if attrs %}{{ attrs|xmlattr }}{% endif %}>{{ label|e }}</a>
 {%- else -%}
-  <button type="{{ type|e }}" class="{{ cls|e }}"{% if disabled %} disabled{% endif %}>{{ label|e }}</button>
+  <button type="{{ type|e }}" class="{{ cls|e }}"{% if disabled %} disabled{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>{{ label|e }}</button>
 {%- endif -%}
 {% endmacro %}

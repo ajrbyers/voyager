@@ -4,14 +4,17 @@
      - app_header(service)      wrapper, contains brand + nav + account
      - app_header_link(label, url)  one item in the primary nav
 
+   actions takes pre-rendered Markup (e.g. a captured {% set %} block
+   with theme_toggle()) rendered between the nav and the avatar.
+
    Usage:
      {% call app_header(service="Editorial", user={"name": "t.kowalski"}) %}
-       {{ app_header_link("Editorial",  url="/editorial") }}
+       {{ app_header_link("Editorial",  url="/editorial", current=True) }}
        {{ app_header_link("Production", url="/production") }}
        {{ app_header_link("Reports",    url="/reports") }}
      {% endcall %}
 #}
-{% macro app_header(service="Editorial", user=None, brand_url="/") %}
+{% macro app_header(service="Editorial", user=None, brand_url="/", actions=None) %}
 <header class="app-header">
   <a class="app-header-brand" href="{{ brand_url|e }}">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -23,11 +26,12 @@
   <nav class="app-header-nav" aria-label="Primary">
     {{ caller() }}
   </nav>
+  {% if actions %}{{ actions }}{% endif %}
   {% if user %}
   <button type="button" class="app-header-avatar"
-          aria-label="Account menu - signed in as {{ user.name|e }}">{{ user.name|e }}</button>
+          aria-label="Account menu - signed in as {{ user.name|e }}">{{ user.initials|default(user.name)|e }}</button>
   {% endif %}
 </header>
 {% endmacro %}
 
-{% macro app_header_link(label, url="#") %}<a href="{{ url|e }}">{{ label|e }}</a>{% endmacro %}
+{% macro app_header_link(label, url="#", current=False) %}<a href="{{ url|e }}"{% if current %} aria-current="page"{% endif %}>{{ label|e }}</a>{% endmacro %}

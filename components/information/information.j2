@@ -32,9 +32,9 @@
 <div class="inset-text">{{ caller() }}</div>
 {% endmacro %}
 
-{# error_summary - GOV.UK-style error list at the top of a form.
+{# error_summary - linked error list shown at the top of a form.
    Compose with two macros:
-     - error_summary(title="There is a problem")  wrapper
+     - error_summary(title="Fix the following before continuing")  wrapper
      - error_summary_item(message, anchor)        one error link
        anchor is the id of the field with the error.
 
@@ -44,7 +44,7 @@
        {{ error_summary_item("Choose a decision",        anchor="decision-kind") }}
      {% endcall %}
 #}
-{% macro error_summary(title="There is a problem", id="") %}
+{% macro error_summary(title="Fix the following before continuing", id="") %}
 {%- set _id = id or 'es-' ~ title|lower|replace(' ','-') -%}
 <div class="error-summary" role="alert" aria-labelledby="{{ _id|e }}">
   <h2 class="error-summary-title" id="{{ _id|e }}">{{ title|e }}</h2>

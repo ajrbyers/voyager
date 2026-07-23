@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Voyager - Janeway design system</title>
 <link rel="stylesheet" href="assets/css/index.css">
-<link rel="stylesheet" href="assets/css/site.css">
-<script src="assets/js/site.js" defer></script>
+<link rel="stylesheet" href="docs/assets/css/site.css">
+<script type="module" src="docs/assets/js/site.js"></script>
 <script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
 </head>
 <body>
@@ -36,31 +36,20 @@
 
     <h1>Voyager</h1>
     <p class="site-page-lede">
-      Voyager is Janeway's design system. It draws inspiration from two systems we
-      admire - GitHub Primer and the UK Government Design System - but Voyager is its
-      own thing. Every component is hand-written for Janeway's editorial admin context;
-      nothing is imported from either source.
+      Voyager is Janeway's design system.
     </p>
 
-    <h2>What inspired Voyager</h2>
+    <h2>Design principles</h2>
     <p>
-      Janeway is an editorial admin tool. Editors and managers spend a lot of time
-      scanning lists, reading metadata, and navigating between queues. That points us
-      toward the kind of compact density and chrome we admire in GitHub Primer - thin
-      top bars, left rails, hairline borders, monospaced identifiers. Editorial actions
-      are also consequential: sending a decision letter, withdrawing a reviewer,
-      requesting revisions. That points us toward the accessibility discipline we
-      admire in the UK Government Design System - summary lists, inset text, yellow
-      focus rings, unambiguous link text, and a strict form pattern.
-    </p>
-    <p>
-      We re-write rather than re-use - the lessons are theirs; the code is ours.
+      Components are built to be as accessible as possible. Where a good
+      pattern already exists, we use it - many here are adapted from the
+      <a href="https://design-system.service.gov.uk/">GOV.UK Design System</a>.
     </p>
 
     <h2>How it's organised</h2>
     <ul>
       <li><strong>Foundations</strong> - the tokens, type scale, and layout primitives that everything else builds on.</li>
-      <li><strong>Components</strong> - self-contained patterns. Each component lives in its own folder with co-located <code>.html</code>, <code>.css</code>, and <code>.j2</code> macro. The CSS uses a single root class with native nesting; variants compose as additional flat classes.</li>
+      <li><strong>Components</strong> - self-contained patterns. Each component lives in its own folder with co-located <code>.css</code> and <code>.j2</code> macro. The CSS uses a single root class with native nesting; variants compose as additional flat classes.</li>
       <li><strong>Examples</strong> - three real Janeway pages built entirely from Voyager components: the editor dashboard, the manager index, and the peer-review screen.</li>
     </ul>
 
@@ -96,11 +85,6 @@
       variant classes (no BEM), two-tier tokens (raw + semantic). See
       <code>assets/css/README.md</code> for the full architecture document.
     </p>
-    <p>
-      Hard rule: <strong>no inline styles, anywhere.</strong> If a one-off margin or width is
-      needed, add a utility class.
-    </p>
-
   </main>
 </div>
 

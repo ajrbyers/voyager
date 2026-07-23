@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Inbox - Journal of Energy Modelling</title>
 <link rel="stylesheet" href="../assets/css/index.css">
-<link rel="stylesheet" href="../assets/css/example.css">
-<link rel="stylesheet" href="dashboard.css">
-<script src="../assets/js/site.js" defer></script>
+<link rel="stylesheet" href="../docs/assets/css/site.css">
+<script type="module" src="../docs/assets/js/site.js"></script>
 <script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
 </head>
 <body>
@@ -135,15 +134,15 @@
     <header class="inbox-toolbar">
       <div class="inbox-toolbar-left">
         <h1 class="inbox-toolbar-title">Peer Review</h1>
-        <span class="inbox-toolbar-count">14 articles</span>
+        <span class="inbox-toolbar-count">6 of 14 articles</span>
         <span class="inbox-toolbar-updated">Updated 2 min ago · <button type="button" class="inbox-toolbar-refresh">Refresh</button></span>
       </div>
       <div class="inbox-toolbar-right">
         <span class="inbox-sort-label">Sort:</span>
-        <a href="#" class="inbox-sort-btn is-active" aria-current="true">Severity</a>
-        <a href="#" class="inbox-sort-btn">Age</a>
-        <a href="#" class="inbox-sort-btn">Title</a>
-        <a href="#" class="inbox-sort-btn">Alerts</a>
+        <button type="button" class="inbox-sort-btn is-active" aria-pressed="true">Severity</button>
+        <button type="button" class="inbox-sort-btn" aria-pressed="false">Age</button>
+        <button type="button" class="inbox-sort-btn" aria-pressed="false">Title</button>
+        <button type="button" class="inbox-sort-btn" aria-pressed="false">Alerts</button>
       </div>
     </header>
 
@@ -154,7 +153,7 @@
         <select class="filter-select" id="f-editor">
           <option value="">All editors</option>
           <option value="1">Dr Amira Hassan</option>
-          <option value="2" selected>Prof Marcus Whitfield</option>
+          <option value="2">Prof Marcus Whitfield</option>
           <option value="3">Dr Sanjay Patel</option>
         </select>
         <label class="visually-hidden" for="f-section">Section</label>
@@ -172,14 +171,10 @@
       </div>
       <div class="filter-bar-chips">
         <span class="filter-chip">
-          Whitfield
-          <a href="#" class="filter-chip-remove" aria-label="Remove editor filter">×</a>
-        </span>
-        <span class="filter-chip">
           Over 30 days
-          <a href="#" class="filter-chip-remove" aria-label="Remove age filter">×</a>
+          <button type="button" class="filter-chip-remove" aria-label="Remove age filter">×</button>
         </span>
-        <a href="#" class="filter-bar-clear">Clear filters</a>
+        <button type="button" class="filter-bar-clear">Clear filters</button>
       </div>
     </div>
 
@@ -209,7 +204,7 @@
             <div class="article-card-meta-bottom">
               <span class="inbox-byline-person"><span class="avatar avatar-purple" aria-hidden="true">AO</span>Okafor <span class="muted">+2</span></span>
               <span class="article-card-sep">·</span>
-              <span class="inbox-byline-person"><span class="avatar avatar-purple" aria-hidden="true">AH</span>Hassan</span>
+              <span class="inbox-byline-person"><span class="avatar avatar-red" aria-hidden="true">TK</span>Kowalski</span>
             </div>
           </div>
           <div class="article-card-actions">
@@ -218,7 +213,7 @@
           </div>
         </div>
         <div class="article-card-alerts">
-          <a href="#" class="alert-pill alert-pill-critical">Reviewer overdue 12 days</a>
+          <a href="#" class="alert-pill alert-pill-critical">Reviewer declined, no replacement</a>
           <a href="#" class="alert-pill alert-pill-critical">Revision R-2026-091 overdue 4 days</a>
           <a href="#" class="alert-pill alert-pill-warning">Whitfield not acknowledged</a>
         </div>
@@ -330,7 +325,7 @@
               <span class="article-card-id">#1263</span>
               <span class="tag tag-grey">Article</span>
               <span class="article-card-spacer"></span>
-              <span class="article-card-days" title="18 days in workflow">18d</span>
+              <span class="article-card-days" title="34 days in workflow">34d</span>
             </div>
             <h3 class="article-card-title">
               <a class="article-card-title-link" href="#">Electrolyser deployment scenarios for the UK industrial decarbonisation pathway</a>
@@ -365,7 +360,7 @@
               <span class="article-card-id">#1270</span>
               <span class="tag tag-grey">Article</span>
               <span class="article-card-spacer"></span>
-              <span class="article-card-days" title="9 days in workflow">9d</span>
+              <span class="article-card-days" title="31 days in workflow">31d</span>
             </div>
             <h3 class="article-card-title">
               <a class="article-card-title-link" href="#">Demand-side flexibility in residential heat pump fleets: an empirical study</a>

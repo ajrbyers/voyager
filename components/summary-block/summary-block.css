@@ -52,7 +52,7 @@
    a glance from the left edge of the card. Pair with a status tag inside
    the head; the rail and tag reinforce each other. */
 .summary-block.summary-block-rail-green{border-left:4px solid var(--colour-success)}
-.summary-block.summary-block-rail-amber{border-left:4px solid var(--colour-warning)}
+.summary-block.summary-block-rail-orange{border-left:4px solid var(--colour-warning)}
 .summary-block.summary-block-rail-red  {border-left:4px solid var(--colour-error)}
 
 /* ---------------- Summary list ---------------- */

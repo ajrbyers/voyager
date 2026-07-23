@@ -32,7 +32,8 @@ a:hover{
   text-decoration-thickness:2px;
 }
 
-/* Universal yellow focus - inspired by the GOV.UK focus pattern.
+/* Universal yellow focus - a solid yellow block with a dark underline,
+   so focus reads at a glance on both light and dark canvases.
    Scoped to interactive elements; works for keyboard users only.
    The bottom 4px underline provides 3:1 separation from canvas. */
 a:focus-visible,

@@ -21,6 +21,6 @@
 }
 
 /* Variants - colour the number to indicate severity */
-.stat.stat-alert .stat-number{color:var(--colour-error)}
+.stat.stat-critical .stat-number{color:var(--colour-error)}
 .stat.stat-success .stat-number{color:var(--colour-success)}
 .stat.stat-warning .stat-number{color:var(--colour-warning-fg)}

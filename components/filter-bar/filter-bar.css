@@ -70,7 +70,8 @@
   }
 
   & .filter-bar-clear{
-    font-size:var(--fs-xs);
+    background:none;border:0;padding:0;cursor:pointer;
+    font-family:inherit;font-size:var(--fs-xs);
     color:var(--colour-link);
     text-decoration:underline;
     margin-left:4px;

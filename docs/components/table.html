@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Table - Voyager</title>
+<link rel="stylesheet" href="../../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="module" src="../assets/js/site.js"></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="https://github.com/openlibhums/janeway">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base="../.."></nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Table</h1>
+    <p class="site-page-lede">
+      Use a table for genuinely tabular data - rows of similar records with the same
+      columns. For key/value detail like an article's metadata, reach for a
+      <a href="summary-block.html">summary list</a> instead.
+    </p>
+
+    <h2>Default table</h2>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <table class="table table-bordered">
+          <thead>
+            <tr><th>File ID</th><th>File name</th><th>Uploaded</th><th class="right">Action</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="mono">8421</span></td>
+              <td>okafor_lstm_v2.docx</td>
+              <td>2026-04-29 09:14</td>
+              <td class="right"><a href="#">Download<span class="visually-hidden"> file 8421</span></a></td>
+            </tr>
+            <tr>
+              <td><span class="mono">8422</span></td>
+              <td>figures_v2.zip</td>
+              <td>2026-04-29 09:14</td>
+              <td class="right"><a href="#">Download<span class="visually-hidden"> file 8422</span></a></td>
+            </tr>
+            <tr>
+              <td><span class="mono">8423</span></td>
+              <td>supp_methods_v2.pdf</td>
+              <td>2026-04-29 09:14</td>
+              <td class="right"><a href="#">Download<span class="visually-hidden"> file 8423</span></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;table class="table table-bordered"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;File ID&lt;/th&gt;&lt;th&gt;File name&lt;/th&gt;&lt;th&gt;Uploaded&lt;/th&gt;&lt;th class="right"&gt;Action&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;span class="mono"&gt;8421&lt;/span&gt;&lt;/td&gt;
+      &lt;td&gt;okafor_lstm_v2.docx&lt;/td&gt;
+      &lt;td&gt;2026-04-29 09:14&lt;/td&gt;
+      &lt;td class="right"&gt;&lt;a href="#"&gt;Download&lt;span class="visually-hidden"&gt; file 8421&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{# Composable wrapper-and-item pattern #}
+{% from "voyager/components/table/table.j2" import table, thead, tr, th, td %}
+
+{% call table() %}
+  {% call thead() %}
+    {{ th("File ID") }}{{ th("File name") }}{{ th("Uploaded") }}{{ th("Action") }}
+  {% endcall %}
+  {% call tr() %}
+    {% call td() %}<span class="mono">8421</span>{% endcall %}
+    {{ td("okafor_lstm_v2.docx") }}
+    {{ td("2026-04-29 09:14") }}
+    {% call td(right=True) %}<a href="#">Download<span class="visually-hidden"> file 8421</span></a>{% endcall %}
+  {% endcall %}
+{% endcall %}
+
+{# Or for very simple loops, the data-driven shortcut.
+   Cell values are escaped - plain text only. #}
+{% from "voyager/components/table/table.j2" import simple_table %}
+
+{{ simple_table(
+    headers=["File ID", "File name", "Uploaded"],
+    rows=[
+      ["8421", "okafor_lstm_v2.docx", "2026-04-29 09:14"],
+    ]
+) }}</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>Always use <code>&lt;th&gt;</code> for column headers - screen readers announce them when navigating cells.</li>
+      <li>Right-align action cells with the <code>.right</code> utility for consistent table action styling.</li>
+      <li>Generic "Download" / "Edit" links need a visually-hidden suffix to disambiguate when listed out of context.</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Back link - Voyager</title>
+<link rel="stylesheet" href="../../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="module" src="../assets/js/site.js"></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="https://github.com/openlibhums/janeway">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base="../.."></nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Back link</h1>
+    <p class="site-page-lede">
+      Small link with a leading caret. Sits at the top of detail pages
+      above breadcrumbs (where they exist) or as the sole &ldquo;back&rdquo;
+      affordance on simpler pages. Always points to the previous list view, not
+      to the browser's back history.
+    </p>
+
+    <h2>Default</h2>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <a href="#" class="back-link">Back to peer review queue</a>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;a href="/inbox?folder=peer_review" class="back-link"&gt;
+  Back to peer review queue
+&lt;/a&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/back-link/back-link.j2" import back_link %}
+
+{{ back_link("Back to peer review queue", url="/inbox?folder=peer_review") }}</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>Always specify a concrete destination - e.g. &ldquo;Back to peer review queue&rdquo; rather than &ldquo;Back&rdquo;.</li>
+      <li>Don't use <code>javascript:history.back()</code> - it's unreliable and confusing if the user arrived via deep link.</li>
+      <li>Pair with breadcrumbs only when both add value; on most editorial detail pages a back link alone is enough.</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

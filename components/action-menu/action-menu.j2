@@ -2,15 +2,18 @@
 
    Compose with two macros:
      - action_menu()                       wrapper
-     - action_menu_item(icon, label, url)  one link
+     - action_menu_item(icon, label, url)  one link; icon is a name
+       from the icon component (rendered as an inline SVG)
 
    Usage:
      {% call action_menu() %}
-       {{ action_menu_item("i", "View metadata",      url="/metadata") }}
-       {{ action_menu_item("D", "Document management", url="/docs") }}
-       {{ action_menu_item("+", "New review round",    url="/round/new") }}
+       {{ action_menu_item("info", "View metadata",           url="/metadata") }}
+       {{ action_menu_item("file-text", "Document management", url="/docs") }}
+       {{ action_menu_item("plus", "New review round",         url="/round/new") }}
      {% endcall %}
 #}
+{% from "voyager/components/icon/icon.j2" import icon as _icon %}
+
 {% macro action_menu() %}
 <ul class="action-menu">{{ caller() }}</ul>
 {% endmacro %}
@@ -18,7 +21,7 @@
 {% macro action_menu_item(icon, label, url="#") %}
 <li>
   <a href="{{ url|e }}">
-    <span class="action-menu-icon" aria-hidden="true">{{ icon|e }}</span>
+    <span class="action-menu-icon" aria-hidden="true">{{ _icon(icon) }}</span>
     {{ label|e }}
   </a>
 </li>

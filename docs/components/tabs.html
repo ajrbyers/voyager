@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tabs - Voyager</title>
+<link rel="stylesheet" href="../../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="module" src="../assets/js/site.js"></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="https://github.com/openlibhums/janeway">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base="../.."></nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Tabs</h1>
+    <p class="site-page-lede">
+      A row of navigation links where each tab is a different filtered view of
+      the same page. Use tabs when the views share one underlying list, such as
+      review rounds or workflow states.
+    </p>
+
+    <h2>Filter tabs</h2>
+    <p>Real navigation links - each tab is a different filtered view. Use <code>aria-current="true"</code> on the active link, not <code>role="tab"</code> (this is not an ARIA tabs widget).</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <nav class="tabs" aria-label="Review rounds">
+          <ul>
+            <li><a href="#">Round 1 <span class="tabs-count">closed</span></a></li>
+            <li><a href="#" aria-current="true">Round 2 <span class="tabs-count">active</span></a></li>
+          </ul>
+        </nav>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;nav class="tabs" aria-label="Review rounds"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="?round=1"&gt;Round 1 &lt;span class="tabs-count"&gt;closed&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="?round=2" aria-current="true"&gt;Round 2 &lt;span class="tabs-count"&gt;active&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/tabs/tabs.j2" import tabs, tab %}
+
+{% call tabs("Review rounds") %}
+  {{ tab("Round 1", url="?round=1", count="closed") }}
+  {{ tab("Round 2", url="?round=2", count="active", current=True) }}
+{% endcall %}</code></pre>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

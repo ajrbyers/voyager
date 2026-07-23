@@ -3,14 +3,15 @@
      - label:   display text (truncates around 32ex)
      - kind:    '' | 'critical' | 'warning' | 'info' | 'more'
      - url:     if set, renders as <a>; else <span>
+     - attrs:   optional dict of extra attributes (hx-*, data-*, title)
 
    Usage:
      {{ alert_pill("Reviewer overdue 12 days", kind="critical", url="#") }}
 #}
-{% macro alert_pill(label, kind="", url=None) %}
+{% macro alert_pill(label, kind="", url=None, attrs=None) %}
 {%- set classes = ['alert-pill'] -%}
 {%- if kind %}{% set classes = classes + ['alert-pill-' ~ kind] %}{% endif -%}
 {%- set cls = classes|join(' ') -%}
-{%- if url -%}<a href="{{ url|e }}" class="{{ cls|e }}">{{ label|e }}</a>
-{%- else -%}<span class="{{ cls|e }}">{{ label|e }}</span>{%- endif -%}
+{%- if url -%}<a href="{{ url|e }}" class="{{ cls|e }}"{% if attrs %}{{ attrs|xmlattr }}{% endif %}>{{ label|e }}</a>
+{%- else -%}<span class="{{ cls|e }}"{% if attrs %}{{ attrs|xmlattr }}{% endif %}>{{ label|e }}</span>{%- endif -%}
 {% endmacro %}

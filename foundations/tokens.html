@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tokens - Voyager</title>
 <link rel="stylesheet" href="../assets/css/index.css">
-<link rel="stylesheet" href="../assets/css/site.css">
-<link rel="stylesheet" href="tokens.css">
-<script src="../assets/js/site.js" defer></script>
+<link rel="stylesheet" href="../docs/assets/css/site.css">
+<script type="module" src="../docs/assets/js/site.js"></script>
 <script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
 </head>
 <body>
@@ -21,7 +20,7 @@
   </a>
   <div class="site-meta">
     <a href="https://github.com/openlibhums/janeway">Janeway repo</a>
-    <a href="https://github.com/openlibhums/memory-alpha">Memory Alpha</a>
+    
   <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
     <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
@@ -54,7 +53,7 @@
     <div class="swatch-grid">
       <div class="swatch"><div class="swatch-chip swatch-border-muted"></div><div class="swatch-meta"><strong>--colour-border-muted</strong><code>#d8dee4</code></div></div>
       <div class="swatch"><div class="swatch-chip swatch-border"></div><div class="swatch-meta"><strong>--colour-border</strong><code>#d0d7de</code></div></div>
-      <div class="swatch"><div class="swatch-chip swatch-border-strong"></div><div class="swatch-meta"><strong>--colour-border-strong</strong><code>#a4abb3</code></div></div>
+      <div class="swatch"><div class="swatch-chip swatch-border-strong"></div><div class="swatch-meta"><strong>--colour-border-strong</strong><code>#6e7781</code></div></div>
       <div class="swatch"><div class="swatch-chip swatch-border-component"></div><div class="swatch-meta"><strong>--colour-border-component</strong><code>#b1b4b6</code></div></div>
     </div>
     <p class="muted">Border tokens are tuned for WCAG 1.4.11 - borders that distinguish a UI component from its background must have ≥3:1 contrast against canvas.</p>
@@ -96,11 +95,11 @@
       <li><span class="space-bar space-bar-12"></span><code>--s-12</code> 48px</li>
     </ul>
 
-    <h2>Radii &amp; shadow</h2>
+    <h2>Shadow</h2>
+    <p>Voyager is squared - there are no radius tokens. The only rounded shapes are avatars and dots, which use <code>border-radius:50%</code> directly. Elevation is limited to overlays; buttons carry their own flat 2px bottom shadow.</p>
     <ul>
-      <li><code>--radius-sm</code> 4px - used by code chips and small chips</li>
-      <li><code>--radius-md</code> 6px - used by buttons and sidebar links</li>
-      <li><code>--shadow-sm</code> <code>0 1px 0 rgba(31,35,40,0.04)</code> - Primer button shadow</li>
+      <li><code>--shadow-overlay</code> <code>0 4px 12px rgba(11,12,12,0.16)</code> - dropdowns and popovers</li>
+      <li><code>--shadow-modal</code> <code>0 16px 32px rgba(11,12,12,0.2)</code> - modal dialogs</li>
     </ul>
 
   </main>

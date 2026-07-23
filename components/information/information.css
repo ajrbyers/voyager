@@ -1,7 +1,7 @@
 /* Information - three patterns for surfacing status messages:
      .notice        coloured-border banner with header strip + body
      .inset-text    quiet left-bordered block of body text
-     .error-summary GOV.UK-style error list, used at the top of
+     .error-summary linked error list, used at the top of
                     forms that have validation errors.
 */
 

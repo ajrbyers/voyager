@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Architecture - Voyager</title>
 <link rel="stylesheet" href="assets/css/index.css">
-<link rel="stylesheet" href="assets/css/site.css">
-<link rel="stylesheet" href="architecture.css">
-<script src="assets/js/site.js" defer></script>
+<link rel="stylesheet" href="docs/assets/css/site.css">
+<script type="module" src="docs/assets/js/site.js"></script>
 <script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
 </head>
 <body>
@@ -15,7 +14,7 @@
 
 <header class="site-header">
   <a class="site-brand" href="index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
-  <div class="site-meta"><a href="https://github.com/openlibhums/janeway">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+  <div class="site-meta"><a href="https://github.com/openlibhums/janeway">Janeway repo</a><a href="https://github.com/openlibhums/memory-alpha">Memory Alpha</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
     <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
     <span data-theme-label>Dark</span>
@@ -30,26 +29,18 @@
 
     <h1>Architecture</h1>
     <p class="site-page-lede">
-      Voyager is plain modern CSS - no preprocessor, no Tailwind, no framework.
+      Voyager is plain modern CSS - no preprocessor, no framework.
       Native CSS nesting and custom properties only. The system follows an
       ITCSS-style layered structure with co-located components, two-tier tokens,
       and a small set of hard rules.
     </p>
 
-    <h2>Inspiration</h2>
-    <p>
-      Voyager is inspired by two design systems we admire - GitHub Primer for chrome
-      density and admin patterns, and the UK Government Design System for accessibility
-      discipline and form conventions. Voyager owes its visual rhythm to Primer and its
-      content semantics to GDS, but every component is hand-written for Janeway's
-      editorial admin context. <strong>Nothing in Voyager is imported from either
-      system</strong> - the lessons are theirs; the code is ours.
-    </p>
     <h2>Layer order</h2>
     <p>
       The cascade flows in one direction. Each layer is more specific than the
-      one before it. Utilities load <strong>last</strong> so utility classes win
-      over component styles.
+      one before it. Utilities load <strong>last</strong>, and the
+      single-purpose override utilities carry <code>!important</code>, so they
+      beat component declarations at any nesting depth.
     </p>
 
     <pre class="arch-flow"><code>settings  →  reset  →  elements  →  components  →  utilities</code></pre>
@@ -62,7 +53,7 @@
         <tr>
           <td><strong>Settings</strong></td>
           <td><code>settings.css</code></td>
-          <td>Tokens - colour, type stacks, type scale, space scale, radii, layout. Two-tier: raw tokens (<code>--colour-grey-7</code>) plus semantic aliases (<code>--colour-fg</code>).</td>
+          <td>Tokens - colour, type stacks, type scale, space scale, layout. Two-tier: raw tokens (<code>--colour-grey-7</code>) plus semantic aliases (<code>--colour-fg</code>).</td>
         </tr>
         <tr>
           <td><strong>Reset</strong></td>
@@ -89,14 +80,19 @@
 
     <h2>Component file pattern</h2>
     <p>
-      Each component lives in <code>components/&lt;name&gt;/</code> with three
-      co-located files:
+      Each component lives in <code>components/&lt;name&gt;/</code> with two
+      co-located source files:
     </p>
     <ul>
-      <li><code>&lt;name&gt;.html</code> - the canonical markup, copy-pasteable</li>
-      <li><code>&lt;name&gt;.css</code> - single root class, native nesting, no element selectors</li>
+      <li><code>&lt;name&gt;.css</code> - root class matching the name, native nesting, no unscoped element selectors</li>
       <li><code>&lt;name&gt;.j2</code> - illustrative Jinja2 macro for production use</li>
     </ul>
+    <p>
+      The canonical markup and usage guidance for each component live on its
+      documentation page at <code>docs/components/&lt;name&gt;.html</code>,
+      alongside the copy-pasteable HTML and Jinja2 examples. Those pages are
+      docs-site chrome, not part of the shipped design system.
+    </p>
     <p>
       The CSS opens with the root class and nests everything inside it with the
       native <code>&amp;</code> selector. Variants are extra flat classes
@@ -136,8 +132,7 @@
       <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button></div>
       <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;button class="btn btn-primary"&gt;Save&lt;/button&gt;
 &lt;button class="btn btn-primary btn-small"&gt;Save&lt;/button&gt;
-&lt;button class="btn btn-warning btn-large"&gt;Delete&lt;/button&gt;
-&lt;a class="btn btn-start" href="/start"&gt;Start review&lt;/a&gt;</code></pre>
+&lt;button class="btn btn-warning btn-large"&gt;Delete&lt;/button&gt;</code></pre>
     </div>
 
     <h2>Tokens - two-tier system</h2>
@@ -152,7 +147,7 @@
     <p>
       Components reference <strong>semantic</strong> tokens only. Pages and
       themes can override semantic aliases without touching raw tokens. This
-      makes a future dark mode straightforward - alias remapping in a single
+      makes dark mode straightforward - alias remapping in a single
       <code>[data-theme="dark"]</code> block.
     </p>
 
@@ -172,7 +167,7 @@
     </div>
 
     <h2>Hard rules</h2>
-    <p>Non-negotiable. The system relies on these to stay coherent at scale.</p>
+    <p>Non-negotiable. The system relies on these to stay coherent as it grows.</p>
     <ol class="arch-rules">
       <li>
         <strong>No inline styles.</strong> Anywhere. If a one-off margin or
@@ -183,13 +178,16 @@
         or example pages. Verified with a repository-wide grep.
       </li>
       <li>
-        <strong>Element selectors stay in <code>elements.css</code>.</strong>
-        Don't add element selectors to component files - reach for a class.
+        <strong>No <em>unscoped</em> element selectors in component files.</strong>
+        Bare <code>h1</code> / <code>a</code> / <code>p</code> belong in
+        <code>elements.css</code>; element selectors scoped under the root class
+        (<code>&amp; li</code>, <code>&amp; a</code>) are fine and used throughout.
       </li>
       <li>
         <strong>Components don't reference each other's classes.</strong> A
-        component is self-contained. Composition happens in the markup, not
-        cross-component CSS.
+        component is self-contained; composition happens in the markup, not
+        cross-component CSS. The one deliberate exception is <code>.icon</code>,
+        a shared primitive that each host component sizes to its own context.
       </li>
       <li>
         <strong>Utilities are a last resort and load last.</strong> Prefer
@@ -197,7 +195,7 @@
       </li>
       <li>
         <strong>Accessibility is a quality bar.</strong> WCAG AA contrast,
-        real focus rings (yellow, inspired by GOV.UK), semantic HTML, no fake ARIA, real
+        real focus rings (the universal yellow treatment), semantic HTML, no fake ARIA, real
         <code>&lt;ol&gt;</code>/<code>&lt;ul&gt;</code> for lists,
         <code>aria-current</code> on active nav.
       </li>
@@ -215,7 +213,7 @@
       <li>
         <strong>Inline SVG icons only</strong> - no unicode glyphs in
         component icon slots. See the
-        <a href="components/icon.html">icon component</a>.
+        <a href="docs/components/icon.html">icon component</a>.
       </li>
       <li>
         <strong>Macros follow the wrapper + item pattern</strong> for any
@@ -251,9 +249,12 @@
       <a href="https://github.com/openlibhums/memory-alpha">Memory Alpha</a>,
       OLH's Pelican-based site theme. Memory Alpha pioneered the co-located
       component pattern with native CSS nesting and composable variant classes
-      - Voyager carries those decisions forward, adds form discipline inspired
-      by GOV.UK, chrome conventions inspired by Primer, and a stricter
-      "no inline styles" stance.
+      - Voyager carries those decisions forward and adds a stricter
+      "no inline styles" stance. Voyager also studied two systems we admire -
+      the <a href="https://design-system.service.gov.uk/">GOV.UK Design System</a>
+      for its form and accessibility discipline, and
+      <a href="https://primer.style/">GitHub Primer</a> for its dense admin
+      chrome.
     </p>
 
   </main>

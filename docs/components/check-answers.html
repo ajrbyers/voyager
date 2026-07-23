@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Check answers - Voyager</title>
+<link rel="stylesheet" href="../../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="module" src="../assets/js/site.js"></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="https://github.com/openlibhums/janeway">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base="../.."></nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Check answers</h1>
+    <p class="site-page-lede">
+      A page-level pattern for letting users review their answers before
+      final submission. Composes <a href="summary-block.html">summary list</a>
+      rows with section headings and a submit button. Use at the end of a
+      multi-step form workflow.
+    </p>
+
+    <h2>Default</h2>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="check-answers">
+          <h1 class="check-answers-title">Review your answers</h1>
+
+          <div class="check-answers-section">
+            <h2 class="check-answers-heading">Your details</h2>
+            <dl class="summary-list">
+              <div>
+                <dt>Name</dt>
+                <dd>Dr Sarah Philips</dd>
+                <dd class="summary-list-actions"><a href="#">Change<span class="visually-hidden"> name</span></a></dd>
+              </div>
+              <div>
+                <dt>Institution</dt>
+                <dd>University College London</dd>
+                <dd class="summary-list-actions"><a href="#">Change<span class="visually-hidden"> institution</span></a></dd>
+              </div>
+              <div>
+                <dt>ORCID iD</dt>
+                <dd><span class="mono">0000-0002-1825-0097</span></dd>
+                <dd class="summary-list-actions"><a href="#">Change<span class="visually-hidden"> ORCID iD</span></a></dd>
+              </div>
+              <div>
+                <dt>Contact details</dt>
+                <dd>s.philips@ucl.ac.uk</dd>
+                <dd class="summary-list-actions">
+                  <a href="#">Add<span class="visually-hidden"> contact information</span></a>
+                  <a href="#">Change<span class="visually-hidden"> contact information</span></a>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="check-answers-section">
+            <h2 class="check-answers-heading">Review preferences</h2>
+            <dl class="summary-list">
+              <div>
+                <dt>Review interests</dt>
+                <dd>Machine learning, structural biology</dd>
+                <dd class="summary-list-actions"><a href="#">Change<span class="visually-hidden"> review interests</span></a></dd>
+              </div>
+              <div>
+                <dt>Availability</dt>
+                <dd>Up to two reviews per quarter</dd>
+                <dd class="summary-list-actions"><a href="#">Change<span class="visually-hidden"> availability</span></a></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="check-answers-submit">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="check-answers"&gt;
+  &lt;h1 class="check-answers-title"&gt;Review your answers&lt;/h1&gt;
+
+  &lt;div class="check-answers-section"&gt;
+    &lt;h2 class="check-answers-heading"&gt;Your details&lt;/h2&gt;
+    &lt;dl class="summary-list"&gt;
+      &lt;div&gt;
+        &lt;dt&gt;Name&lt;/dt&gt;
+        &lt;dd&gt;Dr Sarah Philips&lt;/dd&gt;
+        &lt;dd class="summary-list-actions"&gt;
+          &lt;a href="#"&gt;Change&lt;span class="visually-hidden"&gt; name&lt;/span&gt;&lt;/a&gt;
+        &lt;/dd&gt;
+      &lt;/div&gt;
+      &lt;!-- more rows --&gt;
+    &lt;/dl&gt;
+  &lt;/div&gt;
+
+  &lt;div class="check-answers-submit"&gt;
+    &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/check-answers/check-answers.j2"
+   import check_answers, check_answers_section %}
+{% from "voyager/components/summary-block/summary-block.j2"
+   import summary_row %}
+
+{% call check_answers() %}
+  {% call check_answers_section("Your details") %}
+    {{ summary_row("Name", "Dr Sarah Philips",
+        actions=[{"label": "Change", "url": "/step-1#name",
+                  "hidden": "name"}]) }}
+    {{ summary_row("Institution", "University College London",
+        actions=[{"label": "Change", "url": "/step-1#institution",
+                  "hidden": "institution"}]) }}
+    {{ summary_row("ORCID iD", "0000-0002-1825-0097",
+        actions=[{"label": "Change", "url": "/step-1#orcid",
+                  "hidden": "ORCID iD"}]) }}
+    {{ summary_row("Contact details", "s.philips@ucl.ac.uk",
+        actions=[
+          {"label": "Add", "url": "#", "hidden": "contact information"},
+          {"label": "Change", "url": "#", "hidden": "contact information"},
+        ]) }}
+  {% endcall %}
+  {% call check_answers_section("Review preferences") %}
+    {{ summary_row("Review interests", "Machine learning, structural biology",
+        actions=[{"label": "Change", "url": "/step-2#interests",
+                  "hidden": "review interests"}]) }}
+    {{ summary_row("Availability", "Up to two reviews per quarter",
+        actions=[{"label": "Change", "url": "/step-2#availability",
+                  "hidden": "availability"}]) }}
+  {% endcall %}
+{% endcall %}</code></pre>
+    </div>
+
+    <h2>Academic publishing example</h2>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="check-answers">
+          <h1 class="check-answers-title">Review your submission before sending</h1>
+
+          <div class="check-answers-section">
+            <h2 class="check-answers-heading">Article metadata</h2>
+            <dl class="summary-list">
+              <div>
+                <dt>Title</dt>
+                <dd>Deep learning approaches to protein folding prediction</dd>
+                <dd class="summary-list-actions"><a href="#">Change<span class="visually-hidden"> title</span></a></dd>
+              </div>
+              <div>
+                <dt>Abstract</dt>
+                <dd>We present a novel approach to predicting tertiary protein structure using transformer-based architectures&hellip;</dd>
+                <dd class="summary-list-actions"><a href="#">Change<span class="visually-hidden"> abstract</span></a></dd>
+              </div>
+              <div>
+                <dt>Keywords</dt>
+                <dd>protein folding, deep learning, transformers</dd>
+                <dd class="summary-list-actions"><a href="#">Change<span class="visually-hidden"> keywords</span></a></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="check-answers-section">
+            <h2 class="check-answers-heading">Authors</h2>
+            <dl class="summary-list">
+              <div>
+                <dt>Corresponding</dt>
+                <dd>Dr Amara Okafor, University of Lagos</dd>
+                <dd class="summary-list-actions"><a href="#">Change<span class="visually-hidden"> corresponding author</span></a></dd>
+              </div>
+              <div>
+                <dt>Co-authors</dt>
+                <dd>Prof Wei Chen, MIT<br>Dr Sarah Philips, UCL</dd>
+                <dd class="summary-list-actions"><a href="#">Change<span class="visually-hidden"> co-authors</span></a></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="check-answers-section">
+            <h2 class="check-answers-heading">Files</h2>
+            <dl class="summary-list">
+              <div>
+                <dt>Manuscript</dt>
+                <dd><span class="mono">okafor_protein_v3.docx</span> &middot; 1.2 MB</dd>
+                <dd class="summary-list-actions"><a href="#">Change<span class="visually-hidden"> manuscript file</span></a></dd>
+              </div>
+              <div>
+                <dt>Figures</dt>
+                <dd><span class="mono">figures.zip</span> &middot; 4.7 MB</dd>
+                <dd class="summary-list-actions"><a href="#">Change<span class="visually-hidden"> figures file</span></a></dd>
+              </div>
+              <div class="summary-list-row-no-actions">
+                <dt>Cover letter</dt>
+                <dd>Not provided</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="check-answers-submit">
+            <button type="submit" class="btn btn-primary">Submit article</button>
+          </div>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;!-- Same structure as above, with Janeway-specific content --&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% call check_answers(title="Review your submission before sending",
+    submit_label="Submit article") %}
+  {% call check_answers_section("Article metadata") %}
+    {{ summary_row("Title",
+        "Deep learning approaches to protein folding prediction",
+        actions=[{"label": "Change", "url": "/submit/step-1#title",
+                  "hidden": "title"}]) }}
+    {{ summary_row("Abstract", abstract_text,
+        actions=[{"label": "Change", "url": "/submit/step-1#abstract",
+                  "hidden": "abstract"}]) }}
+  {% endcall %}
+  {% call check_answers_section("Files") %}
+    {{ summary_row("Manuscript", manuscript_display,
+        actions=[{"label": "Change", "url": "/submit/step-3#manuscript",
+                  "hidden": "manuscript file"}]) }}
+    {{ summary_row("Cover letter", "Not provided") }}
+  {% endcall %}
+{% endcall %}</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>Always add <code>visually-hidden</code> text to "Change" links so screen readers announce <em>what</em> is being changed (e.g. "Change name", not just "Change").</li>
+      <li>The <code>&lt;h1&gt;</code> is part of the component - do not add a separate page header above it.</li>
+      <li>Import <code>summary_row</code> from <code>summary-block.j2</code> - check-answers does not re-export it.</li>
+      <li>Rows without actions (e.g. "Not provided") automatically get the <code>summary-list-row-no-actions</code> modifier, collapsing to a two-column grid.</li>
+      <li>The submit button defaults to <code>btn-primary</code>. Override with <code>submit_kind="warning"</code> for destructive actions.</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

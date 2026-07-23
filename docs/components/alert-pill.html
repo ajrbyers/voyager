@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alert pill - Voyager</title>
+<link rel="stylesheet" href="../../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="module" src="../assets/js/site.js"></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="https://github.com/openlibhums/janeway">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base="../.."></nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Alert pill</h1>
+    <p class="site-page-lede">
+      A small inline status link used at the bottom of an
+      <a href="article-card.html">article card</a> to surface alerts.
+    </p>
+
+    <h2>Variants</h2>
+    <p>Four variants compose: <code>alert-pill-critical</code>, <code>alert-pill-warning</code>, <code>alert-pill-info</code>, <code>alert-pill-more</code> (for the &ldquo;+N more&rdquo; collapse).</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="cluster">
+          <a href="#" class="alert-pill alert-pill-critical">Reviewer overdue 12 days</a>
+          <a href="#" class="alert-pill alert-pill-warning">No editor assigned</a>
+          <a href="#" class="alert-pill alert-pill-info">All reviews received</a>
+          <span class="alert-pill alert-pill-more">+2 more</span>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;a href="#" class="alert-pill alert-pill-critical"&gt;Reviewer overdue 12 days&lt;/a&gt;
+&lt;a href="#" class="alert-pill alert-pill-warning"&gt;No editor assigned&lt;/a&gt;
+&lt;a href="#" class="alert-pill alert-pill-info"&gt;All reviews received&lt;/a&gt;
+&lt;span class="alert-pill alert-pill-more"&gt;+2 more&lt;/span&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/alert-pill/alert-pill.j2" import alert_pill %}
+
+{{ alert_pill("Reviewer overdue 12 days", kind="critical", url="#") }}
+{{ alert_pill("No editor assigned",       kind="warning",  url="#") }}
+{{ alert_pill("All reviews received",     kind="info",     url="#") }}
+{{ alert_pill("+2 more",                  kind="more") }}</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>Pills with a destination render as links; the <code>alert-pill-more</code> collapse is plain text.</li>
+      <li>Severity thresholds match the <a href="article-card.html">article card</a> days indicator: over 60 days critical, over 30 days warning.</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theme toggle - Voyager</title>
+<link rel="stylesheet" href="../../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="module" src="../assets/js/site.js"></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="https://github.com/openlibhums/janeway">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base="../.."></nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Theme toggle</h1>
+    <p class="site-page-lede">
+      A small button that switches between light and dark mode. It sets the
+      <code>data-theme</code> attribute on <code>&lt;html&gt;</code>, persists the
+      choice in localStorage, and reflects its state via <code>aria-pressed</code>.
+    </p>
+
+    <h2>Default</h2>
+    <p>
+      The toggle below is live - pressing it switches this page's theme. The moon
+      icon shows in light mode, the sun in dark mode, and the text label names the
+      mode the button will switch <em>to</em>.
+    </p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span data-theme-label>Dark</span>
+        </button>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;button type="button" class="theme-toggle" data-theme-toggle
+        aria-label="Toggle dark mode" aria-pressed="false"&gt;
+  &lt;svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"&gt;
+    &lt;path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/&gt;
+  &lt;/svg&gt;
+  &lt;svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"&gt;
+    &lt;circle cx="12" cy="12" r="4"/&gt;
+    &lt;path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/&gt;
+  &lt;/svg&gt;
+  &lt;span data-theme-label&gt;Dark&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/theme-toggle/theme-toggle.j2" import theme_toggle %}
+
+{{ theme_toggle() }}</code></pre>
+    </div>
+
+    <h2>Behaviour</h2>
+    <ul>
+      <li><strong><code>data-theme</code> on <code>&lt;html&gt;</code></strong> is the single source of truth. The toggle flips it between <code>light</code> and <code>dark</code>; CSS dark-mode aliases and the icon swap both key off this attribute.</li>
+      <li><strong><code>aria-pressed</code></strong> reflects the state: <code>true</code> when dark mode is active, <code>false</code> otherwise. The <code>aria-label</code> stays "Toggle dark mode" while the visible label text swaps between "Dark" and "Light".</li>
+      <li><strong>Persistence</strong> - the choice is stored under the localStorage key <code>voyager-theme</code> and read on the next page load. With no stored value, the <code>prefers-color-scheme</code> media query decides.</li>
+      <li><strong>Event delegation</strong> - <code>theme-toggle.js</code> binds one document-level click handler on <code>[data-theme-toggle]</code>, so a page may carry several toggles (header, example banner) and all stay in sync.</li>
+    </ul>
+
+    <h2>Head script</h2>
+    <p>
+      Consumers must inline this script in <code>&lt;head&gt;</code>, before any
+      stylesheet-dependent paint, so the stored theme is applied without a flash of
+      light content. The localStorage access is wrapped in <code>try/catch</code>
+      because storage can throw in private browsing modes or when blocked by
+      policy - the toggle then falls back to the system preference.
+    </p>
+    <div class="example">
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;script&gt;(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();&lt;/script&gt;</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>The button uses <code>currentColor</code> for its border and inherits its text colour, so it adapts to its surroundings - white on dark headers, black on the yellow example banner - with no per-context variants.</li>
+      <li>Both icons are <code>aria-hidden="true"</code>; state is conveyed by <code>aria-pressed</code> and the label text, not by the icon alone.</li>
+      <li>The button meets the WCAG 2.2 minimum target size (SC 2.5.8) via its 24px minimum height.</li>
+      <li>Without JavaScript the toggle does nothing, but the head script still applies the system preference - dark-mode users are never flashed with a light page.</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

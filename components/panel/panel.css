@@ -1,6 +1,6 @@
 /* Panel - large confirmation block shown at the top of a completion
    page. Used after a workflow action completes: "Decision sent · DEC-2026-091".
-   Defaults to GOV.UK green; success/error/info variants compose. */
+   Defaults to the success green; warning/error/info variants compose. */
 
 .panel{
   margin:0 0 var(--s-6);

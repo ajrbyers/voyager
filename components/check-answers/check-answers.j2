@@ -1,4 +1,4 @@
-{# check-answers -- "check your answers before submitting" page pattern.
+{# check-answers -- final review page pattern.
    Composes summary_list from the summary-block component with section
    headings and a submit button. Use at the end of a multi-step form
    to let users review their answers before final submission.
@@ -26,8 +26,8 @@
      {% endcall %}
 #}
 
-{% macro check_answers(title="Check your answers before submitting",
-                        submit_label="Accept and send", submit_kind="primary") %}
+{% macro check_answers(title="Review your answers",
+                        submit_label="Submit", submit_kind="primary") %}
 <div class="check-answers">
   <h1 class="check-answers-title">{{ title|e }}</h1>
   {{ caller() }}

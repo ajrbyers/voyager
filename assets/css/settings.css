@@ -8,7 +8,7 @@
 
   /* ---------- Raw colour ---------- */
 
-  /* Neutral (Primer) */
+  /* Neutral greys - cool ramp (canvas, borders, body text) */
   --colour-white:           #ffffff;
   --colour-grey-0:          #f6f8fa;
   --colour-grey-1:          #eaeef2;
@@ -19,23 +19,23 @@
   --colour-grey-6:          #59636e;
   --colour-grey-7:          #1f2328;
 
-  /* GOV.UK greys */
-  --colour-govuk-grey-0:    #f3f2f1;
-  --colour-govuk-grey-1:    #dbdad9;
-  --colour-govuk-grey-2:    #b1b4b6;
-  --colour-govuk-grey-3:    #505a5f;
-  --colour-govuk-black:     #0b0c0c;
+  /* Neutral greys - warm ramp (control surfaces and chrome) */
+  --colour-warm-grey-0:     #f3f2f1;
+  --colour-warm-grey-1:     #dbdad9;
+  --colour-warm-grey-2:     #b1b4b6;
+  --colour-warm-grey-3:     #505a5f;
+  --colour-ink:             #0b0c0c;
 
-  /* Hue scale - accent (Primer blue) */
+  /* Hue scale - accent blue */
   --colour-blue-0:          #ddf4ff;
   --colour-blue-5:          #0969da;
 
-  /* Hue scale - link (GOV.UK blue) */
+  /* Hue scale - link blue */
   --colour-link-base:       #1d70b8;
   --colour-link-hover-base: #003078;
   --colour-link-visited:    #4c2c92;
 
-  /* Status hues (GOV.UK semantic palette) */
+  /* Status hues */
   --colour-green:           #00703c;
   --colour-green-dark:      #005a30;
   --colour-orange:          #f47738;
@@ -43,7 +43,8 @@
   --colour-red:             #d4351c;
   --colour-red-dark:        #aa2a16;
 
-  /* Focus (GOV.UK) */
+  /* Focus yellow - deliberately the one hue that reads on both the
+     light and dark canvases. */
   --colour-yellow:          #ffdd00;
 
   /* Tint palette - pastel background / deep foreground pairs per hue.
@@ -80,7 +81,7 @@
   --colour-pool-pink:   #9d174d;
   --colour-pool-blue:   #1e40af;
 
-  /* Primer coral - the active-tab underline. */
+  /* Coral - the active-tab underline. */
   --colour-coral: #fd8c73;
 
   /* ---------- Semantic aliases ---------- */
@@ -89,20 +90,20 @@
   --colour-canvas:          var(--colour-white);
   --colour-canvas-muted:    var(--colour-grey-0);
   --colour-canvas-inset:    var(--colour-grey-1);
-  --colour-surface-grey:    var(--colour-govuk-grey-0);
-  --colour-surface-grey-hover: var(--colour-govuk-grey-1);
+  --colour-surface-grey:    var(--colour-warm-grey-0);
+  --colour-surface-grey-hover: var(--colour-warm-grey-1);
 
   /* Borders */
   --colour-border:          var(--colour-grey-3);
   --colour-border-muted:    var(--colour-grey-2);
   --colour-border-strong:   var(--colour-grey-5);   /* 4.5:1 vs canvas - safely past the WCAG 1.4.11 3:1 bar */
-  --colour-border-component:var(--colour-govuk-grey-2);
+  --colour-border-component:var(--colour-warm-grey-2);
 
   /* Foreground */
   --colour-fg:              var(--colour-grey-7);
   --colour-fg-muted:        var(--colour-grey-6);
   --colour-fg-subtle:       var(--colour-grey-5);
-  --colour-fg-strong:       var(--colour-govuk-black);
+  --colour-fg-strong:       var(--colour-ink);
 
   /* Interactive */
   --colour-link:            var(--colour-link-base);
@@ -179,7 +180,7 @@
 
   /* Focus */
   --colour-focus:           var(--colour-yellow);
-  --colour-focus-fg:        var(--colour-govuk-black);
+  --colour-focus-fg:        var(--colour-ink);
 
   /* Header */
   --colour-header-bg:       var(--colour-grey-7);
@@ -221,14 +222,11 @@
   --s-10: 40px;
   --s-12: 48px;
 
-  /* ---------- Radii ---------- */
+  /* ---------- Shadow ----------
+     Voyager is squared - no radius tokens. The only rounded shapes are
+     avatars and dots, which use border-radius:50% directly. Elevation is
+     limited to overlays; buttons carry their own flat 2px bottom shadow. */
 
-  --radius-sm: 4px;
-  --radius-md: 6px;
-
-  /* ---------- Shadow ---------- */
-
-  --shadow-sm:      0 1px 0 rgba(31,35,40,0.04);
   --shadow-overlay: 0 4px 12px rgba(11,12,12,0.16);   /* dropdowns / popovers */
   --shadow-modal:   0 16px 32px rgba(11,12,12,0.2);
 
@@ -376,9 +374,6 @@
 
   --colour-header-bg:        var(--colour-dark-canvas-muted);
   --colour-header-fg:        var(--colour-dark-fg);
-
-  /* Slightly heavier button shadow on dark to keep edges visible. */
-  --shadow-sm: 0 1px 0 rgba(0,0,0,0.4);
 }
 
 /* Theme selection is attribute-driven: the inline head script reads

@@ -4,7 +4,8 @@
      - title:        card heading
      - description:  short prose under the title
      - url:          link target
-     - icon:         single character or short string rendered in the icon
+     - icon:         icon name from the icon component (rendered as an
+                     inline SVG in the tile)
      - icon_colour:  'grey' (default) | 'blue' | 'green' | 'orange' |
                      'purple' | 'pink' | 'teal' | 'red' | 'yellow'
      - count:        integer or None
@@ -18,9 +19,11 @@
    Usage:
      {{ function_card("Journal settings",
          description="Name, ISSN, contact details.",
-         url="/manager/settings", icon="S", icon_colour="blue",
+         url="/manager/settings", icon="settings", icon_colour="blue",
          count=12, tags=["settings"]) }}
 #}
+{% from "voyager/components/icon/icon.j2" import icon as _icon %}
+
 {% macro function_card(title, description="", url="#", icon="",
                         icon_colour="grey", count=None, tags=[],
                         coming_soon=False) %}
@@ -30,7 +33,7 @@
    data-desc="{{ description|lower|e }}"
    {% if tags %}data-tags="{{ tags|join(' ')|e }}"{% endif %}>
   <div class="function-card-top">
-    <div class="function-card-icon function-card-icon-{{ icon_colour|e }}" aria-hidden="true">{{ icon|e }}</div>
+    <div class="function-card-icon function-card-icon-{{ icon_colour|e }}" aria-hidden="true">{% if icon %}{{ _icon(icon) }}{% endif %}</div>
     {% if coming_soon %}
       <span class="function-card-soon-badge">Coming soon</span>
     {% elif count is not none %}

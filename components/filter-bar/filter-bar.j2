@@ -40,10 +40,11 @@
 </div>
 {% endmacro %}
 
-{# filter_select - compact select; options is a list of {value, label, selected?} #}
-{% macro filter_select(id, label, options=[], value=None) %}
+{# filter_select - compact select; options is a list of {value, label, selected?}.
+   name defaults to id; attrs is an optional dict (hx-*, data-*) via xmlattr. #}
+{% macro filter_select(id, label, options=[], value=None, name=None, attrs=None) %}
 <label class="visually-hidden" for="{{ id|e }}">{{ label|e }}</label>
-<select id="{{ id|e }}" name="{{ id|e }}" class="filter-select" aria-label="{{ label|e }}">
+<select id="{{ id|e }}" name="{{ (name or id)|e }}" class="filter-select" aria-label="{{ label|e }}"{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
   {% for opt in options %}
     <option value="{{ opt.value|e }}"
       {% if (value is not none and opt.value|string == value|string) or opt.selected %}selected{% endif %}>
@@ -57,13 +58,14 @@
 <div class="filter-bar-chips">{{ caller() }}</div>
 {% endmacro %}
 
-{% macro filter_chip(label, remove_url="#") %}
+{# remove_attrs / attrs are optional dicts (hx-*, data-*) via xmlattr. #}
+{% macro filter_chip(label, remove_url="#", remove_label=None, remove_attrs=None) %}
 <span class="filter-chip">
   {{ label|e }}
-  <a href="{{ remove_url|e }}" class="filter-chip-remove" aria-label="Remove {{ label|e }} filter">×</a>
+  <a href="{{ remove_url|e }}" class="filter-chip-remove" aria-label="{{ (remove_label or 'Remove ' ~ label ~ ' filter')|e }}"{% if remove_attrs %}{{ remove_attrs|xmlattr }}{% endif %}>×</a>
 </span>
 {% endmacro %}
 
-{% macro filter_clear(url="#") %}
-<a href="{{ url|e }}" class="filter-bar-clear">Clear filters</a>
+{% macro filter_clear(url="#", attrs=None) %}
+<a href="{{ url|e }}" class="filter-bar-clear"{% if attrs %}{{ attrs|xmlattr }}{% endif %}>Clear filters</a>
 {% endmacro %}

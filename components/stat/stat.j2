@@ -2,10 +2,10 @@
    Args:
      - number: integer or string
      - label:  text below the number
-     - kind:   '' (default) | 'alert' | 'success' | 'warning'
+     - kind:   '' (default) | 'critical' | 'success' | 'warning'
 
    Usage:
-     {{ stat(14, "In review", kind="alert") }}
+     {{ stat(14, "In review", kind="critical") }}
 #}
 {% macro stat(number, label, kind="") %}
 <div class="stat{% if kind %} stat-{{ kind|e }}{% endif %}">

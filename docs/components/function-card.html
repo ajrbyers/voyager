@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Function card - Voyager</title>
+<link rel="stylesheet" href="../../assets/css/index.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="module" src="../assets/js/site.js"></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="../../index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="https://github.com/openlibhums/janeway">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  <nav class="site-sidebar" aria-label="Documentation" data-sidebar-base="../.."></nav>
+
+  <main class="site-main" id="main">
+
+    <h1>Function card</h1>
+    <p class="site-page-lede">
+      Bordered, clickable card for a single &ldquo;function&rdquo; in the manager -
+      a thing you can configure or open. Carries a coloured icon, an optional count,
+      a title, a description, category tags, and an arrow. Forms the building block
+      of the <a href="../../examples/manager.html">Manager dashboard</a>.
+    </p>
+
+    <h2>Default</h2>
+    <p>Icon, count, title, description, tags, arrow. Hover lifts the card and shifts the arrow right.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <a href="#" class="function-card">
+          <div class="function-card-top">
+            <div class="function-card-icon function-card-icon-blue" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg></div>
+            <div class="function-card-counter">
+              <div class="function-card-count">14</div>
+              <div class="function-card-count-label">pages</div>
+            </div>
+          </div>
+          <div class="function-card-body">
+            <div class="function-card-title">Content pages</div>
+            <div class="function-card-desc">Static CMS pages - About, Contact, Editorial Policies.</div>
+          </div>
+          <div class="function-card-foot">
+            <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+            <span class="function-card-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;a href="/manager/pages" class="function-card"&gt;
+  &lt;div class="function-card-top"&gt;
+    &lt;div class="function-card-icon function-card-icon-blue" aria-hidden="true"&gt;&lt;svg class="icon" viewBox="0 0 24 24" aria-hidden="true"&gt;…&lt;/svg&gt;&lt;/div&gt;
+    &lt;div class="function-card-counter"&gt;
+      &lt;div class="function-card-count"&gt;14&lt;/div&gt;
+      &lt;div class="function-card-count-label"&gt;pages&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="function-card-body"&gt;
+    &lt;div class="function-card-title"&gt;Content pages&lt;/div&gt;
+    &lt;div class="function-card-desc"&gt;Static CMS pages - About, Contact, Editorial Policies.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="function-card-foot"&gt;
+    &lt;div class="function-card-tags"&gt;&lt;span class="tag tag-grey"&gt;content&lt;/span&gt;&lt;/div&gt;
+    &lt;span class="function-card-arrow" aria-hidden="true"&gt;→&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/a&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{% from "voyager/components/function-card/function-card.j2" import function_card %}
+
+{{ function_card(
+    title="Content pages",
+    description="Static CMS pages - About, Contact, Editorial Policies.",
+    url="/manager/pages",
+    icon="file-text", icon_colour="blue",
+    count=14,
+    tags=["content"]
+) }}</code></pre>
+    </div>
+
+    <h2>Icon colour pool</h2>
+    <p>Nine hardcoded colour pairs. Choose by category - e.g. blue for journal-level settings, purple for review, green for submission, orange for workflow stages, teal for content, pink for news, yellow for people, red for system, grey for neutral.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <div class="cluster">
+          <div class="function-card-icon function-card-icon-blue" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg></div>
+          <div class="function-card-icon function-card-icon-green" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg></div>
+          <div class="function-card-icon function-card-icon-orange" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg></div>
+          <div class="function-card-icon function-card-icon-purple" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg></div>
+          <div class="function-card-icon function-card-icon-pink" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg></div>
+          <div class="function-card-icon function-card-icon-teal" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg></div>
+          <div class="function-card-icon function-card-icon-red" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg></div>
+          <div class="function-card-icon function-card-icon-yellow" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg></div>
+          <div class="function-card-icon function-card-icon-grey" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg></div>
+        </div>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;div class="function-card-icon function-card-icon-blue"&gt;&lt;svg class="icon" viewBox="0 0 24 24" aria-hidden="true"&gt;…&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-green"&gt;&lt;svg class="icon" viewBox="0 0 24 24" aria-hidden="true"&gt;…&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-orange"&gt;&lt;svg class="icon" viewBox="0 0 24 24" aria-hidden="true"&gt;…&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-purple"&gt;&lt;svg class="icon" viewBox="0 0 24 24" aria-hidden="true"&gt;…&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-pink"&gt;&lt;svg class="icon" viewBox="0 0 24 24" aria-hidden="true"&gt;…&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-teal"&gt;&lt;svg class="icon" viewBox="0 0 24 24" aria-hidden="true"&gt;…&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-red"&gt;&lt;svg class="icon" viewBox="0 0 24 24" aria-hidden="true"&gt;…&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-yellow"&gt;&lt;svg class="icon" viewBox="0 0 24 24" aria-hidden="true"&gt;…&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="function-card-icon function-card-icon-grey"&gt;&lt;svg class="icon" viewBox="0 0 24 24" aria-hidden="true"&gt;…&lt;/svg&gt;&lt;/div&gt;</code></pre>
+    </div>
+
+    <h2>Coming-soon variant</h2>
+    <p>Use <code>is-coming-soon</code> for functions that are documented but not yet available. The card dims, becomes non-clickable, and shows a yellow &ldquo;Coming soon&rdquo; badge in place of the count.</p>
+    <div class="example">
+      <div class="example-render"><div class="example-render-inner">
+        <a href="#" class="function-card is-coming-soon">
+          <div class="function-card-top">
+            <div class="function-card-icon function-card-icon-purple" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></div>
+            <span class="function-card-soon-badge">Coming soon</span>
+          </div>
+          <div class="function-card-body">
+            <div class="function-card-title">AI abstract translation</div>
+            <div class="function-card-desc">Automatic translation of article abstracts into journal-supported languages.</div>
+          </div>
+          <div class="function-card-foot">
+            <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
+          </div>
+        </a>
+      </div></div>
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button><button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;a href="#" class="function-card is-coming-soon"&gt;
+  &lt;div class="function-card-top"&gt;
+    &lt;div class="function-card-icon function-card-icon-purple"&gt;&lt;svg class="icon" viewBox="0 0 24 24" aria-hidden="true"&gt;…&lt;/svg&gt;&lt;/div&gt;
+    &lt;span class="function-card-soon-badge"&gt;Coming soon&lt;/span&gt;
+  &lt;/div&gt;
+  …
+&lt;/a&gt;</code></pre>
+      <pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{{ function_card(
+    title="AI abstract translation",
+    description="Automatic translation of abstracts into journal-supported languages.",
+    icon="book", icon_colour="purple",
+    coming_soon=True,
+    tags=["content"]
+) }}</code></pre>
+    </div>
+
+    <h2>Filtering</h2>
+    <p>For client-side filtering with <a href="function-filter.html">function-filter</a>, set three data attributes on each card so the JS can match:</p>
+    <ul>
+      <li><code>data-title</code> - lowercase title for text search</li>
+      <li><code>data-desc</code> - lowercase description tokens for text search</li>
+      <li><code>data-tags</code> - space-separated category tags for tag filter</li>
+    </ul>
+    <div class="example">
+      <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button></div>
+      <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;a href="#" class="function-card"
+   data-title="content pages"
+   data-desc="static cms pages about contact policies"
+   data-tags="content"&gt;
+  …
+&lt;/a&gt;</code></pre>
+    </div>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>The card is a real <code>&lt;a&gt;</code> - focusable, keyboard-accessible by default.</li>
+      <li>Choose icon colour by <em>category</em>, not aesthetic - users learn that "blue means settings" over time.</li>
+      <li>Count is optional. If unknown or not meaningful, leave it off; the layout collapses gracefully.</li>
+      <li>Keep descriptions to one line where possible (the card has min-height to keep rows aligned).</li>
+    </ul>
+
+  </main>
+</div>
+
+</body>
+</html>

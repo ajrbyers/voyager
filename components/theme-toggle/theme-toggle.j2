@@ -1,12 +1,33 @@
 {# theme-toggle - light/dark mode switch.
 
    Renders a button that toggles `data-theme` on <html>. The state is
-   persisted in localStorage and read on page load (see the inline FOUC
-   prevention script).
+   persisted in localStorage and read on page load.
+
+   theme_init() renders the FOUC-prevention snippet: it sets the saved
+   (or OS-preferred) theme on <html> before first paint. Render it
+   inline in <head> — it must run synchronously, so it cannot live in
+   the deferred index.js module bundle.
 
    Usage:
+     <head>
+       …
+       {{ theme_init() }}
+     </head>
+     …
      {{ theme_toggle() }}
 #}
+
+{% macro theme_init() %}
+<script>
+(function () {
+  // Set the saved theme before paint so we don't flash light content.
+  var k = 'voyager-theme';
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = localStorage.getItem(k) || (prefersDark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+})();
+</script>
+{% endmacro %}
 {% macro theme_toggle(label="Dark") %}
 <button type="button" class="theme-toggle" data-theme-toggle
         aria-label="Toggle dark mode" aria-pressed="false">

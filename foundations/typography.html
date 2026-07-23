@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Typography - Voyager</title>
 <link rel="stylesheet" href="../assets/css/index.css">
-<link rel="stylesheet" href="../assets/css/site.css">
-<link rel="stylesheet" href="typography.css">
-<script src="../assets/js/site.js" defer></script>
+<link rel="stylesheet" href="../docs/assets/css/site.css">
+<script type="module" src="../docs/assets/js/site.js"></script>
 <script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
 </head>
 <body>
@@ -36,7 +35,9 @@
 
     <h1>Typography</h1>
     <p class="site-page-lede">
-      Janeway's body type stack is GOV.UK's Helvetica/Arial. Chrome (top bar, sidebar
+      Janeway's body type stack is Helvetica/Arial - a widely available,
+      highly legible sans that renders consistently everywhere without a
+      web-font download. Chrome (top bar, sidebar
       links, tabs, breadcrumbs, buttons) uses the system font stack so dense lists
       look at home in the operating system. Code, IDs, file names and SHAs use the
       monospace stack.
@@ -50,7 +51,7 @@
     </ul>
 
     <h2>Scale</h2>
-    <p>The scale is intentionally modest. We avoid GOV.UK's full display sizes - Janeway is dense; oversized headings consume real estate.</p>
+    <p>The scale is intentionally modest - Janeway is dense; oversized headings consume real estate better spent on the work itself.</p>
 
     <div class="type-row"><code>--fs-display</code> <span class="muted">32px</span><span class="ts-display">Editorial decision</span></div>
     <div class="type-row"><code>--fs-h1</code> <span class="muted">24px</span><span class="ts-h1">Reproducibility of LSTM forecasts</span></div>
@@ -64,7 +65,7 @@
 
     <h2>Weights</h2>
     <ul>
-      <li><strong>700</strong> - used for h1–h6 and form labels (GOV.UK convention)</li>
+      <li><strong>700</strong> - used for h1–h3 and form labels, for unmissable hierarchy on dense screens</li>
       <li><strong>600</strong> - used for table-cell strong emphasis and active states</li>
       <li><strong>500</strong> - sidebar link active state, button labels</li>
       <li><strong>400</strong> - body default</li>

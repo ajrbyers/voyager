@@ -1,17 +1,17 @@
-{# Form macros - inspired by the UK Government Design System.
+{# Form macros.
 
    Field types share a structure: form-group wrapper, label, hint,
    error message, control. aria-describedby links hint and error
    to the control in that order (hint first, then error).
 
-   GDS conventions that inspired Voyager:
+   Voyager form conventions:
      · Mark optional fields ("Full name (optional)") - never required
      · Error message is <p> with visually-hidden "Error:" prefix
      · Form-group--error adds left border + padding
      · Inputs that are 40px touch-target (radios/checkboxes) by default
 
    Width:
-     - width=2|3|4|5|10|20  fixed character widths (passport number,
+     - width=2|3|4|5|10|20  fixed character widths (ORCID iD,
                             postcode, etc.)
      - fluid="full"|"three-quarters"|...|"one-quarter"
 
@@ -256,7 +256,7 @@
 {% endmacro %}
 
 {# ---------- File upload ---------- #}
-{# form_file - native file input styled as a GDS file upload.
+{# form_file - native file input styled to match Voyager's controls.
    Args:
      - multiple: boolean - allow multiple file selection
      - accept:   accept attribute (e.g. ".pdf,.docx") #}
