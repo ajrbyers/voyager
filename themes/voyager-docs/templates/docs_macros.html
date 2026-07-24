@@ -1,0 +1,24 @@
+{# Docs example block.
+
+   Author the snippet ONCE, wrapped in {% raw %} so it is captured as
+   literal text:
+
+     {% set src %}{% raw %}{% from "voyager/components/tag/tag.j2" import tag %}
+     {{ tag("Under review", kind="green") }}{% endraw %}{% endset %}
+     {{ example(src) }}
+
+   The live preview and the HTML pane are both derived from rendering that
+   one snippet against the packaged macros (render_snippet), so they can
+   never drift from each other or from the macro. The Jinja2 pane shows the
+   snippet source verbatim. Pass jinja=false for raw-HTML examples (utility
+   classes with no macro) to drop the Jinja2 tab.
+#}
+{% macro example(src, jinja=True) %}
+{% set out = render_snippet(src) %}
+<div class="example">
+  <div class="example-render"><div class="example-render-inner">{{ out }}</div></div>
+  <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button>{% if jinja %}<button class="example-tab" aria-pressed="false" type="button" data-target="jinja">Jinja2</button>{% endif %}</div>
+  <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>{{ out|trim|e }}</code></pre>
+  {% if jinja %}<pre class="example-pane" data-pane="jinja" aria-hidden="true" tabindex="0"><code>{{ src|trim|e }}</code></pre>{% endif %}
+</div>
+{% endmacro %}

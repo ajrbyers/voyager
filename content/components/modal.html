@@ -1,0 +1,40 @@
+{% from "docs_macros.html" import example %}
+<head><title>Modal</title></head>
+<body>
+
+<h1>Modal</h1>
+<p class="site-page-lede">
+  Dialog with a backdrop, header, body, and footer. Used for confirmations and
+  short focused actions. The component driver (<code>modal.js</code>) responds to a control with
+  <code>data-modal-open="&lt;backdrop-id&gt;"</code> opens the modal; anything inside
+  carrying <code>data-modal-close</code> closes it, as do <kbd>Esc</kbd> and a click
+  on the backdrop. Focus is trapped while open and returned to the opener on close.
+</p>
+
+<h2>Confirm a destructive action</h2>
+<p>This demo is live - the button opens a working modal with focus trapping.</p>
+
+{% set src %}{% raw %}{% from "voyager/components/button/button.j2" import button %}
+{% from "voyager/components/modal/modal.j2" import modal, modal_body, modal_foot %}
+<button class="btn" type="button" data-modal-open="modal-demo-live">Withdraw reviewer…</button>
+{% call modal("Withdraw reviewer assignment", id="modal-demo-live") %}
+  {% call modal_body() %}
+    <p>Withdrawing this reviewer will close their assignment and notify them by email. The author will not be informed.</p>
+    <p>You can replace the reviewer afterwards from the reviewer list.</p>
+  {% endcall %}
+  {% call modal_foot() %}
+    {{ button("Cancel", attrs={"data-modal-close": ""}) }}
+    {{ button("Withdraw reviewer", kind="warning") }}
+  {% endcall %}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>Always set <code>aria-modal="true"</code> and <code>aria-labelledby</code> on the dialog.</li>
+  <li>The opening control should receive focus back when the modal closes.</li>
+  <li>Reserve modals for short focused tasks. For longer flows (a decision form, a settings page), navigate to a full page.</li>
+  <li>Don't nest modals.</li>
+</ul>
+
+</body>

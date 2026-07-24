@@ -1,0 +1,11 @@
+/* Page-specific demo styles for the Typography page. */
+
+.ts-display{font-size:var(--fs-display);font-weight:700;line-height:var(--lh-tight)}
+.ts-h1{font-size:var(--fs-h1);font-weight:700;line-height:var(--lh-tight)}
+.ts-h2{font-size:var(--fs-h2);font-weight:700;line-height:var(--lh-tight)}
+.ts-h3{font-size:var(--fs-h3);font-weight:700;line-height:var(--lh-tight)}
+.ts-lg{font-size:var(--fs-lg);line-height:var(--lh-base)}
+.ts-md{font-size:var(--fs-md);line-height:var(--lh-base)}
+.ts-base{font-size:var(--fs-base);line-height:var(--lh-base)}
+.ts-sm{font-size:var(--fs-sm);line-height:var(--lh-base)}
+.ts-xs{font-size:var(--fs-xs);line-height:var(--lh-base)}
