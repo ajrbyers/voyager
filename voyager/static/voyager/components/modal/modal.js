@@ -5,7 +5,8 @@
 // itself. Focus is trapped while open and restored to the opener on
 // close. When HTMX swaps content into a closed backdrop, the modal
 // opens and the first field of the new content is focused (no-op when
-// HTMX is absent).
+// HTMX is absent). A modal rendered open by the server (is_open=True) is
+// adopted on init so ESC, the focus trap, and focus restore work for it.
 
 export function modal() {
   var openModal = null;     // the open .modal-backdrop element
@@ -81,4 +82,9 @@ export function modal() {
       if (field) field.focus();
     }
   });
+
+  // Adopt a modal the server rendered open (is_open=True) so keyboard
+  // dismissal and focus management work without a click to open it.
+  var preOpen = document.querySelector('.modal-backdrop.is-open');
+  if (preOpen) showModal(preOpen, document.activeElement);
 }
