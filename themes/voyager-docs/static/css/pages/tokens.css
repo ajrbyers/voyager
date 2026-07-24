@@ -1,0 +1,55 @@
+/* Page-specific styles for the Tokens page.
+   Token swatches map directly to the tokens documented. */
+
+.swatch-canvas{background:var(--colour-canvas);border:1px solid var(--colour-border-muted)}
+.swatch-canvas-muted{background:var(--colour-canvas-muted)}
+.swatch-canvas-inset{background:var(--colour-canvas-inset)}
+.swatch-surface-grey{background:var(--colour-surface-grey)}
+
+.swatch-border-muted{background:var(--colour-border-muted)}
+.swatch-border{background:var(--colour-border)}
+.swatch-border-strong{background:var(--colour-border-strong)}
+.swatch-border-component{background:var(--colour-border-component)}
+
+.swatch-fg{background:var(--colour-fg)}
+.swatch-fg-muted{background:var(--colour-fg-muted)}
+.swatch-fg-subtle{background:var(--colour-fg-subtle)}
+.swatch-fg-strong{background:var(--colour-fg-strong)}
+
+.swatch-success{background:var(--colour-success)}
+.swatch-warning{background:var(--colour-warning)}
+.swatch-error{background:var(--colour-error)}
+.swatch-info{background:var(--colour-info)}
+
+.swatch-link{background:var(--colour-link)}
+.swatch-accent{background:var(--colour-accent)}
+.swatch-accent-subtle{background:var(--colour-accent-subtle)}
+.swatch-focus{background:var(--colour-focus)}
+
+/* Space scale visual */
+.space-list{
+  list-style:none;margin:0;padding:0;
+  display:flex;flex-direction:column;gap:6px;
+  font-family:var(--font-mono);font-size:13px;
+}
+.space-list li{
+  display:flex;align-items:center;gap:14px;
+  padding:4px 0;
+}
+.space-list code{
+  background:transparent;border:0;padding:0;
+  color:var(--colour-fg-strong);min-width:60px;
+}
+.space-bar{
+  display:inline-block;height:14px;
+  background:var(--colour-accent);
+}
+.space-bar-1{width:4px}
+.space-bar-2{width:8px}
+.space-bar-3{width:12px}
+.space-bar-4{width:16px}
+.space-bar-5{width:20px}
+.space-bar-6{width:24px}
+.space-bar-8{width:32px}
+.space-bar-10{width:40px}
+.space-bar-12{width:48px}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock %}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+{# Design system (the package) - dogfooded exactly as a consumer loads it. #}
+<link rel="stylesheet" href="{{ SITEURL }}/theme/voyager/assets/css/index.css">
+{# Docs-site chrome. #}
+<link rel="stylesheet" href="{{ SITEURL }}/theme/css/site.css">
+<script type="module" src="{{ SITEURL }}/theme/voyager/assets/js/index.js"></script>
+<script src="{{ SITEURL }}/theme/js/site.js" defer></script>
+<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-brand" href="{{ SITEURL }}/index.html"><span class="site-brand-mark" aria-hidden="true"><svg class="site-brand-logo" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="3" r="1.3" fill="currentColor"/><path d="M3 6 L9 15 L15 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>Voyager<span class="site-version">v0.1</span></a>
+  <div class="site-meta"><a href="https://github.com/openlibhums/janeway">Janeway repo</a><button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+    <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <span data-theme-label>Dark</span>
+  </button></div>
+</header>
+
+<div class="site-shell">
+  {% set current_url = page.url if page is defined and page else '' %}
+  <nav class="site-sidebar" aria-label="Documentation">
+    <button type="button" class="site-sidebar-toggle" data-disclosure-toggle aria-expanded="false" aria-controls="site-sidebar-content">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>Menu</button>
+    <div class="site-sidebar-content" id="site-sidebar-content">
+      {% for section, items in SIDEBAR %}
+      <span class="site-sidebar-section">{{ section }}</span>
+      <ul>
+        {% for label, url in items %}
+        <li><a class="site-sidebar-link" href="{{ SITEURL }}/{{ url }}"{% if url == current_url %} aria-current="page"{% endif %}>{{ label }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endfor %}
+    </div>
+  </nav>
+
+  <main class="site-main" id="main">
+    {% block content %}{% endblock %}
+  </main>
+</div>
+
+</body>
+</html>
