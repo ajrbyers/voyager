@@ -54,7 +54,7 @@ settings  →  reset  →  elements  →  components  →  utilities
 Utilities load **last**, and single-purpose override utilities (text,
 margin, flow) carry `!important` so they beat component declarations at
 any nesting depth - the ITCSS terminal layer. See
-[`assets/css/README.md`](assets/css/README.md) for the full architecture
+[`CSS-ARCHITECTURE.md`](CSS-ARCHITECTURE.md) for the full architecture
 document.
 
 ### Tokens
@@ -165,13 +165,29 @@ template backend with `APP_DIRS: True` resolves the
 `voyager/components/...` import paths shown above with no further
 configuration.
 
-Packaging notes: `assets/` and `components/` stay where they are in the
-repo; `hatch_build.py` maps CSS and JS into `voyager/static/voyager/`
-and macros into `voyager/jinja2/voyager/` at build time, preserving
-their relative geometry so the `@import` paths in `index.css` and the
-module imports in `index.js` resolve unchanged (Django's
-`ManifestStaticFilesStorage` rewrites both in production). Editable installs use the committed symlinks in
-`voyager/static/` and `voyager/jinja2/` instead (Linux and macOS only).
+For production cache-busting, point the staticfiles backend at Voyager's
+storage class:
+
+```python
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "voyager.storage.VoyagerManifestStaticFilesStorage",
+    },
+}
+```
+
+Django's default `ManifestStaticFilesStorage` hashes and rewrites the
+`@import` chain in `index.css` but leaves the ES-module `import`
+specifiers in `index.js` untouched, so the component drivers would ship
+unhashed. `VoyagerManifestStaticFilesStorage` enables
+`support_js_module_import_aggregation` (Django >= 4.2) so the JS import
+chain is hashed too.
+
+Packaging notes: the shippable files live at their canonical Django
+locations inside the package - `voyager/static/voyager/` (CSS and JS) and
+`voyager/jinja2/voyager/` (macros) - so hatchling ships them as ordinary
+package data. No build hook, no symlinks: standard `AppDirectoriesFinder`
+and `APP_DIRS` Jinja resolve them.
 
 ## Status
 

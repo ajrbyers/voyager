@@ -18,22 +18,12 @@ classifiers = [
 [project.urls]
 Source = "https://github.com/openlibhums/voyager"
 
+# The shippable files live at their canonical Django locations inside the
+# package - voyager/static/voyager/... (css, js) and voyager/jinja2/voyager/...
+# (macros) - so hatchling ships them as ordinary package data. No build hook,
+# no symlinks: standard AppDirectoriesFinder and APP_DIRS Jinja resolve them.
 [tool.hatch.build.targets.wheel]
 packages = ["voyager"]
-# The static/ and jinja2/ trees inside the package are dev-only symlinks
-# back to assets/ and components/; the build hook maps the real files in.
-exclude = ["voyager/static", "voyager/jinja2"]
-
-[tool.hatch.build.targets.wheel.hooks.custom]
-path = "hatch_build.py"
 
 [tool.hatch.build.targets.sdist]
-include = [
-    "voyager",
-    "assets",
-    "components",
-    "hatch_build.py",
-    "README.md",
-    "LICENSE",
-]
-exclude = ["voyager/static", "voyager/jinja2"]
+include = ["voyager", "README.md", "LICENSE", "CSS-ARCHITECTURE.md"]
