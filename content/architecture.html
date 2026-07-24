@@ -54,18 +54,18 @@
 
     <h2>Component file pattern</h2>
     <p>
-      Each component lives in <code>components/&lt;name&gt;/</code> with two
-      co-located source files:
+      Django keeps static files and templates in separate trees, so a
+      component's source is split by type:
     </p>
     <ul>
-      <li><code>&lt;name&gt;.css</code> - root class matching the name, native nesting, no unscoped element selectors</li>
-      <li><code>&lt;name&gt;.j2</code> - illustrative Jinja2 macro for production use</li>
+      <li><code>voyager/static/voyager/components/&lt;name&gt;/&lt;name&gt;.css</code> - root class matching the name, native nesting, no unscoped element selectors</li>
+      <li><code>voyager/jinja2/voyager/components/&lt;name&gt;/&lt;name&gt;.j2</code> - Jinja2 macro for production use</li>
     </ul>
     <p>
       The canonical markup and usage guidance for each component live on its
-      documentation page at <code>docs/components/&lt;name&gt;.html</code>,
+      documentation page at <code>content/components/&lt;name&gt;.html</code>,
       alongside the copy-pasteable HTML and Jinja2 examples. Those pages are
-      docs-site chrome, not part of the shipped design system.
+      docs-site content, not part of the shipped design system.
     </p>
     <p>
       The CSS opens with the root class and nests everything inside it with the

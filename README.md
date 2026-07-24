@@ -8,40 +8,41 @@ nesting and custom properties only.
 
 ## What's in here
 
-The tree splits cleanly into two worlds - the shippable design system, and the
-documentation site around it:
+The repo has two parts - the shippable Django app, and a Pelican
+documentation site that renders the real components:
 
 ```
-# Shippable design system (all a consumer needs)
-assets/css/          index.css entry + settings/reset/elements/utilities layers
-assets/js/           index.js entry - imports and inits each component driver
-components/<name>/    co-located <name>.css, <name>.j2 and (where a component
-                      has behaviour) <name>.js source per component
+# Shippable design system - the `voyager` Django app (all a consumer needs)
+voyager/static/voyager/assets/css/         index.css entry + settings/reset/
+                                           elements/utilities layers
+voyager/static/voyager/assets/js/          index.js entry - imports and inits
+                                           each component driver
+voyager/static/voyager/components/<name>/  <name>.css and, where a component
+                                           has behaviour, <name>.js
+voyager/jinja2/voyager/components/<name>/  <name>.j2 macro for Janeway
+voyager/storage.py                         manifest storage that hashes the JS
+                                           import chain as well as the CSS
 
-# Documentation site (never shipped)
-docs/assets/css/      site.css (docs chrome) + pages/ (per-page docs styles)
-docs/assets/js/       site.js - the JS that powers the docs site
-docs/components/       a documentation page per component
-foundations/          tokens, typography, layout (doc pages)
-examples/             reference pages built only from documented components
+# Documentation site (never shipped) - Pelican, dogfooding the package
+content/                one page per component/foundation/example; each renders
+                        the real packaged macros via the example() helper
+themes/voyager-docs/    docs theme: the chrome, the example() macro, docs CSS/JS
+pelicanconf.py          Pelican config: render_snippet + the sidebar registry
 ```
 
-Two stylesheet entry points, and every doc/example page links both:
+The **design system** has two entry points, both under
+`voyager/static/voyager/assets/`:
 
-- `assets/css/index.css` - the **design system**. It `@import`s every layer
-  (settings → reset → elements → components → utilities) in order. This is the
-  only file consumers ship.
-- `docs/assets/css/site.css` - the **docs-site chrome** (header, sidebar, code
-  previews) plus, via `@import`, the page-specific styles in
-  `docs/assets/css/pages/`. It lives in the docs tree and is never shipped.
+- `css/index.css` - `@import`s every layer (settings → reset → elements →
+  components → utilities) in order. The only stylesheet consumers ship.
+- `js/index.js` - an ES module that imports each component's driver
+  (`components/<name>/<name>.js`) and calls its init - the JS analogue of
+  `index.css`.
 
-The JS mirrors the same split. `assets/js/index.js` is the design-system
-entry: an ES module that imports each component's driver
-(`components/<name>/<name>.js`) and calls its init - the JS analogue of
-`index.css`. `docs/assets/js/site.js` holds only docs-site behaviour
-(sidebar injection, code-preview tabs) and imports the design-system
-entry, consuming it exactly as an application would. Every doc/example
-page loads `site.js` with `<script type="module">`.
+The **docs site** supplies its own chrome (header, sidebar, code-preview
+tabs) from `themes/voyager-docs/static/` and loads the design system
+exactly as a consumer application would, so the docs are a live
+integration test of the package.
 
 ## Architecture
 
@@ -69,9 +70,10 @@ semantic aliases without touching raw tokens.
 
 ### Components
 
-- Each component lives in `components/<name>/` with co-located `<name>.css`
-  and a `<name>.j2` macro for the Janeway integration. Its documentation page
-  (with canonical markup) is `docs/components/<name>.html`.
+- Each component's CSS/JS live at `voyager/static/voyager/components/<name>/`
+  and its `<name>.j2` macro at `voyager/jinja2/voyager/components/<name>/`
+  (Django keeps static files and templates in separate trees). Its
+  documentation page is `content/components/<name>.html`.
 - The CSS file opens with a **root class** matching the component name, and
   everything nests under it via `&`. Scoped element selectors under the root
   (`& li`, `& a`, `& td`) are fine; unscoped element selectors are not. A few
@@ -97,19 +99,22 @@ semantic aliases without touching raw tokens.
 5. Accessibility is a quality bar - AA contrast, real focus rings, semantic
    HTML, no fake ARIA.
 
-## Viewing locally
+## Building the docs locally
 
-Voyager is a static site, but its JS loads as ES modules, which browsers
-refuse over `file://` - so serve the directory rather than opening files
-directly:
+The docs are a Pelican site. Install the build dependencies (and Voyager
+itself, so the pages can render its macros), then build:
 
 ```sh
-python3 -m http.server 8000
+pip install -e . -r requirements-docs.txt
+make docs          # renders content/ to output/
+cd output && python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
-The docs site supports light and dark themes via the toggle in the header;
-preference is stored in `localStorage`.
+`make docs` stages the package's own CSS/JS into the theme (so the docs
+load exactly what a consumer installs) and runs Pelican. The site supports
+light and dark themes via the toggle in the header; preference is stored in
+`localStorage`.
 
 ## Using Voyager in a page
 
