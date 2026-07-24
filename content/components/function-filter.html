@@ -74,7 +74,7 @@
    import function_filter, function_filter_search, function_filter_tags, function_filter_tag %}
 
 {% call function_filter(action="/manager/dashboard", htmx_target="#manager-grid") %}
-  {{ function_filter_search(name="q") }}
+  {{ function_filter_search(name="query") }}
   {% call function_filter_tags() %}
     {{ function_filter_tag("tag", "all",      "All",      checked=True) }}
     {{ function_filter_tag("tag", "settings", "Settings") }}

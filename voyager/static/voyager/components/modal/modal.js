@@ -84,7 +84,9 @@ export function modal() {
   });
 
   // Adopt a modal the server rendered open (is_open=True) so keyboard
-  // dismissal and focus management work without a click to open it.
+  // dismissal and focus management work without a click to open it. The
+  // driver is single-open: the first open backdrop is adopted; stacked
+  // server-open modals are out of contract.
   var preOpen = document.querySelector('.modal-backdrop.is-open');
   if (preOpen) showModal(preOpen, document.activeElement);
 }

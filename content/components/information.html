@@ -14,7 +14,7 @@
 <h2>Notice - info (default)</h2>
 {% set src %}{% raw %}{% from "voyager/components/information/information.j2" import notice %}
 {% call notice("Important") %}
-  <p>Reviewer #419 has not acknowledged the invitation sent on 12 April 2026.</p>
+  <p>Reviewer #419 has not acknowledged the invitation sent on 12 April 2026 - 28 days ago.</p>
 {% endcall %}{% endraw %}{% endset %}
 {{ example(src) }}
 
@@ -37,6 +37,7 @@
 {% set src %}{% raw %}{% from "voyager/components/information/information.j2" import inset_text %}
 {% call inset_text() %}
   <p>Currently in <strong>Under Review</strong>. An active minor revision is in flight.</p>
+  <p>Editorial decision is blocked until at least one further review is received.</p>
 {% endcall %}{% endraw %}{% endset %}
 {{ example(src) }}
 

@@ -122,8 +122,8 @@ Link the stylesheet bundle and the behaviour entry, then use the
 component markup:
 
 ```html
-<link rel="stylesheet" href="/voyager/assets/css/index.css">
-<script type="module" src="/voyager/assets/js/index.js"></script>
+<link rel="stylesheet" href="{% static 'voyager/assets/css/index.css' %}">
+<script type="module" src="{% static 'voyager/assets/js/index.js' %}"></script>
 
 <span class="tag tag-green">Under review</span>
 <span class="tag tag-grey">Article</span>
