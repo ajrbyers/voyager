@@ -17,7 +17,7 @@
 <h2>How it's organised</h2>
 <ul>
   <li><strong>Foundations</strong> - the tokens, type scale, and layout primitives that everything else builds on.</li>
-  <li><strong>Components</strong> - self-contained patterns. Each component lives in its own folder with co-located <code>.css</code> and <code>.j2</code> macro. The CSS uses a single root class with native nesting; variants compose as additional flat classes.</li>
+  <li><strong>Components</strong> - self-contained patterns. Each component pairs a <code>.css</code> file with a <code>.j2</code> macro. The CSS uses a single root class with native nesting; variants compose as additional flat classes.</li>
   <li><strong>Examples</strong> - three real Janeway pages built entirely from Voyager components: the editor dashboard, the manager index, and the peer-review screen.</li>
 </ul>
 
@@ -34,7 +34,7 @@
 <p>
   Voyager follows the <a href="https://github.com/openlibhums/memory-alpha">Memory Alpha</a>
   CSS approach: ITCSS layer order (<code>settings → reset → elements → components → utilities</code>),
-  flat component folders, single root class per component, native CSS nesting, composable
+  single root class per component, native CSS nesting, composable
   variant classes (no BEM), two-tier tokens (raw + semantic). See the
   <a href="architecture.html">Architecture</a> page for the full picture.
 </p>
