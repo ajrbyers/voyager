@@ -1,0 +1,30 @@
+{% from "docs_macros.html" import example %}
+<head><title>Sidebar nav</title></head>
+<body>
+
+<h1>Sidebar nav</h1>
+<p class="site-page-lede">
+  A left rail of grouped navigation links. Use it for section-level
+  navigation within a journal, alongside the
+  <a href="app-header.html">app header</a> at the top of the page.
+</p>
+
+<h2>Grouped sections</h2>
+<p>Each section has an <code>&lt;h2&gt;</code> label and a <code>&lt;ul&gt;</code> of links. Below 900px the sections collapse behind the Menu button in the journal row; the shared disclosure driver in <code>folder-list.js</code> toggles them via <code>data-disclosure-toggle</code>, <code>aria-controls</code> and <code>aria-expanded</code>.</p>
+{% set src %}{% raw %}{% from "voyager/components/sidebar-nav/sidebar-nav.j2"
+   import sidebar_nav, sidebar_nav_section, sidebar_nav_item %}
+
+{% call sidebar_nav(journal={
+    "mark": "JE",
+    "name": "Journal of Energy Modelling",
+    "sub":  "Editor in Chief view"
+}) %}
+  {% call sidebar_nav_section("Workflow") %}
+    {{ sidebar_nav_item("Unassigned",  url="/unassigned", count=7) }}
+    {{ sidebar_nav_item("Peer Review", url="/review",     count=14, current=True) }}
+    {{ sidebar_nav_item("Copyediting", url="/copyedit",   count=5) }}
+  {% endcall %}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+</body>

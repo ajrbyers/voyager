@@ -1,0 +1,53 @@
+{% from "docs_macros.html" import example %}
+<head><title>Details</title></head>
+<body>
+
+<h1>Details</h1>
+<p class="site-page-lede">
+  Collapsible disclosure block. Wraps the native
+  <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> elements so it works
+  without JavaScript. Use sparingly - hidden content can be missed. Good
+  for secondary help text, advanced options, or long file lists.
+</p>
+
+<h2>Default (closed)</h2>
+{% set src %}{% raw %}{% from "voyager/components/details/details.j2" import details %}
+
+{% call details("Help with reviewer recommendations") %}
+  <p>You can recommend accept, minor revisions, major revisions, or reject.</p>
+  <p>If you decline to make a recommendation, leave this field empty.</p>
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Open by default</h2>
+{% set src %}{% raw %}{% from "voyager/components/details/details.j2" import details %}
+
+{% call details("Round 1 files (closed round)", open=True) %}
+  <p>The four files originally sent to reviewers in Round 1. Kept for audit.</p>
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Remembers open state</h2>
+<p>
+  Add <code>data-details-persist="&lt;key&gt;"</code> to opt in to localStorage
+  persistence. The first visit respects the server-rendered state; after
+  that, the last toggle by this user wins. The state is stored under
+  <code>voyager-details:&lt;key&gt;</code>. Pick a key that is unique to the
+  disclosure's purpose - same key on two pages will share state.
+</p>
+{% set src %}{% raw %}{% from "voyager/components/details/details.j2" import details %}
+
+{% call details("Toggle me, then reload", persist="voyager-docs-demo") %}
+  <p>The next page load will reopen this block if you left it open, or keep it closed if you closed it. Try it.</p>
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>Use <code>&lt;details&gt;</code> - never roll your own collapsible. Keyboard and screen-reader support is free.</li>
+  <li>The summary should describe what's inside, not "Show more". A user should know whether to click without trying.</li>
+  <li>Don't hide critical content. If a user must see it to complete a task, don't put it inside details.</li>
+  <li>Persist (<code>data-details-persist</code>) is for long-lived disclosures such as file lists or expanded panels - not for help text, validation messages, or anything that should reset on each page-load.</li>
+</ul>
+
+</body>

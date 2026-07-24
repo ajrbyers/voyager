@@ -1,0 +1,53 @@
+{% from "docs_macros.html" import example %}
+<head><title>Filter bar</title></head>
+<body>
+
+<h1>Filter bar</h1>
+<p class="site-page-lede">
+  A control row for narrowing a list of results. Select dropdowns run
+  along the top, with chips beneath them showing the current selection.
+  Each chip has its own remove (×), and a "Clear filters" link appears
+  whenever any filter is active.
+</p>
+
+<h2>Default</h2>
+{% set src %}{% raw %}{% from "voyager/components/filter-bar/filter-bar.j2"
+   import filter_bar, filter_bar_controls, filter_select,
+          filter_bar_chips, filter_chip, filter_clear %}
+
+{% call filter_bar() %}
+  {% call filter_bar_controls() %}
+    {{ filter_select("f-editor", "Editor",
+                     options=[{"value":"","label":"All editors"},
+                              {"value":"1","label":"Dr Amira Hassan"},
+                              {"value":"2","label":"Prof Marcus Whitfield"}],
+                     value="1") }}
+    {{ filter_select("f-section", "Section",
+                     options=[{"value":"","label":"All sections"},
+                              {"value":"article","label":"Article"},
+                              {"value":"review","label":"Review"}],
+                     value="review") }}
+    {{ filter_select("f-age", "Age",
+                     options=[{"value":"","label":"Any age"},
+                              {"value":"30","label":"Over 30 days"}]) }}
+  {% endcall %}
+
+  {% call filter_bar_chips() %}
+    {{ filter_chip("Hassan", remove_url="?section=review",
+                   remove_label="Remove editor filter") }}
+    {{ filter_chip("Review", remove_url="?editor=1",
+                   remove_label="Remove section filter") }}
+    {{ filter_clear("?") }}
+  {% endcall %}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>The select dropdowns submit on change (HTMX or vanilla form submit) - the bar itself does no JavaScript.</li>
+  <li>Chips reflect active selections. Each chip's remove link should remove only that filter while preserving the others.</li>
+  <li>Hide the chips row entirely when no filters are active - the empty <code>filter-bar-chips</code> collapses to zero height automatically.</li>
+  <li>Pair with the <a href="folder-list.html">folder list</a> and <a href="article-card.html">article card</a> for the inbox-style dashboard.</li>
+</ul>
+
+</body>

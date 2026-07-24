@@ -1,0 +1,37 @@
+{% from "docs_macros.html" import example %}
+<head><title>Pagination</title></head>
+<body>
+
+<h1>Pagination</h1>
+<p class="site-page-lede">
+  Previous / Next controls plus numbered pages, for the foot of any
+  list view - articles, users, news posts, email log. Screen readers
+  announce the current page via <code>aria-current="page"</code>.
+</p>
+
+<h2>Default</h2>
+{% set src %}{% raw %}{% from "voyager/components/pagination/pagination.j2" import pagination %}
+{{ pagination(
+    prev_url="?page=4", prev_label="Page 4",
+    next_url="?page=6", next_label="Page 6",
+    pages=[
+      {"n": 1,  "url": "?page=1"},
+      {"ellipsis": True},
+      {"n": 4,  "url": "?page=4"},
+      {"n": 5,  "current": True},
+      {"n": 6,  "url": "?page=6"},
+      {"ellipsis": True},
+      {"n": 12, "url": "?page=12"},
+    ]
+) }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>Use ellipses to collapse long ranges - show first, last, current, and one or two adjacent pages.</li>
+  <li>Always include <code>rel="prev"</code> and <code>rel="next"</code> on the prev/next links.</li>
+  <li>Wrap in <code>&lt;nav aria-label="Pagination"&gt;</code> so screen readers announce it as a landmark.</li>
+  <li>Omit Previous when on page 1; omit Next on the last page.</li>
+</ul>
+
+</body>

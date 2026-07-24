@@ -1,0 +1,49 @@
+{% from "docs_macros.html" import example %}
+<head><title>Article card</title></head>
+<body>
+
+<h1>Article card</h1>
+<p class="site-page-lede">
+  Inbox-style row representing a single article. Carries severity as a
+  coloured left stripe, an ID + tag + days-in-workflow row at the top, the
+  truncated title in the middle, byline at the bottom, and inline action
+  buttons. Alert pills (also documented here) form a quiet footer.
+</p>
+
+<h2>Severity variants</h2>
+<p>Add <code>article-card-critical</code>, <code>article-card-warning</code>, or <code>article-card-info</code> for the coloured left stripe. Omit all three for the neutral state.</p>
+
+{% set src %}{% raw %}{% from "voyager/components/article-card/article-card.j2"
+   import article_card, article_card_body, article_card_alerts %}
+{% from "voyager/components/alert-pill/alert-pill.j2" import alert_pill %}
+{% from "voyager/components/button/button.j2" import button %}
+
+{% call article_card(severity="critical") %}
+  {% call article_card_body(
+      id="#1247",
+      url="/article/1247",
+      title="Reproducibility of LSTM forecasts for short-term electricity demand",
+      authors="Okafor", extra_count=2, editor="Hassan",
+      days="62d", days_severity="critical",
+      tags=[{"label": "Peer Review", "kind": "grey"},
+            {"label": "Article",    "kind": "grey"}]
+  ) %}
+    {{ button("⌚", size="small") }}
+    {{ button("Open →", kind="primary", size="small", href="/article/1247") }}
+  {% endcall %}
+  {% call article_card_alerts() %}
+    {{ alert_pill("Reviewer overdue 12 days", kind="critical", url="#") }}
+    {{ alert_pill("Whitfield not acknowledged", kind="warning", url="#") }}
+  {% endcall %}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>Severity is conveyed by both the left stripe colour <em>and</em> the <a href="alert-pill.html">alert pills</a> below, never by stripe alone.</li>
+  <li>The days indicator (<code>article-card-days-critical</code>, <code>-warning</code>) follows the same thresholds as the alert pills: over 60 days critical, over 30 days warning.</li>
+  <li>Truncate titles at the consumer side (use a Django filter or CSS line clamp); the component doesn't enforce a length.</li>
+  <li>Action buttons should use <code>btn-small</code> to keep the row compact.</li>
+</ul>
+
+</body>

@@ -1,0 +1,21 @@
+{% from "docs_macros.html" import example %}
+<head><title>App header</title></head>
+<body>
+
+<h1>App header</h1>
+<p class="site-page-lede">
+  The bar across the top of every page. It houses the brand, the primary
+  navigation, and the account menu. Use one per page.
+</p>
+
+<h2>Example</h2>
+{% set src %}{% raw %}{% from "voyager/components/app-header/app-header.j2" import app_header, app_header_link %}
+
+{% call app_header(service="Editorial", user={"name": "t.kowalski"}) %}
+  {{ app_header_link("Editorial",  url="/editorial") }}
+  {{ app_header_link("Production", url="/production") }}
+  {{ app_header_link("Reports",    url="/reports") }}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+</body>

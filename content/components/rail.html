@@ -1,0 +1,87 @@
+{% from "docs_macros.html" import example %}
+<head><title>Rail</title></head>
+<body>
+
+<h1>Rail</h1>
+<p class="site-page-lede">
+  The right-hand metadata and status column on detail screens. The rail keeps
+  status, workflow steps, and next-step actions visible alongside the main
+  content - the reader scans the article on the left and the state of play on
+  the right. See <a href="../examples/peer-review.html">the peer review
+  example</a> for the rail in full context.
+</p>
+
+<h2>Rail sections</h2>
+<p>
+  The rail is an <code>&lt;aside&gt;</code> of stacked <code>.rail-section</code>
+  blocks, each with a heavily underlined <code>&lt;h2&gt;</code>. Typical sections
+  are <strong>Status</strong> (an inset text block), <strong>Steps</strong>
+  (a <a href="steps.html">steps list</a>), and <strong>Actions</strong>
+  (an <a href="steps.html">action menu</a>).
+</p>
+{% set src %}{% raw %}{% from "voyager/components/rail/rail.j2" import rail, rail_section %}
+{% call rail(label="Status, steps and actions") %}
+  {% call rail_section("Status") %}
+    <div class="inset-text">
+      <p>Currently in <strong>Under Review</strong>. An active minor revision is in flight.</p>
+    </div>
+  {% endcall %}
+  {% call rail_section("Steps") %}
+    <ol class="steps">
+      <li class="is-done">Assign editor</li>
+      <li class="is-done">Invite reviewers<small>3 invitations sent</small></li>
+      <li class="is-current" aria-current="step">Collect reviews<small>1 of 2 received</small></li>
+      <li>Editorial decision</li>
+    </ol>
+  {% endcall %}
+  {% call rail_section("Actions") %}
+    <ul class="action-menu">
+      <li><a href="#"><span class="action-menu-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span> View metadata</a></li>
+      <li><a href="#"><span class="action-menu-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span> New review round</a></li>
+    </ul>
+  {% endcall %}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Pairing with .layout-with-rail</h2>
+<p>
+  The rail does not position itself - it relies on the
+  <code>.layout-with-rail</code> utility, a two-column grid inside
+  <code>.app-shell-main</code> (see <a href="app-shell.html">Application
+  shell</a>). The main content takes the flexible left column; the rail takes
+  a fixed right column sized by the <code>--shell-rail-width</code> token.
+  Below 1100px the grid collapses and the rail drops beneath the content.
+</p>
+{% set src %}{% raw %}<div class="layout-with-rail">
+  <div>
+    <h3 class="mt-0">Reviewer report</h3>
+    <p>The main content column. Article details, reviewer blocks, and decision forms sit here, taking the flexible left-hand share of the grid.</p>
+    <p>The rail stays alongside as the reader scrolls short pages; on long pages it ends where its content ends.</p>
+  </div>
+  <aside class="rail" aria-label="Status and actions">
+    <section class="rail-section">
+      <h2>Status</h2>
+      <div class="inset-text">
+        <p>Currently in <strong>Under Review</strong>.</p>
+      </div>
+    </section>
+  </aside>
+</div>{% endraw %}{% endset %}
+{{ example(src, jinja=False) }}
+
+<h2>When to use</h2>
+<ul>
+  <li>Use the rail on detail screens - a single article, a review assignment, a production task - where status and actions should stay in view next to the content.</li>
+  <li>Don't use it on list or dashboard screens; those use full-width layouts and put actions on the items themselves.</li>
+  <li>Keep it to two or three sections. If the rail grows longer than the main content, it has stopped being a summary.</li>
+</ul>
+
+<h2>Notes</h2>
+<ul>
+  <li>The rail is an <code>&lt;aside&gt;</code> with an <code>aria-label</code> describing its contents (e.g. "Status, steps and actions") so screen-reader users can identify and skip the complementary landmark.</li>
+  <li>Section headings are <code>&lt;h2&gt;</code> elements - slot them into the page's heading hierarchy rather than skipping levels.</li>
+  <li>In source order the rail follows the main content - so screen readers and the collapsed single-column layout both present the most important material first.</li>
+  <li>The primary call to action (e.g. "Make a decision") belongs in the Status section, above the steps and secondary actions.</li>
+</ul>
+
+</body>

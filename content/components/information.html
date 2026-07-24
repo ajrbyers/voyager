@@ -1,0 +1,52 @@
+{% from "docs_macros.html" import example %}
+<head><title>Information</title></head>
+<body>
+
+<h1>Information</h1>
+<p class="site-page-lede">
+  Three patterns for surfacing status messages, in the order they appear below:
+  <strong>notice</strong> for events worth surfacing, <strong>inset text</strong> for
+  ambient context, and <strong>error summary</strong> for failed form
+  submissions. For serious or irreversible actions, see
+  <a href="warning-text.html">warning text</a>.
+</p>
+
+<h2>Notice - info (default)</h2>
+{% set src %}{% raw %}{% from "voyager/components/information/information.j2" import notice %}
+{% call notice("Important") %}
+  <p>Reviewer #419 has not acknowledged the invitation sent on 12 April 2026.</p>
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notice - variants</h2>
+<p>Add <code>.notice-warning</code>, <code>.notice-error</code>, or <code>.notice-success</code> alongside <code>.notice</code>.</p>
+{% set src %}{% raw %}{% from "voyager/components/information/information.j2" import notice %}
+{% call notice("Action needed", kind="warning") %}
+  <p>Revision request R-2026-091 is overdue by 4 days.</p>
+{% endcall %}
+{% call notice("Something went wrong", kind="error") %}
+  <p>The decision could not be saved. Try again or contact support.</p>
+{% endcall %}
+{% call notice("Decision sent", kind="success") %}
+  <p>Your decision letter was emailed to the corresponding author.</p>
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Inset text</h2>
+<p>Quiet ambient context. No header. Use in the right rail under "Status".</p>
+{% set src %}{% raw %}{% from "voyager/components/information/information.j2" import inset_text %}
+{% call inset_text() %}
+  <p>Currently in <strong>Under Review</strong>. An active minor revision is in flight.</p>
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2 id="error-summary">Error summary</h2>
+<p>Used at the top of a form when validation fails. Each error is a link that focuses the corresponding field. <code>role="alert"</code> announces the summary to screen readers immediately.</p>
+{% set src %}{% raw %}{% from "voyager/components/information/information.j2" import error_summary, error_summary_item %}
+{% call error_summary() %}
+  {{ error_summary_item("Enter a decision letter to send to the author", anchor="decision-letter") }}
+  {{ error_summary_item("Choose a decision", anchor="decision-kind") }}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+</body>

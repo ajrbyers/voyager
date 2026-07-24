@@ -1,0 +1,26 @@
+{% from "docs_macros.html" import example %}
+<head><title>Stat</title></head>
+<body>
+
+<h1>Stat</h1>
+<p class="site-page-lede">
+  A single large counter with a label. Use stats for dashboard summaries.
+  To group stats into a workflow queue with a header and CTA, see the
+  <a href="queue-card.html">queue card</a>.
+</p>
+
+<h2>Variants</h2>
+<p>Variants: <code>stat-critical</code> (red), <code>stat-success</code> (green), <code>stat-warning</code> (orange).</p>
+{% set src %}{% raw %}{% from "voyager/components/stat/stat.j2" import stat %}
+
+{{ stat(7,  "Unassigned articles", kind="critical") }}
+{{ stat(14, "In peer review") }}
+{{ stat(3,  "Decisions ready to send", kind="success") }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>Numbers must be integers, not abbreviated (use <code>14</code>, not <code>14k</code>) - editorial dashboards deal in small absolute counts.</li>
+</ul>
+
+</body>

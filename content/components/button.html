@@ -1,0 +1,57 @@
+{% from "docs_macros.html" import example %}
+<head><title>Button</title></head>
+<body>
+
+<h1>Button</h1>
+<p class="site-page-lede">
+  Buttons are flat and square, with a 2px solid bottom shadow that gives
+  them a pressable, physical feel. The default button is a neutral grey
+  used for almost every editorial action. Compose with one of the variants
+  for primary commits or destructive actions.
+</p>
+
+<h2>When to use which</h2>
+<ul>
+  <li><strong>Default</strong> (grey) - table-row actions, secondary toolbar buttons, "View", "Send reminder". Use this for almost everything.</li>
+  <li><strong>Primary</strong> (green) - the page's main commit action: "Make a decision", "Submit review". One per view.</li>
+  <li><strong>Warning</strong> (red) - destructive primary: "Delete reviewer", "Withdraw submission". Use sparingly.</li>
+</ul>
+
+<h2>Variants</h2>
+{% set variants %}{% raw %}{% from "voyager/components/button/button.j2" import button %}
+
+{{ button("Save draft") }}
+{{ button("Make a decision", kind="primary") }}
+{{ button("Delete reviewer", kind="warning") }}{% endraw %}{% endset %}
+{{ example(variants) }}
+
+<h2>Sizes</h2>
+<p>Size modifiers compose with any variant. Use <code>btn-small</code> for table-row actions and dense toolbars where the default size is too tall.</p>
+{% set sizes %}{% raw %}{% from "voyager/components/button/button.j2" import button %}
+
+{{ button("Small", size="small") }}
+{{ button("Default") }}
+{{ button("Large", size="large") }}{% endraw %}{% endset %}
+{{ example(sizes) }}
+
+<h2>Button group</h2>
+<p>Cluster of related buttons. Use <code>.btn-group-vertical</code> when stacking long-labelled options like Manager menu links.</p>
+{% set group %}{% raw %}{% from "voyager/components/button/button.j2" import button %}
+
+<div class="btn-group">
+  {{ button("Cancel") }}
+  {{ button("Submit decision", kind="primary") }}
+</div>{% endraw %}{% endset %}
+{{ example(group) }}
+
+<h2>Disabled state</h2>
+<p>Use <code>disabled</code> on <code>&lt;button&gt;</code>. Anchors styled as buttons cannot be disabled - remove or replace them instead.</p>
+
+<h2>Accessibility</h2>
+<ul>
+  <li>Always set <code>type="button"</code> on real buttons that aren't form submitters.</li>
+  <li>Don't use a <code>&lt;div&gt;</code> with click handlers - use a <code>&lt;button&gt;</code>.</li>
+  <li>Focus styling is handled by the global yellow focus rule. Don't override it on individual buttons.</li>
+</ul>
+
+</body>

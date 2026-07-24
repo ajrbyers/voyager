@@ -1,0 +1,147 @@
+{% from "docs_macros.html" import example %}
+<head><title>Form</title></head>
+<body>
+
+<h1>Form</h1>
+<p class="site-page-lede">
+  Every field type shares one structure: group wrapper, label, hint,
+  error message, control. Voyager's form conventions: mark optional fields
+  (never required), error messages use <code>&lt;p&gt;</code> with a
+  visually-hidden &ldquo;Error:&rdquo; prefix, error groups get a red left
+  border, <code>aria-describedby</code> lists the hint first then the
+  error, and radio/checkbox controls are 40&nbsp;×&nbsp;40&nbsp;px.
+</p>
+
+<h2>Text input</h2>
+<p>Optional fields append &ldquo;(optional)&rdquo; to the label. Don't mark required fields - treat every field as required unless its label says otherwise.</p>
+{% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_text %}
+
+{{ form_text(
+    name="full_name", id="full-name",
+    label="Full name", optional=True,
+    hint="As it should appear on the published article"
+) }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Width modifiers</h2>
+<p>Fixed character widths on inputs that should be sized to their content (postcodes, reference numbers, dates).</p>
+{% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_text %}
+
+{{ form_text(
+    name="postcode", id="postcode",
+    label="Postcode", width=10, autocomplete="postal-code"
+) }}{% endraw %}{% endset %}
+{{ example(src) }}
+<p>Available: <code>form-input-width-2</code>, <code>-3</code>, <code>-4</code>, <code>-5</code>, <code>-10</code>, <code>-20</code>. For fluid widths use <code>form-width-full</code>, <code>form-width-three-quarters</code>, <code>form-width-two-thirds</code>, <code>form-width-one-half</code>, <code>form-width-one-third</code>, <code>form-width-one-quarter</code>.</p>
+
+<h2>Textarea with character count</h2>
+<p>The character-count wrapper sits <em>outside</em> the form-group; the count message is a sibling div with an id referenced by the textarea's <code>aria-describedby</code>. Order in <code>aria-describedby</code>: count message id, then hint, then error.</p>
+{% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_textarea_with_count %}
+
+{{ form_textarea_with_count(
+    name="letter", id="letter",
+    label="Decision letter", maxlength=4000
+) }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Radios</h2>
+<p>40&nbsp;×&nbsp;40&nbsp;px controls - comfortably past the WCAG&nbsp;2.2 minimum touch-target size. Group inside a fieldset; the legend is the question. For small dense radio rows compose <code>form-radio-small</code>.</p>
+{% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_radios, form_radio %}
+
+{% call form_radios("decision", "What is your decision?") %}
+  {{ form_radio("decision", "accept", "Accept submission",
+                hint="Move to the next workflow stage.") }}
+  {{ form_radio("decision", "minor",  "Request minor revisions",
+                hint="Author addresses small changes.", checked=True) }}
+  {{ form_radio("decision", "reject", "Reject submission") }}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Date input</h2>
+<p>Three numeric text inputs (day, month, year) inside a fieldset with <code>role="group"</code>. Day and month use <code>form-input-width-2</code>; year uses <code>form-input-width-4</code>. <code>inputmode="numeric"</code> brings up the numeric keypad on mobile.</p>
+{% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_date %}
+
+{{ form_date(
+    name="due", id="due",
+    legend="Due date",
+    hint="For example, 27 5 2026"
+) }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Error state</h2>
+<p>Three things change in an error state:</p>
+<ol>
+  <li>Add <code>form-group-error</code> to the wrapping form-group - gives the red left border + padding.</li>
+  <li>Add the error message as a <code>&lt;p class="form-error-message"&gt;</code> with a visually-hidden &ldquo;Error:&rdquo; prefix span.</li>
+  <li>Add <code>form-input-error</code> (or <code>form-textarea-error</code> / <code>form-select-error</code>) to the control. Set <code>aria-describedby</code> to include the error id. If a hint is also present, hint id comes first, then error id.</li>
+</ol>
+{% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_text %}
+
+{{ form_text(
+    name="due", id="due", label="Due date", type="date",
+    error="Enter a date in the future"
+) }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Password input</h2>
+<p>Password field with a Show / Hide toggle. The toggle is a sibling button; a small JS handler swaps the input's <code>type</code> attribute between <code>password</code> and <code>text</code>. <code>aria-controls</code> ties the button to the input it controls.</p>
+{% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_password %}
+
+{{ form_password(
+    name="password", id="password",
+    label="Password",
+    hint="Use at least 12 characters, mixing letters, numbers and symbols",
+    autocomplete="new-password"
+) }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<p>Tiny driver - wire once at page level:</p>
+{% set src %}{% raw %}document.addEventListener('click', function (event) {
+  var btn = event.target.closest('[data-form-password-toggle]');
+  if (!btn) return;
+  var id = btn.getAttribute('aria-controls');
+  var input = document.getElementById(id);
+  if (!input) return;
+  var showing = input.type === 'text';
+  input.type = showing ? 'password' : 'text';
+  btn.textContent = showing ? 'Show' : 'Hide';
+});{% endraw %}{% endset %}
+{{ example(src, jinja=False) }}
+
+<h2>File upload</h2>
+<p>Native file input styled to match the other form controls. Use <code>accept</code> to restrict file types and <code>multiple</code> when more than one file may be selected.</p>
+{% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_file %}
+
+{{ form_file(
+    name="manuscript", id="manuscript",
+    label="Manuscript",
+    hint="Accepted formats: .docx, .pdf, .tex. Max 25 MB.",
+    accept=".docx,.pdf,.tex"
+) }}
+
+{{ form_file(
+    name="figures", id="figures",
+    label="Figures", optional=True, multiple=True
+) }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Heading-as-label / heading-as-legend</h2>
+<p>When a form has a single question, that question is the page heading: wrap the label in an <code>&lt;h1&gt;</code> (single-input forms) or wrap an <code>&lt;h1&gt;</code> inside the legend (multi-input). The visual heading and the form label are the same element - announced once.</p>
+{% set src %}{% raw %}<div class="form-group">
+  <h1 class="form-label-wrapper">
+    <label class="form-label form-label-l" for="orcid">What is your ORCID iD?</label>
+  </h1>
+  <span class="form-hint" id="orcid-hint">The 16-digit identifier on your ORCID profile, for example 0000-0002-1825-0097.</span>
+  <input class="form-input form-input-width-20" id="orcid" type="text" aria-describedby="orcid-hint">
+</div>{% endraw %}{% endset %}
+{{ example(src, jinja=False) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>Pair errors with an <a href="information.html#error-summary">error summary</a> at the top of the form. Each summary entry is a link that focuses the field.</li>
+  <li>Don't use placeholder text as a substitute for a label or hint.</li>
+  <li>Don't disable submit buttons while errors exist - let the user submit and see the error summary.</li>
+  <li>Group questions logically; one question per page where possible - each step stays focused and error recovery stays simple.</li>
+</ul>
+
+</body>

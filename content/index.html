@@ -1,0 +1,42 @@
+{% from "docs_macros.html" import example %}
+<head><title>Overview</title></head>
+<body>
+
+<h1>Voyager</h1>
+<p class="site-page-lede">
+  Voyager is Janeway's design system.
+</p>
+
+<h2>Design principles</h2>
+<p>
+  Components are built to be as accessible as possible. Where a good
+  pattern already exists, we use it - many here are adapted from the
+  <a href="https://design-system.service.gov.uk/">GOV.UK Design System</a>.
+</p>
+
+<h2>How it's organised</h2>
+<ul>
+  <li><strong>Foundations</strong> - the tokens, type scale, and layout primitives that everything else builds on.</li>
+  <li><strong>Components</strong> - self-contained patterns. Each component lives in its own folder with co-located <code>.css</code> and <code>.j2</code> macro. The CSS uses a single root class with native nesting; variants compose as additional flat classes.</li>
+  <li><strong>Examples</strong> - three real Janeway pages built entirely from Voyager components: the editor dashboard, the manager index, and the peer-review screen.</li>
+</ul>
+
+<h2>How to use it</h2>
+<p>Add one stylesheet to your page and use the component HTML or call the Jinja2 macros:</p>
+
+{% set src %}{% raw %}{% from "voyager/components/tag/tag.j2" import tag %}
+
+{{ tag("Under review", kind="green") }}
+{{ tag("Article", kind="grey") }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Architecture</h2>
+<p>
+  Voyager follows the <a href="https://github.com/openlibhums/memory-alpha">Memory Alpha</a>
+  CSS approach: ITCSS layer order (<code>settings → reset → elements → components → utilities</code>),
+  flat component folders, single root class per component, native CSS nesting, composable
+  variant classes (no BEM), two-tier tokens (raw + semantic). See
+  <code>assets/css/README.md</code> for the full architecture document.
+</p>
+
+</body>

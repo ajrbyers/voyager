@@ -1,0 +1,27 @@
+{% from "docs_macros.html" import example %}
+<head><title>Alert pill</title></head>
+<body>
+
+<h1>Alert pill</h1>
+<p class="site-page-lede">
+  A small inline status link used at the bottom of an
+  <a href="article-card.html">article card</a> to surface alerts.
+</p>
+
+<h2>Variants</h2>
+<p>Four variants compose: <code>alert-pill-critical</code>, <code>alert-pill-warning</code>, <code>alert-pill-info</code>, <code>alert-pill-more</code> (for the &ldquo;+N more&rdquo; collapse).</p>
+{% set src %}{% raw %}{% from "voyager/components/alert-pill/alert-pill.j2" import alert_pill %}
+
+{{ alert_pill("Reviewer overdue 12 days", kind="critical", url="#") }}
+{{ alert_pill("No editor assigned",       kind="warning",  url="#") }}
+{{ alert_pill("All reviews received",     kind="info",     url="#") }}
+{{ alert_pill("+2 more",                  kind="more") }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>Pills with a destination render as links; the <code>alert-pill-more</code> collapse is plain text.</li>
+  <li>Severity thresholds match the <a href="article-card.html">article card</a> days indicator: over 60 days critical, over 30 days warning.</li>
+</ul>
+
+</body>

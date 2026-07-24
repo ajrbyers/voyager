@@ -1,0 +1,22 @@
+{% from "docs_macros.html" import example %}
+<head><title>Tabs</title></head>
+<body>
+
+<h1>Tabs</h1>
+<p class="site-page-lede">
+  A row of navigation links where each tab is a different filtered view of
+  the same page. Use tabs when the views share one underlying list, such as
+  review rounds or workflow states.
+</p>
+
+<h2>Filter tabs</h2>
+<p>Real navigation links - each tab is a different filtered view. Use <code>aria-current="true"</code> on the active link, not <code>role="tab"</code> (this is not an ARIA tabs widget).</p>
+{% set src %}{% raw %}{% from "voyager/components/tabs/tabs.j2" import tabs, tab %}
+
+{% call tabs("Review rounds") %}
+  {{ tab("Round 1", url="?round=1", count="closed") }}
+  {{ tab("Round 2", url="?round=2", count="active", current=True) }}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+</body>

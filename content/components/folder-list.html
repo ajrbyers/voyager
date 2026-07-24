@@ -1,0 +1,63 @@
+{% from "docs_macros.html" import example %}
+<head><title>Folder list</title></head>
+<body>
+
+<h1>Folder list</h1>
+<p class="site-page-lede">
+  Sidebar navigation for inbox-style pages. Groups folders into labelled
+  sections, each item carries an icon, name, and optional count. Counts can
+  be coloured to flag critical or warning severity. Custom (user-created)
+  folders show a colour dot and inline edit/delete affordances on hover.
+  Below 900px the folder tree collapses behind the Folders button beside
+  the search input; the shared disclosure driver in <code>folder-list.js</code>
+  toggles it via <code>data-disclosure-toggle</code>,
+  <code>aria-controls</code> and <code>aria-expanded</code>.
+</p>
+
+<h2>Default</h2>
+{% set src %}{% raw %}{% from "voyager/components/folder-list/folder-list.j2"
+   import folder_list, folder_list_section, folder_item %}
+{% from "voyager/components/icon/icon.j2" import icon %}
+
+{% call folder_list(search_action="/inbox/search", add_label="New folder") %}
+  {{ folder_list_section("Workflow", first=True) }}
+  {{ folder_item("Unassigned",  url="?folder=unassigned",
+                 icon=icon("mail"), count=7,  severity="warning") }}
+  {{ folder_item("Peer Review", url="?folder=peer_review",
+                 icon=icon("search"), count=14, severity="critical", current=True) }}
+  {{ folder_item("Copyediting", url="?folder=copyediting",
+                 icon=icon("edit"), count=5) }}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Custom folder with actions</h2>
+<p>User-created folders show a colour dot and inline edit/delete buttons that appear on hover.</p>
+{% set src %}{% raw %}{% from "voyager/components/folder-list/folder-list.j2"
+   import folder_item, folder_list_section %}
+<nav class="folder-list" aria-label="Custom folder demo">
+  <div class="folder-list-scroll">
+    <ul>
+      {{ folder_list_section("Custom", first=True) }}
+      {{ folder_item(
+          "Climate & energy issue",
+          url="?folder=custom:1",
+          count=11,
+          custom=True,
+          dot_colour="pink",
+          edit_url="/folders/1/edit",
+          delete_url="/folders/1/delete"
+      ) }}
+    </ul>
+  </div>
+</nav>{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>Counts use coloured backgrounds for critical/warning state, never colour alone - the count number is the primary signal; severity is supplementary.</li>
+  <li>The active folder gets <code>aria-current="page"</code> so screen readers announce it.</li>
+  <li>Custom folder actions are visually hidden until hover (or keyboard focus inside the row).</li>
+  <li>The search input uses the standard <code>.form-input</code> class - no special styling needed.</li>
+</ul>
+
+</body>

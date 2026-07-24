@@ -1,0 +1,35 @@
+{% from "docs_macros.html" import example %}
+<head><title>Section divider</title></head>
+<body>
+
+<h1>Section divider</h1>
+<p class="site-page-lede">
+  A thin heading line that separates groups within a flat list. Used for
+  severity buckets on the inbox dashboard, category groupings on the
+  manager, and date-stamp headings in timelines.
+</p>
+
+<h2>Default</h2>
+<p>Heading text on the left, a thin line filling the rest of the row.</p>
+{% set src %}{% raw %}{% from "voyager/components/section-divider/section-divider.j2" import section_divider %}
+{{ section_divider("Journal settings · 5", flush=True) }}
+{{ section_divider("Review · 2") }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>With severity dot</h2>
+<p>For inbox buckets - a coloured dot at the left indicates severity.</p>
+{% set src %}{% raw %}{% from "voyager/components/section-divider/section-divider.j2" import section_divider %}
+{{ section_divider("Critical · 2", kind="critical", flush=True) }}
+{{ section_divider("Warning · 2",  kind="warning") }}
+{{ section_divider("Info · 1",     kind="info") }}
+{{ section_divider("All clear · 1") }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>The label is an <code>&lt;h2&gt;</code> - section dividers form genuine document structure.</li>
+  <li>Use <code>section-divider-flush</code> for the first divider in a list to drop the top margin.</li>
+  <li>Severity dot variants are decorative; the count or severity name in the label carries the meaning.</li>
+</ul>
+
+</body>

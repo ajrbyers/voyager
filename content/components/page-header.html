@@ -1,0 +1,48 @@
+{% from "docs_macros.html" import example %}
+<head><title>Page header</title></head>
+<body>
+
+<h1>Page header</h1>
+<p class="site-page-lede">
+  The first thing the user reads on a page. Caption above, H1 in the middle, byline
+  and status tags below. Sits inside the page content area, not the global header.
+</p>
+
+<h2>Default</h2>
+<p>Caption gives context (the section, type, ID). Title is the H1. Byline names the relevant person and adds dates. Tags surface status at a glance.</p>
+{% set src %}{% raw %}{% from "voyager/components/page-header/page-header.j2" import page_header %}
+{% from "voyager/components/tag/tag.j2" import tag %}
+{% call page_header(
+    caption_prefix="Article",
+    caption_chip="#1247",
+    caption_suffix="· Peer review",
+    title="Reproducibility of LSTM forecasts for short-term electricity demand",
+    byline_lead="Dr Adaeze Okafor",
+    byline="University of Lagos · submitted 4 March 2026"
+) %}
+  {{ tag("Under review", kind="green") }}
+  {{ tag("Round 2 of 2", kind="grey") }}
+  {{ tag("Article",      kind="grey") }}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Without tags</h2>
+<p>Tags are optional. Caption and byline are too - but the title is required.</p>
+{% set src %}{% raw %}{% from "voyager/components/page-header/page-header.j2" import page_header %}
+{{ page_header(
+    title="Manager",
+    byline="Settings, content, and workflow configuration for the journal."
+) }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Placement</h2>
+<p>Place the page header inside the main content column. When using <code>.layout-with-rail</code>, the title sits next to the rail's first section so the right column starts at the same vertical position as the H1.</p>
+
+<h2>Accessibility</h2>
+<ul>
+  <li>The title is the only H1 on the page.</li>
+  <li>Caption is a span, not a heading - it provides context, not hierarchy.</li>
+  <li>Tags are decorative status labels; the same information must be available in the byline or status section so colour isn't the only carrier.</li>
+</ul>
+
+</body>
