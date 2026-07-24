@@ -1,4 +1,4 @@
 # Voyager documentation site (Pelican). Not needed to USE the package -
 # only to build the docs. Install into a venv: pip install -r requirements-docs.txt
-pelican[markdown]
-pelican-jinja2content
+pelican[markdown]>=4,<5
+pelican-jinja2content>=1,<2

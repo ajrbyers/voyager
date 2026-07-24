@@ -55,6 +55,10 @@ def render_snippet(src):
     blank lines. Drop blank lines and trailing whitespace so the live
     preview and the auto-derived HTML pane read cleanly. The Jinja2 pane
     shows the authored source verbatim, so its formatting is untouched.
+
+    Caveat: this drops blank lines everywhere, so an example must not pass a
+    multi-line value containing blank lines into a whitespace-significant
+    element (<textarea>, <pre>) - the paragraph break would be lost.
     """
     rendered = _snippet_env.from_string(src).render()
     return "\n".join(

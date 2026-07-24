@@ -9,19 +9,25 @@
 export function detailsPersist() {
   var DETAILS_PREFIX = 'voyager-details:';
 
-  function wire(root) {
-    (root || document).querySelectorAll('details[data-details-persist]').forEach(function (el) {
-      if (el.dataset.detailsPersistWired) return;
-      el.dataset.detailsPersistWired = '1';
-      var key = DETAILS_PREFIX + el.getAttribute('data-details-persist');
-      var stored = null;
-      try { stored = localStorage.getItem(key); } catch (e) {}
-      if (stored === 'open') el.open = true;
-      else if (stored === 'closed') el.open = false;
-      el.addEventListener('toggle', function () {
-        try { localStorage.setItem(key, el.open ? 'open' : 'closed'); } catch (e) {}
-      });
+  function wireEl(el) {
+    if (el.dataset.detailsPersistWired) return;
+    el.dataset.detailsPersistWired = '1';
+    var key = DETAILS_PREFIX + el.getAttribute('data-details-persist');
+    var stored = null;
+    try { stored = localStorage.getItem(key); } catch (e) {}
+    if (stored === 'open') el.open = true;
+    else if (stored === 'closed') el.open = false;
+    el.addEventListener('toggle', function () {
+      try { localStorage.setItem(key, el.open ? 'open' : 'closed'); } catch (e) {}
     });
+  }
+
+  function wire(root) {
+    root = root || document;
+    // An outerHTML swap can make the <details> itself the swap target, not
+    // just a container of them - wire the root as well as its descendants.
+    if (root.matches && root.matches('details[data-details-persist]')) wireEl(root);
+    root.querySelectorAll('details[data-details-persist]').forEach(wireEl);
   }
 
   wire(document);

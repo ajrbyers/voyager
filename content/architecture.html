@@ -211,10 +211,11 @@
     </div>
 
     <p>
-      For production deployment, run a CSS concatenator (any modern bundler will
-      flatten the <code>@import</code> chain) and ship a single minified
-      <code>voyager.min.css</code>. Authoring stays in the split component
-      files; the build flattens.
+      In a Django project, <code>collectstatic</code> gathers
+      <code>index.css</code> and its layers, and a manifest storage backend
+      hashes and rewrites the <code>@import</code> chain for production
+      cache-busting - no separate bundler step. Authoring stays in the split
+      component files.
     </p>
 
     <h2>Provenance</h2>

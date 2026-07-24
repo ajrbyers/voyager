@@ -8,10 +8,14 @@
      {{ example(src) }}
 
    The live preview and the HTML pane are both derived from rendering that
-   one snippet against the packaged macros (render_snippet), so they can
-   never drift from each other or from the macro. The Jinja2 pane shows the
+   one snippet against the packaged macros (render_snippet), so their
+   content stays in lockstep with the macro. The Jinja2 pane shows the
    snippet source verbatim. Pass jinja=false for raw-HTML examples (utility
    classes with no macro) to drop the Jinja2 tab.
+
+   (Pelican's HTML output lowercases attribute names in the live preview -
+   e.g. SVG viewBox becomes viewbox - so the rendered DOM can differ
+   cosmetically from the escaped source pane; browsers auto-correct it.)
 #}
 {% macro example(src, jinja=True) %}
 {% set out = render_snippet(src) %}
