@@ -1,0 +1,47 @@
+{% from "docs_macros.html" import example %}
+<head><title>Table</title></head>
+<body>
+
+<h1>Table</h1>
+<p class="site-page-lede">
+  Use a table for genuinely tabular data - rows of similar records with the same
+  columns. For key/value detail like an article's metadata, reach for a
+  <a href="summary-block.html">summary list</a> instead.
+</p>
+
+<h2>Default table</h2>
+{% set src %}{% raw %}{# Composable wrapper-and-item pattern #}
+{% from "voyager/components/table/table.j2" import table, thead, tr, th, td %}
+
+{% call table() %}
+  {% call thead() %}
+    {{ th("File ID") }}{{ th("File name") }}{{ th("Uploaded") }}{{ th("Action") }}
+  {% endcall %}
+  {% call tr() %}
+    {% call td() %}<span class="mono">8421</span>{% endcall %}
+    {{ td("okafor_lstm_v2.docx") }}
+    {{ td("2026-04-29 09:14") }}
+    {% call td(right=True) %}<a href="#">Download<span class="visually-hidden"> file 8421</span></a>{% endcall %}
+  {% endcall %}
+{% endcall %}
+
+{# Or for very simple loops, the data-driven shortcut.
+   Cell values are escaped - plain text only. #}
+{% from "voyager/components/table/table.j2" import simple_table %}
+
+{{ simple_table(
+    headers=["File ID", "File name", "Uploaded"],
+    rows=[
+      ["8421", "okafor_lstm_v2.docx", "2026-04-29 09:14"],
+    ]
+) }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>Always use <code>&lt;th&gt;</code> for column headers - screen readers announce them when navigating cells.</li>
+  <li>Right-align action cells with the <code>.right</code> utility for consistent table action styling.</li>
+  <li>Generic "Download" / "Edit" links need a visually-hidden suffix to disambiguate when listed out of context.</li>
+</ul>
+
+</body>

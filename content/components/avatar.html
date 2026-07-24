@@ -1,0 +1,35 @@
+{% from "docs_macros.html" import example %}
+<head><title>Avatar</title></head>
+<body>
+
+<h1>Avatar</h1>
+<p class="site-page-lede">
+  A circular block showing a person's initials. Three sizes; six neutral
+  colours assigned by hashing the user's identifier on the consumer side,
+  so the same person always gets the same colour. The avatar itself is
+  decorative - always pair it with the user's name in the surrounding
+  markup.
+</p>
+
+<h2>Sizes</h2>
+{% set src %}{% raw %}{% from "voyager/components/avatar/avatar.j2" import avatar %}
+
+{{ avatar("AH", kind="purple") }}
+{{ avatar("MW", size="md", kind="orange") }}
+{{ avatar("SP", size="lg", kind="green") }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Colour pool</h2>
+<p>Six neutral colours: purple, orange, green, red, teal, pink. Assign by hashing a stable user identifier so the same person always renders with the same colour.</p>
+
+{% set pool %}{% raw %}{% from "voyager/components/avatar/avatar.j2" import avatar %}
+
+{{ avatar("AB", size="md", kind="purple") }}
+{{ avatar("CD", size="md", kind="orange") }}
+{{ avatar("EF", size="md", kind="green") }}
+{{ avatar("GH", size="md", kind="red") }}
+{{ avatar("IJ", size="md", kind="teal") }}
+{{ avatar("KL", size="md", kind="pink") }}{% endraw %}{% endset %}
+{{ example(pool) }}
+
+</body>

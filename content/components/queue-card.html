@@ -1,0 +1,27 @@
+{% from "docs_macros.html" import example %}
+<head><title>Queue card</title></head>
+<body>
+
+<h1>Queue card</h1>
+<p class="site-page-lede">
+  A bordered card with a header, a stack of <a href="stat.html">stats</a>,
+  and an "Open queue" CTA at the foot. Use it to represent a single
+  workflow queue on the dashboard.
+</p>
+
+<h2>Example</h2>
+{% set src %}{% raw %}{% from "voyager/components/queue-card/queue-card.j2" import queue_card %}
+{% from "voyager/components/stat/stat.j2" import stat %}
+{% call queue_card("Editor queue", tag={"label": "Editor", "kind": "grey"}, cta={"label": "Open queue", "url": "/editor"}) %}
+  {{ stat(7,  "Unassigned articles", kind="critical") }}
+  {{ stat(14, "In peer review") }}
+  {{ stat(3,  "Decisions ready", kind="success") }}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li><a href="stat.html">Stats</a> stack vertically inside a queue card. Each consecutive stat gets a top border to separate the rows.</li>
+</ul>
+
+</body>

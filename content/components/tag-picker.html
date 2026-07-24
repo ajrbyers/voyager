@@ -1,0 +1,96 @@
+{% from "docs_macros.html" import example %}
+<head><title>Tag picker</title></head>
+<body>
+
+<h1>Tag picker</h1>
+<p class="site-page-lede">
+  An HTMX-driven autocomplete for many-to-many relationships.
+  Selected items render as removable chips; a search input queries
+  the server, which returns matching items and an optional
+  "Create" action for values that don't exist yet.
+</p>
+
+<h2>Default</h2>
+{% set src %}{% raw %}{% from "voyager/components/tag-picker/tag-picker.j2"
+   import tag_picker %}
+
+{{ tag_picker(
+    name="categories",
+    label="category",
+    items=[
+      {"name": "Astrophysics", "remove_url": "/categories/1/remove/"},
+      {"name": "Cosmology", "remove_url": "/categories/2/remove/"},
+      {"name": "Planetary science", "remove_url": "/categories/3/remove/"},
+    ],
+    search_url="/categories/search/") }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Empty</h2>
+<p>
+  With no items selected, the chip row shows a muted empty-state
+  message instead.
+</p>
+{% set src %}{% raw %}{% from "voyager/components/tag-picker/tag-picker.j2"
+   import tag_picker %}
+
+{{ tag_picker(
+    name="keywords",
+    label="keyword",
+    items=[],
+    search_url="/keywords/search/",
+    empty_text="No keywords added yet") }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Open with results</h2>
+<p>
+  The search endpoint returns the results partial: matching items
+  first, then a highlighted "Create" action when the query doesn't
+  exactly match an existing item. When nothing matches and creation
+  isn't allowed, a no-matches message is shown.
+</p>
+{% set src %}{% raw %}{% from "voyager/components/tag-picker/tag-picker.j2"
+   import tag_picker_results %}
+
+{# Rendered by the search view and returned as the response #}
+{{ tag_picker_results(
+    name="subjects",
+    q="Star",
+    results=[
+      {"id": 12, "name": "Star formation"},
+      {"id": 14, "name": "Stellar evolution"},
+    ],
+    add_url="/subjects/add/",
+    can_create=True) }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>No matches</h2>
+{% set src %}{% raw %}{% from "voyager/components/tag-picker/tag-picker.j2"
+   import tag_picker_results %}
+
+{{ tag_picker_results(
+    name="topics",
+    q="Xylophone",
+    results=[],
+    add_url="/topics/add/",
+    can_create=False) }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Server contract</h2>
+<p>The widget expects three endpoints:</p>
+<ul>
+  <li><strong>Search</strong> - <code>GET</code> with a <code>q</code> parameter. Returns the <code>tag_picker_results()</code> partial, which HTMX swaps into the <code>.tag-picker-results</code> container. Triggered on <code>input changed delay:200ms</code> and on <code>focus</code>.</li>
+  <li><strong>Add</strong> - <code>POST</code> with either <code>item_id</code> (an existing item) or <code>name</code> (create a new item, then add it). Returns the full <code>tag_picker()</code> widget, swapped via <code>outerHTML</code>.</li>
+  <li><strong>Remove</strong> - <code>POST</code> per item (each chip carries its own <code>remove_url</code>). Also returns the full widget.</li>
+</ul>
+
+<h2>Notes</h2>
+<ul>
+  <li>The whole widget (<code>#tag-picker-{name}</code>) is the swap target for add and remove, so the chip row, empty state, and results all stay consistent after every operation.</li>
+  <li>Only offer the create action (<code>can_create=True</code>) when the query doesn't case-insensitively match an existing item, and validate creation server-side regardless.</li>
+  <li>Each remove button carries an <code>aria-label</code> naming the item ("Remove Astrophysics") so screen readers announce what is being removed.</li>
+  <li>Results are real <code>&lt;button&gt;</code> elements, reachable with <kbd>Tab</kbd> from the search input. This deliberately avoids a half-implemented ARIA combobox; if full arrow-key listbox navigation is needed, that's a JavaScript enhancement to layer on later.</li>
+  <li>There is no non-JavaScript fallback - the widget requires HTMX. Where progressive enhancement is a hard requirement, pair it with a standard <code>&lt;select multiple&gt;</code> inside <code>&lt;noscript&gt;</code>.</li>
+  <li>The search input reuses <code>.form-input</code> from the <a href="form.html">form component</a> - place the widget inside a <code>.form-group</code> with a <code>.form-label</code> in real forms.</li>
+</ul>
+
+</body>

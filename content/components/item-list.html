@@ -1,0 +1,70 @@
+{% from "docs_macros.html" import example %}
+<head><title>Item list</title></head>
+<body>
+
+<h1>Item list</h1>
+<p class="site-page-lede">
+  A dynamic add/remove repeating form item list. Uses HTMX for
+  progressive enhancement - add and delete items without a full page
+  reload. Falls back to standard form submission without JavaScript.
+</p>
+
+<h2>Default</h2>
+{% set src %}{% raw %}{% from "voyager/components/item-list/item-list.j2" import item_list, item_list_item %}
+{% from "voyager/components/form/form.j2" import form_text %}
+{% call item_list(name="authors", item_label="Author", count=2, max_items=10, htmx_url="/api/authors") %}
+  {% call item_list_item(0, "authors", "Author", show_delete=False, htmx_url="/api/authors") %}
+    {{ form_text("author_name_0", "author_name_0", "Name") }}
+    {{ form_text("author_email_0", "author_email_0", "Email", type="email") }}
+  {% endcall %}
+  {% call item_list_item(1, "authors", "Author", htmx_url="/api/authors") %}
+    {{ form_text("author_name_1", "author_name_1", "Name") }}
+    {{ form_text("author_email_1", "author_email_1", "Email", type="email") }}
+  {% endcall %}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>With errors</h2>
+{% set src %}{% raw %}{% from "voyager/components/item-list/item-list.j2" import item_list, item_list_item %}
+{% from "voyager/components/form/form.j2" import form_text %}
+{% call item_list(name="patents", item_label="Patent", count=2, max_items=5, htmx_url="/api/patents",
+    errors=["Patent 1: Enter a patent title", "Patent 2: Enter a patent number"]) %}
+  {% call item_list_item(0, "patents", "Patent", show_delete=False, htmx_url="/api/patents") %}
+    {{ form_text("patent_title_0", "patent_title_0", "Title", error="Enter a patent title") }}
+  {% endcall %}
+  {% call item_list_item(1, "patents", "Patent", htmx_url="/api/patents") %}
+    {{ form_text("patent_number_1", "patent_number_1", "Number", error="Enter a patent number") }}
+  {% endcall %}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>At maximum</h2>
+<p>
+  When <code>count</code> equals <code>max_items</code>, the add button
+  and remaining count are hidden automatically.
+</p>
+{% set src %}{% raw %}{% from "voyager/components/item-list/item-list.j2" import item_list, item_list_item %}
+{% from "voyager/components/form/form.j2" import form_text %}
+{% call item_list(name="refs", item_label="Reference", count=3, max_items=3, htmx_url="/api/refs") %}
+  {% call item_list_item(0, "refs", "Reference", htmx_url="/api/refs") %}
+    {{ form_text("ref_0", "ref_0", "URL", type="url", value="https://doi.org/10.1234/abc") }}
+  {% endcall %}
+  {% call item_list_item(1, "refs", "Reference", htmx_url="/api/refs") %}
+    {{ form_text("ref_1", "ref_1", "URL", type="url", value="https://doi.org/10.5678/def") }}
+  {% endcall %}
+  {% call item_list_item(2, "refs", "Reference", htmx_url="/api/refs") %}
+    {{ form_text("ref_2", "ref_2", "URL", type="url", value="https://doi.org/10.9012/ghi") }}
+  {% endcall %}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>The <code>name</code>, <code>item_label</code>, and <code>htmx_url</code> parameters must be passed to both <code>item_list()</code> and each <code>item_list_item()</code>. This repetition is necessary because Jinja2 macros have isolated scopes.</li>
+  <li>Set <code>show_delete=False</code> on the first item when <code>count == 1</code>. The macro cannot count siblings, so the caller must manage this.</li>
+  <li>The HTMX endpoint should accept a POST and return the complete <code>&lt;div class="item-list"&gt;</code> HTML, which is swapped via <code>outerHTML</code>. The hidden <code>count</code> and <code>max</code> fields are included in the request via <code>hx-include</code>.</li>
+  <li>Without <code>htmx_url</code>, buttons fall back to <code>type="submit"</code> with a <code>name</code>/<code>value</code> pair (<code>name-action=add</code> or <code>name-action=delete-N</code>), so the server can handle add/delete as a standard form POST.</li>
+  <li>Delete buttons include a <code>visually-hidden</code> suffix (e.g. "Delete author 2") so screen readers announce which item is being deleted.</li>
+</ul>
+
+</body>

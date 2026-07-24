@@ -1,0 +1,23 @@
+{% from "docs_macros.html" import example %}
+<head><title>Breadcrumbs</title></head>
+<body>
+
+<h1>Breadcrumbs</h1>
+<p class="site-page-lede">
+  A trail of links showing where the current page sits in the hierarchy.
+  Place it above the page title, with the current page as the final,
+  unlinked item.
+</p>
+
+<h2>Example</h2>
+{% set src %}{% raw %}{% from "voyager/components/breadcrumbs/breadcrumbs.j2" import breadcrumbs, breadcrumb %}
+
+{% call breadcrumbs() %}
+  {{ breadcrumb("Dashboard", url="/") }}
+  {{ breadcrumb("Articles",  url="/articles") }}
+  {{ breadcrumb("#1247 Okafor", url="#") }}
+  {{ breadcrumb("Peer Review", current=True) }}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+</body>

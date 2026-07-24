@@ -49,8 +49,17 @@ _snippet_env = jinja2.Environment(
 
 
 def render_snippet(src):
-    """Render a component invocation string against the packaged macros."""
-    return _snippet_env.from_string(src).render()
+    """Render a component invocation string against the packaged macros.
+
+    Macros emit leading/trailing newlines, so the rendered output collects
+    blank lines. Drop blank lines and trailing whitespace so the live
+    preview and the auto-derived HTML pane read cleanly. The Jinja2 pane
+    shows the authored source verbatim, so its formatting is untouched.
+    """
+    rendered = _snippet_env.from_string(src).render()
+    return "\n".join(
+        line.rstrip() for line in rendered.splitlines() if line.strip()
+    )
 
 
 # --- Docs sidebar (single source; retires the old SIDEBAR_HTML in JS) ----

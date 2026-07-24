@@ -1,0 +1,100 @@
+{% from "docs_macros.html" import example %}
+<head><title>Check answers</title></head>
+<body>
+
+<h1>Check answers</h1>
+<p class="site-page-lede">
+  A page-level pattern for letting users review their answers before
+  final submission. Composes <a href="summary-block.html">summary list</a>
+  rows with section headings and a submit button. Use at the end of a
+  multi-step form workflow.
+</p>
+
+<h2>Default</h2>
+{% set src %}{% raw %}{% from "voyager/components/check-answers/check-answers.j2"
+   import check_answers, check_answers_section %}
+{% from "voyager/components/summary-block/summary-block.j2"
+   import summary_row %}
+
+{% call check_answers() %}
+  {% call check_answers_section("Your details") %}
+    {{ summary_row("Name", "Dr Sarah Philips",
+        actions=[{"label": "Change", "url": "/step-1#name",
+                  "hidden": "name"}]) }}
+    {{ summary_row("Institution", "University College London",
+        actions=[{"label": "Change", "url": "/step-1#institution",
+                  "hidden": "institution"}]) }}
+    {{ summary_row("ORCID iD", "0000-0002-1825-0097",
+        actions=[{"label": "Change", "url": "/step-1#orcid",
+                  "hidden": "ORCID iD"}]) }}
+    {{ summary_row("Contact details", "s.philips@ucl.ac.uk",
+        actions=[
+          {"label": "Add", "url": "#", "hidden": "contact information"},
+          {"label": "Change", "url": "#", "hidden": "contact information"},
+        ]) }}
+  {% endcall %}
+  {% call check_answers_section("Review preferences") %}
+    {{ summary_row("Review interests", "Machine learning, structural biology",
+        actions=[{"label": "Change", "url": "/step-2#interests",
+                  "hidden": "review interests"}]) }}
+    {{ summary_row("Availability", "Up to two reviews per quarter",
+        actions=[{"label": "Change", "url": "/step-2#availability",
+                  "hidden": "availability"}]) }}
+  {% endcall %}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Academic publishing example</h2>
+{% set src %}{% raw %}{% from "voyager/components/check-answers/check-answers.j2"
+   import check_answers, check_answers_section %}
+{% from "voyager/components/summary-block/summary-block.j2"
+   import summary_row %}
+
+{% call check_answers(title="Review your submission before sending",
+    submit_label="Submit article") %}
+  {% call check_answers_section("Article metadata") %}
+    {{ summary_row("Title",
+        "Deep learning approaches to protein folding prediction",
+        actions=[{"label": "Change", "url": "/submit/step-1#title",
+                  "hidden": "title"}]) }}
+    {{ summary_row("Abstract",
+        "We present a novel approach to predicting tertiary protein structure using transformer-based architectures…",
+        actions=[{"label": "Change", "url": "/submit/step-1#abstract",
+                  "hidden": "abstract"}]) }}
+    {{ summary_row("Keywords", "protein folding, deep learning, transformers",
+        actions=[{"label": "Change", "url": "/submit/step-1#keywords",
+                  "hidden": "keywords"}]) }}
+  {% endcall %}
+  {% call check_answers_section("Authors") %}
+    {{ summary_row("Corresponding", "Dr Amara Okafor, University of Lagos",
+        actions=[{"label": "Change", "url": "/submit/step-2#corresponding",
+                  "hidden": "corresponding author"}]) }}
+    {% call summary_row("Co-authors",
+        change="/submit/step-2#coauthors", change_label="co-authors") %}
+      Prof Wei Chen, MIT<br>Dr Sarah Philips, UCL
+    {% endcall %}
+  {% endcall %}
+  {% call check_answers_section("Files") %}
+    {% call summary_row("Manuscript",
+        change="/submit/step-3#manuscript", change_label="manuscript file") %}
+      <span class="mono">okafor_protein_v3.docx</span> · 1.2 MB
+    {% endcall %}
+    {% call summary_row("Figures",
+        change="/submit/step-3#figures", change_label="figures file") %}
+      <span class="mono">figures.zip</span> · 4.7 MB
+    {% endcall %}
+    {{ summary_row("Cover letter", "Not provided") }}
+  {% endcall %}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>Always add <code>visually-hidden</code> text to "Change" links so screen readers announce <em>what</em> is being changed (e.g. "Change name", not just "Change").</li>
+  <li>The <code>&lt;h1&gt;</code> is part of the component - do not add a separate page header above it.</li>
+  <li>Import <code>summary_row</code> from <code>summary-block.j2</code> - check-answers does not re-export it.</li>
+  <li>Rows without actions (e.g. "Not provided") automatically get the <code>summary-list-row-no-actions</code> modifier, collapsing to a two-column grid.</li>
+  <li>The submit button defaults to <code>btn-primary</code>. Override with <code>submit_kind="warning"</code> for destructive actions.</li>
+</ul>
+
+</body>

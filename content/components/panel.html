@@ -1,0 +1,44 @@
+{% from "docs_macros.html" import example %}
+<head><title>Panel</title></head>
+<body>
+
+<h1>Panel</h1>
+<p class="site-page-lede">
+  Large confirmation block at the top of a completion page. Used after a
+  workflow action completes successfully - &ldquo;Decision sent&rdquo;,
+  &ldquo;Article accepted&rdquo;, &ldquo;Submission received&rdquo;. The panel
+  title is the page H1.
+</p>
+
+<h2>Default (success)</h2>
+{% set src %}{% raw %}{% from "voyager/components/panel/panel.j2" import panel %}
+{% call panel("Decision sent") %}
+  Your reference is<br>
+  <strong>DEC-2026-091</strong>
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Variants</h2>
+<p>Add <code>panel-warning</code>, <code>panel-error</code>, or <code>panel-info</code> alongside <code>panel</code>.</p>
+{% set src %}{% raw %}<div class="panel panel-warning">
+  <h2 class="panel-title">Action needed</h2>
+  <div class="panel-body">Two reviewer invitations have not been acknowledged.</div>
+</div>
+<div class="panel panel-error">
+  <h2 class="panel-title">Something went wrong</h2>
+  <div class="panel-body">The decision could not be saved. Try again in a moment.</div>
+</div>
+<div class="panel panel-info">
+  <h2 class="panel-title">Submission received</h2>
+  <div class="panel-body">Your reference is <strong>SUB-2026-1247</strong></div>
+</div>{% endraw %}{% endset %}
+{{ example(src, jinja=False) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>The panel title is usually the page H1 - use only one panel per page.</li>
+  <li>The reference number (where present) goes in <code>&lt;strong&gt;</code> on its own line so users can read or quote it back.</li>
+  <li>Pair with <a href="back-link.html">back link</a> and follow-up actions below the panel ("Send another decision", "View article").</li>
+</ul>
+
+</body>

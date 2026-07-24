@@ -1,0 +1,186 @@
+<head><title>Layout</title></head>
+<body>
+
+<h1>Layout</h1>
+<p class="site-page-lede">
+  Janeway pages share a common shell - top header, left sidebar, main column -
+  and a small set of inner layouts. Use the shell components for the chrome
+  and the layout utilities to arrange page content.
+</p>
+
+<h2>App shell</h2>
+<p>The shell is two components: <code>app-header</code> at the top, then <code>app-shell</code> with the sidebar nav and main content side by side.</p>
+<div class="layout-diagram layout-diagram-shell" aria-hidden="true">
+  <div class="layout-diagram-row layout-diagram-header">app-header</div>
+  <div class="layout-diagram-row layout-diagram-grid">
+    <div class="layout-diagram-cell layout-diagram-aside">sidebar-nav</div>
+    <div class="layout-diagram-cell layout-diagram-main">main</div>
+  </div>
+</div>
+
+<h2>Layout with rail</h2>
+<p>The most common page layout: main content on the left (2/3) and a rail on the right (1/3, fixed 280px). Use the <code>.layout-with-rail</code> utility on the page wrapper.</p>
+<div class="layout-diagram layout-diagram-rail" aria-hidden="true">
+  <div class="layout-diagram-cell layout-diagram-content">main</div>
+  <div class="layout-diagram-cell layout-diagram-rail-cell">rail</div>
+</div>
+
+<h2>Full-width layout</h2>
+<p>For dashboards and index pages where there is no rail. Use <code>.layout-full</code> on the wrapper.</p>
+<div class="layout-diagram layout-diagram-full" aria-hidden="true">
+  <div class="layout-diagram-cell layout-diagram-content">main</div>
+</div>
+
+<h2>Page types</h2>
+<p>
+  Those primitives assemble into three shipped page types. Each pairs a
+  layout with the <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">Nielsen
+  Norman Group usability heuristics</a> it is built to serve - the layout is
+  not decoration; it is how the page keeps the editor oriented and in
+  control. The wireframes below are schematic; the built reference pages are
+  linked from each.
+</p>
+
+<!-- Inbox / triage -->
+<div class="pagetype">
+  <div class="pagetype-figure" aria-hidden="true">
+    <div class="pagetype-bar">app-header</div>
+    <div class="pagetype-shell">
+      <div class="pagetype-nav">
+        <span class="pagetype-nav-label">folder-list</span>
+        <span class="pagetype-navrow">Unassigned <span class="pagetype-chip pagetype-chip-warning">7</span></span>
+        <span class="pagetype-navrow">Peer review <span class="pagetype-chip pagetype-chip-critical">14</span></span>
+        <span class="pagetype-navrow">Copyediting <span class="pagetype-chip">5</span></span>
+        <span class="pagetype-navrow">Proofing <span class="pagetype-chip">2</span></span>
+      </div>
+      <div class="pagetype-main">
+        <div class="pagetype-strip"><span>toolbar &middot; 14 articles</span><span>sort &#9662;</span></div>
+        <div class="pagetype-block">article card</div>
+        <div class="pagetype-block">article card</div>
+        <div class="pagetype-block">article card</div>
+      </div>
+    </div>
+  </div>
+  <div class="pagetype-notes">
+    <h3 class="pagetype-name">Inbox / triage</h3>
+    <p class="pagetype-lede">
+      Full-width, no rail: a <code>folder-list</code> on the left, a sticky
+      toolbar, and a severity-grouped list of <code>article-card</code>s.
+      Reference: <a href="../examples/dashboard.html">dashboard example</a>.
+    </p>
+    <ul class="pagetype-heuristics">
+      <li><strong>Visibility of system status</strong> - folder counts and critical / warning grouping surface the size and urgency of every queue before the editor opens anything.</li>
+      <li><strong>Recognition rather than recall</strong> - each queue and saved folder is a visible, clickable target, so nothing has to be remembered or re-typed between visits.</li>
+      <li><strong>Flexibility and efficiency of use</strong> - sort controls and custom saved folders are accelerators for editors who work this list many times a day.</li>
+      <li><strong>Aesthetic and minimalist design</strong> - the rail is dropped so the full width belongs to work items; every row is a live piece of work.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Index / launcher -->
+<div class="pagetype">
+  <div class="pagetype-figure" aria-hidden="true">
+    <div class="pagetype-bar">app-header</div>
+    <div class="pagetype-shell">
+      <div class="pagetype-nav">
+        <span class="pagetype-nav-label">sidebar-nav</span>
+        <span class="pagetype-navrow">Dashboards</span>
+        <span class="pagetype-navrow">Workflow</span>
+        <span class="pagetype-navrow">Admin</span>
+      </div>
+      <div class="pagetype-main">
+        <div class="pagetype-strip"><span>&#9906; search</span><span>All &middot; Settings &middot; People</span></div>
+        <div class="pagetype-tiles pagetype-accent">
+          <div class="pagetype-tile">function card</div>
+          <div class="pagetype-tile">function card</div>
+          <div class="pagetype-tile">function card</div>
+          <div class="pagetype-tile">function card</div>
+          <div class="pagetype-tile">function card</div>
+          <div class="pagetype-tile">function card</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pagetype-notes">
+    <h3 class="pagetype-name">Index / launcher</h3>
+    <p class="pagetype-lede">
+      Full-width <code>layout-full</code> with a filter bar over a sectioned
+      <code>grid</code> of <code>function-card</code>s. Reference:
+      <a href="../examples/manager.html">manager example</a>.
+    </p>
+    <ul class="pagetype-heuristics">
+      <li><strong>Recognition rather than recall</strong> - the whole page is a visible directory of every function, grouped by domain, so editors scan and choose instead of recalling where a tool lives.</li>
+      <li><strong>Flexibility and efficiency of use</strong> - a search field and category filter let a returning user jump straight to a known function without scrolling the full index.</li>
+      <li><strong>Consistency and standards</strong> - a uniform card grid means every function looks and behaves the same, so a new card needs no new learning.</li>
+      <li><strong>Match between system and the real world</strong> - sections are named for the editorial domains (Review, Submission, Identifiers) rather than the code that implements them.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Work / detail -->
+<div class="pagetype">
+  <div class="pagetype-figure" aria-hidden="true">
+    <div class="pagetype-bar">app-header</div>
+    <div class="pagetype-shell">
+      <div class="pagetype-nav">
+        <span class="pagetype-nav-label">sidebar-nav</span>
+        <span class="pagetype-navrow">Peer review <span class="pagetype-chip pagetype-chip-critical">14</span></span>
+        <span class="pagetype-navrow">Copyediting <span class="pagetype-chip">5</span></span>
+        <span class="pagetype-navrow">Content</span>
+      </div>
+      <div class="pagetype-main">
+        <div class="pagetype-strip"><span>breadcrumb &middot; #1247</span></div>
+        <div class="pagetype-split">
+          <div class="pagetype-content">
+            <div class="pagetype-block">page-header</div>
+            <div class="pagetype-block">reviewers &amp; files</div>
+          </div>
+          <div class="pagetype-rail pagetype-accent">
+            <div class="pagetype-rail-row">Status</div>
+            <div class="pagetype-rail-row">Steps</div>
+            <div class="pagetype-rail-row">Actions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pagetype-notes">
+    <h3 class="pagetype-name">Work / detail</h3>
+    <p class="pagetype-lede">
+      <code>layout-with-rail</code>: readable content on the left, a
+      <code>rail</code> on the right carrying status, steps, and actions.
+      Reference: <a href="../examples/peer-review.html">peer-review example</a>.
+    </p>
+    <ul class="pagetype-heuristics">
+      <li><strong>Visibility of system status</strong> - the rail's Status and Steps show exactly where the article sits in the workflow and what is blocking the next move, without scrolling the content.</li>
+      <li><strong>User control and freedom</strong> - the primary decision and the reversible actions live in the rail, always in reach and clearly separated from the material being read.</li>
+      <li><strong>Error prevention</strong> - a notice block flags overdue revisions and unacknowledged reviewers above the content, so the editor sees the risks before making a decision.</li>
+      <li><strong>Match between system and the real world</strong> - the breadcrumb and review-round tabs mirror the real editorial process rather than the database behind it.</li>
+    </ul>
+  </div>
+</div>
+
+<h2>Grid utilities</h2>
+<p>Equal-column grids for cards and tiles: <code>.grid .grid-2</code>, <code>.grid-3</code>, <code>.grid-4</code>. They collapse to a single column under 900px.</p>
+<div class="grid grid-3 layout-grid-demo">
+  <div class="layout-grid-cell">1</div>
+  <div class="layout-grid-cell">2</div>
+  <div class="layout-grid-cell">3</div>
+</div>
+
+<h2>Spacing primitives</h2>
+<p>Two layout primitives in <code>utilities.css</code>:</p>
+<ul>
+  <li><code>.stack</code> - vertical rhythm. Adds <code>margin-top</code> to every direct child after the first. Variants: <code>.stack-sm</code>, <code>.stack-lg</code>, <code>.stack-xl</code>.</li>
+  <li><code>.cluster</code> - horizontal flex group with gap and wrap. Variants: <code>.cluster-sm</code>, <code>.cluster-lg</code>.</li>
+</ul>
+
+<h2>Breakpoints</h2>
+<p>Voyager uses three breakpoints, all <em>max-width</em>:</p>
+<ul>
+  <li><strong>900px</strong> - sidebar collapses to top, multi-column grids collapse to one.</li>
+  <li><strong>1100px</strong> - <code>.layout-with-rail</code> stacks the rail below main.</li>
+  <li><strong>600px</strong> - summary-list rows stack key/value/change vertically.</li>
+</ul>
+
+</body>

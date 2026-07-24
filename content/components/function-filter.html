@@ -1,0 +1,93 @@
+{% from "docs_macros.html" import example %}
+<head><title>Function filter</title></head>
+<body>
+
+<h1>Function filter</h1>
+<p class="site-page-lede">
+  Search input plus a radio-chip filter group. Used above a
+  <a href="function-card.html">function-card</a> grid to narrow visible cards.
+  The chip active state uses <code>:has(input:checked)</code> - no JavaScript is
+  required for the visual; only for actually filtering the grid.
+</p>
+
+<h2>Default</h2>
+{% set src %}{% raw %}{% from "voyager/components/function-filter/function-filter.j2"
+   import function_filter, function_filter_search, function_filter_tags, function_filter_tag %}
+
+{% call function_filter() %}
+  {{ function_filter_search(name="q") }}
+  {% call function_filter_tags() %}
+    {{ function_filter_tag("tag", "all",      "All",      checked=True) }}
+    {{ function_filter_tag("tag", "settings", "Settings") }}
+    {{ function_filter_tag("tag", "workflow", "Workflow") }}
+    {{ function_filter_tag("tag", "content",  "Content") }}
+    {{ function_filter_tag("tag", "people",   "People") }}
+  {% endcall %}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Empty state</h2>
+<p>Show when the filter returns zero results. Pair with JavaScript that toggles its <code>hidden</code> attribute.</p>
+{% set src %}{% raw %}<div class="function-filter-empty">
+  <span class="function-filter-empty-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+  No functions match your search.
+</div>{% endraw %}{% endset %}
+{{ example(src, jinja=False) }}
+
+<h2>Client-side JS driver</h2>
+<p>Filtering itself runs in vanilla JS. The script reads <code>data-title</code>, <code>data-desc</code>, and <code>data-tags</code> from each <a href="function-card.html">function-card</a> and toggles its <code>hidden</code> attribute.</p>
+{% set src %}{% raw %}(function () {
+  var form = document.getElementById('manager-filter');
+  var search = document.getElementById('mgr-search');
+  var grid = document.getElementById('manager-grid');
+  var empty = document.getElementById('manager-empty');
+
+  function activeTag() {
+    var c = form.querySelector('input[name="tag"]:checked');
+    return c ? c.value : 'all';
+  }
+
+  function apply() {
+    var q = (search.value || '').trim().toLowerCase();
+    var tag = activeTag();
+    var anyVisible = false;
+    grid.querySelectorAll('.function-card').forEach(function (card) {
+      var title = (card.dataset.title || '').toLowerCase();
+      var desc  = (card.dataset.desc  || '').toLowerCase();
+      var tags  = (card.dataset.tags  || '').toLowerCase().split(/\s+/);
+      var matchTag  = tag === 'all' || tags.indexOf(tag) !== -1;
+      var matchText = !q || title.indexOf(q) !== -1 || desc.indexOf(q) !== -1;
+      card.hidden = !(matchTag && matchText);
+      if (!card.hidden) anyVisible = true;
+    });
+    empty.hidden = anyVisible;
+  }
+
+  search.addEventListener('input', apply);
+  form.addEventListener('change', apply);
+})();{% endraw %}{% endset %}
+{{ example(src, jinja=False) }}
+
+<h2>HTMX alternative</h2>
+<p>For server-side filtering, hand the same form to HTMX and target the grid container. The macro exposes optional <code>action</code> and <code>htmx_target</code> arguments.</p>
+{% set src %}{% raw %}{% from "voyager/components/function-filter/function-filter.j2"
+   import function_filter, function_filter_search, function_filter_tags, function_filter_tag %}
+
+{% call function_filter(action="/manager/dashboard", htmx_target="#manager-grid") %}
+  {{ function_filter_search(name="q") }}
+  {% call function_filter_tags() %}
+    {{ function_filter_tag("tag", "all",      "All",      checked=True) }}
+    {{ function_filter_tag("tag", "settings", "Settings") }}
+  {% endcall %}
+{% endcall %}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>The radio chips are real form inputs - the active state is driven entirely by CSS (<code>:has(input:checked)</code>). No JS needed for the visual.</li>
+  <li>Wrap the radio group in a <code>div role="radiogroup"</code> with <code>aria-label</code> so screen readers announce it as a group.</li>
+  <li>For accessibility, the visible label text is also the radio's <code>value</code> in the form submission - no <code>visually-hidden</code> labels needed.</li>
+  <li>Pair every filter row with a <code>function-filter-empty</code> block hidden by default; toggle via JS or server response.</li>
+</ul>
+
+</body>

@@ -1,0 +1,22 @@
+{% from "docs_macros.html" import example %}
+<head><title>Code chip</title></head>
+<body>
+
+<h1>Code chip</h1>
+<p class="site-page-lede">
+  An inline monospaced label for IDs, branch names, and SHAs. Use it for
+  article IDs, revision numbers, and file names in prose.
+</p>
+
+<h2>Example</h2>
+{% set src %}{% raw %}{% from "voyager/components/code-chip/code-chip.j2" import code_chip %}
+
+Article {{ code_chip("#1247") }} · revision {{ code_chip("R-2026-091") }} · branch {{ code_chip("main") }}{% endraw %}{% endset %}
+{{ example(src) }}
+
+<h2>Notes</h2>
+<ul>
+  <li>Code chips are inline text, not interactive elements. For status labels, use a <a href="tag.html">tag</a> instead.</li>
+</ul>
+
+</body>
