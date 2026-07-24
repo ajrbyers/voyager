@@ -23,7 +23,7 @@ they beat component declarations at any nesting depth. `index.css` imports the l
 
 ## Component file pattern
 
-- Each component lives in `components/<name>/` as **two co-located source files**: `<name>.css` and a `<name>.j2` macro. The component's documentation page (with canonical markup) lives at `docs/components/<name>.html`.
+- A component's CSS lives at `voyager/static/voyager/components/<name>/<name>.css` and its `<name>.j2` macro at `voyager/jinja2/voyager/components/<name>/<name>.j2` (Django keeps static files and templates in separate trees). The component's documentation page lives at `content/components/<name>.html`.
 - The CSS file opens with a **root class** matching the component name; everything nests under it via `&`. Scoped element selectors under the root (`& li`, `& a`) are fine. A few components expose a small family of related roots (e.g. `form`, `information`, `summary-block`) rather than a single class.
 - Variants are **extra flat classes composed in the markup** - not BEM modifiers. Example: `<a class="btn btn-primary btn-large">` not `<a class="btn btn--primary btn--large">`. The visual axes (kind, size, intent) compose via separate classes, so a `<button class="btn btn-primary">` can also be `<button class="btn btn-secondary btn-small">` without the modifier suffix proliferation.
 
@@ -59,14 +59,15 @@ the browser fetches one stylesheet (effectively - `@import` cascades).
 
 ## Docs-site chrome
 
-The documentation site has its own assets, kept entirely out of this folder so
-`assets/` holds nothing but the shippable system. `docs/assets/css/site.css` is
-the docs entry point (header, sidebar, code-preview tabs) and `@import`s the
-per-page styles in `docs/assets/css/pages/` (architecture diagrams, token
-swatches, example-page layouts). Every doc/example page links both bundles -
-the shipped system, then the docs chrome:
+The documentation site (Pelican) has its own chrome, kept entirely out of the
+package so the shipped `voyager/static/` tree holds nothing but the design
+system. `themes/voyager-docs/static/css/site.css` is the docs entry point
+(header, sidebar, code-preview tabs) and `@import`s the per-page styles in
+`themes/voyager-docs/static/css/pages/` (architecture diagrams, token swatches,
+example-page layouts). Every doc/example page links both bundles - the shipped
+system, then the docs chrome:
 
 ```html
-<link rel="stylesheet" href="/voyager/assets/css/index.css">
-<link rel="stylesheet" href="/voyager/docs/assets/css/site.css">
+<link rel="stylesheet" href="/theme/voyager/assets/css/index.css">
+<link rel="stylesheet" href="/theme/css/site.css">
 ```
