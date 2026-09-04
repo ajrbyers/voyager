@@ -132,7 +132,7 @@
     display:flex;flex-wrap:wrap;gap:4px;
   }
   & .function-card-arrow{
-    color:var(--colour-fg-subtle);
+    color:var(--colour-fg-muted);
     font-size:var(--fs-base);
     transition:color 0.1s, transform 0.1s;
   }

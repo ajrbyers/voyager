@@ -14,7 +14,7 @@
     display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-2);
   }
   & li{display:flex;align-items:center;gap:var(--s-2)}
-  & li + li::before{content:"/";color:var(--colour-fg-subtle)}
+  & li + li::before{content:"/";color:var(--colour-fg-muted)}
   & a{color:var(--colour-accent);text-decoration:none}
   & a:hover{text-decoration:underline}
   & [aria-current="page"]{color:var(--colour-fg)}

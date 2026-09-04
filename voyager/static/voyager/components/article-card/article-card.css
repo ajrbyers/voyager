@@ -95,7 +95,7 @@
     font-size:var(--fs-sm);
     color:var(--colour-fg-muted);
 
-    & .article-card-sep{color:var(--colour-fg-subtle)}
+    /* .article-card-sep inherits fg-muted; fg-subtle fails AA at this size */
   }
 
   /* ---------- Actions ---------- */
