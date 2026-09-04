@@ -4,9 +4,8 @@
     <h1>Architecture</h1>
     <p class="site-page-lede">
       Voyager is plain modern CSS - no preprocessor, no framework.
-      Native CSS nesting and custom properties only. The system follows an
-      ITCSS-style layered structure, two-tier tokens,
-      and a small set of hard rules.
+      Native CSS nesting and custom properties only. The system follows
+      Memory Alpha's layered structure and two-tier tokens.
     </p>
 
     <h2>Layer order</h2>
@@ -140,64 +139,6 @@
 }</code></pre>
     </div>
 
-    <h2>Hard rules</h2>
-    <p>Non-negotiable. The system relies on these to stay coherent as it grows.</p>
-    <ol class="arch-rules">
-      <li>
-        <strong>No inline styles.</strong> Anywhere. If a one-off margin or
-        width is needed, add a utility class.
-      </li>
-      <li>
-        <strong>No <code>style="…"</code> attributes</strong> in component HTML
-        or example pages. Verified with a repository-wide grep.
-      </li>
-      <li>
-        <strong>No <em>unscoped</em> element selectors in component files.</strong>
-        Bare <code>h1</code> / <code>a</code> / <code>p</code> belong in
-        <code>elements.css</code>; element selectors scoped under the root class
-        (<code>&amp; li</code>, <code>&amp; a</code>) are fine and used throughout.
-      </li>
-      <li>
-        <strong>Components don't reference each other's classes.</strong> A
-        component is self-contained; composition happens in the markup, not
-        cross-component CSS. The one deliberate exception is <code>.icon</code>,
-        a shared primitive that each host component sizes to its own context.
-      </li>
-      <li>
-        <strong>Utilities are a last resort and load last.</strong> Prefer
-        composing existing components.
-      </li>
-      <li>
-        <strong>Accessibility is a quality bar.</strong> WCAG AA contrast,
-        real focus rings (the universal yellow treatment), semantic HTML, no fake ARIA, real
-        <code>&lt;ol&gt;</code>/<code>&lt;ul&gt;</code> for lists,
-        <code>aria-current</code> on active nav.
-      </li>
-      <li>
-        <strong>Squared edges everywhere</strong> - no <code>border-radius</code>
-        on rectangles. Inherently circular elements (avatars, dots, step
-        badges, the password show/hide circle for keyboard focus) use
-        <code>border-radius: 50%</code>.
-      </li>
-      <li>
-        <strong>Use the <code>.tag</code> chip baseline</strong> for all
-        chip-style elements. Don't invent a parallel chip - extend or
-        compose.
-      </li>
-      <li>
-        <strong>Inline SVG icons only</strong> - no unicode glyphs in
-        component icon slots. See the
-        <a href="components/icon.html">icon component</a>.
-      </li>
-      <li>
-        <strong>Macros follow the wrapper + item pattern</strong> for any
-        component that contains a repeating child (folder list, tabs,
-        breadcrumbs, steps, action menu, error summary). Compose via
-        <code>{% raw %}{% call %}{% endraw %}</code> in templates rather than
-        passing data dictionaries.
-      </li>
-    </ol>
-
     <h2>Bundle</h2>
     <p>
       <code>index.css</code> is the single entry point. Pages link only to that
@@ -223,9 +164,8 @@
       The architecture is adapted from
       <a href="https://github.com/openlibhums/memory-alpha">Memory Alpha</a>,
       OLH's Pelican-based site theme. Memory Alpha pioneered the
-      component pattern with native CSS nesting and composable variant classes
-      - Voyager carries those decisions forward and adds a stricter
-      "no inline styles" stance. Voyager also studied two systems we admire -
+      component pattern with native CSS nesting and composable variant classes.
+      Voyager also studied two systems we admire -
       the <a href="https://design-system.service.gov.uk/">GOV.UK Design System</a>
       for its form and accessibility discipline, and
       <a href="https://primer.style/">GitHub Primer</a> for its dense admin

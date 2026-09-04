@@ -46,7 +46,8 @@ integration test of the package.
 
 ## Architecture
 
-ITCSS layer order:
+Layer order, following [Memory Alpha's](https://github.com/openlibhums/memory-alpha)
+pattern:
 
 ```
 settings  →  reset  →  elements  →  components  →  utilities
@@ -54,7 +55,7 @@ settings  →  reset  →  elements  →  components  →  utilities
 
 Utilities load **last**, and single-purpose override utilities (text,
 margin, flow) carry `!important` so they beat component declarations at
-any nesting depth - the ITCSS terminal layer. See
+any nesting depth - the terminal layer of the cascade. See
 [`CSS-ARCHITECTURE.md`](CSS-ARCHITECTURE.md) for the full architecture
 document.
 

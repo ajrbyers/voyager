@@ -1,6 +1,6 @@
 /* ===========================================================
    Voyager - single-entry stylesheet.
-   Pages link only to this file. ITCSS layer order:
+   Pages link only to this file. Layer order (Memory Alpha's pattern):
      settings → reset → elements → components → utilities
    Utilities load LAST so they win on specificity.
    =========================================================== */

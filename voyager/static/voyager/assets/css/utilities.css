@@ -2,7 +2,7 @@
    utilities.css - single-purpose helpers. Imported LAST.
    Override utilities (text, margin, flow) carry !important so
    they beat component declarations regardless of nesting depth -
-   the ITCSS terminal layer. Layout primitives (stack, cluster,
+   the terminal layer of the cascade. Layout primitives (stack, cluster,
    grid, app layouts) are starting points, not overrides, and
    stay unweighted.
    =========================================================== */
