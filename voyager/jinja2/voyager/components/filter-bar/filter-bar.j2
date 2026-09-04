@@ -4,6 +4,7 @@
      - filter_bar()        wrapper
      - filter_bar_controls(prefix_label="Filter:")
      - filter_select(id, label, options, value=None)
+     - filter_input(id, label, type="text", value=None)
      - filter_bar_chips()
      - filter_chip(label, remove_url)
      - filter_clear(url)
@@ -52,6 +53,14 @@
     </option>
   {% endfor %}
 </select>
+{% endmacro %}
+
+{# filter_input - compact input (text, date, number, …) sized to match
+   filter_select so the two can share a row. name defaults to id; attrs is
+   an optional dict (hx-*, data-*) via xmlattr. #}
+{% macro filter_input(id, label, type="text", value=None, name=None, attrs=None) %}
+<label class="visually-hidden" for="{{ id|e }}">{{ label|e }}</label>
+<input id="{{ id|e }}" name="{{ (name or id)|e }}" type="{{ type|e }}" class="filter-input" aria-label="{{ label|e }}"{% if value is not none %} value="{{ value|e }}"{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
 {% endmacro %}
 
 {% macro filter_bar_chips() %}

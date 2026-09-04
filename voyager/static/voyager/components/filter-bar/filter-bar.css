@@ -15,9 +15,12 @@
     display:inline-flex;align-items:center;gap:6px;margin-right:4px;
   }
 
-  /* Compact select inside the filter bar - pin the height and trim padding
-     so it sits comfortably next to chips. */
-  & .filter-select{
+  /* Compact controls inside the filter bar - pin the height and trim
+     padding so they sit comfortably next to chips. .filter-select for
+     <select>, .filter-input for text/date/number inputs; the shared rule
+     keeps the two the same size when they share a row. */
+  & .filter-select,
+  & .filter-input{
     width:auto;min-width:140px;
     font-size:var(--fs-sm);
     padding:3px 8px;

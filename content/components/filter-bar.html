@@ -12,7 +12,7 @@
 
 <h2>Default</h2>
 {% set src %}{% raw %}{% from "voyager/components/filter-bar/filter-bar.j2"
-   import filter_bar, filter_bar_controls, filter_select,
+   import filter_bar, filter_bar_controls, filter_select, filter_input,
           filter_bar_chips, filter_chip, filter_clear %}
 
 {% call filter_bar() %}
@@ -30,6 +30,8 @@
     {{ filter_select("f-age", "Age",
                      options=[{"value":"","label":"Any age"},
                               {"value":"30","label":"Over 30 days"}]) }}
+    {{ filter_input("f-since", "Submitted since", type="date",
+                    value="2026-06-01") }}
   {% endcall %}
 
   {% call filter_bar_chips() %}
@@ -45,6 +47,7 @@
 <h2>Notes</h2>
 <ul>
   <li>The select dropdowns submit on change (HTMX or vanilla form submit) - the bar itself does no JavaScript.</li>
+  <li>Use <code>filter_input</code> (class <code>filter-input</code>) for text, date, or number controls in the bar - it shares the compact sizing of <code>filter-select</code>, so mixed control rows stay level. Don't put full-size <code>form-input</code> controls in a filter bar.</li>
   <li>Chips reflect active selections. Each chip's remove link should remove only that filter while preserving the others.</li>
   <li>Hide the chips row entirely when no filters are active - the empty <code>filter-bar-chips</code> collapses to zero height automatically.</li>
   <li>Pair with the <a href="folder-list.html">folder list</a> and <a href="article-card.html">article card</a> for the inbox-style dashboard.</li>
