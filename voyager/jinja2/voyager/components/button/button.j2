@@ -7,7 +7,10 @@
      - size:     '' (default) | 'small' | 'large'
      - href:     if given, renders as <a>; else <button type="…">
      - type:     button type when not a link (default 'button')
-     - disabled: boolean
+     - disabled: boolean. On a <button> this is the disabled attribute.
+                 Combined with href it renders an inert placeholder - an
+                 <a> with no href, is-disabled, and aria-disabled="true"
+                 (prefer removing or replacing disabled link-buttons)
      - attrs:    optional dict of extra attributes (aria-*, data-*,
                  hx-*) rendered verbatim via xmlattr
 
@@ -22,7 +25,11 @@
 {%- if size %}{% set classes = classes + ['btn-' ~ size] %}{% endif -%}
 {%- set cls = classes|join(' ') -%}
 {%- if href -%}
+  {%- if disabled -%}
+  <a class="{{ cls|e }} is-disabled" aria-disabled="true"{% if attrs %}{{ attrs|xmlattr }}{% endif %}>{{ label|e }}</a>
+  {%- else -%}
   <a href="{{ href|e }}" class="{{ cls|e }}"{% if attrs %}{{ attrs|xmlattr }}{% endif %}>{{ label|e }}</a>
+  {%- endif -%}
 {%- else -%}
   <button type="{{ type|e }}" class="{{ cls|e }}"{% if disabled %} disabled{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>{{ label|e }}</button>
 {%- endif -%}

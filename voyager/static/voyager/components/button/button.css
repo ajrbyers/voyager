@@ -41,6 +41,8 @@
     opacity:0.5;cursor:not-allowed;
     box-shadow:0 2px 0 var(--colour-focus-fg);
   }
+  /* Inert placeholder anchors (no href) still receive hover; suppress it. */
+  &.is-disabled{pointer-events:none}
 
   /* Sizes - minimum 24px hit area (WCAG 2.2 SC 2.5.8). */
   &.btn-small{

@@ -45,7 +45,7 @@
 {{ example(group) }}
 
 <h2>Disabled state</h2>
-<p>Use <code>disabled</code> on <code>&lt;button&gt;</code>. Anchors styled as buttons cannot be disabled - remove or replace them instead.</p>
+<p>Use <code>disabled</code> on <code>&lt;button&gt;</code>. Anchors styled as buttons cannot truly be disabled - prefer removing or replacing them. If the macro is called with both <code>href</code> and <code>disabled=True</code>, it renders an inert placeholder: an <code>&lt;a&gt;</code> with no <code>href</code>, the <code>is-disabled</code> class, and <code>aria-disabled="true"</code>.</p>
 
 <h2>Accessibility</h2>
 <ul>
