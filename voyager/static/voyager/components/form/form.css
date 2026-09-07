@@ -114,6 +114,24 @@
   border-color:var(--colour-error);
 }
 
+.form-input:disabled,
+.form-textarea:disabled,
+.form-select:disabled,
+.form-file:disabled{
+  opacity:0.5;cursor:not-allowed;
+  background:var(--colour-surface-grey);
+}
+.form-input:read-only:not(:disabled),
+.form-textarea:read-only:not(:disabled){
+  background:var(--colour-surface-grey);
+}
+.form-fieldset:disabled .form-radio,
+.form-fieldset:disabled .form-checkbox,
+.form-radio:has(input:disabled),
+.form-checkbox:has(input:disabled){
+  opacity:0.5;cursor:not-allowed;
+}
+
 .form-input:focus-visible,
 .form-textarea:focus-visible,
 .form-select:focus-visible{

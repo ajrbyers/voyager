@@ -15,6 +15,17 @@
                             postcode, etc.)
      - fluid="full"|"three-quarters"|...|"one-quarter"
 
+   Shared control args (all field macros):
+     - disabled: boolean - the native disabled attribute. On the
+       fieldset macros (radios, checkboxes, date) it disables every
+       control inside.
+     - readonly: boolean - text-like controls only.
+     - attrs:    optional dict of extra attributes for the control
+       (aria-*, data-*, hx-*, required, …) rendered verbatim via
+       xmlattr - the same convention as the button macro. Voyager
+       marks optional fields "(optional)" rather than marking
+       required ones, so `required` is deliberately attrs-only.
+
    Usage:
      {{ form_text("full_name", "full-name", "Full name",
                   hint="As it appears on the manuscript") }}
@@ -26,7 +37,8 @@
    Optional fields take optional=True and the label gets " (optional)" appended. #}
 {% macro form_text(name, id, label, hint="", value="", error="", optional=False,
                     type="text", autocomplete=None, width=None, fluid=None,
-                    label_size="m", inputmode=None) %}
+                    label_size="m", inputmode=None, disabled=False,
+                    readonly=False, attrs=None) %}
 {%- set hint_id = id ~ '-hint' if hint else '' -%}
 {%- set err_id  = id ~ '-error' if error else '' -%}
 {%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
@@ -41,14 +53,17 @@
          value="{{ value|e }}"
          {% if autocomplete %}autocomplete="{{ autocomplete|e }}"{% endif %}
          {% if inputmode %}inputmode="{{ inputmode|e }}"{% endif %}
-         {% if described %}aria-describedby="{{ described|e }}"{% endif %}>
+         {% if described %}aria-describedby="{{ described|e }}"{% endif %}
+         {% if disabled %}disabled{% endif %}
+         {% if readonly %}readonly{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
 </div>
 {% endmacro %}
 
 {# form_textarea - textarea. Pair with form_textarea_with_count
    for character-counted variants. #}
 {% macro form_textarea(name, id, label, hint="", value="", error="",
-                        optional=False, rows=5, label_size="m") %}
+                        optional=False, rows=5, label_size="m",
+                        disabled=False, readonly=False, attrs=None) %}
 {%- set hint_id = id ~ '-hint' if hint else '' -%}
 {%- set err_id  = id ~ '-error' if error else '' -%}
 {%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
@@ -58,15 +73,21 @@
   {% if error %}<p class="form-error-message" id="{{ err_id|e }}"><span class="visually-hidden">Error:</span> {{ error|e }}</p>{% endif %}
   <textarea class="form-textarea{% if error %} form-textarea-error{% endif %}"
             name="{{ name|e }}" id="{{ id|e }}" rows="{{ rows|e }}"
-            {% if described %}aria-describedby="{{ described|e }}"{% endif %}>{{ value|e }}</textarea>
+            {% if described %}aria-describedby="{{ described|e }}"{% endif %}
+            {% if disabled %}disabled{% endif %}
+            {% if readonly %}readonly{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>{{ value|e }}</textarea>
 </div>
 {% endmacro %}
 
 {# form_textarea_with_count - textarea wrapped in a character-count container.
-   The count message is a sibling div, not inside the form-group. #}
+   The count message is a sibling div, not inside the form-group. The
+   characterCount driver (form.js, initialised by the JS bundle) turns
+   the static "up to N characters" message into a live remaining count;
+   without JS the static message and native maxlength still apply. #}
 {% macro form_textarea_with_count(name, id, label, maxlength, hint="", value="",
                                     error="", optional=False, rows=5,
-                                    label_size="m") %}
+                                    label_size="m", disabled=False,
+                                    readonly=False, attrs=None) %}
 {%- set hint_id  = id ~ '-hint' if hint else '' -%}
 {%- set err_id   = id ~ '-error' if error else '' -%}
 {%- set info_id  = id ~ '-info' -%}
@@ -79,7 +100,9 @@
     <textarea class="form-textarea{% if error %} form-textarea-error{% endif %}"
               name="{{ name|e }}" id="{{ id|e }}" rows="{{ rows|e }}"
               maxlength="{{ maxlength|e }}"
-              aria-describedby="{{ described|e }}">{{ value|e }}</textarea>
+              aria-describedby="{{ described|e }}"
+              {% if disabled %}disabled{% endif %}
+              {% if readonly %}readonly{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>{{ value|e }}</textarea>
   </div>
   <div id="{{ info_id|e }}" class="form-character-count-message">
     You can enter up to {{ maxlength|e }} characters
@@ -95,7 +118,7 @@
      {% endcall %}
 #}
 {% macro form_select(name, id, label, hint="", error="", optional=False,
-                      label_size="m") %}
+                      label_size="m", disabled=False, attrs=None) %}
 {%- set hint_id = id ~ '-hint' if hint else '' -%}
 {%- set err_id  = id ~ '-error' if error else '' -%}
 {%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
@@ -105,14 +128,15 @@
   {% if error %}<p class="form-error-message" id="{{ err_id|e }}"><span class="visually-hidden">Error:</span> {{ error|e }}</p>{% endif %}
   <select class="form-select{% if error %} form-select-error{% endif %}"
           name="{{ name|e }}" id="{{ id|e }}"
-          {% if described %}aria-describedby="{{ described|e }}"{% endif %}>
+          {% if described %}aria-describedby="{{ described|e }}"{% endif %}
+          {% if disabled %}disabled{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
     {{ caller() }}
   </select>
 </div>
 {% endmacro %}
 
-{% macro form_select_option(value, label, selected=False) %}
-<option value="{{ value|e }}"{% if selected %} selected{% endif %}>{{ label|e }}</option>
+{% macro form_select_option(value, label, selected=False, disabled=False) %}
+<option value="{{ value|e }}"{% if selected %} selected{% endif %}{% if disabled %} disabled{% endif %}>{{ label|e }}</option>
 {% endmacro %}
 
 {# ---------- Radio group ---------- #}
@@ -120,12 +144,13 @@
 {# form_radios - wrapper. Use heading_legend=True when the legend is
    the page heading (the legend will wrap an h1 with form-fieldset-heading). #}
 {% macro form_radios(name, legend, hint="", error="", legend_size="m",
-                      heading_legend=False) %}
+                      heading_legend=False, disabled=False, attrs=None) %}
 {%- set hint_id  = name ~ '-hint' if hint else '' -%}
 {%- set err_id   = name ~ '-error' if error else '' -%}
 {%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
 <div class="form-group{% if error %} form-group-error{% endif %}">
-  <fieldset class="form-fieldset" {% if described %}aria-describedby="{{ described|e }}"{% endif %}>
+  <fieldset class="form-fieldset" {% if described %}aria-describedby="{{ described|e }}"{% endif %}
+            {% if disabled %}disabled{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
     <legend class="form-legend{% if legend_size != 'm' %} form-legend-{{ legend_size|e }}{% endif %}">
       {% if heading_legend %}<h1 class="form-fieldset-heading">{{ legend|e }}</h1>
       {% else %}{{ legend|e }}{% endif %}
@@ -138,9 +163,10 @@
 {% endmacro %}
 
 {# form_radio - one option. name should match the parent fieldset. #}
-{% macro form_radio(name, value, label, hint="", checked=False, small=False) %}
+{% macro form_radio(name, value, label, hint="", checked=False, small=False,
+                     disabled=False, attrs=None) %}
 <label class="form-radio{% if small %} form-radio-small{% endif %}">
-  <input type="radio" name="{{ name|e }}" value="{{ value|e }}" {% if checked %}checked{% endif %}>
+  <input type="radio" name="{{ name|e }}" value="{{ value|e }}" {% if checked %}checked{% endif %}{% if disabled %} disabled{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
   <span class="form-radio-text">
     <strong>{{ label|e }}</strong>
     {% if hint %}<span class="form-radio-hint">{{ hint|e }}</span>{% endif %}
@@ -155,12 +181,13 @@
 {# ---------- Checkbox group ---------- #}
 
 {% macro form_checkboxes(name, legend, hint="", error="", legend_size="m",
-                          heading_legend=False) %}
+                          heading_legend=False, disabled=False, attrs=None) %}
 {%- set hint_id  = name ~ '-hint' if hint else '' -%}
 {%- set err_id   = name ~ '-error' if error else '' -%}
 {%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
 <div class="form-group{% if error %} form-group-error{% endif %}">
-  <fieldset class="form-fieldset" {% if described %}aria-describedby="{{ described|e }}"{% endif %}>
+  <fieldset class="form-fieldset" {% if described %}aria-describedby="{{ described|e }}"{% endif %}
+            {% if disabled %}disabled{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
     <legend class="form-legend{% if legend_size != 'm' %} form-legend-{{ legend_size|e }}{% endif %}">
       {% if heading_legend %}<h1 class="form-fieldset-heading">{{ legend|e }}</h1>
       {% else %}{{ legend|e }}{% endif %}
@@ -172,9 +199,10 @@
 </div>
 {% endmacro %}
 
-{% macro form_checkbox(name, value, label, hint="", checked=False, small=False) %}
+{% macro form_checkbox(name, value, label, hint="", checked=False, small=False,
+                        disabled=False, attrs=None) %}
 <label class="form-checkbox{% if small %} form-checkbox-small{% endif %}">
-  <input type="checkbox" name="{{ name|e }}" value="{{ value|e }}" {% if checked %}checked{% endif %}>
+  <input type="checkbox" name="{{ name|e }}" value="{{ value|e }}" {% if checked %}checked{% endif %}{% if disabled %} disabled{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
   <span class="form-checkbox-text">
     <strong>{{ label|e }}</strong>
     {% if hint %}<span class="form-checkbox-hint">{{ hint|e }}</span>{% endif %}
@@ -194,13 +222,14 @@
      - day, month, year: pre-filled values
 #}
 {% macro form_date(name, id, legend, hint="", error="", day="", month="", year="",
-                    legend_size="m") %}
+                    legend_size="m", disabled=False, attrs=None) %}
 {%- set hint_id = id ~ '-hint' if hint else '' -%}
 {%- set err_id  = id ~ '-error' if error else '' -%}
 {%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
 <div class="form-group{% if error %} form-group-error{% endif %}">
   <fieldset class="form-fieldset" role="group"
-            {% if described %}aria-describedby="{{ described|e }}"{% endif %}>
+            {% if described %}aria-describedby="{{ described|e }}"{% endif %}
+            {% if disabled %}disabled{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
     <legend class="form-legend{% if legend_size != 'm' %} form-legend-{{ legend_size|e }}{% endif %}">{{ legend|e }}</legend>
     {% if hint %}<span class="form-hint" id="{{ hint_id|e }}">{{ hint|e }}</span>{% endif %}
     {% if error %}<p class="form-error-message" id="{{ err_id|e }}"><span class="visually-hidden">Error:</span> {{ error|e }}</p>{% endif %}
@@ -234,7 +263,7 @@
    type between 'password' and 'text'. See form docs page for the JS. #}
 {% macro form_password(name, id, label, hint="", value="", error="",
                         optional=False, autocomplete="current-password",
-                        label_size="m") %}
+                        label_size="m", disabled=False, attrs=None) %}
 {%- set hint_id = id ~ '-hint' if hint else '' -%}
 {%- set err_id  = id ~ '-error' if error else '' -%}
 {%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
@@ -247,9 +276,11 @@
            class="form-input{% if error %} form-input-error{% endif %}"
            value="{{ value|e }}"
            autocomplete="{{ autocomplete|e }}"
-           {% if described %}aria-describedby="{{ described|e }}"{% endif %}>
+           {% if described %}aria-describedby="{{ described|e }}"{% endif %}
+           {% if disabled %}disabled{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
     <button type="button" class="form-password-toggle"
             aria-controls="{{ id|e }}"
+            {% if disabled %}disabled{% endif %}
             data-form-password-toggle>Show</button>
   </div>
 </div>
@@ -261,7 +292,8 @@
      - multiple: boolean - allow multiple file selection
      - accept:   accept attribute (e.g. ".pdf,.docx") #}
 {% macro form_file(name, id, label, hint="", error="", optional=False,
-                    multiple=False, accept="", label_size="m") %}
+                    multiple=False, accept="", label_size="m",
+                    disabled=False, attrs=None) %}
 {%- set hint_id = id ~ '-hint' if hint else '' -%}
 {%- set err_id  = id ~ '-error' if error else '' -%}
 {%- set described = (hint_id ~ ' ' ~ err_id)|trim -%}
@@ -273,6 +305,7 @@
          class="form-file{% if error %} form-file-error{% endif %}"
          {% if multiple %}multiple{% endif %}
          {% if accept %}accept="{{ accept|e }}"{% endif %}
-         {% if described %}aria-describedby="{{ described|e }}"{% endif %}>
+         {% if described %}aria-describedby="{{ described|e }}"{% endif %}
+         {% if disabled %}disabled{% endif %}{% if attrs %}{{ attrs|xmlattr }}{% endif %}>
 </div>
 {% endmacro %}
