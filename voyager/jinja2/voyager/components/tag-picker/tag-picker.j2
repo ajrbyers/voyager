@@ -5,6 +5,12 @@
    non-JS fallback, so pair it with a plain multi-select where
    progressive enhancement is required.
 
+   Responsibilities: Voyager's tag-picker.js driver restores focus
+   to the search input after each add/remove swap and announces
+   "<item> added/removed" through an aria-live region it maintains
+   next to the widget. The consuming application owns the three
+   server endpoints, item persistence, and validation messaging.
+
    Macros:
      - tag_picker(name, label, items, search_url, empty_text)
        The widget. `items` is a list of dicts, each with `name`

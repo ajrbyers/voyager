@@ -36,6 +36,7 @@
 
 <h2>Textarea with character count</h2>
 <p>The character-count wrapper sits <em>outside</em> the form-group; the count message is a sibling div with an id referenced by the textarea's <code>aria-describedby</code>. Order in <code>aria-describedby</code>: count message id, then hint, then error.</p>
+<p>The <code>characterCount</code> driver in the JS bundle updates the message to a live "You have N characters remaining" as the user types, and announces the count to screen readers via a visually-hidden <code>aria-live</code> region once typing pauses. Without JavaScript the static "up to N characters" message and the native <code>maxlength</code> limit still apply.</p>
 {% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_textarea_with_count %}
 
 {{ form_textarea_with_count(
