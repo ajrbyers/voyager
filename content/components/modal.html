@@ -9,6 +9,10 @@
   <code>data-modal-open="&lt;backdrop-id&gt;"</code> opens the modal; anything inside
   carrying <code>data-modal-close</code> closes it, as do <kbd>Esc</kbd> and a click
   on the backdrop. Focus is trapped while open and returned to the opener on close.
+  While a modal is open, everything outside it is made <code>inert</code>, so
+  background content can't be reached by keyboard or assistive technology.
+  The driver is single-open: opening a modal while another is open dismisses
+  the first - modals do not stack.
 </p>
 
 <h2>Confirm a destructive action</h2>

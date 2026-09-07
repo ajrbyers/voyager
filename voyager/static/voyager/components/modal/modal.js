@@ -1,16 +1,41 @@
-// modal - open/close, ESC, focus trap, focus restore.
+// modal - open/close, ESC, focus trap, focus restore, inert background.
 // Contract: an opener carries data-modal-open="<backdrop-id>"; the
 // backdrop (.modal-backdrop) carries that id; anything inside with
 // data-modal-close closes it, as do ESC and a click on the backdrop
 // itself. Focus is trapped while open and restored to the opener on
-// close. When HTMX swaps content into a closed backdrop, the modal
-// opens and the first field of the new content is focused (no-op when
-// HTMX is absent). A modal rendered open by the server (is_open=True) is
-// adopted on init so ESC, the focus trap, and focus restore work for it.
+// close. While a modal is open, everything outside its backdrop is made
+// inert (elements already inert are left alone and stay inert after
+// close). The driver is single-open: opening a modal while another is
+// open closes the first - its backdrop is dismissed, and focus restore
+// tracks the most recent opener. When HTMX swaps content into a closed
+// backdrop, the modal opens and the first field of the new content is
+// focused (no-op when HTMX is absent). A modal rendered open by the
+// server (is_open=True) is adopted on init so ESC, the focus trap, and
+// focus restore work for it.
 
 export function modal() {
   var openModal = null;     // the open .modal-backdrop element
   var modalOpener = null;   // the element to restore focus to
+  var inerted = [];         // elements we made inert; reverted on close
+
+  function setBackgroundInert(backdrop) {
+    var node = backdrop;
+    while (node && node.parentNode && node !== document.body) {
+      var parent = node.parentNode;
+      Array.prototype.forEach.call(parent.children, function (sibling) {
+        if (sibling === node || sibling.inert) return;
+        if (sibling.tagName === 'SCRIPT' || sibling.tagName === 'STYLE') return;
+        sibling.inert = true;
+        inerted.push(sibling);
+      });
+      node = parent;
+    }
+  }
+
+  function clearBackgroundInert() {
+    inerted.forEach(function (el) { el.inert = false; });
+    inerted = [];
+  }
 
   var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), ' +
     'select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -24,9 +49,16 @@ export function modal() {
   }
 
   function showModal(backdrop, opener) {
+    if (openModal && openModal !== backdrop) {
+      // Single-open: dismiss the current modal without restoring focus -
+      // the new modal takes over focus management.
+      openModal.classList.remove('is-open');
+      clearBackgroundInert();
+    }
     openModal = backdrop;
     modalOpener = opener || document.activeElement;
     backdrop.classList.add('is-open');
+    setBackgroundInert(backdrop);
     var focusables = modalFocusables();
     if (focusables.length) focusables[0].focus();
   }
@@ -35,6 +67,7 @@ export function modal() {
     if (!openModal) return;
     openModal.classList.remove('is-open');
     openModal = null;
+    clearBackgroundInert();
     if (modalOpener && typeof modalOpener.focus === 'function') modalOpener.focus();
     modalOpener = null;
   }
