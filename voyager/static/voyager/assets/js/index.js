@@ -6,12 +6,15 @@
 
 import { detailsPersist } from "../../components/details/details.js";
 import { navDisclosure } from "../../components/folder-list/folder-list.js";
-import { passwordToggle } from "../../components/form/form.js";
+import { characterCount, passwordToggle } from "../../components/form/form.js";
 import { modal } from "../../components/modal/modal.js";
+import { tagPicker } from "../../components/tag-picker/tag-picker.js";
 import { themeToggle } from "../../components/theme-toggle/theme-toggle.js";
 
 detailsPersist();
 navDisclosure();
+characterCount();
 passwordToggle();
 modal();
+tagPicker();
 themeToggle();
