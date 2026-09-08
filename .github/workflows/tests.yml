@@ -1,0 +1,35 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Oldest supported Django on oldest supported Python, plus
+        # current stable - the declared range's edges.
+        include:
+          - python-version: "3.9"
+            django: "Django>=4.2,<5.0"
+          - python-version: "3.12"
+            django: "Django>=5.2,<6.0"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      # Install from a built wheel, not the source tree, so the run
+      # proves the release package carries the templates and statics.
+      - run: pip install build && python -m build --wheel
+      - run: pip install dist/*.whl "${{ matrix.django }}"
+      - run: mv voyager voyager-src  # force imports to resolve from the wheel
+      - run: DJANGO_SETTINGS_MODULE=tests.settings python -m django test tests
