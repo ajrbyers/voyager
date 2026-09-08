@@ -104,6 +104,10 @@
   --colour-fg-muted:        var(--colour-grey-6);
   --colour-fg-subtle:       var(--colour-grey-5);
   --colour-fg-strong:       var(--colour-ink);
+  /* Paired foreground for solid emphasis backgrounds (fg-strong,
+     success, accent). Flips with the theme so components don't need
+     individual dark-mode repairs for on-colour text. */
+  --colour-fg-on-emphasis:  var(--colour-white);
 
   /* Interactive */
   --colour-link:            var(--colour-link-base);
@@ -310,6 +314,9 @@
   --colour-fg-muted:         var(--colour-dark-fg-muted);
   --colour-fg-subtle:        var(--colour-dark-fg-subtle);
   --colour-fg-strong:        var(--colour-dark-fg-strong);
+  /* Dark emphasis backgrounds are light (fg-strong #f0f6fc) or bright
+     (success, accent), so on-emphasis text flips to the dark canvas. */
+  --colour-fg-on-emphasis:   var(--colour-dark-canvas);
 
   --colour-link:             var(--colour-dark-link);
   --colour-link-hover:       var(--colour-dark-link-hover);

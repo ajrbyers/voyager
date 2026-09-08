@@ -28,12 +28,12 @@
 
   & li.is-done::before{
     background:var(--colour-success);
-    color:var(--colour-white);
+    color:var(--colour-fg-on-emphasis);
     content:"✓";
   }
   & li.is-current::before{
     background:var(--colour-fg-strong);
-    color:var(--colour-white);
+    color:var(--colour-fg-on-emphasis);
   }
   & li.is-done{color:var(--colour-fg-muted)}
   & li.is-current{font-weight:600}
