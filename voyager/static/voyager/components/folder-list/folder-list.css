@@ -191,7 +191,7 @@
       color:var(--colour-fg);
     }
     &.folder-item-action-btn-danger:hover{
-      background:var(--colour-error);color:var(--colour-white);
+      background:var(--colour-error);color:var(--colour-fg-on-emphasis);
     }
   }
 
