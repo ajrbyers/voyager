@@ -40,9 +40,14 @@ The **design system** has two entry points, both under
   `index.css`.
 
 The **docs site** supplies its own chrome (header, sidebar, code-preview
-tabs) from `themes/voyager-docs/static/` and loads the design system
-exactly as a consumer application would, so the docs are a live
-integration test of the package.
+tabs) from `themes/voyager-docs/static/` and loads the design system's
+CSS/JS entry points as a consumer application would. Component pages
+render the packaged Jinja macros, deriving each live preview and its
+displayed HTML from the same render - so the build continuously
+exercises macro rendering and the shipped assets. It does not exercise
+release-package installation, Django template discovery, or interactive
+behaviour; those need their own checks. The three reference pages
+currently use handwritten component markup rather than the macros.
 
 ## Architecture
 
@@ -66,8 +71,15 @@ Two-tier system on `:root` in `settings.css`:
 1. **Raw tokens** - the underlying value: `--colour-grey-7: #1f2328;`
 2. **Semantic aliases** - point at raw tokens by role: `--colour-fg: var(--colour-grey-7);`
 
-Components reference **semantic** tokens. Pages and themes can override
-semantic aliases without touching raw tokens.
+Components reference **semantic** tokens, including the paired
+`--colour-fg-on-emphasis` for text on solid emphasis backgrounds (it
+flips with the theme, so components need no per-theme repairs). Two
+documented exceptions to the semantic-only rule: `--colour-white` is
+used on fixed saturated backgrounds that stay the same in both themes
+(the avatar colour pool), and some earlier components pair raw white
+with a bespoke `data-theme="dark"` override block - new components
+should use `--colour-fg-on-emphasis` instead. Pages and themes can
+override semantic aliases without touching raw tokens.
 
 ### Components
 
@@ -116,6 +128,22 @@ cd output && python3 -m http.server 8000
 load exactly what a consumer installs) and runs Pelican. The site supports
 light and dark themes via the toggle in the header; preference is stored in
 `localStorage`.
+
+## Running the tests
+
+The suite renders every packaged macro through Django's Jinja2 backend
+with `APP_DIRS=True` (proving consumer-style template discovery) and
+runs `collectstatic` with `VoyagerManifestStaticFilesStorage` to prove
+the CSS and JS import chains are hashed:
+
+```sh
+make test
+# or: DJANGO_SETTINGS_MODULE=tests.settings python -m django test tests
+```
+
+CI additionally installs Voyager from a built wheel - not the source
+tree - at both edges of the supported version range, so a release
+package missing templates, statics, or a dependency fails the build.
 
 ## Using Voyager in a page
 
@@ -198,8 +226,10 @@ and `APP_DIRS` Jinja resolve them.
 ## Status
 
 Voyager is at `v0.1` - the foundations, component set, and three reference
-pages (editor dashboard, manager index, peer-review screen) are in place. The
-next phase is wiring components into Janeway templates.
+pages (editor dashboard, manager index, peer-review screen) are in place.
+The reference pages use handwritten component markup; converting them to
+render through the packaged macros is planned. The next phase is wiring
+components into Janeway templates.
 
 ## Licensing
 
