@@ -34,7 +34,7 @@ Two-tier system on `:root` in `settings.css`:
 1. **Raw tokens** - the underlying value: `--colour-grey-7: #1f2328;`
 2. **Semantic aliases** - point at raw tokens by role: `--colour-fg: var(--colour-grey-7);`
 
-Components reference **semantic** tokens. Pages and themes can override semantic aliases without touching raw tokens.
+Components reference **semantic** tokens, including the paired `--colour-fg-on-emphasis` for text on solid emphasis backgrounds (fg-strong, success, accent) - it flips with the theme, so components need no per-theme repairs for on-colour text. Documented exceptions: `--colour-white` on fixed saturated backgrounds that don't flip (the avatar colour pool), and some earlier components that pair raw white with a bespoke `data-theme="dark"` override block; new components should use `--colour-fg-on-emphasis`. Pages and themes can override semantic aliases without touching raw tokens.
 
 ## Rules
 
@@ -54,8 +54,11 @@ consumers ship. Pages link it directly:
 <link rel="stylesheet" href="/voyager/assets/css/index.css">
 ```
 
-It uses `@import` to pull in every layer file in order. Authoring stays split;
-the browser fetches one stylesheet (effectively - `@import` cascades).
+It uses `@import` to pull in every layer file in order. Authoring stays
+split, and the browser fetches each imported file as its own request -
+this is an entry point, not a compiled single-file bundle. That is an
+acceptable trade-off for now; if request count ever matters, flatten the
+imports at build time.
 
 ## Docs-site chrome
 
