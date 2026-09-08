@@ -107,7 +107,10 @@ SIDEBAR = [
         ("Item list", "components/item-list.html"),
         ("Tag picker", "components/tag-picker.html"),
     ]),
-    ("Patterns", [("Check answers", "components/check-answers.html")]),
+    ("Patterns", [
+        ("Check answers", "components/check-answers.html"),
+        ("Usage guidance", "foundations/guidance.html"),
+    ]),
     ("Inbox pattern", [
         ("Folder list", "components/folder-list.html"),
         ("Article card", "components/article-card.html"),
