@@ -1,0 +1,41 @@
+<head><title>Usage guidance</title></head>
+<body>
+
+<h1>Usage guidance</h1>
+<p class="site-page-lede">
+  Conventions for choosing between overlapping components, for signalling
+  failures and blocked workflows, and for deciding when compact density
+  is appropriate. The components are documented individually; this page
+  is about picking the right one.
+</p>
+
+<h2>Choosing a container</h2>
+<p>Four components overlap as "a box with a heading". Choose by what the content <em>is</em>:</p>
+<ul>
+  <li><strong>Summary block</strong> - structured facts about one thing: metadata, key-value rows, per-row actions. The workhorse for detail pages. If the body is a definition list, it's a summary block.</li>
+  <li><strong>Queue card</strong> - an entry point to somewhere else: a workflow stage with counts and a single "open" CTA. If the point of the box is to leave it, it's a queue card.</li>
+  <li><strong>Article card</strong> - one article in a scanning list (an inbox row). Never use it as a page section; it exists to be repeated.</li>
+  <li><strong>Panel</strong> - the outcome of a just-completed action, at the top of a completion page ("Decision sent"). One per page, and only after an action.</li>
+</ul>
+
+<h2>Failures, unsaved work, and blocked workflows</h2>
+<ul>
+  <li><strong>A failed action</strong> gets a <code>notice</code> in the error kind at the top of the content area, naming what failed and what to do next. Field-level problems additionally use the form error pattern (message above the control, <code>form-group-error</code>).</li>
+  <li><strong>Unsaved work</strong>: warn before it can be lost, not after. Use <code>warning-text</code> beside the control that would discard it; don't rely on a browser dialog.</li>
+  <li><strong>A blocked workflow</strong> states the blockage <em>and</em> reorders the controls: the actions that resolve the blockage are enabled and listed first; the action being blocked renders as an inert placeholder (<code>btn is-disabled</code> with <code>aria-disabled="true"</code>), not as an enabled primary button. The peer-review reference page shows the pattern in its Status rail.</li>
+  <li><strong>Emphasis is a budget.</strong> Status tags, alert pills, coloured rails, and primary buttons compete; a page should have at most one primary button and reserve colour for exceptions and the next meaningful action. If everything is highlighted, nothing is.</li>
+</ul>
+
+<h2>Density</h2>
+<p>Voyager's compact scale (11-15px) is tuned for <strong>scanning chrome</strong>: queues, metadata, status labels, tables - dense pages an editor reads dozens of times a day. It is not for reading. Use the larger sizes (<code>--fs-md</code> and up, comfortable line lengths) for:</p>
+<ul>
+  <li>instructions and hint text the user must actually read before acting;</li>
+  <li>decision content - anything the user is asked to weigh up (review text, revision requests);</li>
+  <li>confirmation and completion pages.</li>
+</ul>
+<p>Uppercase 11px labels are for repeated, learned labels (status tags, section labels), never for one-off instructions.</p>
+
+<h2>Narrow screens keep task priority</h2>
+<p>Below 1100px, <code>layout-with-rail</code> collapses to one column and the rail follows the main content. If the rail carries the page's essential status and actions (as on the peer-review screen), add <code>rail-first-narrow</code> to the rail so it moves <em>above</em> the main content instead. Leave it off for rails holding secondary reference material.</p>
+
+</body>
