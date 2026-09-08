@@ -4,7 +4,10 @@
 PELICAN ?= pelican
 PY ?= python
 
-.PHONY: docs docs-serve docs-clean
+.PHONY: docs docs-serve docs-clean test
+test:
+	DJANGO_SETTINGS_MODULE=tests.settings $(PY) -m django test tests
+
 docs:
 	rm -rf themes/voyager-docs/static/voyager
 	cp -r voyager/static/voyager themes/voyager-docs/static/voyager
