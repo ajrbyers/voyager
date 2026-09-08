@@ -51,6 +51,10 @@
   shell</a>). The main content takes the flexible left column; the rail takes
   a fixed right column sized by the <code>--shell-rail-width</code> token.
   Below 1100px the grid collapses and the rail drops beneath the content.
+  If the rail carries the page's essential status and actions, add
+  <code>rail-first-narrow</code> to it so it moves <em>above</em> the main
+  content at that width and task priority is preserved; leave it off for
+  rails holding secondary reference material.
 </p>
 {% set src %}{% raw %}<div class="layout-with-rail">
   <div>
