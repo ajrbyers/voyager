@@ -5,13 +5,13 @@ JavaScript for editorial and administration interfaces: compact layouts
 for scanning submission queues, and accessible forms for consequential
 actions.
 
-It is plain modern CSS - no preprocessor, no framework. Native CSS
-nesting and custom properties only.
+It is plain modern CSS, using native nesting and custom properties
+only, with no preprocessor and no framework.
 
 ## What's in here
 
-The repo has two parts - the shippable Django app, and a Pelican
-documentation site that renders the packaged components:
+The repository has two parts: the shippable Django app, and a Pelican
+documentation site that renders the packaged components.
 
 ```
 # Shippable design system - the `voyager` Django app (all a consumer needs)
@@ -31,22 +31,23 @@ content/                one page per component/foundation/example; every
                         the example() helper (foundations document tokens and
                         conventions; the example pages are currently
                         handwritten markup)
-themes/voyager-docs/    docs theme: the chrome, the example() macro, docs CSS/JS
+themes/voyager-docs/    docs theme: header, sidebar, example() macro, docs CSS/JS
 pelicanconf.py          Pelican config: render_snippet + the sidebar registry
 ```
 
 The **design system** has two entry points, both under
 `voyager/static/voyager/assets/`:
 
-- `css/index.css` - `@import`s every layer (settings → reset → elements →
-  components → utilities) in order. The only stylesheet consumers ship.
-- `js/index.js` - an ES module that imports each component's driver
-  (`components/<name>/<name>.js`) and calls its init - the JS analogue of
-  `index.css`.
+- `css/index.css` imports every layer (settings → reset → elements →
+  components → utilities) in order, and is the only stylesheet
+  consumers ship.
+- `js/index.js` is an ES module that imports each component's driver
+  (`components/<name>/<name>.js`) and calls its init - the JavaScript
+  analogue of `index.css`.
 
 The **docs site** supplies its own header, sidebar, and code-preview
 tabs from `themes/voyager-docs/static/` and loads the design system's
-CSS/JS entry points as a consumer application would. Component pages
+CSS and JavaScript entry points as a consumer application would. Component pages
 render Voyager's Jinja macros: each example's preview and HTML output
 come from the same render, so the build exercises macro rendering and
 the shipped assets. It does not exercise release-package installation,
@@ -56,8 +57,8 @@ markup.
 
 ## Architecture
 
-Layer order, following [Memory Alpha's](https://github.com/openlibhums/memory-alpha)
-pattern:
+Styles load in layer order, following
+[Memory Alpha's](https://github.com/openlibhums/memory-alpha) pattern:
 
 ```
 settings  →  reset  →  elements  →  components  →  utilities
@@ -71,15 +72,15 @@ document.
 
 ### Tokens
 
-Two-tier system on `:root` in `settings.css`:
+Tokens form a two-tier system on `:root` in `settings.css`:
 
-1. **Raw tokens** - the underlying value: `--colour-grey-7: #1f2328;`
-2. **Semantic aliases** - point at raw tokens by role: `--colour-fg: var(--colour-grey-7);`
+1. **Raw tokens** hold the underlying value: `--colour-grey-7: #1f2328;`
+2. **Semantic aliases** point at raw tokens by role: `--colour-fg: var(--colour-grey-7);`
 
 Components reference **semantic** tokens, including the paired
 `--colour-fg-on-emphasis` for text on solid emphasis backgrounds (it
-flips with the theme, so components need no per-theme repairs). Two
-documented exceptions to the semantic-only rule: `--colour-white` is
+flips with the theme, so components need no per-theme repairs). There
+are two documented exceptions to the semantic-only rule: `--colour-white` is
 used on fixed saturated backgrounds that stay the same in both themes
 (the avatar colour pool), and some earlier components pair raw white
 with a bespoke `data-theme="dark"` override block - new components
@@ -88,34 +89,34 @@ override semantic aliases without touching raw tokens.
 
 ### Components
 
-- Each component's CSS/JS live at `voyager/static/voyager/components/<name>/`
+- Each component's CSS and JavaScript live at `voyager/static/voyager/components/<name>/`
   and its `<name>.j2` macro at `voyager/jinja2/voyager/components/<name>/`
   (Django keeps static files and templates in separate trees). Its
   documentation page is `content/components/<name>.html`.
 - The CSS file opens with a **root class** matching the component name, and
   everything nests under it via `&`. Scoped element selectors under the root
   (`& li`, `& a`, `& td`) are fine; unscoped element selectors are not. A few
-  components expose a small family of related roots (e.g. `form`,
-  `information`) rather than a single class.
-- Variants are **extra flat classes composed in the markup** - not BEM
-  modifiers. Example: `<a class="btn btn-primary btn-large">` not
+  components expose a small family of related roots (for example
+  `form` and `information`) rather than a single class.
+- Variants are **extra flat classes composed in the markup**, not BEM
+  modifiers: `<a class="btn btn-primary btn-large">`, not
   `<a class="btn btn--primary btn--large">`.
 
 ### Rules
 
-1. No inline styles. Anywhere. If a one-off margin or width is needed, add a
+1. No inline styles anywhere. If a one-off margin or width is needed, add a
    utility class.
-2. No *unscoped* element selectors in component files - bare `h1`, `a`, `p`
-   belong in `elements.css`. Element selectors *scoped under the root class*
-   (`& li`, `& a`) are fine and used throughout.
+2. No *unscoped* element selectors in component files: bare `h1`, `a`, and
+   `p` belong in `elements.css`. Element selectors *scoped under the root
+   class* (`& li`, `& a`) are fine and used throughout.
 3. Components don't reference each other's classes. A component is
-   self-contained; composition happens in the markup. The one deliberate
-   exception is `.icon`, a shared primitive that each host component (`.btn`,
-   `.app-header`, `.sidebar-nav`, …) sizes to its own context.
-4. Utilities are last-resort and load last. Prefer composing existing
+   self-contained; composition happens in the markup. The one exception is
+   `.icon`, a shared primitive that each host component (`.btn`,
+   `.app-header`, `.sidebar-nav`, and others) sizes to its own context.
+4. Utilities are a last resort, and load last. Prefer composing existing
    components.
-5. Accessibility is a quality bar - AA contrast, visible focus rings, semantic
-   HTML, no fake ARIA.
+5. Accessibility is a quality bar: AA contrast, visible focus rings,
+   semantic HTML, and no fake ARIA.
 
 ## Building the docs locally
 
@@ -129,7 +130,7 @@ cd output && python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
-`make docs` stages the package's own CSS/JS into the theme (so the docs
+`make docs` stages the package's own CSS and JavaScript into the theme (so the docs
 load exactly what a consumer installs) and runs Pelican. The site supports
 light and dark themes via the toggle in the header; preference is stored in
 `localStorage`.
@@ -151,11 +152,11 @@ CI additionally installs Voyager from a built wheel - not the source
 tree - at both edges of the supported version range, so a release
 package missing templates, statics, or a dependency fails the build.
 
-A separate Playwright suite drives the shipped JavaScript drivers in a
-real Chromium against real macro output (rendered by a fixture server
-with HTMX): tag-picker focus/announcements around concurrent and failed
-requests, modal single-open focus restoration and inert background, and
-rail reading/tab order at both widths:
+A separate Playwright suite drives the shipped JavaScript drivers in
+Chromium against macro output rendered by a fixture server with HTMX.
+It covers tag-picker focus and announcements around concurrent and
+failed requests, modal single-open focus restoration and the inert
+background, and rail reading and tab order at narrow and wide widths:
 
 ```sh
 pip install playwright && playwright install chromium
@@ -164,7 +165,7 @@ make test-browser
 
 ## Using Voyager in a page
 
-Link the stylesheet bundle and the behaviour entry, then use the
+Link the stylesheet and JavaScript entry points, then use the
 component markup:
 
 ```html
@@ -204,7 +205,7 @@ INSTALLED_APPS = [
 ```
 
 `collectstatic` then gathers the design system automatically, and the
-bundles are linked with the `static` tag:
+entry points are linked with the `static` tag:
 
 ```html
 <link rel="stylesheet" href="{% static 'voyager/assets/css/index.css' %}">
@@ -231,20 +232,22 @@ Django's default `ManifestStaticFilesStorage` hashes and rewrites the
 `@import` chain in `index.css` but leaves the ES-module `import`
 specifiers in `index.js` untouched, so the component drivers would ship
 unhashed. `VoyagerManifestStaticFilesStorage` enables
-`support_js_module_import_aggregation` (Django >= 4.2) so the JS import
-chain is hashed too.
+`support_js_module_import_aggregation` (Django 4.2 or later) so the
+JavaScript import chain is hashed too.
 
-Packaging notes: the shippable files live at their canonical Django
-locations inside the package - `voyager/static/voyager/` (CSS and JS) and
-`voyager/jinja2/voyager/` (macros) - so hatchling ships them as ordinary
-package data. No build hook, no symlinks: standard `AppDirectoriesFinder`
-and `APP_DIRS` Jinja resolve them.
+The shippable files live at their canonical Django locations inside
+the package - `voyager/static/voyager/` for CSS and JavaScript, and
+`voyager/jinja2/voyager/` for the macros - so hatchling ships them as
+ordinary package data. There is no build hook and there are no
+symlinks: the standard `AppDirectoriesFinder` and an `APP_DIRS` Jinja
+backend resolve them.
 
 ## Status
 
-Voyager is at `v0.1` - the foundations, component set, and three reference
-pages (editor dashboard, manager index, peer-review screen) are in place.
-The reference pages use handwritten component markup.
+Voyager is at `v0.1`. The foundations, the component set, and three
+reference pages (the editor dashboard, the manager index, and the
+peer-review screen) are in place. The reference pages use handwritten
+component markup.
 
 ## Licensing
 
