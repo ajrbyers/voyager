@@ -4,16 +4,17 @@
 
 <h1>Warning text</h1>
 <p class="site-page-lede">
-  For serious advisories - irreversible actions, legal consequences, data
-  loss. Heavier than the inset text and notice patterns on the
+  Use warning text to explain the consequences of an action, particularly
+  when it cannot be reversed or may remove work. It carries more weight than
+  the inset text and notice patterns on the
   <a href="information.html">Information</a> page.
 </p>
 
 <h2>Example</h2>
-<p>The black filled circle is decorative; the visually-hidden &ldquo;Warning&rdquo; prefix carries the meaning for screen readers.</p>
+<p>The warning includes a visually hidden <strong>Warning</strong> prefix. The icon is decorative.</p>
 {% set src %}{% raw %}{% from "voyager/components/warning-text/warning-text.j2" import warning_text %}
 
-{{ warning_text("Withdrawing this submission will email the corresponding author and cannot be reversed.") }}{% endraw %}{% endset %}
+{{ warning_text("Withdrawing this submission cannot be reversed. The corresponding author will receive an email.") }}{% endraw %}{% endset %}
 {{ example(src) }}
 
 </body>

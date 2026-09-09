@@ -4,14 +4,17 @@
 
 <h1>Icon</h1>
 <p class="site-page-lede">
-  Inline SVG icons hand-rolled in the Lucide style. Every icon shares
-  a 24&times;24 viewBox, 2&nbsp;px stroke width, round caps and joins,
-  and uses <code>currentColor</code> so the icon picks up the text colour
-  of the surrounding element.
+  Voyager provides SVG icons for actions and navigation. Icons inherit the
+  surrounding text colour through <code>currentColor</code>.
+</p>
+<p>
+  Every icon uses a 24&times;24 viewBox, a 2&nbsp;px stroke width, and round
+  caps and joins. The icons follow the Lucide style.
 </p>
 
 <h2>Library</h2>
-<p>50 icons. Click an icon to copy its name.</p>
+<p>The library contains 50 icons. Use the name below each icon when calling
+  the <code>icon()</code> macro. Select an icon to copy its name.</p>
 <div class="icon-grid">
     <div>
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg>
@@ -216,7 +219,7 @@
 </div>
 
 <h2>Sizing</h2>
-<p>The base <code>.icon</code> class sizes to <code>1em</code> &mdash; the icon scales with the surrounding font size. Use size modifiers to override.</p>
+<p>The base <code>.icon</code> class sizes to <code>1em</code>, so the icon scales with the surrounding font size. Use a size modifier to set an explicit size.</p>
 {% set src %}{% raw %}<div class="cluster-lg">
   <span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> <code>icon-sm</code> 14px</span>
   <span><svg class="icon icon-md" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> <code>icon-md</code> 18px</span>
@@ -226,10 +229,11 @@
 {{ example(src, jinja=False) }}
 
 <h2>Inside other components</h2>
-<p>The component CSS auto-sizes icons inside their containers &mdash; an icon inside a button is 14&nbsp;px, inside an action-menu icon tile is 13&nbsp;px, inside a sidebar nav link is 13&nbsp;px, and so on. Just drop the SVG in and it takes the right size.</p>
+<p>Components set icon sizes to suit their layout: 14&nbsp;px inside a button, and 13&nbsp;px inside an action-menu icon tile or a sidebar navigation link. Use an explicit size modifier when placing an icon outside those components.</p>
 
-<h2>Decorative vs labelled</h2>
-<p>Icons that sit next to text are decorative &mdash; use <code>aria-hidden="true"</code> so screen readers don't double-announce. Icons used as the sole content of an interactive element need an accessible name &mdash; use <code>role="img"</code> with <code>aria-label</code>, or wrap the icon in a button with an <code>aria-label</code> and keep the icon hidden.</p>
+<h2>Accessible names</h2>
+<p>When an icon repeats an adjacent text label, hide it from assistive technology with <code>aria-hidden="true"</code>.</p>
+<p>Give buttons and links that contain only an icon an accessible name, such as <code>aria-label="Open menu"</code>. Pass <code>title</code> to the macro to give a standalone icon its own accessible name.</p>
 {% set src %}{% raw %}{% from "voyager/components/icon/icon.j2" import icon %}
 
 <a href="/files">{{ icon("file") }} Manage files</a>
@@ -241,10 +245,10 @@
 
 <h2>Notes</h2>
 <ul>
-  <li>Don't use unicode glyphs (&#9742; &#9881; &check;) &mdash; they render inconsistently across systems. Reach for an SVG icon.</li>
+  <li>Use an SVG icon rather than a unicode glyph (&#9742; &#9881; &check;). Unicode glyphs render inconsistently across systems.</li>
   <li>Don't fill icons with a colour. They use <code>fill: none</code> and stroke <code>currentColor</code>; colour them via <code>color</code> on the parent.</li>
   <li>Don't mix stroke widths within a page. 2&nbsp;px is the system default; small variants use 2.2 or 2.4 for visual weight at 12&ndash;14&nbsp;px.</li>
-  <li>To add an icon: drop its SVG paths into the <code>_ICONS</code> dict in <code>components/icon/icon.j2</code> and the macro picks it up.</li>
+  <li>To add an icon, add its SVG paths to the <code>_ICONS</code> dictionary in <code>components/icon/icon.j2</code>. The macro reads its names from that dictionary.</li>
 </ul>
 
 </body>

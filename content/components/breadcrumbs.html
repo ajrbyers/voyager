@@ -4,9 +4,8 @@
 
 <h1>Breadcrumbs</h1>
 <p class="site-page-lede">
-  A trail of links showing where the current page sits in the hierarchy.
-  Place it above the page title, with the current page as the final,
-  unlinked item.
+  Breadcrumbs show the current page's position in the site. Place them above
+  the page title. The final item names the current page and has no link.
 </p>
 
 <h2>Example</h2>
@@ -16,7 +15,7 @@
   {{ breadcrumb("Dashboard", url="/") }}
   {{ breadcrumb("Articles",  url="/articles") }}
   {{ breadcrumb("#1247 Okafor", url="#") }}
-  {{ breadcrumb("Peer Review", current=True) }}
+  {{ breadcrumb("Peer review", current=True) }}
 {% endcall %}{% endraw %}{% endset %}
 {{ example(src) }}
 

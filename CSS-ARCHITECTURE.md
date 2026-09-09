@@ -43,22 +43,21 @@ Components reference **semantic** tokens, including the paired `--colour-fg-on-e
 3. **No *unscoped* element selectors in component files.** Bare `h1`/`a`/`p` belong in `elements.css`; element selectors *scoped under the root class* (`& li`, `& a`) are fine and used throughout.
 4. **Components don't reference each other's classes.** A component is self-contained; composition happens in the markup. The one deliberate exception is `.icon`, a shared primitive that each host component (`.btn`, `.app-header`, `.sidebar-nav`, …) sizes to its own context.
 5. **Utilities are last-resort and load last.** Prefer composing existing components.
-6. **Accessibility is a quality bar.** AA contrast, real focus rings, semantic HTML, no fake ARIA.
+6. **Accessibility is a quality bar.** AA contrast, visible focus rings, semantic HTML, no fake ARIA.
 
-## Bundle
+## Loading styles
 
-`index.css` is the single entry point for the **design system** - the only file
-consumers ship. Pages link it directly:
+Link to `index.css` to load the design system - the only stylesheet
+consumers ship:
 
 ```html
 <link rel="stylesheet" href="/voyager/assets/css/index.css">
 ```
 
-It uses `@import` to pull in every layer file in order. Authoring stays
-split, and the browser fetches each imported file as its own request -
-this is an entry point, not a compiled single-file bundle. That is an
-acceptable trade-off for now; if request count ever matters, flatten the
-imports at build time.
+It imports the component stylesheets and shared settings in layer
+order. Each imported stylesheet remains a separate file and a separate
+request - this is an entry point, not a compiled single-file bundle. If
+request count ever matters, flatten the imports at build time.
 
 ## Docs-site chrome
 

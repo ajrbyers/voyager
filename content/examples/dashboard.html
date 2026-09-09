@@ -3,9 +3,9 @@
 
 <div class="progress-bar" aria-hidden="true"></div>
 
-<aside class="example-banner" aria-label="Voyager reference page">
+<aside class="example-banner" aria-label="Voyager example interface">
   <span class="example-banner-tag">Reference</span>
-  Voyager reference page - handwritten markup using Voyager component classes
+  Example interface built with Voyager.
   <span class="example-banner-spacer"></span>
   <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
     <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -26,7 +26,7 @@
     <a href="manager.html">Manager</a>
     <a href="#">Reports</a>
   </nav>
-  <button type="button" class="app-header-avatar" aria-label="Account menu - signed in as t.kowalski">t.kowalski</button>
+  <button type="button" class="app-header-avatar" aria-label="Account - signed in as t.kowalski">t.kowalski</button>
 </header>
 
 <div class="inbox-shell">
@@ -52,7 +52,7 @@
         </a></li>
         <li><a href="#" class="folder-item is-active" aria-current="page">
           <span class="folder-item-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
-          <span class="folder-item-name">Peer Review</span>
+          <span class="folder-item-name">Peer review</span>
           <span class="folder-item-count folder-item-count-critical">14</span>
         </a></li>
         <li><a href="#" class="folder-item">
@@ -122,13 +122,13 @@
     <div class="inbox-sticky">
     <header class="inbox-toolbar">
       <div class="inbox-toolbar-left">
-        <h1 class="inbox-toolbar-title">Peer Review</h1>
+        <h1 class="inbox-toolbar-title">Peer review</h1>
         <span class="inbox-toolbar-count">6 of 14 articles</span>
         <span class="inbox-toolbar-updated">Updated 2 min ago · <button type="button" class="inbox-toolbar-refresh">Refresh</button></span>
       </div>
       <div class="inbox-toolbar-right">
         <span class="inbox-sort-label">Sort:</span>
-        <button type="button" class="inbox-sort-btn is-active" aria-pressed="true">Severity</button>
+        <button type="button" class="inbox-sort-btn is-active" aria-pressed="true">Urgency</button>
         <button type="button" class="inbox-sort-btn" aria-pressed="false">Age</button>
         <button type="button" class="inbox-sort-btn" aria-pressed="false">Title</button>
         <button type="button" class="inbox-sort-btn" aria-pressed="false">Alerts</button>
@@ -185,7 +185,7 @@
               <span class="article-card-id">#1247</span>
               <span class="tag tag-grey">Article</span>
               <span class="article-card-spacer"></span>
-              <span class="article-card-days article-card-days-critical" title="62 days in workflow · since 9 Mar 2026">62d</span>
+              <span class="article-card-days article-card-days-critical" title="62 days in workflow · since 9 March 2026">62 days</span>
             </div>
             <h3 class="article-card-title">
               <a class="article-card-title-link" href="peer-review.html">Reproducibility of LSTM forecasts for short-term electricity demand: a multi-region replication study</a>
@@ -202,9 +202,9 @@
           </div>
         </div>
         <div class="article-card-alerts">
-          <a href="#" class="alert-pill alert-pill-critical">Reviewer declined, no replacement</a>
-          <a href="#" class="alert-pill alert-pill-critical">Revision R-2026-091 overdue 4 days</a>
-          <a href="#" class="alert-pill alert-pill-warning">Whitfield not acknowledged</a>
+          <a href="#" class="alert-pill alert-pill-critical">Replacement reviewer needed</a>
+          <a href="#" class="alert-pill alert-pill-critical">Revision R-2026-091 is 4 days overdue</a>
+          <a href="#" class="alert-pill alert-pill-warning">Whitfield has not responded</a>
         </div>
       </article>
 
@@ -215,7 +215,7 @@
               <span class="article-card-id">#1239</span>
               <span class="tag tag-grey">Article</span>
               <span class="article-card-spacer"></span>
-              <span class="article-card-days article-card-days-critical" title="71 days in workflow · since 28 Feb 2026">71d</span>
+              <span class="article-card-days article-card-days-critical" title="71 days in workflow · since 28 February 2026">71 days</span>
             </div>
             <h3 class="article-card-title">
               <a class="article-card-title-link" href="#">Wind generation forecast skill across the North Sea: a hindcast of operational models</a>
@@ -233,7 +233,7 @@
         </div>
         <div class="article-card-alerts">
           <a href="#" class="alert-pill alert-pill-critical">No editor assigned</a>
-          <a href="#" class="alert-pill alert-pill-warning">All reviews in, no decision</a>
+          <a href="#" class="alert-pill alert-pill-warning">All reviews received; decision needed</a>
           <a href="#" class="alert-pill alert-pill-info">Plagiarism check complete</a>
         </div>
       </article>
@@ -251,7 +251,7 @@
               <span class="article-card-id">#1252</span>
               <span class="tag tag-grey">Review</span>
               <span class="article-card-spacer"></span>
-              <span class="article-card-days article-card-days-warning" title="38 days in workflow">38d</span>
+              <span class="article-card-days article-card-days-warning" title="38 days in workflow">38 days</span>
             </div>
             <h3 class="article-card-title">
               <a class="article-card-title-link" href="#">A meta-review of capacity-credit methods for variable renewables</a>
@@ -268,8 +268,8 @@
           </div>
         </div>
         <div class="article-card-alerts">
-          <a href="#" class="alert-pill alert-pill-warning">2 of 3 reviewers responded</a>
-          <a href="#" class="alert-pill alert-pill-info">Reviewers invited 12 Apr</a>
+          <a href="#" class="alert-pill alert-pill-warning">2 of 3 reviewers have responded</a>
+          <a href="#" class="alert-pill alert-pill-info">Reviewers invited on 12 April</a>
         </div>
       </article>
 
@@ -280,7 +280,7 @@
               <span class="article-card-id">#1258</span>
               <span class="tag tag-grey">Article</span>
               <span class="article-card-spacer"></span>
-              <span class="article-card-days article-card-days-warning" title="32 days in workflow">32d</span>
+              <span class="article-card-days article-card-days-warning" title="32 days in workflow">32 days</span>
             </div>
             <h3 class="article-card-title">
               <a class="article-card-title-link" href="#">Sensor placement strategies for low-voltage substations in distribution networks</a>
@@ -297,13 +297,13 @@
           </div>
         </div>
         <div class="article-card-alerts">
-          <a href="#" class="alert-pill alert-pill-warning">Awaiting acknowledgement</a>
+          <a href="#" class="alert-pill alert-pill-warning">Awaiting a response</a>
         </div>
       </article>
 
       <div class="section-divider section-divider-info">
         <span class="section-divider-dot" aria-hidden="true"></span>
-        <h2 class="section-divider-label">Info · 1</h2>
+        <h2 class="section-divider-label">Updates · 1</h2>
         <span class="section-divider-line"></span>
       </div>
 
@@ -314,7 +314,7 @@
               <span class="article-card-id">#1263</span>
               <span class="tag tag-grey">Article</span>
               <span class="article-card-spacer"></span>
-              <span class="article-card-days" title="34 days in workflow">34d</span>
+              <span class="article-card-days" title="34 days in workflow">34 days</span>
             </div>
             <h3 class="article-card-title">
               <a class="article-card-title-link" href="#">Electrolyser deployment scenarios for the UK industrial decarbonisation pathway</a>
@@ -338,7 +338,7 @@
 
       <div class="section-divider">
         <span class="section-divider-dot" aria-hidden="true"></span>
-        <h2 class="section-divider-label">All clear · 1</h2>
+        <h2 class="section-divider-label">No alerts · 1</h2>
         <span class="section-divider-line"></span>
       </div>
 
@@ -349,7 +349,7 @@
               <span class="article-card-id">#1270</span>
               <span class="tag tag-grey">Article</span>
               <span class="article-card-spacer"></span>
-              <span class="article-card-days" title="31 days in workflow">31d</span>
+              <span class="article-card-days" title="31 days in workflow">31 days</span>
             </div>
             <h3 class="article-card-title">
               <a class="article-card-title-link" href="#">Demand-side flexibility in residential heat pump fleets: an empirical study</a>

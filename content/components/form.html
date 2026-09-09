@@ -4,27 +4,25 @@
 
 <h1>Form</h1>
 <p class="site-page-lede">
-  Every field type shares one structure: group wrapper, label, hint,
-  error message, control. Voyager's form conventions: mark optional fields
-  (never required), error messages use <code>&lt;p&gt;</code> with a
-  visually-hidden &ldquo;Error:&rdquo; prefix, error groups get a red left
-  border, <code>aria-describedby</code> lists the hint first then the
-  error, and radio/checkbox controls are 40&nbsp;×&nbsp;40&nbsp;px.
+  Voyager's form controls use a consistent arrangement of labels, hints,
+  and error messages. Mark optional fields with
+  <strong>(optional)</strong> and explain errors beside the affected
+  controls.
 </p>
 
 <h2>Text input</h2>
-<p>Optional fields append &ldquo;(optional)&rdquo; to the label. Don't mark required fields - treat every field as required unless its label says otherwise.</p>
+<p>Every field type shares one structure: a group wrapper, a label, a hint, an error message, and the control itself. Optional fields append "(optional)" to the label. Treat every field without that marking as required.</p>
 {% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_text %}
 
 {{ form_text(
     name="full_name", id="full-name",
     label="Full name", optional=True,
-    hint="As it should appear on the published article"
+    hint="Enter your name as you want it to appear on the published article"
 ) }}{% endraw %}{% endset %}
 {{ example(src) }}
 
 <h2>Width modifiers</h2>
-<p>Fixed character widths on inputs that should be sized to their content (postcodes, reference numbers, dates).</p>
+<p>Match the field width to the expected answer. Short identifiers and dates need less space than names or email addresses.</p>
 {% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_text %}
 
 {{ form_text(
@@ -35,8 +33,9 @@
 <p>Available: <code>form-input-width-2</code>, <code>-3</code>, <code>-4</code>, <code>-5</code>, <code>-10</code>, <code>-20</code>. For fluid widths use <code>form-width-full</code>, <code>form-width-three-quarters</code>, <code>form-width-two-thirds</code>, <code>form-width-one-half</code>, <code>form-width-one-third</code>, <code>form-width-one-quarter</code>.</p>
 
 <h2>Textarea with character count</h2>
-<p>The character-count wrapper sits <em>outside</em> the form-group; the count message is a sibling div with an id referenced by the textarea's <code>aria-describedby</code>. Order in <code>aria-describedby</code>: count message id, then hint, then error.</p>
-<p>The <code>characterCount</code> driver in the JS bundle updates the message to a live "You have N characters remaining" as the user types, and announces the count to screen readers via a visually-hidden <code>aria-live</code> region once typing pauses. Without JavaScript the static "up to N characters" message and the native <code>maxlength</code> limit still apply.</p>
+<p>Use a character count when an answer has a length limit. As the user types, Voyager updates the remaining count and announces it after a short pause through a visually-hidden <code>aria-live</code> region.</p>
+<p>Without JavaScript, the static "You can enter up to N characters" message and the native <code>maxlength</code> limit still apply.</p>
+<p>The character-count wrapper sits <em>outside</em> the form-group. The count message is a sibling div with an id referenced by the textarea's <code>aria-describedby</code>, in this order: count message id, then hint, then error.</p>
 {% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_textarea_with_count %}
 
 {{ form_textarea_with_count(
@@ -45,8 +44,9 @@
 ) }}{% endraw %}{% endset %}
 {{ example(src) }}
 
-<h2>Radios</h2>
-<p>40&nbsp;×&nbsp;40&nbsp;px controls - comfortably past the WCAG&nbsp;2.2 minimum touch-target size. Group inside a fieldset; the legend is the question. For small dense radio rows compose <code>form-radio-small</code>.</p>
+<h2>Radio buttons</h2>
+<p>Use radio buttons when the user must choose one option. Group the options in a fieldset and use its legend for the question.</p>
+<p>The controls are 40&nbsp;×&nbsp;40&nbsp;px, which meets the WCAG&nbsp;2.2 minimum touch-target size. Use <code>form-radio-small</code> for dense radio rows.</p>
 {% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_radios, form_radio %}
 
 {% call form_radios("decision", "What is your decision?") %}
@@ -59,7 +59,7 @@
 {{ example(src) }}
 
 <h2>Date input</h2>
-<p>Three numeric text inputs (day, month, year) inside a fieldset with <code>role="group"</code>. Day and month use <code>form-input-width-2</code>; year uses <code>form-input-width-4</code>. <code>inputmode="numeric"</code> brings up the numeric keypad on mobile.</p>
+<p>Three numeric text inputs (day, month, year) sit inside a fieldset with <code>role="group"</code>. Day and month use <code>form-input-width-2</code>; year uses <code>form-input-width-4</code>. <code>inputmode="numeric"</code> brings up the numeric keypad on mobile.</p>
 {% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_date %}
 
 {{ form_date(
@@ -72,9 +72,9 @@
 <h2>Error state</h2>
 <p>Three things change in an error state:</p>
 <ol>
-  <li>Add <code>form-group-error</code> to the wrapping form-group - gives the red left border + padding.</li>
-  <li>Add the error message as a <code>&lt;p class="form-error-message"&gt;</code> with a visually-hidden &ldquo;Error:&rdquo; prefix span.</li>
-  <li>Add <code>form-input-error</code> (or <code>form-textarea-error</code> / <code>form-select-error</code>) to the control. Set <code>aria-describedby</code> to include the error id. If a hint is also present, hint id comes first, then error id.</li>
+  <li>Add <code>form-group-error</code> to the wrapping form-group, which adds the red left border and padding.</li>
+  <li>Add the error message as a <code>&lt;p class="form-error-message"&gt;</code> with a visually-hidden "Error:" prefix span.</li>
+  <li>Add <code>form-input-error</code> (or <code>form-textarea-error</code> / <code>form-select-error</code>) to the control. Set <code>aria-describedby</code> to include the error id. If a hint is also present, the hint id comes first, then the error id.</li>
 </ol>
 {% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_text %}
 
@@ -85,38 +85,26 @@
 {{ example(src) }}
 
 <h2>Password input</h2>
-<p>Password field with a Show / Hide toggle. The toggle is a sibling button; a small JS handler swaps the input's <code>type</code> attribute between <code>password</code> and <code>text</code>. <code>aria-controls</code> ties the button to the input it controls.</p>
+<p>The password field includes a <strong>Show</strong> button so users can check what they have entered. Selecting it again hides the password.</p>
+<p>This behaviour comes from Voyager's JavaScript entry point, <code>voyager/assets/js/index.js</code>, so no page-level handler is needed. <code>aria-controls</code> ties the button to the input it controls.</p>
 {% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_password %}
 
 {{ form_password(
     name="password", id="password",
     label="Password",
-    hint="Use at least 12 characters, mixing letters, numbers and symbols",
     autocomplete="new-password"
 ) }}{% endraw %}{% endset %}
 {{ example(src) }}
 
-<p>Tiny driver - wire once at page level:</p>
-{% set src %}{% raw %}document.addEventListener('click', function (event) {
-  var btn = event.target.closest('[data-form-password-toggle]');
-  if (!btn) return;
-  var id = btn.getAttribute('aria-controls');
-  var input = document.getElementById(id);
-  if (!input) return;
-  var showing = input.type === 'text';
-  input.type = showing ? 'password' : 'text';
-  btn.textContent = showing ? 'Show' : 'Hide';
-});{% endraw %}{% endset %}
-{{ example(src, jinja=False) }}
-
 <h2>File upload</h2>
-<p>Native file input styled to match the other form controls. Use <code>accept</code> to restrict file types and <code>multiple</code> when more than one file may be selected.</p>
+<p>The native file input is styled to match the other form controls. Use <code>accept</code> to suggest file types in the file chooser. Validate the uploaded file on the server. Pass <code>multiple=True</code> when users can select more than one file.</p>
+<p>The size limit in this example is application policy. The macro does not enforce it.</p>
 {% set src %}{% raw %}{% from "voyager/components/form/form.j2" import form_file %}
 
 {{ form_file(
     name="manuscript", id="manuscript",
     label="Manuscript",
-    hint="Accepted formats: .docx, .pdf, .tex. Max 25 MB.",
+    hint="Upload a DOCX, PDF, or TEX file up to 25 MB.",
     accept=".docx,.pdf,.tex"
 ) }}
 
@@ -126,8 +114,8 @@
 ) }}{% endraw %}{% endset %}
 {{ example(src) }}
 
-<h2>Heading-as-label / heading-as-legend</h2>
-<p>When a form has a single question, that question is the page heading: wrap the label in an <code>&lt;h1&gt;</code> (single-input forms) or wrap an <code>&lt;h1&gt;</code> inside the legend (multi-input). The visual heading and the form label are the same element - announced once.</p>
+<h2>Using the question as the page heading</h2>
+<p>When a form asks a single question, use that question as the page heading. Wrap the label in an <code>&lt;h1&gt;</code> for a single-input form, or wrap an <code>&lt;h1&gt;</code> inside the legend for a multi-input form. The heading and the form label are the same element, so it is announced once.</p>
 {% set src %}{% raw %}<div class="form-group">
   <h1 class="form-label-wrapper">
     <label class="form-label form-label-l" for="orcid">What is your ORCID iD?</label>
@@ -140,9 +128,9 @@
 <h2>Notes</h2>
 <ul>
   <li>Pair errors with an <a href="information.html#error-summary">error summary</a> at the top of the form. Each summary entry is a link that focuses the field.</li>
-  <li>Don't use placeholder text as a substitute for a label or hint.</li>
-  <li>Don't disable submit buttons while errors exist - let the user submit and see the error summary.</li>
-  <li>Group questions logically; one question per page where possible - each step stays focused and error recovery stays simple.</li>
+  <li>Do not use placeholder text as a substitute for a label or hint.</li>
+  <li>Do not disable submit buttons while errors exist. Let the user submit and see the error summary.</li>
+  <li>Group questions logically, with one question per page where possible, so that each step stays focused and error recovery stays simple.</li>
 </ul>
 
 </body>

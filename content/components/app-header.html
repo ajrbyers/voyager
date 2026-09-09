@@ -4,11 +4,17 @@
 
 <h1>App header</h1>
 <p class="site-page-lede">
-  The bar across the top of every page. It houses the brand, the primary
-  navigation, and the account menu. Use one per page.
+  The app header contains the application name, primary navigation, and
+  account control. Place it above the
+  <a href="app-shell.html">application shell</a>, and use one per page.
 </p>
 
 <h2>Example</h2>
+<p>
+  Passing a <code>user</code> renders the account control: a button showing the
+  person's initials, with an accessible name that identifies the signed-in
+  account. The macro does not supply a menu for it.
+</p>
 {% set src %}{% raw %}{% from "voyager/components/app-header/app-header.j2" import app_header, app_header_link %}
 
 {% call app_header(service="Editorial", user={"name": "t.kowalski"}) %}

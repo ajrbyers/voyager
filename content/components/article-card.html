@@ -4,14 +4,14 @@
 
 <h1>Article card</h1>
 <p class="site-page-lede">
-  Inbox-style row representing a single article. Carries severity as a
-  coloured left stripe, an ID + tag + days-in-workflow row at the top, the
-  truncated title in the middle, byline at the bottom, and inline action
-  buttons. Alert pills (also documented here) form a quiet footer.
+  Use an article card to show one submission in a list. It includes the article
+  title, identifying details, status, and available actions.
+  <a href="alert-pill.html">Alert pills</a> provide links to related problems or
+  updates.
 </p>
 
 <h2>Severity variants</h2>
-<p>Add <code>article-card-critical</code>, <code>article-card-warning</code>, or <code>article-card-info</code> for the coloured left stripe. Omit all three for the neutral state.</p>
+<p>Add <code>article-card-critical</code>, <code>article-card-warning</code>, or <code>article-card-info</code> for the coloured left border. Omit all three for the neutral state.</p>
 
 {% set src %}{% raw %}{% from "voyager/components/article-card/article-card.j2"
    import article_card, article_card_body, article_card_alerts %}
@@ -24,8 +24,8 @@
       url="/article/1247",
       title="Reproducibility of LSTM forecasts for short-term electricity demand",
       authors="Okafor", extra_count=2, editor="Hassan",
-      days="62d", days_severity="critical",
-      tags=[{"label": "Peer Review", "kind": "grey"},
+      days="62 days", days_severity="critical",
+      tags=[{"label": "Peer review", "kind": "grey"},
             {"label": "Article",    "kind": "grey"}]
   ) %}
     {{ button("⌚", size="small") }}
@@ -33,17 +33,16 @@
   {% endcall %}
   {% call article_card_alerts() %}
     {{ alert_pill("Reviewer overdue 12 days", kind="critical", url="#") }}
-    {{ alert_pill("Whitfield not acknowledged", kind="warning", url="#") }}
+    {{ alert_pill("Whitfield has not responded", kind="warning", url="#") }}
   {% endcall %}
 {% endcall %}{% endraw %}{% endset %}
 {{ example(src) }}
 
 <h2>Notes</h2>
 <ul>
-  <li>Severity is conveyed by both the left stripe colour <em>and</em> the <a href="alert-pill.html">alert pills</a> below, never by stripe alone.</li>
-  <li>The days indicator (<code>article-card-days-critical</code>, <code>-warning</code>) follows the same thresholds as the alert pills: over 60 days critical, over 30 days warning.</li>
-  <li>Truncate titles at the consumer side (use a Django filter or CSS line clamp); the component doesn't enforce a length.</li>
-  <li>Action buttons should use <code>btn-small</code> to keep the row compact.</li>
+  <li>Use text to explain the status represented by the coloured border, such as the alert pills below the card.</li>
+  <li>Your application determines the warning thresholds and any title truncation. The examples treat over 60 days as critical and over 30 days as a warning, and set the matching <code>article-card-days-critical</code> or <code>article-card-days-warning</code> class on the days indicator.</li>
+  <li>Use <code>btn-small</code> for actions within the card.</li>
 </ul>
 
 </body>

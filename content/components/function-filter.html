@@ -4,10 +4,9 @@
 
 <h1>Function filter</h1>
 <p class="site-page-lede">
-  Search input plus a radio-chip filter group. Used above a
-  <a href="function-card.html">function-card</a> grid to narrow visible cards.
-  The chip active state uses <code>:has(input:checked)</code> - no JavaScript is
-  required for the visual; only for actually filtering the grid.
+  Use search and category filters above a group of
+  <a href="function-card.html">function cards</a> to help users find an
+  administration tool.
 </p>
 
 <h2>Default</h2>
@@ -27,15 +26,15 @@
 {{ example(src) }}
 
 <h2>Empty state</h2>
-<p>Show when the filter returns zero results. Pair with JavaScript that toggles its <code>hidden</code> attribute.</p>
+<p>Show this block when no cards match the search or the selected category. The filtering script toggles its <code>hidden</code> attribute.</p>
 {% set src %}{% raw %}<div class="function-filter-empty">
   <span class="function-filter-empty-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
-  No functions match your search.
+  No tools match your search. Try another term or choose a different category.
 </div>{% endraw %}{% endset %}
 {{ example(src, jinja=False) }}
 
-<h2>Client-side JS driver</h2>
-<p>Filtering itself runs in vanilla JS. The script reads <code>data-title</code>, <code>data-desc</code>, and <code>data-tags</code> from each <a href="function-card.html">function-card</a> and toggles its <code>hidden</code> attribute.</p>
+<h2>Filtering with JavaScript</h2>
+<p>The example script filters cards by their title, description, and category. It hides cards that do not match, reading <code>data-title</code>, <code>data-desc</code>, and <code>data-tags</code> from each <a href="function-card.html">function card</a>.</p>
 {% set src %}{% raw %}(function () {
   var form = document.getElementById('manager-filter');
   var search = document.getElementById('mgr-search');
@@ -69,7 +68,7 @@
 {{ example(src, jinja=False) }}
 
 <h2>HTMX alternative</h2>
-<p>For server-side filtering, hand the same form to HTMX and target the grid container. The macro exposes optional <code>action</code> and <code>htmx_target</code> arguments.</p>
+<p>For filtering on the server, pass the endpoint as <code>action</code> and the results container as <code>htmx_target</code>.</p>
 {% set src %}{% raw %}{% from "voyager/components/function-filter/function-filter.j2"
    import function_filter, function_filter_search, function_filter_tags, function_filter_tag %}
 
@@ -84,10 +83,9 @@
 
 <h2>Notes</h2>
 <ul>
-  <li>The radio chips are real form inputs - the active state is driven entirely by CSS (<code>:has(input:checked)</code>). No JS needed for the visual.</li>
-  <li>Wrap the radio group in a <code>div role="radiogroup"</code> with <code>aria-label</code> so screen readers announce it as a group.</li>
-  <li>For accessibility, the visible label text is also the radio's <code>value</code> in the form submission - no <code>visually-hidden</code> labels needed.</li>
-  <li>Pair every filter row with a <code>function-filter-empty</code> block hidden by default; toggle via JS or server response.</li>
+  <li>The chips are radio inputs. Their active state comes from CSS (<code>:has(input:checked)</code>) and needs no JavaScript.</li>
+  <li>Wrap the radio group in a <code>div role="radiogroup"</code> with an <code>aria-label</code> so screen readers announce it as a group.</li>
+  <li>Pair every filter row with a <code>function-filter-empty</code> block that is hidden by default, and show it when no cards match, either from the script or from the server response.</li>
 </ul>
 
 </body>

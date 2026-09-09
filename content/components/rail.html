@@ -4,26 +4,27 @@
 
 <h1>Rail</h1>
 <p class="site-page-lede">
-  The right-hand metadata and status column on detail screens. The rail keeps
-  status, workflow steps, and next-step actions visible alongside the main
-  content - the reader scans the article on the left and the state of play on
-  the right. See <a href="../examples/peer-review.html">the peer review
-  example</a> for the rail in full context.
+  Use the rail to place status, workflow steps, and related actions beside
+  the main content on a detail page. See the
+  <a href="../examples/peer-review.html">peer review example</a> for a rail
+  in a complete page.
 </p>
 
 <h2>Rail sections</h2>
 <p>
-  The rail is an <code>&lt;aside&gt;</code> of stacked <code>.rail-section</code>
-  blocks, each with a heavily underlined <code>&lt;h2&gt;</code>. Typical sections
-  are <strong>Status</strong> (an inset text block), <strong>Steps</strong>
-  (a <a href="steps.html">steps list</a>), and <strong>Actions</strong>
-  (an <a href="steps.html">action menu</a>).
+  Divide the rail into short, named sections such as <strong>Status</strong>,
+  <strong>Steps</strong>, and <strong>Actions</strong>. The rail is an
+  <code>&lt;aside&gt;</code> of stacked <code>.rail-section</code> blocks, each
+  introduced by an underlined <code>&lt;h2&gt;</code>. A status section usually
+  holds an inset text block, and the others hold a
+  <a href="steps.html">steps list</a> and an
+  <a href="action-menu.html">action menu</a>.
 </p>
 {% set src %}{% raw %}{% from "voyager/components/rail/rail.j2" import rail, rail_section %}
 {% call rail(label="Status, steps and actions") %}
   {% call rail_section("Status") %}
     <div class="inset-text">
-      <p>Currently in <strong>Under Review</strong>. An active minor revision is in flight.</p>
+      <p>Currently in <strong>Under review</strong>. A request for minor revisions is open.</p>
     </div>
   {% endcall %}
   {% call rail_section("Steps") %}
@@ -37,7 +38,7 @@
   {% call rail_section("Actions") %}
     <ul class="action-menu">
       <li><a href="#"><span class="action-menu-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span> View metadata</a></li>
-      <li><a href="#"><span class="action-menu-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span> New review round</a></li>
+      <li><a href="#"><span class="action-menu-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span> Start a review round</a></li>
     </ul>
   {% endcall %}
 {% endcall %}{% endraw %}{% endset %}
@@ -65,13 +66,13 @@
   <div>
     <h3 class="mt-0">Reviewer report</h3>
     <p>The main content column. Article details, reviewer blocks, and decision forms sit here, taking the flexible left-hand share of the grid.</p>
-    <p>The rail stays alongside as the reader scrolls short pages; on long pages it ends where its content ends.</p>
+    <p>The rail occupies the right-hand column and ends where its content ends.</p>
   </div>
   <aside class="rail" aria-label="Status and actions">
     <section class="rail-section">
       <h2>Status</h2>
       <div class="inset-text">
-        <p>Currently in <strong>Under Review</strong>.</p>
+        <p>Currently in <strong>Under review</strong>.</p>
       </div>
     </section>
   </aside>
@@ -80,17 +81,17 @@
 
 <h2>When to use</h2>
 <ul>
-  <li>Use the rail on detail screens - a single article, a review assignment, a production task - where status and actions should stay in view next to the content.</li>
-  <li>Don't use it on list or dashboard screens; those use full-width layouts and put actions on the items themselves.</li>
-  <li>Keep it to two or three sections. If the rail grows longer than the main content, it has stopped being a summary.</li>
+  <li>Use the rail on detail screens, such as a single article, a review assignment, or a production task, where status and actions belong beside the content.</li>
+  <li>Use a full-width layout on list and dashboard screens, and put actions on the items themselves.</li>
+  <li>Keep the rail focused on information and actions relevant to the current task. Move detailed explanations into the main content.</li>
 </ul>
 
 <h2>Notes</h2>
 <ul>
   <li>The rail is an <code>&lt;aside&gt;</code> with an <code>aria-label</code> describing its contents (e.g. "Status, steps and actions") so screen-reader users can identify and skip the complementary landmark.</li>
   <li>Section headings are <code>&lt;h2&gt;</code> elements - slot them into the page's heading hierarchy rather than skipping levels.</li>
-  <li>In source order the rail follows the main content - so screen readers and the collapsed single-column layout both present the most important material first.</li>
-  <li>The primary call to action (e.g. "Make a decision") belongs in the Status section, above the steps and secondary actions.</li>
+  <li>Markup order decides reading and keyboard order. Place a rail carrying essential status and actions before the main content, and a rail carrying secondary sections after it.</li>
+  <li>Put the page's main action, such as <strong>Make a decision</strong>, in the status section, above the steps and secondary actions.</li>
 </ul>
 
 </body>

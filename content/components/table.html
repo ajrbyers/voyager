@@ -4,9 +4,10 @@
 
 <h1>Table</h1>
 <p class="site-page-lede">
-  Use a table for genuinely tabular data - rows of similar records with the same
-  columns. For key/value detail like an article's metadata, reach for a
-  <a href="summary-block.html">summary list</a> instead.
+  Use a table to compare records with the same fields, such as reviewers,
+  invitations, and due dates. Use a
+  <a href="summary-block.html">summary list</a> for the details of one
+  record.
 </p>
 
 <h2>Default table</h2>
@@ -41,7 +42,7 @@
 <ul>
   <li>Always use <code>&lt;th&gt;</code> for column headers - screen readers announce them when navigating cells.</li>
   <li>Right-align action cells with the <code>.right</code> utility for consistent table action styling.</li>
-  <li>Generic "Download" / "Edit" links need a visually-hidden suffix to disambiguate when listed out of context.</li>
+  <li>Give repeated links an accessible name that identifies their target, such as <strong>Download manuscript</strong> or <strong>Edit reviewer</strong>. Use <code>.visually-hidden</code> for the additional text when necessary.</li>
 </ul>
 
 </body>

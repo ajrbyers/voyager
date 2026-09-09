@@ -4,12 +4,18 @@
 
 <h1>Alert pill</h1>
 <p class="site-page-lede">
-  A small inline status link used at the bottom of an
-  <a href="article-card.html">article card</a> to surface alerts.
+  An alert pill links to a problem or update associated with an article.
+  Place alert pills below the article's main details, at the bottom of an
+  <a href="article-card.html">article card</a>.
 </p>
 
 <h2>Variants</h2>
-<p>Four variants compose: <code>alert-pill-critical</code>, <code>alert-pill-warning</code>, <code>alert-pill-info</code>, <code>alert-pill-more</code> (for the &ldquo;+N more&rdquo; collapse).</p>
+<p>
+  Choose the critical, warning, or information variant to match the message:
+  <code>alert-pill-critical</code>, <code>alert-pill-warning</code>, or
+  <code>alert-pill-info</code>. Use <code>alert-pill-more</code> to show the
+  number of additional alerts.
+</p>
 {% set src %}{% raw %}{% from "voyager/components/alert-pill/alert-pill.j2" import alert_pill %}
 
 {{ alert_pill("Reviewer overdue 12 days", kind="critical", url="#") }}
@@ -20,8 +26,9 @@
 
 <h2>Notes</h2>
 <ul>
-  <li>Pills with a destination render as links; the <code>alert-pill-more</code> collapse is plain text.</li>
-  <li>Severity thresholds match the <a href="article-card.html">article card</a> days indicator: over 60 days critical, over 30 days warning.</li>
+  <li>Pills with a destination render as links.</li>
+  <li>An <code>alert-pill-more</code> pill is a text count of the remaining alerts. It does not expand or collapse anything.</li>
+  <li>Your application decides when an alert is critical or a warning. The 60-day and 30-day thresholds used in the <a href="article-card.html">article card</a> examples are an application convention; the component does not calculate them.</li>
 </ul>
 
 </body>

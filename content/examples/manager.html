@@ -1,9 +1,9 @@
 <head><title>Manager - Journal of Energy Modelling</title><meta name="template" content="fullpage"></head>
 <body>
 
-<aside class="example-banner" aria-label="Voyager reference page">
+<aside class="example-banner" aria-label="Voyager example interface">
   <span class="example-banner-tag">Reference</span>
-  Voyager reference page - handwritten markup using Voyager component classes
+  Example interface built with Voyager.
   <span class="example-banner-spacer"></span>
   <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
     <svg class="icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -24,7 +24,7 @@
     <a href="manager.html">Manager</a>
     <a href="#">Reports</a>
   </nav>
-  <button type="button" class="app-header-avatar" aria-label="Account menu - signed in as t.kowalski">t.kowalski</button>
+  <button type="button" class="app-header-avatar" aria-label="Account - signed in as t.kowalski">t.kowalski</button>
 </header>
 
 <div class="app-shell">
@@ -34,7 +34,7 @@
       <span class="sidebar-nav-mark" aria-hidden="true">JE</span>
       <div>
         <div class="sidebar-nav-name">Journal of Energy Modelling</div>
-        <div class="sidebar-nav-sub">Editor in Chief view</div>
+        <div class="sidebar-nav-sub">Editor-in-chief view</div>
       </div>
     </div>
     <h2 class="sidebar-nav-section">Dashboards</h2>
@@ -45,7 +45,7 @@
     <h2 class="sidebar-nav-section">Workflow</h2>
     <ul>
       <li><a href="#" class="sidebar-nav-link">Unassigned <span class="sidebar-nav-count" aria-label="7 articles">7</span></a></li>
-      <li><a href="peer-review.html" class="sidebar-nav-link">Peer Review <span class="sidebar-nav-count" aria-label="14 articles">14</span></a></li>
+      <li><a href="peer-review.html" class="sidebar-nav-link">Peer review <span class="sidebar-nav-count" aria-label="14 articles">14</span></a></li>
       <li><a href="#" class="sidebar-nav-link">Copyediting <span class="sidebar-nav-count" aria-label="5 articles">5</span></a></li>
     </ul>
     <h2 class="sidebar-nav-section">Admin</h2>
@@ -69,16 +69,16 @@
 
       <div class="page-header">
         <h1 class="page-header-title">Manager</h1>
-        <p class="page-header-byline">All journal configuration, content, and admin tools in one place. Search or filter to find what you need.</p>
+        <p class="page-header-byline">Manage journal settings, content, and users. Search for a tool or filter by category.</p>
       </div>
 
-      <form class="function-filter" role="search" aria-label="Filter manager functions" id="manager-filter">
+      <form class="function-filter" role="search" aria-label="Search tools" id="manager-filter">
         <div class="function-filter-search">
           <span class="function-filter-search-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
-          <label class="visually-hidden" for="mgr-search">Search functions</label>
+          <label class="visually-hidden" for="mgr-search">Search tools</label>
           <input type="search" name="q" id="mgr-search"
                  class="function-filter-input"
-                 placeholder="Search functions…" autocomplete="off">
+                 placeholder="Search tools…" autocomplete="off">
         </div>
         <div class="function-filter-tags" role="radiogroup" aria-label="Filter by category">
           <label class="function-filter-tag"><input type="radio" name="tag" value="all" checked> All</label>
@@ -105,7 +105,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">General</div>
-              <div class="function-card-desc">Journal-wide configuration - title, ISSN, contact details.</div>
+              <div class="function-card-desc">Edit the journal title, ISSN, and contact details.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">settings</span></div>
@@ -123,7 +123,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Home page</div>
-              <div class="function-card-desc">Featured articles, news blocks, hero panels on the landing page.</div>
+              <div class="function-card-desc">Choose the content shown on the journal home page.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">settings</span></div>
@@ -141,7 +141,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Images</div>
-              <div class="function-card-desc">Journal cover, logos, and homepage hero images.</div>
+              <div class="function-card-desc">Manage the journal cover, logos, and home-page images.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">settings</span></div>
@@ -155,7 +155,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Styling</div>
-              <div class="function-card-desc">Theme, colours, typography, branding for the public site.</div>
+              <div class="function-card-desc">Set the public site's theme, colours, and typography.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">settings</span></div>
@@ -173,7 +173,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">All settings</div>
-              <div class="function-card-desc">Every journal setting in one flat alphabetical index.</div>
+              <div class="function-card-desc">Browse all journal settings alphabetically.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">settings</span></div>
@@ -198,7 +198,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Review settings</div>
-              <div class="function-card-desc">Reviewer defaults, due dates, rounds, anonymity, open peer review.</div>
+              <div class="function-card-desc">Set review deadlines, anonymity options, and other review defaults.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">workflow</span></div>
@@ -216,7 +216,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Review forms</div>
-              <div class="function-card-desc">Build custom review forms - fields, question types, required.</div>
+              <div class="function-card-desc">Create review forms and choose their questions and required fields.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">workflow</span></div>
@@ -241,7 +241,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Submission settings</div>
-              <div class="function-card-desc">Submission requirements, file types, author instructions.</div>
+              <div class="function-card-desc">Set submission requirements, accepted file types, and author instructions.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">workflow</span></div>
@@ -254,8 +254,8 @@
               <div class="function-card-icon function-card-icon-green" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></div>
             </div>
             <div class="function-card-body">
-              <div class="function-card-title">Fields configurator</div>
-              <div class="function-card-desc">Reorder and enable default submission form fields.</div>
+              <div class="function-card-title">Submission fields</div>
+              <div class="function-card-desc">Choose which standard submission fields appear and set their order.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">workflow</span></div>
@@ -273,7 +273,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Additional fields</div>
-              <div class="function-card-desc">Add custom fields - funding, ethics, data availability.</div>
+              <div class="function-card-desc">Add submission fields for information such as funding, ethics, and data availability.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">workflow</span></div>
@@ -298,7 +298,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Proofing settings</div>
-              <div class="function-card-desc">Proofing stage configuration - invitations, rounds, final sign-off.</div>
+              <div class="function-card-desc">Configure proofing invitations, rounds, and approval.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">workflow</span></div>
@@ -327,7 +327,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Content manager</div>
-              <div class="function-card-desc">Static CMS pages - About, Contact, Editorial Policies.</div>
+              <div class="function-card-desc">Edit pages such as About, Contact, and Editorial policies.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
@@ -345,7 +345,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Media files</div>
-              <div class="function-card-desc">Upload and organise media files - images, PDFs, supplementary data.</div>
+              <div class="function-card-desc">Upload and organise images, PDFs, and supplementary files.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
@@ -359,7 +359,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Submission page items</div>
-              <div class="function-card-desc">Author-facing submission landing page - checklist, prose, policies.</div>
+              <div class="function-card-desc">Edit the instructions, checklist, and policies shown before submission.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
@@ -377,7 +377,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Journal contacts</div>
-              <div class="function-card-desc">Public-facing editor contact directory.</div>
+              <div class="function-card-desc">Manage the contact details displayed on the journal website.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
@@ -395,7 +395,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Editorial team</div>
-              <div class="function-card-desc">Public editorial team roster - bios, roles, photographs.</div>
+              <div class="function-card-desc">Manage editorial team names, roles, biographies, and photographs.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
@@ -420,7 +420,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">News settings</div>
-              <div class="function-card-desc">News section configuration - visibility, RSS, default authors.</div>
+              <div class="function-card-desc">Configure the news section and its default settings.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
@@ -452,7 +452,7 @@
       <!-- ======================= Articles & Issues ======================= -->
       <section class="manager-section">
         <div class="section-divider">
-          <h2 class="section-divider-label">Articles &amp; issues</h2>
+          <h2 class="section-divider-label">Articles and issues</h2>
           <span class="section-divider-line"></span>
         </div>
         <div class="manager-grid">
@@ -463,7 +463,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Article display</div>
-              <div class="function-card-desc">Metadata blocks, sidebars, and citation widget configuration.</div>
+              <div class="function-card-desc">Choose how article information and citation tools appear.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
@@ -477,7 +477,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Article images</div>
-              <div class="function-card-desc">Article-level images - hero, social, alt-text management.</div>
+              <div class="function-card-desc">Manage article images and their alternative text.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
@@ -495,7 +495,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Issue manager</div>
-              <div class="function-card-desc">Volume and issue management - order, cover, table of contents.</div>
+              <div class="function-card-desc">Manage volumes, issues, covers, and tables of contents.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
@@ -513,7 +513,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Sections</div>
-              <div class="function-card-desc">Article types and editorial categories - Article, Review, Editorial.</div>
+              <div class="function-card-desc">Manage article types, such as articles, reviews, and editorials.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
@@ -531,7 +531,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Licences</div>
-              <div class="function-card-desc">Licence manager - CC BY, CC BY-NC, all rights reserved.</div>
+              <div class="function-card-desc">Manage the licences available for published articles.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">content</span></div>
@@ -550,13 +550,13 @@
         </div>
         <div class="manager-grid">
 
-          <a href="#" class="function-card" data-title="doi manager beta" data-desc="doi manager registration crossref deposit" data-tags="identifiers">
+          <a href="#" class="function-card" data-title="doi manager" data-desc="doi manager registration crossref deposit" data-tags="identifiers">
             <div class="function-card-top">
               <div class="function-card-icon function-card-icon-red" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></svg></div>
             </div>
             <div class="function-card-body">
-              <div class="function-card-title">DOI manager <span class="tag tag-orange">Beta</span></div>
-              <div class="function-card-desc">Browse, register, and retry DOIs across your published articles.</div>
+              <div class="function-card-title">DOI manager</div>
+              <div class="function-card-desc">Register article DOIs and retry failed registrations.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">identifiers</span></div>
@@ -570,7 +570,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Crossref settings</div>
-              <div class="function-card-desc">Crossref credentials, deposit defaults, retry policy.</div>
+              <div class="function-card-desc">Configure Crossref credentials and deposit settings.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">identifiers</span></div>
@@ -584,7 +584,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Crosscheck settings</div>
-              <div class="function-card-desc">Plagiarism similarity (iThenticate) integration settings.</div>
+              <div class="function-card-desc">Configure the iThenticate similarity-checking integration.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">identifiers</span></div>
@@ -598,12 +598,12 @@
       <!-- ======================= Users & Roles ======================= -->
       <section class="manager-section">
         <div class="section-divider">
-          <h2 class="section-divider-label">Users &amp; roles</h2>
+          <h2 class="section-divider-label">Users and roles</h2>
           <span class="section-divider-line"></span>
         </div>
         <div class="manager-grid">
 
-          <a href="#" class="function-card" data-title="journal users new" data-desc="journal users new unified directory" data-tags="people">
+          <a href="#" class="function-card" data-title="journal users" data-desc="journal users directory search edit merge enrol" data-tags="people">
             <div class="function-card-top">
               <div class="function-card-icon function-card-icon-purple" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
               <div class="function-card-counter">
@@ -612,8 +612,8 @@
               </div>
             </div>
             <div class="function-card-body">
-              <div class="function-card-title">Journal users <span class="tag tag-blue">New</span></div>
-              <div class="function-card-desc">New unified user manager - search, edit, merge, enrol.</div>
+              <div class="function-card-title">Journal users</div>
+              <div class="function-card-desc">Find users and manage their accounts and journal access.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">people</span></div>
@@ -631,7 +631,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Enrolled users</div>
-              <div class="function-card-desc">Users enrolled in this journal - legacy directory.</div>
+              <div class="function-card-desc">View users with access to this journal.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">people</span></div>
@@ -645,7 +645,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Enrol users</div>
-              <div class="function-card-desc">Add existing accounts to this journal with one or more roles.</div>
+              <div class="function-card-desc">Give existing users access to this journal and assign their roles.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">people</span></div>
@@ -663,7 +663,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Roles</div>
-              <div class="function-card-desc">Role definitions and the permissions matrix.</div>
+              <div class="function-card-desc">Review the permissions assigned to each role.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">people</span></div>
@@ -677,7 +677,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Inactive users</div>
-              <div class="function-card-desc">Accounts that have not logged in recently. <span class="muted">Staff only.</span></div>
+              <div class="function-card-desc">View accounts that have not signed in recently. <span class="muted">Available to staff.</span></div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">people</span></div>
@@ -685,7 +685,7 @@
             </div>
           </a>
 
-          <a href="#" class="function-card" data-title="authenticated users online" data-desc="currently authenticated users online sessions" data-tags="people system">
+          <a href="#" class="function-card" data-title="active sessions authenticated users online" data-desc="currently authenticated users online sessions" data-tags="people system">
             <div class="function-card-top">
               <div class="function-card-icon function-card-icon-grey" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
               <div class="function-card-counter">
@@ -694,8 +694,8 @@
               </div>
             </div>
             <div class="function-card-body">
-              <div class="function-card-title">Authenticated users</div>
-              <div class="function-card-desc">Currently signed-in sessions. <span class="muted">Staff only.</span></div>
+              <div class="function-card-title">Active sessions</div>
+              <div class="function-card-desc">View active signed-in sessions. <span class="muted">Available to staff.</span></div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">people</span></div>
@@ -706,10 +706,10 @@
         </div>
       </section>
 
-      <!-- ======================= Cache, Cron & Emails ======================= -->
+      <!-- ======================= System and email ======================= -->
       <section class="manager-section">
         <div class="section-divider">
-          <h2 class="section-divider-label">Cache, cron &amp; emails</h2>
+          <h2 class="section-divider-label">System and email</h2>
           <span class="section-divider-line"></span>
         </div>
         <div class="manager-grid">
@@ -720,7 +720,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Clear cache</div>
-              <div class="function-card-desc">Flush application cache - use after a settings or template change.</div>
+              <div class="function-card-desc">Clear cached application data.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">system</span></div>
@@ -734,7 +734,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Scheduled reminders</div>
-              <div class="function-card-desc">Reminder emails - reviewer due dates, revisions, decision pings.</div>
+              <div class="function-card-desc">Configure reminders for reviews, revisions, and editorial decisions.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">system</span></div>
@@ -752,7 +752,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Email templates</div>
-              <div class="function-card-desc">All system notification templates - bodies, subjects, recipients.</div>
+              <div class="function-card-desc">Edit notification subjects, messages, and recipients.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">system</span></div>
@@ -766,7 +766,7 @@
             </div>
             <div class="function-card-body">
               <div class="function-card-title">Publication notifications</div>
-              <div class="function-card-desc">Notify readers when new articles or issues are published.</div>
+              <div class="function-card-desc">Notify readers when articles or issues are published.</div>
             </div>
             <div class="function-card-foot">
               <div class="function-card-tags"><span class="tag tag-grey">system</span></div>
@@ -779,14 +779,14 @@
 
       <div class="function-filter-empty" id="manager-empty" hidden>
         <span class="function-filter-empty-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
-        No functions match your search.
+        No tools match your search. Try another term or choose a different category.
       </div>
 
     </div>
 
     <footer class="app-footer">
       <span>Janeway · v1.7</span>
-      <a href="#">Help &amp; documentation</a>
+      <a href="#">Help and documentation</a>
     </footer>
   </main>
 </div>

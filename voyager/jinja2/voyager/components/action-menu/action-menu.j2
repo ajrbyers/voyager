@@ -8,8 +8,8 @@
    Usage:
      {% call action_menu() %}
        {{ action_menu_item("info", "View metadata",           url="/metadata") }}
-       {{ action_menu_item("file-text", "Document management", url="/docs") }}
-       {{ action_menu_item("plus", "New review round",         url="/round/new") }}
+       {{ action_menu_item("file-text", "Manage documents", url="/docs") }}
+       {{ action_menu_item("plus", "Start a review round",         url="/round/new") }}
      {% endcall %}
 #}
 {% from "voyager/components/icon/icon.j2" import icon as _icon %}

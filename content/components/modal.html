@@ -4,19 +4,25 @@
 
 <h1>Modal</h1>
 <p class="site-page-lede">
-  Dialog with a backdrop, header, body, and footer. Used for confirmations and
-  short focused actions. The component driver (<code>modal.js</code>) responds to a control with
-  <code>data-modal-open="&lt;backdrop-id&gt;"</code> opens the modal; anything inside
-  carrying <code>data-modal-close</code> closes it, as do <kbd>Esc</kbd> and a click
-  on the backdrop. Focus is trapped while open and returned to the opener on close.
-  While a modal is open, everything outside it is made <code>inert</code>, so
-  background content can't be reached by keyboard or assistive technology.
-  The driver is single-open: opening a modal while another is open dismisses
-  the first - modals do not stack.
+  Use a modal for a confirmation or a short task that can be completed without
+  leaving the page. Use a separate page for longer forms.
+</p>
+<p>
+  Set <code>data-modal-open</code> to the backdrop's ID on the opening control.
+  Controls with <code>data-modal-close</code> close the dialog. Users can also
+  close it with <kbd>Esc</kbd> or by selecting the backdrop. The driver
+  (<code>modal.js</code>) is single-open: opening a modal while another is open
+  dismisses the first.
+</p>
+<p>
+  Focus stays within the dialog while it is open, and everything outside it is
+  made <code>inert</code>, so background content cannot be reached by keyboard
+  or assistive technology. When the dialog closes, focus returns to the control
+  that opened it, provided that control is still visible.
 </p>
 
 <h2>Confirm a destructive action</h2>
-<p>This demo is live - the button opens a working modal with focus trapping.</p>
+<p>Select <strong>Withdraw reviewer&hellip;</strong> to open the example dialog.</p>
 
 {% set src %}{% raw %}{% from "voyager/components/button/button.j2" import button %}
 {% from "voyager/components/modal/modal.j2" import modal, modal_body, modal_foot %}
@@ -35,10 +41,9 @@
 
 <h2>Notes</h2>
 <ul>
-  <li>Always set <code>aria-modal="true"</code> and <code>aria-labelledby</code> on the dialog.</li>
-  <li>The opening control should receive focus back when the modal closes.</li>
-  <li>Reserve modals for short focused tasks. For longer flows (a decision form, a settings page), navigate to a full page.</li>
-  <li>Don't nest modals.</li>
+  <li>Set <code>aria-modal="true"</code> and <code>aria-labelledby</code> on the dialog. The macro does this for you.</li>
+  <li>Reserve modals for short tasks. Use a full page for a longer flow, such as a decision form or a settings page.</li>
+  <li>Do not open a modal from inside another modal. The driver dismisses the first one rather than stacking them.</li>
 </ul>
 
 </body>

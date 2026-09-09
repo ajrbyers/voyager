@@ -4,9 +4,8 @@
 
 <h1>Pagination</h1>
 <p class="site-page-lede">
-  Previous / Next controls plus numbered pages, for the foot of any
-  list view - articles, users, news posts, email log. Screen readers
-  announce the current page via <code>aria-current="page"</code>.
+  Use pagination to move through a list that spans several pages, such as
+  articles, users, news posts, or the email log. Place it below the results.
 </p>
 
 <h2>Default</h2>
@@ -28,10 +27,9 @@
 
 <h2>Notes</h2>
 <ul>
-  <li>Use ellipses to collapse long ranges - show first, last, current, and one or two adjacent pages.</li>
-  <li>Always include <code>rel="prev"</code> and <code>rel="next"</code> on the prev/next links.</li>
-  <li>Wrap in <code>&lt;nav aria-label="Pagination"&gt;</code> so screen readers announce it as a landmark.</li>
-  <li>Omit Previous when on page 1; omit Next on the last page.</li>
+  <li>For long lists, show the first page, last page, current page, and nearby pages. Use an ellipsis for omitted ranges.</li>
+  <li>The macro marks the current page with <code>aria-current="page"</code>, adds <code>rel="prev"</code> and <code>rel="next"</code> to the previous and next links, and wraps the controls in <code>&lt;nav aria-label="Pagination"&gt;</code>. Keep those attributes if you write the markup by hand.</li>
+  <li>On the first page, omit <strong>Previous</strong>. On the last page, omit <strong>Next</strong>.</li>
 </ul>
 
 </body>

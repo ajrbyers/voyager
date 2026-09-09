@@ -1,15 +1,17 @@
 # Voyager
 
-Voyager is Janeway's design system - dense chrome for scanning editorial
-queues, and disciplined, accessible forms for consequential actions.
+Voyager is Janeway's design system. It provides CSS, Jinja macros, and
+JavaScript for editorial and administration interfaces: compact layouts
+for scanning submission queues, and accessible forms for consequential
+actions.
 
-Plain modern CSS - no preprocessor, no framework. Native CSS
+It is plain modern CSS - no preprocessor, no framework. Native CSS
 nesting and custom properties only.
 
 ## What's in here
 
 The repo has two parts - the shippable Django app, and a Pelican
-documentation site that renders the real components:
+documentation site that renders the packaged components:
 
 ```
 # Shippable design system - the `voyager` Django app (all a consumer needs)
@@ -23,9 +25,9 @@ voyager/jinja2/voyager/components/<name>/  <name>.j2 macro for Janeway
 voyager/storage.py                         manifest storage that hashes the JS
                                            import chain as well as the CSS
 
-# Documentation site (never shipped) - Pelican, dogfooding the package
+# Documentation site (never shipped) - Pelican, rendering the package
 content/                one page per component/foundation/example; every
-                        component page renders the real packaged macros via
+                        component page renders the packaged macros via
                         the example() helper (foundations document tokens and
                         conventions; the example pages are currently
                         handwritten markup)
@@ -42,15 +44,15 @@ The **design system** has two entry points, both under
   (`components/<name>/<name>.js`) and calls its init - the JS analogue of
   `index.css`.
 
-The **docs site** supplies its own chrome (header, sidebar, code-preview
-tabs) from `themes/voyager-docs/static/` and loads the design system's
+The **docs site** supplies its own header, sidebar, and code-preview
+tabs from `themes/voyager-docs/static/` and loads the design system's
 CSS/JS entry points as a consumer application would. Component pages
-render the packaged Jinja macros, deriving each live preview and its
-displayed HTML from the same render - so the build continuously
-exercises macro rendering and the shipped assets. It does not exercise
-release-package installation, Django template discovery, or interactive
-behaviour; those need their own checks. The three reference pages
-currently use handwritten component markup rather than the macros.
+render Voyager's Jinja macros: each example's preview and HTML output
+come from the same render, so the build exercises macro rendering and
+the shipped assets. It does not exercise release-package installation,
+Django template discovery, or interactive behaviour; the test suite
+covers those. The three reference pages use handwritten component
+markup.
 
 ## Architecture
 
@@ -62,8 +64,8 @@ settings  →  reset  →  elements  →  components  →  utilities
 ```
 
 Utilities load **last**, and single-purpose override utilities (text,
-margin, flow) carry `!important` so they beat component declarations at
-any nesting depth - the terminal layer of the cascade. See
+margin, flow) carry `!important` so they take precedence over component
+declarations at any nesting depth. See
 [`CSS-ARCHITECTURE.md`](CSS-ARCHITECTURE.md) for the full architecture
 document.
 
@@ -112,7 +114,7 @@ override semantic aliases without touching raw tokens.
    `.app-header`, `.sidebar-nav`, …) sizes to its own context.
 4. Utilities are last-resort and load last. Prefer composing existing
    components.
-5. Accessibility is a quality bar - AA contrast, real focus rings, semantic
+5. Accessibility is a quality bar - AA contrast, visible focus rings, semantic
    HTML, no fake ARIA.
 
 ## Building the docs locally
@@ -134,10 +136,11 @@ light and dark themes via the toggle in the header; preference is stored in
 
 ## Running the tests
 
-The suite renders every packaged macro through Django's Jinja2 backend
-with `APP_DIRS=True` (proving consumer-style template discovery) and
-runs `collectstatic` with `VoyagerManifestStaticFilesStorage` to prove
-the CSS and JS import chains are hashed:
+The tests check Jinja template discovery (every packaged macro renders
+through Django's Jinja2 backend with `APP_DIRS=True`), selected macro
+outputs, and static-file hashing (`collectstatic` with
+`VoyagerManifestStaticFilesStorage` rewrites the CSS and JS import
+chains):
 
 ```sh
 make test
@@ -241,9 +244,7 @@ and `APP_DIRS` Jinja resolve them.
 
 Voyager is at `v0.1` - the foundations, component set, and three reference
 pages (editor dashboard, manager index, peer-review screen) are in place.
-The reference pages use handwritten component markup; converting them to
-render through the packaged macros is planned. The next phase is wiring
-components into Janeway templates.
+The reference pages use handwritten component markup.
 
 ## Licensing
 

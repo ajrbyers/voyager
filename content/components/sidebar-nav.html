@@ -4,24 +4,27 @@
 
 <h1>Sidebar nav</h1>
 <p class="site-page-lede">
-  A left rail of grouped navigation links. Use it for section-level
-  navigation within a journal, alongside the
-  <a href="app-header.html">app header</a> at the top of the page.
+  Use the sidebar for navigation within a journal. Group related pages
+  under headings such as <strong>Workflow</strong> and
+  <strong>Content</strong>. Place it below the
+  <a href="app-header.html">app header</a>.
 </p>
 
 <h2>Grouped sections</h2>
-<p>Each section has an <code>&lt;h2&gt;</code> label and a <code>&lt;ul&gt;</code> of links. Below 900px the sections collapse behind the Menu button in the journal row; the shared disclosure driver in <code>folder-list.js</code> toggles them via <code>data-disclosure-toggle</code>, <code>aria-controls</code> and <code>aria-expanded</code>.</p>
+<p>Each section has an <code>&lt;h2&gt;</code> label and a <code>&lt;ul&gt;</code> of links.</p>
+<p>At widths of 900px or less, users can expand the navigation with <strong>Menu</strong> in the journal row. The disclosure script updates the expanded state.</p>
+<p>The shared disclosure driver in <code>folder-list.js</code> toggles the sections through <code>data-disclosure-toggle</code>, <code>aria-controls</code>, and <code>aria-expanded</code>.</p>
 {% set src %}{% raw %}{% from "voyager/components/sidebar-nav/sidebar-nav.j2"
    import sidebar_nav, sidebar_nav_section, sidebar_nav_item %}
 
 {% call sidebar_nav(journal={
     "mark": "JE",
     "name": "Journal of Energy Modelling",
-    "sub":  "Editor in Chief view"
+    "sub":  "Editor-in-chief view"
 }) %}
   {% call sidebar_nav_section("Workflow") %}
     {{ sidebar_nav_item("Unassigned",  url="/unassigned", count=7) }}
-    {{ sidebar_nav_item("Peer Review", url="/review",     count=14, current=True) }}
+    {{ sidebar_nav_item("Peer review", url="/review",     count=14, current=True) }}
     {{ sidebar_nav_item("Copyediting", url="/copyedit",   count=5) }}
   {% endcall %}
 {% endcall %}{% endraw %}{% endset %}

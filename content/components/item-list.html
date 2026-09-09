@@ -4,9 +4,13 @@
 
 <h1>Item list</h1>
 <p class="site-page-lede">
-  A dynamic add/remove repeating form item list. Uses HTMX for
-  progressive enhancement - add and delete items without a full page
-  reload. Falls back to standard form submission without JavaScript.
+  Use an item list when a form contains repeated entries, such as authors or
+  references. Users can add or remove entries up to the configured limit.
+</p>
+<p>
+  With <code>htmx_url</code>, the component updates the list through HTMX. Without
+  it, the buttons submit the form and your application handles the requested
+  change.
 </p>
 
 <h2>Default</h2>
@@ -38,10 +42,10 @@
 {% endcall %}{% endraw %}{% endset %}
 {{ example(src) }}
 
-<h2>At maximum</h2>
+<h2>Maximum number of items</h2>
 <p>
-  When <code>count</code> equals <code>max_items</code>, the add button
-  and remaining count are hidden automatically.
+  When <code>count</code> equals <code>max_items</code>, the macro hides the
+  add button and the remaining count.
 </p>
 {% set src %}{% raw %}{% from "voyager/components/item-list/item-list.j2" import item_list, item_list_item %}
 {% from "voyager/components/form/form.j2" import form_text %}
@@ -60,11 +64,12 @@
 
 <h2>Notes</h2>
 <ul>
-  <li>The <code>name</code>, <code>item_label</code>, and <code>htmx_url</code> parameters must be passed to both <code>item_list()</code> and each <code>item_list_item()</code>. This repetition is necessary because Jinja2 macros have isolated scopes.</li>
-  <li>Set <code>show_delete=False</code> on the first item when <code>count == 1</code>. The macro cannot count siblings, so the caller must manage this.</li>
-  <li>The HTMX endpoint should accept a POST and return the complete <code>&lt;div class="item-list"&gt;</code> HTML, which is swapped via <code>outerHTML</code>. The hidden <code>count</code> and <code>max</code> fields are included in the request via <code>hx-include</code>.</li>
-  <li>Without <code>htmx_url</code>, buttons fall back to <code>type="submit"</code> with a <code>name</code>/<code>value</code> pair (<code>name-action=add</code> or <code>name-action=delete-N</code>), so the server can handle add/delete as a standard form POST.</li>
-  <li>Delete buttons include a <code>visually-hidden</code> suffix (e.g. "Delete author 2") so screen readers announce which item is being deleted.</li>
+  <li>Pass the same <code>name</code>, <code>item_label</code>, and <code>htmx_url</code> to <code>item_list()</code> and to each <code>item_list_item()</code>. Jinja macros have isolated scopes, so the items cannot read the list's values.</li>
+  <li>Set <code>show_delete=False</code> on the first item when <code>count == 1</code>. The macro cannot count its siblings, so the caller decides when to show the delete button.</li>
+  <li>The HTMX endpoint accepts a POST and returns the complete <code>&lt;div class="item-list"&gt;</code> element, which is swapped in with <code>outerHTML</code>. The hidden <code>count</code> and <code>max</code> fields are sent with the request through <code>hx-include</code>.</li>
+  <li>With <code>htmx_url</code>, the add and delete controls are <code>type="button"</code> elements that depend on HTMX. They do nothing without JavaScript, so the component has no automatic fallback in this mode.</li>
+  <li>Without <code>htmx_url</code>, the controls are <code>type="submit"</code> buttons with a <code>name</code> and <code>value</code> pair (<code>name-action=add</code> or <code>name-action=delete-N</code>), so your application can handle the change from a standard form POST.</li>
+  <li>Each delete button includes <code>visually-hidden</code> text naming its item, such as <strong>Delete author 2</strong>, so its accessible name identifies the entry it removes.</li>
 </ul>
 
 </body>

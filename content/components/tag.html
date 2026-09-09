@@ -4,9 +4,10 @@
 
 <h1>Tag</h1>
 <p class="site-page-lede">
-  Small uppercase status labels for workflow state. For inline monospaced
-  labels - IDs, branch names, SHAs - see the
-  <a href="code-chip.html">code chip</a>.
+  Use a tag to show a short status or category, such as
+  <strong>Under review</strong> or <strong>Article</strong>. For an
+  identifier within text, such as an article ID, filename, or commit
+  hash, see the <a href="code-chip.html">code chip</a>.
 </p>
 
 <h2>Variants</h2>
@@ -22,17 +23,16 @@
 {{ example(src) }}
 
 <h2>Status helpers</h2>
-<p>Three utility classes for inline severity colour:</p>
+<p>Three utility classes set an inline status colour.</p>
 {% set helpers %}{% raw %}<p><span class="status-overdue">4 days overdue</span> - apply when a date has passed.</p>
-<p><span class="status-pending">Awaiting acknowledgement</span> - apply for in-progress states.</p>
+<p><span class="status-pending">Awaiting a response</span> - apply for in-progress states.</p>
 <p><span class="status-success">Decision sent</span> - apply for completed positive outcomes.</p>{% endraw %}{% endset %}
 {{ example(helpers, jinja=False) }}
 
 <h2>Notes</h2>
 <ul>
-  <li>Tags use both colour <em>and</em> text to convey status - never rely on colour alone.</li>
-  <li>Use <code>tag-grey</code> for neutral category labels (Article, Round 2 of 2). Reserve coloured tags for status.</li>
-  <li>Don't put tags inside form labels or headings unless the visual treatment makes sense - they're inline text, not buttons.</li>
+  <li>Use coloured tags for status and <code>tag-grey</code> for neutral categories, such as <strong>Article</strong> or <strong>Round 2 of 2</strong>. Write the meaning in the label so it does not depend on colour.</li>
+  <li>Tags display information and do not perform actions.</li>
 </ul>
 
 </body>

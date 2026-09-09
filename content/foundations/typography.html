@@ -3,40 +3,40 @@
 
 <h1>Typography</h1>
 <p class="site-page-lede">
-  Janeway's body type stack is Helvetica/Arial - a widely available,
-  highly legible sans that renders consistently everywhere without a
-  web-font download. Chrome (top bar, sidebar
-  links, tabs, breadcrumbs, buttons) uses the system font stack so dense lists
-  look at home in the operating system. Code, IDs, file names and SHAs use the
-  monospace stack.
+  Voyager uses fonts installed on the user's device. It provides a
+  Helvetica/Arial stack, a system font stack, and a monospace stack for
+  identifiers and code. Body text and buttons use the Helvetica/Arial stack.
+  Navigation and dense data components - the app header, sidebar nav, tabs,
+  breadcrumbs, tables, and the app footer - use the system font stack. Code,
+  IDs, file names, and commit hashes use the monospace stack.
 </p>
 
 <h2>Type stacks</h2>
 <ul>
   <li><code>--font-sans</code> - body and content. <code>"Helvetica Neue", "Arial", sans-serif</code></li>
-  <li><code>--font-system</code> - chrome, dense data. <code>-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif</code></li>
+  <li><code>--font-system</code> - navigation and dense data. <code>-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif</code></li>
   <li><code>--font-mono</code> - code, IDs, files. <code>ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace</code></li>
 </ul>
 
 <h2>Scale</h2>
-<p>The scale is intentionally modest - Janeway is dense; oversized headings consume real estate better spent on the work itself.</p>
+<p>Use the type scale to distinguish page titles, section headings, body text, and supporting information.</p>
 
 <div class="type-row"><code>--fs-display</code> <span class="muted">32px</span><span class="ts-display">Editorial decision</span></div>
 <div class="type-row"><code>--fs-h1</code> <span class="muted">24px</span><span class="ts-h1">Reproducibility of LSTM forecasts</span></div>
 <div class="type-row"><code>--fs-h2</code> <span class="muted">18px</span><span class="ts-h2">Reviewers</span></div>
 <div class="type-row"><code>--fs-h3</code> <span class="muted">16px</span><span class="ts-h3">Files in Round 2</span></div>
-<div class="type-row"><code>--fs-lg</code> <span class="muted">16px</span><span class="ts-lg">Body large - for ledes</span></div>
-<div class="type-row"><code>--fs-md</code> <span class="muted">15px</span><span class="ts-md">Body medium - primary buttons</span></div>
+<div class="type-row"><code>--fs-lg</code> <span class="muted">16px</span><span class="ts-lg">Large body text - introductory paragraphs</span></div>
+<div class="type-row"><code>--fs-md</code> <span class="muted">15px</span><span class="ts-md">Body medium - button labels</span></div>
 <div class="type-row"><code>--fs-base</code> <span class="muted">14px</span><span class="ts-base">Body - the default size for paragraphs and tables</span></div>
 <div class="type-row"><code>--fs-sm</code> <span class="muted">13px</span><span class="ts-sm">Body small - sidebar links, breadcrumbs</span></div>
-<div class="type-row"><code>--fs-xs</code> <span class="muted">12px</span><span class="ts-xs">Hint / caption</span></div>
+<div class="type-row"><code>--fs-xs</code> <span class="muted">12px</span><span class="ts-xs">Card metadata, alert pills, and filter labels</span></div>
 
 <h2>Weights</h2>
 <ul>
-  <li><strong>700</strong> - used for h1–h3 and form labels, for unmissable hierarchy on dense screens</li>
-  <li><strong>600</strong> - used for table-cell strong emphasis and active states</li>
-  <li><strong>500</strong> - sidebar link active state, button labels</li>
-  <li><strong>400</strong> - body default</li>
+  <li><strong>700</strong> - headings and form labels</li>
+  <li><strong>600</strong> - table header cells, the current sidebar link, and other active states</li>
+  <li><strong>500</strong> - app-header navigation links, page-header captions, and small counts</li>
+  <li><strong>400</strong> - body text and button labels</li>
 </ul>
 
 <h2>Line height</h2>

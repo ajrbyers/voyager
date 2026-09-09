@@ -4,20 +4,24 @@
 
 <h1>Action menu</h1>
 <p class="site-page-lede">
-  A vertical list of action links with leading icons, typically used in
-  the right rail.
+  Use an action menu to list related actions vertically. Each link includes
+  an icon. Action menus often appear in the <a href="rail.html">rail</a> on a
+  detail page.
 </p>
 
 <h2>Example</h2>
-<p>The icon glyph is decorative - use <code>aria-hidden="true"</code> so it isn't announced as a letter.</p>
+<p>
+  The icons are decorative: the macro sets <code>aria-hidden="true"</code> on
+  each one, so the link text provides the action's name.
+</p>
 {% set src %}{% raw %}{% from "voyager/components/action-menu/action-menu.j2"
    import action_menu, action_menu_item %}
 
 {% call action_menu() %}
   {{ action_menu_item("info", "View metadata",            url="/metadata") }}
-  {{ action_menu_item("file-text", "Document management",  url="/docs") }}
-  {{ action_menu_item("plus", "New review round",          url="/round/new") }}
-  {{ action_menu_item("arrow-up", "Reviewers from CSV",    url="/reviewers/csv") }}
+  {{ action_menu_item("file-text", "Manage documents",  url="/docs") }}
+  {{ action_menu_item("plus", "Start a review round",          url="/round/new") }}
+  {{ action_menu_item("arrow-up", "Import reviewers from CSV",    url="/reviewers/csv") }}
 {% endcall %}{% endraw %}{% endset %}
 {{ example(src) }}
 

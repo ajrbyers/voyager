@@ -4,10 +4,9 @@
 
 <h1>Check answers</h1>
 <p class="site-page-lede">
-  A page-level pattern for letting users review their answers before
-  final submission. Composes <a href="summary-block.html">summary list</a>
-  rows with section headings and a submit button. Use at the end of a
-  multi-step form workflow.
+  Use a check-answers page before the final submission of a multi-step
+  form. Show the entered information, provide links to change it, and end
+  with the submission button.
 </p>
 
 <h2>Default</h2>
@@ -90,10 +89,10 @@
 
 <h2>Notes</h2>
 <ul>
-  <li>Always add <code>visually-hidden</code> text to "Change" links so screen readers announce <em>what</em> is being changed (e.g. "Change name", not just "Change").</li>
+  <li>Give each <strong>Change</strong> link an accessible name that identifies the answer, such as <strong>Change name</strong>. Add the identifying text with <code>.visually-hidden</code> when necessary.</li>
   <li>The <code>&lt;h1&gt;</code> is part of the component - do not add a separate page header above it.</li>
-  <li>Import <code>summary_row</code> from <code>summary-block.j2</code> - check-answers does not re-export it.</li>
-  <li>Rows without actions (e.g. "Not provided") automatically get the <code>summary-list-row-no-actions</code> modifier, collapsing to a two-column grid.</li>
+  <li>Import <code>summary_row</code> from <a href="summary-block.html"><code>summary-block.j2</code></a> - check-answers does not re-export it.</li>
+  <li>Rows without actions, such as "Not provided", get the <code>summary-list-row-no-actions</code> modifier, which collapses the row to a two-column grid.</li>
   <li>The submit button defaults to <code>btn-primary</code>. Override with <code>submit_kind="warning"</code> for destructive actions.</li>
 </ul>
 

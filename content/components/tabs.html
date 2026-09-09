@@ -4,13 +4,12 @@
 
 <h1>Tabs</h1>
 <p class="site-page-lede">
-  A row of navigation links where each tab is a different filtered view of
-  the same page. Use tabs when the views share one underlying list, such as
-  review rounds or workflow states.
+  Use tabs to navigate between related views, such as review rounds or
+  filtered submission lists.
 </p>
 
 <h2>Filter tabs</h2>
-<p>Real navigation links - each tab is a different filtered view. Use <code>aria-current="true"</code> on the active link, not <code>role="tab"</code> (this is not an ARIA tabs widget).</p>
+<p>Each tab is a navigation link. Mark the current link with <code>aria-current="true"</code>. These links navigate between views rather than switching ARIA tab panels.</p>
 {% set src %}{% raw %}{% from "voyager/components/tabs/tabs.j2" import tabs, tab %}
 
 {% call tabs("Review rounds") %}
