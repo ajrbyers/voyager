@@ -68,7 +68,7 @@ def render_snippet(src):
 
 # --- Docs sidebar (single source; retires the old SIDEBAR_HTML in JS) ----
 SIDEBAR = [
-    ("Get started", [("Overview", "index.html"), ("Architecture", "architecture.html")]),
+    ("Get started", [("Overview", "index.html"), ("Installation", "installation.html"), ("Architecture", "architecture.html")]),
     ("Foundations", [
         ("Tokens", "foundations/tokens.html"),
         ("Typography", "foundations/typography.html"),
