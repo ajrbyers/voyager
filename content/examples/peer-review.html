@@ -81,6 +81,29 @@
 
     <div class="layout-with-rail">
 
+      <!-- Leading rail: essential status and next actions. Placed FIRST
+           in the markup so reading and tab order meet it before the
+           article detail at every width; the layout grid still draws it
+           as the right-hand column on wide screens. -->
+      <aside class="rail" aria-label="Status and next actions">
+        <section class="rail-section">
+          <h2>Status</h2>
+          <div class="inset-text">
+            <p>Currently in <strong>Under Review</strong>. A minor revision is active.</p>
+            <p>Editorial decision is blocked until at least one further review is received or the assignment is withdrawn.</p>
+          </div>
+          <!-- The blocking state drives the controls: the actions that
+               resolve the blockage are enabled and listed first; the
+               decision button is an inert placeholder until a decision
+               is actually possible. -->
+          <div class="mt-4 stack">
+            <div><a href="#" class="btn">Send reminder<span class="visually-hidden"> to Whitfield</span></a></div>
+            <div><a href="#" class="btn">Find replacement<span class="visually-hidden"> for Patel</span></a></div>
+            <div><a class="btn btn-primary is-disabled" aria-disabled="true">Make a decision</a></div>
+          </div>
+        </section>
+      </aside>
+
       <!-- LEFT: 2/3 -->
       <div>
 
@@ -272,24 +295,9 @@
       </div>
 
       <!-- RIGHT rail -->
-      <aside class="rail rail-first-narrow" aria-label="Status, steps and actions">
-
-        <section class="rail-section">
-          <h2>Status</h2>
-          <div class="inset-text">
-            <p>Currently in <strong>Under Review</strong>. A minor revision is active.</p>
-            <p>Editorial decision is blocked until at least one further review is received or the assignment is withdrawn.</p>
-          </div>
-          <!-- The blocking state drives the controls: the actions that
-               resolve the blockage are enabled and listed first; the
-               decision button is an inert placeholder until a decision
-               is actually possible. -->
-          <div class="mt-4 stack">
-            <div><a href="#" class="btn">Send reminder<span class="visually-hidden"> to Whitfield</span></a></div>
-            <div><a href="#" class="btn">Find replacement<span class="visually-hidden"> for Patel</span></a></div>
-            <div><a class="btn btn-primary is-disabled" aria-disabled="true">Make a decision</a></div>
-          </div>
-        </section>
+      <!-- Trailing rail: secondary reference sections. These follow the
+           article content in reading order on narrow screens. -->
+      <aside class="rail" aria-label="Steps and actions">
 
         <section class="rail-section">
           <h2>Steps</h2>

@@ -50,11 +50,16 @@
   <code>.app-shell-main</code> (see <a href="app-shell.html">Application
   shell</a>). The main content takes the flexible left column; the rail takes
   a fixed right column sized by the <code>--shell-rail-width</code> token.
-  Below 1100px the grid collapses and the rail drops beneath the content.
-  If the rail carries the page's essential status and actions, add
-  <code>rail-first-narrow</code> to it so it moves <em>above</em> the main
-  content at that width and task priority is preserved; leave it off for
-  rails holding secondary reference material.
+  Below 1100px the grid collapses to one column and rails render in
+  markup order. Markup order is the priority control: a rail placed
+  <em>first</em> inside <code>layout-with-rail</code> stays first in
+  reading and tab order at every width - the grid still draws it as the
+  right-hand column on wide screens - so put essential status and
+  actions in a leading rail. A second, trailing rail after the content
+  holds secondary sections and stacks beneath the leading one in the
+  same column on wide screens. Don't reorder rails with CSS
+  (<code>order</code> or grid placement alone): that changes only the
+  visual position, leaving keyboard and screen-reader order behind.
 </p>
 {% set src %}{% raw %}<div class="layout-with-rail">
   <div>

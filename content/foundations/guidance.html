@@ -36,6 +36,6 @@
 <p>Uppercase 11px labels are for repeated, learned labels (status tags, section labels), never for one-off instructions.</p>
 
 <h2>Narrow screens keep task priority</h2>
-<p>Below 1100px, <code>layout-with-rail</code> collapses to one column and the rail follows the main content. If the rail carries the page's essential status and actions (as on the peer-review screen), add <code>rail-first-narrow</code> to the rail so it moves <em>above</em> the main content instead. Leave it off for rails holding secondary reference material.</p>
+<p>Below 1100px, <code>layout-with-rail</code> collapses to one column and everything renders in markup order - which is therefore where task priority is decided. Put the page's essential status and actions in a rail placed <em>first</em> inside the layout (as on the peer-review screen): it leads the reading and tab order at every width, and the grid still draws it as the right-hand column on wide screens. Secondary sections go in a trailing rail after the content. Never fix priority with CSS reordering alone - <code>order</code> and grid placement move pixels, not the keyboard or screen-reader sequence.</p>
 
 </body>
