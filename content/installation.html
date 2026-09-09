@@ -1,0 +1,96 @@
+<head><title>Installation</title></head>
+<body>
+
+<h1>Installation</h1>
+<p class="site-page-lede">
+  Voyager installs as a Django app. Installing it gives your project the
+  stylesheet and JavaScript entry points and the Jinja macros.
+</p>
+
+<h2>Install the package</h2>
+<p>Install from the repository, or from a local checkout for live editing:</p>
+
+<div class="example">
+  <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">Shell</button></div>
+  <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>pip install git+https://github.com/openlibhums/voyager.git
+# or, for live editing against a local checkout:
+pip install -e ~/Code/voyager</code></pre>
+</div>
+
+<p>Voyager requires Django 4.2 or later and Jinja2, both declared as
+dependencies of the package.</p>
+
+<h2>Add the app</h2>
+<p>Add <code>voyager</code> to <code>INSTALLED_APPS</code>:</p>
+
+<div class="example">
+  <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">Python</button></div>
+  <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>INSTALLED_APPS = [
+    # ...
+    "voyager",
+]</code></pre>
+</div>
+
+<h2>Link the entry points</h2>
+<p><code>collectstatic</code> gathers the design system automatically.
+Link the two entry points with the <code>static</code> tag:</p>
+
+<div class="example">
+  <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button></div>
+  <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;link rel="stylesheet" href="{% raw %}{% static 'voyager/assets/css/index.css' %}{% endraw %}"&gt;
+&lt;script type="module" src="{% raw %}{% static 'voyager/assets/js/index.js' %}{% endraw %}"&gt;&lt;/script&gt;</code></pre>
+</div>
+
+<h2>Render the macros</h2>
+<p>The Jinja macros ship in the app's <code>jinja2/</code> directory. A
+Jinja2 template backend with <code>APP_DIRS: True</code> resolves the
+<code>voyager/components/...</code> import paths with no further
+configuration:</p>
+
+<div class="example">
+  <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">Python</button></div>
+  <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.jinja2.Jinja2",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {},
+    },
+    # ... your Django template backend ...
+]</code></pre>
+</div>
+
+<div class="example">
+  <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">Jinja</button></div>
+  <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>{% raw %}{% from "voyager/components/tag/tag.j2" import tag %}
+
+{{ tag("Under review", kind="green") }}{% endraw %}</code></pre>
+</div>
+
+<h2>Cache-busting in production</h2>
+<p>Point the staticfiles backend at Voyager's storage class:</p>
+
+<div class="example">
+  <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">Python</button></div>
+  <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>STORAGES = {
+    "staticfiles": {
+        "BACKEND": "voyager.storage.VoyagerManifestStaticFilesStorage",
+    },
+}</code></pre>
+</div>
+
+<p>Django's default <code>ManifestStaticFilesStorage</code> hashes and
+rewrites the <code>@import</code> chain in <code>index.css</code> but
+leaves the ES-module <code>import</code> specifiers in
+<code>index.js</code> untouched, so the component drivers would ship
+unhashed. <code>VoyagerManifestStaticFilesStorage</code> enables
+<code>support_js_module_import_aggregation</code>, so the JavaScript
+import chain is hashed in the same way as the CSS.</p>
+
+<h2>Next steps</h2>
+<p>The <a href="index.html">overview</a> shows the two ways to use a
+component - the HTML or the macro - and each component page documents
+both, with a rendered preview. <a href="architecture.html">Architecture</a>
+describes the file structure and styling conventions.</p>
+
+</body>
