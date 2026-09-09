@@ -148,6 +148,17 @@ CI additionally installs Voyager from a built wheel - not the source
 tree - at both edges of the supported version range, so a release
 package missing templates, statics, or a dependency fails the build.
 
+A separate Playwright suite drives the shipped JavaScript drivers in a
+real Chromium against real macro output (rendered by a fixture server
+with HTMX): tag-picker focus/announcements around concurrent and failed
+requests, modal single-open focus restoration and inert background, and
+rail reading/tab order at both widths:
+
+```sh
+pip install playwright && playwright install chromium
+make test-browser
+```
+
 ## Using Voyager in a page
 
 Link the stylesheet bundle and the behaviour entry, then use the

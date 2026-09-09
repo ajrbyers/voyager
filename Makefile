@@ -4,9 +4,13 @@
 PELICAN ?= pelican
 PY ?= python
 
-.PHONY: docs docs-serve docs-clean test
+.PHONY: docs docs-serve docs-clean test test-browser
 test:
 	DJANGO_SETTINGS_MODULE=tests.settings $(PY) -m django test tests
+
+# Requires: pip install playwright && playwright install chromium
+test-browser:
+	VOYAGER_BROWSER_TESTS=1 DJANGO_SETTINGS_MODULE=tests.settings $(PY) -m django test tests.browser
 
 docs:
 	rm -rf themes/voyager-docs/static/voyager
