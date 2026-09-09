@@ -49,14 +49,19 @@ export function modal() {
   }
 
   function showModal(backdrop, opener) {
+    var restoreTo = opener || document.activeElement;
     if (openModal && openModal !== backdrop) {
       // Single-open: dismiss the current modal without restoring focus -
-      // the new modal takes over focus management.
+      // the new modal takes over focus management. If the new opener
+      // lives inside the dismissed (now hidden) modal, inherit the
+      // dismissed modal's restore target so closing the new modal
+      // returns focus to visible page content, not a hidden control.
+      if (restoreTo && openModal.contains(restoreTo)) restoreTo = modalOpener;
       openModal.classList.remove('is-open');
       clearBackgroundInert();
     }
     openModal = backdrop;
-    modalOpener = opener || document.activeElement;
+    modalOpener = restoreTo;
     backdrop.classList.add('is-open');
     setBackgroundInert(backdrop);
     var focusables = modalFocusables();
@@ -68,7 +73,13 @@ export function modal() {
     openModal.classList.remove('is-open');
     openModal = null;
     clearBackgroundInert();
-    if (modalOpener && typeof modalOpener.focus === 'function') modalOpener.focus();
+    // The opener can be gone (removed by an HTMX swap) or hidden; only
+    // restore focus to a control the user can actually see.
+    if (modalOpener && modalOpener.isConnected &&
+        typeof modalOpener.focus === 'function' &&
+        modalOpener.offsetParent !== null) {
+      modalOpener.focus();
+    }
     modalOpener = null;
   }
 
