@@ -4,14 +4,13 @@
 
 <h1>Avatar</h1>
 <p class="site-page-lede">
-  A circular block showing a person's initials. Three sizes; six neutral
-  colours assigned by hashing the user's identifier on the consumer side,
-  so the same person always gets the same colour. The avatar itself is
-  decorative - always pair it with the user's name in the surrounding
-  markup.
+  An avatar shows a person's initials. Place it beside their name so the person
+  can be identified without relying on the initials or colour. The macro hides
+  the avatar from assistive technology with <code>aria-hidden="true"</code>.
 </p>
 
 <h2>Sizes</h2>
+<p>Three sizes are available: 24px by default, <code>md</code> at 32px, and <code>lg</code> at 48px.</p>
 {% set src %}{% raw %}{% from "voyager/components/avatar/avatar.j2" import avatar %}
 
 {{ avatar("AH", kind="purple") }}
@@ -20,7 +19,7 @@
 {{ example(src) }}
 
 <h2>Colour pool</h2>
-<p>Six neutral colours: purple, orange, green, red, teal, pink. Assign by hashing a stable user identifier so the same person always renders with the same colour.</p>
+<p>Choose from six colours: purple, orange, green, red, teal, and pink. Assign colours consistently so that a person keeps the same colour across pages. Your application decides how to make that assignment, for example by hashing a stable user identifier.</p>
 
 {% set pool %}{% raw %}{% from "voyager/components/avatar/avatar.j2" import avatar %}
 

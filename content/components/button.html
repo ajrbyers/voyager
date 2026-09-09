@@ -4,17 +4,16 @@
 
 <h1>Button</h1>
 <p class="site-page-lede">
-  Buttons are flat and square, with a 2px solid bottom shadow that gives
-  them a pressable, physical feel. The default button is a neutral grey
-  used for almost every editorial action. Compose with one of the variants
-  for primary commits or destructive actions.
+  Use buttons for actions such as saving a draft, submitting a review, or
+  withdrawing a submission. Choose the variant according to the action's
+  importance and consequences.
 </p>
 
-<h2>When to use which</h2>
+<h2>Choosing a variant</h2>
 <ul>
-  <li><strong>Default</strong> (grey) - table-row actions, secondary toolbar buttons, "View", "Send reminder". Use this for almost everything.</li>
-  <li><strong>Primary</strong> (green) - the page's main commit action: "Make a decision", "Submit review". One per view.</li>
-  <li><strong>Warning</strong> (red) - destructive primary: "Delete reviewer", "Withdraw submission". Use sparingly.</li>
+  <li><strong>Default</strong> (grey) - use for supporting actions, such as <strong>Save draft</strong> or <strong>Send reminder</strong>.</li>
+  <li><strong>Primary</strong> (green) - use for the page's main action, such as <strong>Submit review</strong>.</li>
+  <li><strong>Warning</strong> (red) - use for destructive actions, such as <strong>Withdraw submission</strong>.</li>
 </ul>
 
 <h2>Variants</h2>
@@ -26,7 +25,7 @@
 {{ example(variants) }}
 
 <h2>Sizes</h2>
-<p>Size modifiers compose with any variant. Use <code>btn-small</code> for table-row actions and dense toolbars where the default size is too tall.</p>
+<p>Size modifiers combine with any variant. Use <code>btn-small</code> for table-row actions and dense toolbars, where the default size is too tall.</p>
 {% set sizes %}{% raw %}{% from "voyager/components/button/button.j2" import button %}
 
 {{ button("Small", size="small") }}
@@ -35,7 +34,7 @@
 {{ example(sizes) }}
 
 <h2>Button group</h2>
-<p>Cluster of related buttons. Use <code>.btn-group-vertical</code> when stacking long-labelled options like Manager menu links.</p>
+<p>Group related actions together. For buttons with long labels, use <code>.btn-group-vertical</code> to place them on separate lines.</p>
 {% set group %}{% raw %}{% from "voyager/components/button/button.j2" import button %}
 
 <div class="btn-group">
@@ -45,13 +44,13 @@
 {{ example(group) }}
 
 <h2>Disabled state</h2>
-<p>Use <code>disabled</code> on <code>&lt;button&gt;</code>. Anchors styled as buttons cannot truly be disabled - prefer removing or replacing them. If the macro is called with both <code>href</code> and <code>disabled=True</code>, it renders an inert placeholder: an <code>&lt;a&gt;</code> with no <code>href</code>, the <code>is-disabled</code> class, and <code>aria-disabled="true"</code>.</p>
+<p>Pass <code>disabled=True</code> to disable a button. If you also pass <code>href</code>, the macro renders a placeholder without a destination: an <code>&lt;a&gt;</code> with no <code>href</code>, the <code>is-disabled</code> class, and <code>aria-disabled="true"</code>. Explain why the action is unavailable when that is not clear from the surrounding content.</p>
 
 <h2>Accessibility</h2>
 <ul>
-  <li>Always set <code>type="button"</code> on real buttons that aren't form submitters.</li>
-  <li>Don't use a <code>&lt;div&gt;</code> with click handlers - use a <code>&lt;button&gt;</code>.</li>
-  <li>Focus styling is handled by the global yellow focus rule. Don't override it on individual buttons.</li>
+  <li>Use <code>type="button"</code> for buttons that do not submit a form.</li>
+  <li>Use a <code>&lt;button&gt;</code> element for an action, rather than a <code>&lt;div&gt;</code> with a click handler.</li>
+  <li>Focus styling comes from the global yellow focus rule. Do not override it on individual buttons.</li>
 </ul>
 
 </body>

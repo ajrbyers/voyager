@@ -3,39 +3,32 @@
 
 <h1>Usage guidance</h1>
 <p class="site-page-lede">
-  Conventions for choosing between overlapping components, for signalling
-  failures and blocked workflows, and for deciding when compact density
-  is appropriate. The components are documented individually; this page
-  is about picking the right one.
+  Use this guidance to choose components and arrange them around an
+  editorial task.
 </p>
 
 <h2>Choosing a container</h2>
-<p>Four components overlap as "a box with a heading". Choose by what the content <em>is</em>:</p>
+<p>Four components overlap as a box with a heading. Choose by what the content is:</p>
 <ul>
-  <li><strong>Summary block</strong> - structured facts about one thing: metadata, key-value rows, per-row actions. The workhorse for detail pages. If the body is a definition list, it's a summary block.</li>
-  <li><strong>Queue card</strong> - an entry point to somewhere else: a workflow stage with counts and a single "open" CTA. If the point of the box is to leave it, it's a queue card.</li>
-  <li><strong>Article card</strong> - one article in a scanning list (an inbox row). Never use it as a page section; it exists to be repeated.</li>
-  <li><strong>Panel</strong> - the outcome of a just-completed action, at the top of a completion page ("Decision sent"). One per page, and only after an action.</li>
+  <li><strong>Summary block</strong> - show related facts about an article, person, or task. Use summary-list rows for labels, values, and actions such as <strong>Change</strong>.</li>
+  <li><strong>Queue card</strong> - link to a workflow queue and show its submission counts.</li>
+  <li><strong>Article card</strong> - show one submission in a list, with its title, status, and available actions.</li>
+  <li><strong>Panel</strong> - confirm the outcome of an action, such as a submitted review or an editorial decision.</li>
 </ul>
 
 <h2>Failures, unsaved work, and blocked workflows</h2>
 <ul>
-  <li><strong>A failed action</strong> gets a <code>notice</code> in the error kind at the top of the content area, naming what failed and what to do next. Field-level problems additionally use the form error pattern (message above the control, <code>form-group-error</code>).</li>
-  <li><strong>Unsaved work</strong>: warn before it can be lost, not after. Use <code>warning-text</code> beside the control that would discard it; don't rely on a browser dialog.</li>
-  <li><strong>A blocked workflow</strong> states the blockage <em>and</em> reorders the controls: the actions that resolve the blockage are enabled and listed first; the action being blocked renders as an inert placeholder (<code>btn is-disabled</code> with <code>aria-disabled="true"</code>), not as an enabled primary button. The peer-review reference page shows the pattern in its Status rail.</li>
-  <li><strong>Emphasis is a budget.</strong> Status tags, alert pills, coloured rails, and primary buttons compete; a page should have at most one primary button and reserve colour for exceptions and the next meaningful action. If everything is highlighted, nothing is.</li>
+  <li><strong>Failed actions.</strong> If an action fails, explain what happened and what the user can do next. Place the message near the affected content. For form errors, show a message beside each affected field and an error summary above the form.</li>
+  <li><strong>Unsaved work.</strong> Before an action discards unsaved work, explain what will be lost. Place the warning beside the action.</li>
+  <li><strong>Blocked workflows.</strong> If an action is unavailable, explain what must happen first. Place the available actions that help resolve the problem beside that explanation. In Voyager, the blocked action renders as an inert placeholder (<code>btn is-disabled</code> with <code>aria-disabled="true"</code>) and the resolving actions are listed first; the peer-review reference page shows this in its status rail.</li>
+  <li><strong>Emphasis.</strong> Use the primary button for the page's main action. Give routine information less emphasis so that warnings and required actions are easy to find.</li>
 </ul>
 
 <h2>Density</h2>
-<p>Voyager's compact scale (11-15px) is tuned for <strong>scanning chrome</strong>: queues, metadata, status labels, tables - dense pages an editor reads dozens of times a day. It is not for reading. Use the larger sizes (<code>--fs-md</code> and up, comfortable line lengths) for:</p>
-<ul>
-  <li>instructions and hint text the user must actually read before acting;</li>
-  <li>decision content - anything the user is asked to weigh up (review text, revision requests);</li>
-  <li>confirmation and completion pages.</li>
-</ul>
-<p>Uppercase 11px labels are for repeated, learned labels (status tags, section labels), never for one-off instructions.</p>
+<p>Compact text suits repeated information such as submission metadata, counts, and status labels. Use larger text for instructions, review reports, decision letters, and other content that needs sustained reading.</p>
+<p>Keep uppercase labels short. Write instructions in sentence case.</p>
 
-<h2>Narrow screens keep task priority</h2>
-<p>Below 1100px, <code>layout-with-rail</code> collapses to one column and everything renders in markup order - which is therefore where task priority is decided. Put the page's essential status and actions in a rail placed <em>first</em> inside the layout (as on the peer-review screen): it leads the reading and tab order at every width, and the grid still draws it as the right-hand column on wide screens. Secondary sections go in a trailing rail after the content. Never fix priority with CSS reordering alone - <code>order</code> and grid placement move pixels, not the keyboard or screen-reader sequence.</p>
+<h2>Narrow screens</h2>
+<p>Keep essential status and actions close to the content they concern, and check the visual order, reading order, and keyboard order when the layout changes. In Voyager this is decided by markup order: below 1100px, <code>layout-with-rail</code> collapses to one column and everything renders in document order. Put the page's essential status and actions in a rail placed <em>first</em> inside the layout, as on the peer-review screen - it leads the reading and tab order at every width, and the grid draws it as the right-hand column on wide screens. Put secondary sections in a trailing rail after the content. Do not reorder content with CSS alone: <code>order</code> and grid placement move the visual position without changing the reading or keyboard order.</p>
 
 </body>

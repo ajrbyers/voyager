@@ -3,17 +3,17 @@
 
     <h1>Architecture</h1>
     <p class="site-page-lede">
-      Voyager is plain modern CSS - no preprocessor, no framework.
-      Native CSS nesting and custom properties only. The system follows
-      Memory Alpha's layered structure and two-tier tokens.
+      Voyager uses CSS custom properties and native nesting, with no
+      preprocessor or framework. Its file structure and token conventions
+      are adapted from Memory Alpha.
     </p>
 
     <h2>Layer order</h2>
     <p>
-      The cascade flows in one direction. Each layer is more specific than the
-      one before it. Utilities load <strong>last</strong>, and the
-      single-purpose override utilities carry <code>!important</code>, so they
-      beat component declarations at any nesting depth.
+      Styles load in this order: settings, reset, elements, components,
+      and utilities. This is an import order, rather than a set of CSS
+      <code>@layer</code> rules. Override utilities use
+      <code>!important</code> to take precedence over component styles.
     </p>
 
     <pre class="arch-flow"><code>settings  →  reset  →  elements  →  components  →  utilities</code></pre>
@@ -51,8 +51,11 @@
       </tbody>
     </table>
 
-    <h2>Component file pattern</h2>
+    <h2>Component files</h2>
     <p>
+      Each component has a stylesheet and a Jinja macro. Components with
+      interactive behaviour also have a JavaScript module. Documentation
+      pages contain usage guidance and examples rendered from the macros.
       Django keeps static files and templates in separate trees, so a
       component's source is split by type:
     </p>
@@ -93,12 +96,11 @@
 .btn-large { padding:9px 14px 8px;font-size:var(--fs-lg) }</code></pre>
     </div>
 
-    <h3>Composable variants vs BEM</h3>
+    <h3>Variant classes</h3>
     <p>
-      A button is <code>btn btn-primary btn-large</code>, not
-      <code>btn btn--primary btn--large</code>. The visual axes (kind, size,
-      intent) compose as separate flat classes, so any combination is one
-      class list:
+      Add variant classes alongside the component's base class. For
+      example, <code>btn btn-primary btn-large</code> produces a large
+      primary button. Any combination is one class list:
     </p>
 
     <div class="example">
@@ -118,10 +120,16 @@
       <li><strong>Semantic aliases</strong> - point at raw tokens by role: <code>--colour-fg: var(--colour-grey-7)</code></li>
     </ol>
     <p>
-      Components reference <strong>semantic</strong> tokens only. Pages and
-      themes can override semantic aliases without touching raw tokens. This
-      makes dark mode straightforward - alias remapping in a single
-      <code>[data-theme="dark"]</code> block.
+      Raw tokens define values such as colours and spacing. Semantic
+      tokens assign those values to roles, such as text, links, and
+      backgrounds. Use semantic tokens in components so themes can change
+      those roles consistently - dark mode remaps the semantic aliases in
+      a single <code>[data-theme="dark"]</code> block. There are two
+      documented exceptions: raw white on the fixed avatar colours, which
+      do not change with the theme, and some earlier components that pair
+      raw white with their own dark-mode overrides. New components use
+      <code>--colour-fg-on-emphasis</code> for text on solid emphasis
+      backgrounds.
     </p>
 
     <div class="example">
@@ -139,11 +147,11 @@
 }</code></pre>
     </div>
 
-    <h2>Bundle</h2>
+    <h2 id="loading-styles">Loading styles</h2>
     <p>
-      <code>index.css</code> is the single entry point. Pages link only to that
-      file. It uses <code>@import</code> to pull in every layer file in order;
-      authoring stays split.
+      Link to <code>index.css</code> to load Voyager's styles. It imports
+      the component stylesheets and shared settings in layer order. Each
+      imported stylesheet remains a separate file.
     </p>
 
     <div class="example">
@@ -155,21 +163,18 @@
       In a Django project, <code>collectstatic</code> gathers
       <code>index.css</code> and its layers, and a manifest storage backend
       hashes and rewrites the <code>@import</code> chain for production
-      cache-busting - no separate bundler step. Authoring stays in the split
-      component files.
+      cache-busting - no separate bundler step.
     </p>
 
-    <h2>Provenance</h2>
+    <h2>Sources</h2>
     <p>
-      The architecture is adapted from
+      Voyager's CSS structure is adapted from
       <a href="https://github.com/openlibhums/memory-alpha">Memory Alpha</a>,
-      OLH's Pelican-based site theme. Memory Alpha pioneered the
-      component pattern with native CSS nesting and composable variant classes.
-      Voyager also studied two systems we admire -
-      the <a href="https://design-system.service.gov.uk/">GOV.UK Design System</a>
-      for its form and accessibility discipline, and
-      <a href="https://primer.style/">GitHub Primer</a> for its dense admin
-      chrome.
+      OLH's Pelican-based site theme. Its forms and accessibility patterns
+      draw on the
+      <a href="https://design-system.service.gov.uk/">GOV.UK Design System</a>,
+      and its compact editorial layouts draw on
+      <a href="https://primer.style/">GitHub Primer</a>.
     </p>
 
 </body>

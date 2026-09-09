@@ -4,19 +4,19 @@
 
 <h1>Function card</h1>
 <p class="site-page-lede">
-  Bordered, clickable card for a single &ldquo;function&rdquo; in the manager -
-  a thing you can configure or open. Carries a coloured icon, an optional count,
-  a title, a description, category tags, and an arrow. Forms the building block
-  of the <a href="../examples/manager.html">Manager dashboard</a>.
+  A function card links to an administration tool or settings page. It
+  includes a title, a short description, an icon, and optional counts and
+  category tags. The <a href="../examples/manager.html">Manager page</a>
+  arranges function cards in a grid.
 </p>
 
 <h2>Default</h2>
-<p>Icon, count, title, description, tags, arrow. Hover lifts the card and shifts the arrow right.</p>
+<p>The card shows an icon, a count, a title, a description, tags, and an arrow. On hover, the card lifts and the arrow shifts to the right.</p>
 {% set src %}{% raw %}{% from "voyager/components/function-card/function-card.j2" import function_card %}
 
 {{ function_card(
     title="Content pages",
-    description="Static CMS pages - About, Contact, Editorial Policies.",
+    description="Edit pages such as About, Contact, and Editorial policies.",
     url="/manager/pages",
     icon="file-text", icon_colour="blue",
     count=14,
@@ -25,7 +25,7 @@
 {{ example(src) }}
 
 <h2>Icon colour pool</h2>
-<p>Nine hardcoded colour pairs. Choose by category - e.g. blue for journal-level settings, purple for review, green for submission, orange for workflow stages, teal for content, pink for news, yellow for people, red for system, grey for neutral.</p>
+<p>Use the same icon colour for tools in the same category. Nine colours are available: blue, green, orange, purple, pink, teal, red, yellow, and grey.</p>
 {% set src %}{% raw %}<div class="cluster">
   <div class="function-card-icon function-card-icon-blue" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg></div>
   <div class="function-card-icon function-card-icon-green" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg></div>
@@ -40,7 +40,7 @@
 {{ example(src, jinja=False) }}
 
 <h2>Coming-soon variant</h2>
-<p>Use <code>is-coming-soon</code> for functions that are documented but not yet available. The card dims, becomes non-clickable, and shows a yellow &ldquo;Coming soon&rdquo; badge in place of the count.</p>
+<p>The <code>is-coming-soon</code> variant dims the card, removes its link, and shows a yellow "Coming soon" badge in place of the count.</p>
 {% set src %}{% raw %}{% from "voyager/components/function-card/function-card.j2" import function_card %}
 
 {{ function_card(
@@ -53,18 +53,18 @@
 {{ example(src) }}
 
 <h2>Filtering</h2>
-<p>For client-side filtering with <a href="function-filter.html">function-filter</a>, set three data attributes on each card so the JS can match:</p>
+<p>For client-side filtering with <a href="function-filter.html">function-filter</a>, each card carries three data attributes that the script matches against:</p>
 <ul>
-  <li><code>data-title</code> - lowercase title for text search</li>
-  <li><code>data-desc</code> - lowercase description tokens for text search</li>
-  <li><code>data-tags</code> - space-separated category tags for tag filter</li>
+  <li><code>data-title</code> - the lowercase title, for text search.</li>
+  <li><code>data-desc</code> - the lowercase description, for text search.</li>
+  <li><code>data-tags</code> - space-separated category tags, for the tag filter.</li>
 </ul>
-<p>The macro sets all three for you - the rendered HTML below shows them on the card element:</p>
+<p>The macro sets all three. The rendered HTML below shows them on the card element.</p>
 {% set src %}{% raw %}{% from "voyager/components/function-card/function-card.j2" import function_card %}
 
 {{ function_card(
     title="Content pages",
-    description="Static CMS pages - About, Contact, Editorial Policies.",
+    description="Edit pages such as About, Contact, and Editorial policies.",
     url="/manager/pages",
     icon="file-text", icon_colour="blue",
     count=14,
@@ -74,10 +74,9 @@
 
 <h2>Notes</h2>
 <ul>
-  <li>The card is a real <code>&lt;a&gt;</code> - focusable, keyboard-accessible by default.</li>
-  <li>Choose icon colour by <em>category</em>, not aesthetic - users learn that "blue means settings" over time.</li>
-  <li>Count is optional. If unknown or not meaningful, leave it off; the layout collapses gracefully.</li>
-  <li>Keep descriptions to one line where possible (the card has min-height to keep rows aligned).</li>
+  <li>The card is an <code>&lt;a&gt;</code> element, so it is focusable and keyboard-accessible.</li>
+  <li>Describe what the user can do on the destination page. Keep the description brief, to one line where possible, because the card has a minimum height that keeps rows aligned.</li>
+  <li>Include a count when it helps users understand the destination, such as the number of review forms. Otherwise, omit it.</li>
 </ul>
 
 </body>

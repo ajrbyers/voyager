@@ -4,17 +4,15 @@
 
 <h1>App footer</h1>
 <p class="site-page-lede">
-  A modest meta strip at the bottom of every admin page: version on the
-  left, a help link on the right.
+  The app footer shows the application version and a link to help.
 </p>
 
 <h2>Example</h2>
 <p>
-  Place it as the last child of <code>.app-shell-main</code> so it sits
-  beneath the page content - see the
-  <a href="app-shell.html">Application shell</a> page for the full layout.
-  Keep the footer light: version and a help link. It is not the place for
-  navigation or legal boilerplate.
+  Place the footer at the end of <code>.app-shell-main</code>, after the page
+  content - see the <a href="app-shell.html">Application shell</a> page for the
+  surrounding layout. Keep it brief so that it remains separate from the page's
+  actions.
 </p>
 {% set src %}{% raw %}{% from "voyager/components/app-footer/app-footer.j2" import app_footer %}
 

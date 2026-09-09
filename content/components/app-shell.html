@@ -4,23 +4,22 @@
 
 <h1>Application shell</h1>
 <p class="site-page-lede">
-  The page-level layout for admin screens: a two-column grid with the
-  <a href="sidebar-nav.html">sidebar nav</a> on the left and the page content
-  on the right, finished with a modest <a href="app-footer.html">app footer</a>.
-  The <a href="app-header.html">app header</a> sits above the shell, not
-  inside it.
+  The application shell places journal navigation beside the main content. Use
+  it for editorial and administration screens.
 </p>
 
 <h2>App shell</h2>
 <p>
-  Place <code>.app-shell</code> directly inside <code>&lt;body&gt;</code>, after the
-  app header. The first child is the sidebar nav; the second is
-  <code>&lt;main class="app-shell-main"&gt;</code>, which holds the page content. The
-  grid collapses to a single column below 900px. The main column has no padding of
-  its own - use a layout utility such as <code>.layout-full</code> or
-  <code>.layout-with-rail</code> (see the <a href="rail.html">Rail</a> page) to
-  space the content. See <a href="../examples/peer-review.html">the peer review
-  example</a> for the shell in full context.
+  Place <code>.app-shell</code> after the <a href="app-header.html">app
+  header</a>. Put the <a href="sidebar-nav.html">sidebar nav</a> first and
+  <code>&lt;main class="app-shell-main"&gt;</code> second.
+</p>
+<p>
+  Use <code>.layout-full</code> or <code>.layout-with-rail</code> (see the
+  <a href="rail.html">Rail</a> page) inside the main element to arrange the
+  content and add spacing. At widths of 900px or less, the shell uses one
+  column. The <a href="../examples/peer-review.html">peer review example</a>
+  shows the shell on a complete page.
 </p>
 {% set src %}{% raw %}{% from "voyager/components/app-shell/app-shell.j2" import app_shell %}
 {% from "voyager/components/app-footer/app-footer.j2" import app_footer %}
@@ -31,7 +30,7 @@
       <span class="sidebar-nav-mark" aria-hidden="true">JE</span>
       <div>
         <div class="sidebar-nav-name">Journal of Energy Modelling</div>
-        <div class="sidebar-nav-sub">Editor in Chief view</div>
+        <div class="sidebar-nav-sub">Editor-in-chief view</div>
       </div>
       <button type="button" class="sidebar-nav-toggle" data-disclosure-toggle aria-expanded="false" aria-controls="sidebar-nav-content-shell-demo">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
@@ -42,7 +41,7 @@
       <h2 class="sidebar-nav-section">Workflow</h2>
       <ul>
         <li><a href="#" class="sidebar-nav-link">Unassigned <span class="sidebar-nav-count" aria-label="7 articles">7</span></a></li>
-        <li><a href="#" class="sidebar-nav-link" aria-current="page">Peer Review <span class="sidebar-nav-count" aria-label="14 articles">14</span></a></li>
+        <li><a href="#" class="sidebar-nav-link" aria-current="page">Peer review <span class="sidebar-nav-count" aria-label="14 articles">14</span></a></li>
         <li><a href="#" class="sidebar-nav-link">Copyediting <span class="sidebar-nav-count" aria-label="5 articles">5</span></a></li>
       </ul>
     </div>
@@ -58,17 +57,16 @@
 
 <h2>When to use</h2>
 <ul>
-  <li>Use the app shell on every signed-in admin screen - dashboards, workflow pages, manager pages.</li>
-  <li>Don't use it on public-facing or reading pages; those have their own layouts.</li>
-  <li>One shell per page. Nesting shells or adding extra columns at this level breaks the responsive collapse - use <code>.layout-with-rail</code> inside the main column instead.</li>
+  <li>Use the app shell on signed-in administration screens, such as dashboards, workflow pages, and manager pages.</li>
+  <li>Do not use it on public-facing or reading pages, which have their own layouts.</li>
+  <li>Use one shell per page. Nesting shells or adding further columns at this level breaks the single-column layout on narrow screens; use <code>.layout-with-rail</code> inside the main element instead.</li>
 </ul>
 
 <h2>Notes</h2>
 <ul>
-  <li>The app header is a sibling <em>above</em> the shell, not a child of it - the shell's <code>min-height</code> is calculated against the header's height. It is documented on the <a href="app-header.html">App header</a> page.</li>
-  <li>Give <code>.app-shell-main</code> the <code>id="main"</code> so the skip link has a target.</li>
-  <li>The sidebar column width comes from the <code>--shell-sidebar-width</code> token; override it at the page level only if a screen genuinely needs a wider nav.</li>
-  <li>The footer strip at the base of the main column is documented on the <a href="app-footer.html">App footer</a> page.</li>
+  <li>Give the main element <code>id="main"</code> so the skip link can target it.</li>
+  <li>The sidebar column width comes from the <code>--shell-sidebar-width</code> token. Override it at page level if a screen needs a wider sidebar.</li>
+  <li>The footer at the end of the main element is documented on the <a href="app-footer.html">App footer</a> page.</li>
 </ul>
 
 </body>

@@ -4,25 +4,34 @@
 
 <h1>Voyager</h1>
 <p class="site-page-lede">
-  Voyager is Janeway's design system.
+  Voyager is Janeway's design system. It provides components for
+  editorial work, including submission lists, review screens, and forms.
 </p>
 
 <h2>Design principles</h2>
 <p>
-  Components are built to be as accessible as possible. Where a good
-  pattern already exists, we opt to use it and many here are adapted from the
-  <a href="https://design-system.service.gov.uk/">GOV.UK Design System</a>.
+  Voyager uses established interface patterns to support accessible
+  editorial workflows. Many of its forms and components are adapted from
+  the <a href="https://design-system.service.gov.uk/">GOV.UK Design System</a>.
 </p>
 
 <h2>How it's organised</h2>
 <ul>
-  <li><strong>Foundations</strong> - the tokens, type scale, and layout primitives that everything else builds on.</li>
-  <li><strong>Components</strong> - self-contained patterns. Each component pairs a <code>.css</code> file with a <code>.j2</code> macro. The CSS uses a single root class with native nesting; variants compose as additional flat classes.</li>
-  <li><strong>Examples</strong> - three reference pages showing Voyager's components composed into real Janeway screens: the editor dashboard, the manager index, and the peer-review screen. The component markup is currently handwritten (not rendered through the macros) and each page adds its own page-level layout styles.</li>
+  <li><strong>Foundations</strong> - colours, typography, spacing, and page layouts.</li>
+  <li><strong>Components</strong> - reusable interface elements with CSS, Jinja macros, and usage examples.</li>
+  <li><strong>Examples</strong> - an editorial dashboard, manager index, and peer-review screen. These pages use handwritten component markup and additional page styles.</li>
 </ul>
 
 <h2>How to use it</h2>
-<p>Add one stylesheet to your page and use the component HTML or call the Jinja2 macros:</p>
+<p>Load Voyager's stylesheet and JavaScript entry points in your page's <code>&lt;head&gt;</code>. In a Django project with the <code>voyager</code> app installed, use the <code>static</code> tag:</p>
+
+<div class="example">
+  <div class="example-tabs"><button class="example-tab" aria-pressed="true" type="button" data-target="html">HTML</button></div>
+  <pre class="example-pane" data-pane="html" aria-hidden="false" tabindex="0"><code>&lt;link rel="stylesheet" href="{% raw %}{% static 'voyager/assets/css/index.css' %}{% endraw %}"&gt;
+&lt;script type="module" src="{% raw %}{% static 'voyager/assets/js/index.js' %}{% endraw %}"&gt;&lt;/script&gt;</code></pre>
+</div>
+
+<p>Then use the component HTML or call the Jinja macros. Every component page shows both forms, with a rendered preview:</p>
 
 {% set src %}{% raw %}{% from "voyager/components/tag/tag.j2" import tag %}
 
@@ -30,13 +39,16 @@
 {{ tag("Article", kind="grey") }}{% endraw %}{% endset %}
 {{ example(src) }}
 
+<p>See <a href="architecture.html#loading-styles">Loading styles</a> for how the stylesheet is put together, and the
+<a href="https://github.com/openlibhums/voyager">README</a> for installing the Django app and configuring static-file hashing.</p>
+
 <h2>Architecture</h2>
 <p>
-  Voyager follows the <a href="https://github.com/openlibhums/memory-alpha">Memory Alpha</a>
-  CSS approach: layer order (<code>settings → reset → elements → components → utilities</code>),
-  single root class per component, native CSS nesting, composable
-  variant classes (no BEM), two-tier tokens (raw + semantic). See the
-  <a href="architecture.html">Architecture</a> page for the full picture.
+  Voyager follows <a href="https://github.com/openlibhums/memory-alpha">Memory Alpha's</a>
+  CSS structure. It uses custom properties for design tokens, native
+  nesting for component styles, and separate classes for variants. See
+  <a href="architecture.html">Architecture</a> for the file structure
+  and styling conventions.
 </p>
 
 </body>

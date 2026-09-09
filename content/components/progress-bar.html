@@ -4,25 +4,24 @@
 
 <h1>Progress bar</h1>
 <p class="site-page-lede">
-  A thin 3-pixel strip pinned to the very top of the viewport that animates
-  while a request is in flight. Pair with HTMX events (or any fetch
-  lifecycle): start the bar on request, finish it on settle. Purely
-  visual - never rely on it for status messaging.
+  A progress bar provides a visual indication that a request is running. It is a
+  3&nbsp;px strip fixed to the top of the page. Provide a text status message as
+  well, because the bar carries no information on its own.
 </p>
 
 <h2>Try it</h2>
-<p>One progress bar is mounted at the top of this page. Click the button below to run the standard start/finish lifecycle.</p>
+<p>The markup example below renders one progress bar, fixed to the top of this page. Select <strong>Trigger progress bar</strong> to run the start and finish animation.</p>
 {% set src %}{% raw %}<button type="button" id="demo-progress-trigger" class="btn btn-primary">Trigger progress bar</button>{% endraw %}{% endset %}
 {{ example(src, jinja=False) }}
 
 <h2>Markup</h2>
-<p>One element. Toggle the <code>is-running</code> class and set <code>width</code> from JavaScript.</p>
+<p>The macro renders one element. Toggle its <code>is-running</code> class and set its <code>width</code> from JavaScript.</p>
 {% set src %}{% raw %}{% from "voyager/components/progress-bar/progress-bar.j2" import progress_bar %}
 {{ progress_bar() }}{% endraw %}{% endset %}
 {{ example(src) }}
 
-<h2>HTMX driver</h2>
-<p>Wire up HTMX request and settle events to animate the bar. The bar fills to 85% on request start (slow ease), then to 100% on settle and fades out.</p>
+<h2>Connecting to HTMX</h2>
+<p>Start the bar when a request begins and finish it when the response settles. The animation advances to 85% while the request runs, then completes and fades out once the response has settled. It does not measure how much of the request is complete.</p>
 {% set src %}{% raw %}const bar = document.getElementById('progress-bar');
 
 function start() {
@@ -51,9 +50,9 @@ document.body.addEventListener('htmx:responseError', done);{% endraw %}{% endset
 
 <h2>Notes</h2>
 <ul>
-  <li>The bar is <code>aria-hidden="true"</code> - screen readers should pick up loading state from the live region of the changing content, not from the bar.</li>
-  <li>Don't show the bar for every HTMX request; gate it to the pane being loaded (compare <code>evt.detail.target</code> with the target element).</li>
-  <li>Use <code>cubic-bezier(0.1, 0.05, 0, 1)</code> for the slow first phase so the bar feels like it's making progress without ever finishing prematurely.</li>
+  <li>The bar is <code>aria-hidden="true"</code>. Announce loading state from a live region on the content that is changing, not from the bar.</li>
+  <li>Show the bar only for the request that loads the content concerned. Compare <code>evt.detail.target</code> with the target element before starting it.</li>
+  <li>Use <code>cubic-bezier(0.1, 0.05, 0, 1)</code> for the first phase so the bar slows as it approaches 85% and does not reach the end before the response arrives.</li>
 </ul>
 
 </body>

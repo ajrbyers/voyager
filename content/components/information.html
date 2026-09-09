@@ -4,17 +4,16 @@
 
 <h1>Information</h1>
 <p class="site-page-lede">
-  Three patterns for surfacing status messages, in the order they appear below:
-  <strong>notice</strong> for events worth surfacing, <strong>inset text</strong> for
-  ambient context, and <strong>error summary</strong> for failed form
-  submissions. For serious or irreversible actions, see
-  <a href="warning-text.html">warning text</a>.
+  Use a notice for a status message, inset text for supporting information, and
+  an error summary for form validation errors. Use
+  <a href="warning-text.html">warning text</a> to explain the consequences of a
+  serious action.
 </p>
 
 <h2>Notice - info (default)</h2>
 {% set src %}{% raw %}{% from "voyager/components/information/information.j2" import notice %}
-{% call notice("Important") %}
-  <p>Reviewer #419 has not acknowledged the invitation sent on 12 April 2026 - 28 days ago.</p>
+{% call notice("Reviewer response overdue") %}
+  <p>Reviewer #419 has not responded to the invitation sent on 12 April 2026, 28 days ago.</p>
 {% endcall %}{% endraw %}{% endset %}
 {{ example(src) }}
 
@@ -22,10 +21,10 @@
 <p>Add <code>.notice-warning</code>, <code>.notice-error</code>, or <code>.notice-success</code> alongside <code>.notice</code>.</p>
 {% set src %}{% raw %}{% from "voyager/components/information/information.j2" import notice %}
 {% call notice("Action needed", kind="warning") %}
-  <p>Revision request R-2026-091 is overdue by 4 days.</p>
+  <p>Revision R-2026-091 is 4 days overdue.</p>
 {% endcall %}
-{% call notice("Something went wrong", kind="error") %}
-  <p>The decision could not be saved. Try again or contact support.</p>
+{% call notice("Decision not saved", kind="error") %}
+  <p>The decision could not be saved. Try again. If the problem continues, contact support.</p>
 {% endcall %}
 {% call notice("Decision sent", kind="success") %}
   <p>Your decision letter was emailed to the corresponding author.</p>
@@ -33,16 +32,16 @@
 {{ example(src) }}
 
 <h2>Inset text</h2>
-<p>Quiet ambient context. No header. Use in the right rail under "Status".</p>
+<p>Inset text separates supporting information from the surrounding content without adding a heading. It suits a short status summary in the rail.</p>
 {% set src %}{% raw %}{% from "voyager/components/information/information.j2" import inset_text %}
 {% call inset_text() %}
-  <p>Currently in <strong>Under Review</strong>. An active minor revision is in flight.</p>
-  <p>Editorial decision is blocked until at least one further review is received.</p>
+  <p>Currently in <strong>Under review</strong>. A request for minor revisions is open.</p>
+  <p>You can make a decision after another review is received.</p>
 {% endcall %}{% endraw %}{% endset %}
 {{ example(src) }}
 
 <h2 id="error-summary">Error summary</h2>
-<p>Used at the top of a form when validation fails. Each error is a link that focuses the corresponding field. <code>role="alert"</code> announces the summary to screen readers immediately.</p>
+<p>Use an error summary at the top of a form when validation fails. Each error is a link that moves focus to the field it describes. The summary carries <code>role="alert"</code>; how a screen reader announces it depends on the browser and screen reader, and on when the summary appears.</p>
 {% set src %}{% raw %}{% from "voyager/components/information/information.j2" import error_summary, error_summary_item %}
 {% call error_summary() %}
   {{ error_summary_item("Enter a decision letter to send to the author", anchor="decision-letter") }}

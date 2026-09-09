@@ -4,14 +4,17 @@
 
 <h1>Folder list</h1>
 <p class="site-page-lede">
-  Sidebar navigation for inbox-style pages. Groups folders into labelled
-  sections, each item carries an icon, name, and optional count. Counts can
-  be coloured to flag critical or warning severity. Custom (user-created)
-  folders show a colour dot and inline edit/delete affordances on hover.
-  Below 900px the folder tree collapses behind the Folders button beside
-  the search input; the shared disclosure driver in <code>folder-list.js</code>
-  toggles it via <code>data-disclosure-toggle</code>,
-  <code>aria-controls</code> and <code>aria-expanded</code>.
+  A folder list groups workflow queues and saved views in a sidebar. Each
+  item has a name, an icon, and an optional count. Folders are arranged in
+  labelled sections, and user-created folders show a colour dot with edit
+  and delete buttons.
+</p>
+<p>
+  At widths of 900px or less, users can expand the list with
+  <strong>Folders</strong>. The shared disclosure script in
+  <code>folder-list.js</code> controls the expanded state through
+  <code>data-disclosure-toggle</code>, <code>aria-controls</code>, and
+  <code>aria-expanded</code>.
 </p>
 
 <h2>Default</h2>
@@ -23,7 +26,7 @@
   {{ folder_list_section("Workflow", first=True) }}
   {{ folder_item("Unassigned",  url="?folder=unassigned",
                  icon=icon("mail"), count=7,  severity="warning") }}
-  {{ folder_item("Peer Review", url="?folder=peer_review",
+  {{ folder_item("Peer review", url="?folder=peer_review",
                  icon=icon("search"), count=14, severity="critical", current=True) }}
   {{ folder_item("Copyediting", url="?folder=copyediting",
                  icon=icon("edit"), count=5) }}
@@ -31,7 +34,7 @@
 {{ example(src) }}
 
 <h2>Custom folder with actions</h2>
-<p>User-created folders show a colour dot and inline edit/delete buttons that appear on hover.</p>
+<p>User-created folders show a colour dot, with edit and delete buttons that appear on hover.</p>
 {% set src %}{% raw %}{% from "voyager/components/folder-list/folder-list.j2"
    import folder_item, folder_list_section %}
 <nav class="folder-list" aria-label="Custom folder demo">
@@ -39,7 +42,7 @@
     <ul>
       {{ folder_list_section("Custom", first=True) }}
       {{ folder_item(
-          "Climate & energy issue",
+          "Climate and energy issue",
           url="?folder=custom:1",
           count=11,
           custom=True,
@@ -54,9 +57,9 @@
 
 <h2>Notes</h2>
 <ul>
-  <li>Counts use coloured backgrounds for critical/warning state, never colour alone - the count number is the primary signal; severity is supplementary.</li>
+  <li>Use the count to show how many articles a folder contains. If colour indicates urgency, explain that urgency in text as well.</li>
   <li>The active folder gets <code>aria-current="page"</code> so screen readers announce it.</li>
-  <li>Custom folder actions are visually hidden until hover (or keyboard focus inside the row).</li>
+  <li>The actions on a user-created folder appear on hover, or when focus moves into the row.</li>
   <li>The search input uses the standard <code>.form-input</code> class - no special styling needed.</li>
 </ul>
 

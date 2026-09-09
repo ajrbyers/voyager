@@ -4,12 +4,12 @@
 
 <h1>Page header</h1>
 <p class="site-page-lede">
-  The first thing the user reads on a page. Caption above, H1 in the middle, byline
-  and status tags below. Sits inside the page content area, not the global header.
+  The page header contains the page title and optional context, including an
+  article ID, author details, dates, and status tags.
 </p>
 
 <h2>Default</h2>
-<p>Caption gives context (the section, type, ID). Title is the H1. Byline names the relevant person and adds dates. Tags surface status at a glance.</p>
+<p>Use the caption for context, the title for the page heading, and the byline for related people or dates. Add tags when a status or category helps identify the content.</p>
 {% set src %}{% raw %}{% from "voyager/components/page-header/page-header.j2" import page_header %}
 {% from "voyager/components/tag/tag.j2" import tag %}
 {% call page_header(
@@ -27,7 +27,7 @@
 {{ example(src) }}
 
 <h2>Without tags</h2>
-<p>Tags are optional. Caption and byline are too - but the title is required.</p>
+<p>The caption, byline, and tags are optional. The title is required.</p>
 {% set src %}{% raw %}{% from "voyager/components/page-header/page-header.j2" import page_header %}
 {{ page_header(
     title="Manager",
@@ -36,13 +36,13 @@
 {{ example(src) }}
 
 <h2>Placement</h2>
-<p>Place the page header inside the main content column. When using <code>.layout-with-rail</code>, the title sits next to the rail's first section so the right column starts at the same vertical position as the H1.</p>
+<p>Place the page header inside the main content column, not in the app header. With <code>.layout-with-rail</code>, the title sits beside the rail's first section, so both columns start at the same vertical position.</p>
 
 <h2>Accessibility</h2>
 <ul>
-  <li>The title is the only H1 on the page.</li>
-  <li>Caption is a span, not a heading - it provides context, not hierarchy.</li>
-  <li>Tags are decorative status labels; the same information must be available in the byline or status section so colour isn't the only carrier.</li>
+  <li>The title is the page's only <code>&lt;h1&gt;</code>.</li>
+  <li>The caption is a span rather than a heading, because it provides context rather than a level in the heading structure.</li>
+  <li>Write the status in the tag's text so that its meaning does not depend on colour.</li>
 </ul>
 
 </body>

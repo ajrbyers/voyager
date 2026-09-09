@@ -4,16 +4,15 @@
 
 <h1>Theme toggle</h1>
 <p class="site-page-lede">
-  A small button that switches between light and dark mode. It sets the
-  <code>data-theme</code> attribute on <code>&lt;html&gt;</code>, persists the
-  choice in localStorage, and reflects its state via <code>aria-pressed</code>.
+  The theme toggle switches between light and dark mode and saves the
+  preference in the browser.
 </p>
 
 <h2>Default</h2>
 <p>
-  The toggle below is live - pressing it switches this page's theme. The moon
-  icon shows in light mode, the sun in dark mode, and the text label names the
-  mode the button will switch <em>to</em>.
+  Select <strong>Dark</strong> or <strong>Light</strong> to change this
+  page's theme. The label names the mode the button will activate. The
+  moon icon shows in light mode and the sun icon in dark mode.
 </p>
 {% set src %}{% raw %}{% from "voyager/components/theme-toggle/theme-toggle.j2" import theme_toggle %}
 
@@ -22,7 +21,7 @@
 
 <h2>Behaviour</h2>
 <ul>
-  <li><strong><code>data-theme</code> on <code>&lt;html&gt;</code></strong> is the single source of truth. The toggle flips it between <code>light</code> and <code>dark</code>; CSS dark-mode aliases and the icon swap both key off this attribute.</li>
+  <li><strong><code>data-theme</code> on <code>&lt;html&gt;</code></strong> is the single source of truth. The toggle flips it between <code>light</code> and <code>dark</code>; the CSS dark-mode aliases and the icon swap both key off this attribute.</li>
   <li><strong><code>aria-pressed</code></strong> reflects the state: <code>true</code> when dark mode is active, <code>false</code> otherwise. The <code>aria-label</code> stays "Toggle dark mode" while the visible label text swaps between "Dark" and "Light".</li>
   <li><strong>Persistence</strong> - the choice is stored under the localStorage key <code>voyager-theme</code> and read on the next page load. With no stored value, the <code>prefers-color-scheme</code> media query decides.</li>
   <li><strong>Event delegation</strong> - <code>theme-toggle.js</code> binds one document-level click handler on <code>[data-theme-toggle]</code>, so a page may carry several toggles (header, example banner) and all stay in sync.</li>
@@ -30,11 +29,12 @@
 
 <h2>Head script</h2>
 <p>
-  Consumers must inline this script in <code>&lt;head&gt;</code>, before any
-  stylesheet-dependent paint, so the stored theme is applied without a flash of
-  light content. The localStorage access is wrapped in <code>try/catch</code>
-  because storage can throw in private browsing modes or when blocked by
-  policy - the toggle then falls back to the system preference.
+  Add this script to the page's <code>&lt;head&gt;</code> to apply the
+  saved theme before the page is displayed. If no preference is saved,
+  it uses the device's colour-scheme preference. The localStorage access
+  is wrapped in <code>try</code>/<code>catch</code> because storage can
+  throw in private browsing modes or when blocked by policy; the script
+  then uses the device preference.
 </p>
 {% set src %}{% raw %}<script>(function(){var k='voyager-theme',d=window.matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem(k)}catch(e){}document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>{% endraw %}{% endset %}
 {{ example(src, jinja=False) }}
@@ -42,9 +42,9 @@
 <h2>Notes</h2>
 <ul>
   <li>The button uses <code>currentColor</code> for its border and inherits its text colour, so it adapts to its surroundings - white on dark headers, black on the yellow example banner - with no per-context variants.</li>
-  <li>Both icons are <code>aria-hidden="true"</code>; state is conveyed by <code>aria-pressed</code> and the label text, not by the icon alone.</li>
-  <li>The button meets the WCAG 2.2 minimum target size (SC 2.5.8) via its 24px minimum height.</li>
-  <li>Without JavaScript the toggle does nothing, but the head script still applies the system preference - dark-mode users are never flashed with a light page.</li>
+  <li>Both icons are <code>aria-hidden="true"</code>; the state is conveyed by <code>aria-pressed</code> and the label text, not by the icon alone.</li>
+  <li>The button meets the WCAG 2.2 minimum target size (SC 2.5.8) through its 24px minimum height.</li>
+  <li>Without JavaScript, the toggle is inactive and Voyager uses its default light theme.</li>
 </ul>
 
 </body>

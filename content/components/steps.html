@@ -4,12 +4,12 @@
 
 <h1>Steps</h1>
 <p class="site-page-lede">
-  A numbered process list with state - used to show where a piece of work
-  sits in a multi-stage flow.
+  Use steps to show progress through a workflow. Mark completed steps
+  and identify the current step.
 </p>
 
 <h2>States</h2>
-<p>Add <code>.is-done</code> for completed steps and <code>.is-current</code> + <code>aria-current="step"</code> for the active step.</p>
+<p>Add <code>.is-done</code> to completed steps. Add <code>.is-current</code> and <code>aria-current="step"</code> to the current step.</p>
 {% set src %}{% raw %}{% from "voyager/components/steps/steps.j2" import steps, step %}
 
 {% call steps() %}

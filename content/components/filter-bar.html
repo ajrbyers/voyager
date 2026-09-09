@@ -4,10 +4,9 @@
 
 <h1>Filter bar</h1>
 <p class="site-page-lede">
-  A control row for narrowing a list of results. Select dropdowns run
-  along the top, with chips beneath them showing the current selection.
-  Each chip has its own remove (×), and a "Clear filters" link appears
-  whenever any filter is active.
+  Use a filter bar to narrow a list of results. Active filters appear
+  below the controls, with a link to remove each one.
+  <strong>Clear filters</strong> removes all selections.
 </p>
 
 <h2>Default</h2>
@@ -46,10 +45,10 @@
 
 <h2>Notes</h2>
 <ul>
-  <li>The select dropdowns submit on change (HTMX or vanilla form submit) - the bar itself does no JavaScript.</li>
-  <li>Use <code>filter_input</code> (class <code>filter-input</code>) for text, date, or number controls in the bar - it shares the compact sizing of <code>filter-select</code>, so mixed control rows stay level. Don't put full-size <code>form-input</code> controls in a filter bar.</li>
-  <li>Chips reflect active selections. Each chip's remove link should remove only that filter while preserving the others.</li>
-  <li>Hide the chips row entirely when no filters are active - the empty <code>filter-bar-chips</code> collapses to zero height automatically.</li>
+  <li>Your application handles filter changes, either by submitting the form or sending an HTMX request. Voyager provides the controls and their styling.</li>
+  <li>Use <code>filter_input</code> (class <code>filter-input</code>) for text, date, and number fields so they align with the select controls. Do not use full-size <code>form-input</code> controls in a filter bar.</li>
+  <li>Each chip's remove link removes only its own filter and preserves the others.</li>
+  <li>Hide the chips row when no filters are active. An empty <code>filter-bar-chips</code> collapses to zero height.</li>
   <li>Pair with the <a href="folder-list.html">folder list</a> and <a href="article-card.html">article card</a> for the inbox-style dashboard.</li>
 </ul>
 

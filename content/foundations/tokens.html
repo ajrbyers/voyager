@@ -3,9 +3,8 @@
 
 <h1>Tokens</h1>
 <p class="site-page-lede">
-  Voyager uses a two-tier token system. Raw tokens hold the underlying value;
-  semantic aliases reference the raw tokens by role. Components reference the
-  <em>semantic</em> tokens, never raw values.
+  Design tokens define Voyager's colours, spacing, and shadows. Raw tokens hold
+  values, and semantic tokens assign them to interface roles.
 </p>
 
 <h2>Surfaces</h2>
@@ -23,7 +22,7 @@
   <div class="swatch"><div class="swatch-chip swatch-border-strong"></div><div class="swatch-meta"><strong>--colour-border-strong</strong><code>#6e7781</code></div></div>
   <div class="swatch"><div class="swatch-chip swatch-border-component"></div><div class="swatch-meta"><strong>--colour-border-component</strong><code>#b1b4b6</code></div></div>
 </div>
-<p class="muted">Border tokens are tuned for WCAG 1.4.11 - borders that distinguish a UI component from its background must have ≥3:1 contrast against canvas.</p>
+<p class="muted">Choose border colours according to their purpose. A subtle divider and a form-control boundary have different contrast requirements. Check the border against the background where it appears: WCAG 1.4.11 requires ≥3:1 contrast for a border that distinguishes a control from its background.</p>
 
 <h2>Foreground</h2>
 <div class="swatch-grid">
@@ -63,7 +62,7 @@
 </ul>
 
 <h2>Shadow</h2>
-<p>Voyager is squared - there are no radius tokens. The only rounded shapes are avatars and dots, which use <code>border-radius:50%</code> directly. Elevation is limited to overlays; buttons carry their own flat 2px bottom shadow.</p>
+<p>Most Voyager components have square corners, and there are no radius tokens. Rounded shapes - avatars, dots, radio buttons, and step markers - set <code>border-radius:50%</code> directly. Overlay shadows distinguish menus and dialogs from the content behind them. Buttons use a 2px bottom shadow.</p>
 <ul>
   <li><code>--shadow-overlay</code> <code>0 4px 12px rgba(11,12,12,0.16)</code> - dropdowns and popovers</li>
   <li><code>--shadow-modal</code> <code>0 16px 32px rgba(11,12,12,0.2)</code> - modal dialogs</li>
