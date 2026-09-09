@@ -9,7 +9,8 @@
 </p>
 
 <h2>Filter tabs</h2>
-<p>Each tab is a navigation link. Mark the current link with <code>aria-current="true"</code>. These links navigate between views rather than switching ARIA tab panels.</p>
+<p>Each tab is a navigation link. Mark the current link with <code>aria-current="true"</code>. Selecting a tab loads that view, so these links navigate between views rather than switching ARIA tab panels in place.</p>
+<p>The tabs in this preview point at example URLs, so selecting one does not change the page.</p>
 {% set src %}{% raw %}{% from "voyager/components/tabs/tabs.j2" import tabs, tab %}
 
 {% call tabs("Review rounds") %}
