@@ -33,3 +33,14 @@ jobs:
       - run: pip install dist/*.whl "${{ matrix.django }}"
       - run: mv voyager voyager-src  # force imports to resolve from the wheel
       - run: DJANGO_SETTINGS_MODULE=tests.settings python -m django test tests
+
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e . playwright
+      - run: playwright install --with-deps chromium
+      - run: make test-browser
