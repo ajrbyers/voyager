@@ -43,14 +43,35 @@ export function tagPicker() {
     pending = { id: root.id, message: message };
   });
 
-  document.body && document.body.addEventListener('htmx:afterSwap', function () {
+  document.body && document.body.addEventListener('htmx:afterSwap', function (event) {
     if (!pending) return;
     var root = document.getElementById(pending.id);
-    if (!root || !root.classList.contains('tag-picker')) return;
+    if (!root || !root.classList.contains('tag-picker')) { pending = null; return; }
+    // Act only on the pending picker's own swap. Unrelated swaps
+    // elsewhere on the page must not announce or steal focus, and the
+    // pending action stays queued until the picker's request lands.
+    var target = event.detail && event.detail.target;
+    var relevant = target && (
+      target === root || target.id === pending.id ||
+      (target.contains && target.contains(root))
+    );
+    if (!relevant) return;
     var region = document.getElementById(pending.id + '-status');
     if (region) region.textContent = pending.message;
     var input = root.querySelector('.tag-picker-search input');
     if (input) input.focus();
     pending = null;
+  });
+
+  // A failed add/remove never swaps, so the pending action would haunt
+  // the next unrelated swap - clear it when the pending picker's own
+  // request errors.
+  ['htmx:responseError', 'htmx:sendError', 'htmx:swapError'].forEach(function (name) {
+    document.body && document.body.addEventListener(name, function (event) {
+      if (!pending) return;
+      var source = event.detail && event.detail.elt;
+      var picker = source && source.closest && source.closest('.tag-picker');
+      if (picker && picker.id === pending.id) pending = null;
+    });
   });
 }
