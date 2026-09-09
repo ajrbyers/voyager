@@ -1,6 +1,7 @@
 {# progress-bar - thin top loading bar.
-   Render once at the top of the page; JS drives the width and the
-   .is-running class. See assets/js/progress-bar.js for the driver.
+   Render once at the top of the page. Voyager ships no driver for it:
+   the consuming application drives the width and the .is-running class
+   (the docs page shows an HTMX integration example).
 
    Usage:
      {{ progress_bar() }}

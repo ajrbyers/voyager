@@ -29,7 +29,7 @@
   {% if actions %}{{ actions }}{% endif %}
   {% if user %}
   <button type="button" class="app-header-avatar"
-          aria-label="Account menu - signed in as {{ user.name|e }}">{{ user.initials|default(user.name)|e }}</button>
+          aria-label="Account - signed in as {{ user.name|e }}">{{ user.initials|default(user.name)|e }}</button>
   {% endif %}
 </header>
 {% endmacro %}
