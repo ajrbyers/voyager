@@ -24,8 +24,11 @@ voyager/storage.py                         manifest storage that hashes the JS
                                            import chain as well as the CSS
 
 # Documentation site (never shipped) - Pelican, dogfooding the package
-content/                one page per component/foundation/example; each renders
-                        the real packaged macros via the example() helper
+content/                one page per component/foundation/example; every
+                        component page renders the real packaged macros via
+                        the example() helper (foundations document tokens and
+                        conventions; the example pages are currently
+                        handwritten markup)
 themes/voyager-docs/    docs theme: the chrome, the example() macro, docs CSS/JS
 pelicanconf.py          Pelican config: render_snippet + the sidebar registry
 ```
